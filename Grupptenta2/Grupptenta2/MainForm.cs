@@ -58,7 +58,6 @@ namespace Grupptenta2
 			}
 		}
 		#endregion
-
 		#region "Menu"
 		private void profileBtn_Click(object sender, EventArgs e)
 		{
@@ -100,7 +99,6 @@ namespace Grupptenta2
 			Application.Exit();
 		}
 		#endregion
-
 		#region "Project"
 		private void goToProjectBtn_Click(object sender, EventArgs e)
 		{
