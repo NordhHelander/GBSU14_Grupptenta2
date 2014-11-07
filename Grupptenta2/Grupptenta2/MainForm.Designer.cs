@@ -56,9 +56,15 @@
 			this.clientPnl = new System.Windows.Forms.Panel();
 			this.clientViewLbl = new System.Windows.Forms.Label();
 			this.closeClientBtn = new System.Windows.Forms.Button();
-			this.chooseContact = new Grupptenta2.ChooseFromList_Control();
-			this.chooseFromList_Control1 = new Grupptenta2.ChooseFromList_Control();
 			this.personUserControl1 = new Grupptenta2.PersonUserControl();
+			this.choicePnl = new System.Windows.Forms.Panel();
+			this.searchBox = new System.Windows.Forms.TextBox();
+			this.searchBtn = new System.Windows.Forms.Button();
+			this.filterBox = new System.Windows.Forms.ComboBox();
+			this.filterBtn = new System.Windows.Forms.Button();
+			this.listBox = new System.Windows.Forms.ListBox();
+			this.chooseBtn = new System.Windows.Forms.Button();
+			this.createBtn = new System.Windows.Forms.Button();
 			this.menuPanel.SuspendLayout();
 			this.profilePnl.SuspendLayout();
 			this.listProjectsPnl.SuspendLayout();
@@ -68,6 +74,7 @@
 			this.contactPnl.SuspendLayout();
 			this.listClientsPnl.SuspendLayout();
 			this.clientPnl.SuspendLayout();
+			this.choicePnl.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuPanel
@@ -190,9 +197,8 @@
 			// listProjectsPnl
 			// 
 			this.listProjectsPnl.BackColor = System.Drawing.Color.Gainsboro;
-			this.listProjectsPnl.Controls.Add(this.chooseFromList_Control1);
 			this.listProjectsPnl.Controls.Add(this.goToProjectBtn);
-			this.listProjectsPnl.Location = new System.Drawing.Point(25, 639);
+			this.listProjectsPnl.Location = new System.Drawing.Point(14, 635);
 			this.listProjectsPnl.Name = "listProjectsPnl";
 			this.listProjectsPnl.Size = new System.Drawing.Size(321, 415);
 			this.listProjectsPnl.TabIndex = 2;
@@ -259,9 +265,8 @@
 			// listContactsPnl
 			// 
 			this.listContactsPnl.BackColor = System.Drawing.Color.Gainsboro;
-			this.listContactsPnl.Controls.Add(this.chooseContact);
 			this.listContactsPnl.Controls.Add(this.goToContactBtn);
-			this.listContactsPnl.Location = new System.Drawing.Point(203, 0);
+			this.listContactsPnl.Location = new System.Drawing.Point(17, 466);
 			this.listContactsPnl.Name = "listContactsPnl";
 			this.listContactsPnl.Size = new System.Drawing.Size(320, 415);
 			this.listContactsPnl.TabIndex = 5;
@@ -354,22 +359,6 @@
 			this.closeClientBtn.UseVisualStyleBackColor = true;
 			this.closeClientBtn.Click += new System.EventHandler(this.closeClientBtn_Click);
 			// 
-			// chooseContact
-			// 
-			this.chooseContact.BackColor = System.Drawing.Color.White;
-			this.chooseContact.Location = new System.Drawing.Point(10, 145);
-			this.chooseContact.Name = "chooseContact";
-			this.chooseContact.Size = new System.Drawing.Size(286, 215);
-			this.chooseContact.TabIndex = 1;
-			// 
-			// chooseFromList_Control1
-			// 
-			this.chooseFromList_Control1.BackColor = System.Drawing.Color.White;
-			this.chooseFromList_Control1.Location = new System.Drawing.Point(18, 87);
-			this.chooseFromList_Control1.Name = "chooseFromList_Control1";
-			this.chooseFromList_Control1.Size = new System.Drawing.Size(286, 215);
-			this.chooseFromList_Control1.TabIndex = 1;
-			// 
 			// personUserControl1
 			// 
 			this.personUserControl1.BackColor = System.Drawing.Color.White;
@@ -378,12 +367,86 @@
 			this.personUserControl1.Size = new System.Drawing.Size(242, 312);
 			this.personUserControl1.TabIndex = 0;
 			// 
+			// choicePnl
+			// 
+			this.choicePnl.Controls.Add(this.createBtn);
+			this.choicePnl.Controls.Add(this.chooseBtn);
+			this.choicePnl.Controls.Add(this.listBox);
+			this.choicePnl.Controls.Add(this.filterBtn);
+			this.choicePnl.Controls.Add(this.filterBox);
+			this.choicePnl.Controls.Add(this.searchBtn);
+			this.choicePnl.Controls.Add(this.searchBox);
+			this.choicePnl.Location = new System.Drawing.Point(206, 0);
+			this.choicePnl.Name = "choicePnl";
+			this.choicePnl.Size = new System.Drawing.Size(320, 415);
+			this.choicePnl.TabIndex = 9;
+			// 
+			// searchBox
+			// 
+			this.searchBox.Location = new System.Drawing.Point(25, 26);
+			this.searchBox.Name = "searchBox";
+			this.searchBox.Size = new System.Drawing.Size(183, 20);
+			this.searchBox.TabIndex = 0;
+			// 
+			// searchBtn
+			// 
+			this.searchBtn.Location = new System.Drawing.Point(221, 26);
+			this.searchBtn.Name = "searchBtn";
+			this.searchBtn.Size = new System.Drawing.Size(75, 23);
+			this.searchBtn.TabIndex = 1;
+			this.searchBtn.Text = "button2";
+			this.searchBtn.UseVisualStyleBackColor = true;
+			// 
+			// filterBox
+			// 
+			this.filterBox.FormattingEnabled = true;
+			this.filterBox.Location = new System.Drawing.Point(25, 55);
+			this.filterBox.Name = "filterBox";
+			this.filterBox.Size = new System.Drawing.Size(183, 21);
+			this.filterBox.TabIndex = 2;
+			// 
+			// filterBtn
+			// 
+			this.filterBtn.Location = new System.Drawing.Point(221, 55);
+			this.filterBtn.Name = "filterBtn";
+			this.filterBtn.Size = new System.Drawing.Size(75, 23);
+			this.filterBtn.TabIndex = 3;
+			this.filterBtn.Text = "button3";
+			this.filterBtn.UseVisualStyleBackColor = true;
+			// 
+			// listBox
+			// 
+			this.listBox.FormattingEnabled = true;
+			this.listBox.Location = new System.Drawing.Point(25, 84);
+			this.listBox.Name = "listBox";
+			this.listBox.Size = new System.Drawing.Size(183, 199);
+			this.listBox.TabIndex = 4;
+			// 
+			// chooseBtn
+			// 
+			this.chooseBtn.Location = new System.Drawing.Point(221, 84);
+			this.chooseBtn.Name = "chooseBtn";
+			this.chooseBtn.Size = new System.Drawing.Size(75, 23);
+			this.chooseBtn.TabIndex = 5;
+			this.chooseBtn.Text = "button4";
+			this.chooseBtn.UseVisualStyleBackColor = true;
+			// 
+			// createBtn
+			// 
+			this.createBtn.Location = new System.Drawing.Point(221, 113);
+			this.createBtn.Name = "createBtn";
+			this.createBtn.Size = new System.Drawing.Size(75, 23);
+			this.createBtn.TabIndex = 6;
+			this.createBtn.Text = "button5";
+			this.createBtn.UseVisualStyleBackColor = true;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(800, 679);
+			this.Controls.Add(this.choicePnl);
 			this.Controls.Add(this.clientPnl);
 			this.Controls.Add(this.listClientsPnl);
 			this.Controls.Add(this.contactPnl);
@@ -409,6 +472,8 @@
 			this.listClientsPnl.ResumeLayout(false);
 			this.clientPnl.ResumeLayout(false);
 			this.clientPnl.PerformLayout();
+			this.choicePnl.ResumeLayout(false);
+			this.choicePnl.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -444,8 +509,14 @@
 		private System.Windows.Forms.Panel clientPnl;
 		private System.Windows.Forms.Label clientViewLbl;
 		private System.Windows.Forms.Button closeClientBtn;
-		private ChooseFromList_Control chooseFromList_Control1;
-		private ChooseFromList_Control chooseContact;
+		private System.Windows.Forms.Panel choicePnl;
+		private System.Windows.Forms.Button createBtn;
+		private System.Windows.Forms.Button chooseBtn;
+		private System.Windows.Forms.ListBox listBox;
+		private System.Windows.Forms.Button filterBtn;
+		private System.Windows.Forms.ComboBox filterBox;
+		private System.Windows.Forms.Button searchBtn;
+		private System.Windows.Forms.TextBox searchBox;
 
 	}
 }
