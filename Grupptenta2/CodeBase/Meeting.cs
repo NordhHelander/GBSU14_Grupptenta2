@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CodeBase
 {
-    public class Class1
+    public class Meeting : ProjectEvent
     {
+        public Address Location { get; set; }
+        public List<Person> Attendees { get; set; }
+
     }
 }
