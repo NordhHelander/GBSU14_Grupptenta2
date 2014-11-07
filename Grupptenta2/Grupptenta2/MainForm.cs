@@ -107,7 +107,7 @@ namespace Grupptenta2
 		private void goToProjectBtn_Click(object sender, EventArgs e)
 		{
 			projectPnl.Visible = true;
-			this.projectPnl.Location = new System.Drawing.Point(450, 0);
+			this.projectPnl.Location = new System.Drawing.Point(520, 0);
 		}
 
 		private void closeProjectPnlBtn_Click(object sender, EventArgs e)
