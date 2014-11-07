@@ -54,8 +54,10 @@
 			this.listClientsPnl = new System.Windows.Forms.Panel();
 			this.goToClientBtn = new System.Windows.Forms.Button();
 			this.clientPnl = new System.Windows.Forms.Panel();
-			this.closeClientBtn = new System.Windows.Forms.Button();
 			this.clientViewLbl = new System.Windows.Forms.Label();
+			this.closeClientBtn = new System.Windows.Forms.Button();
+			this.chooseContact = new Grupptenta2.ChooseFromList_Control();
+			this.chooseFromList_Control1 = new Grupptenta2.ChooseFromList_Control();
 			this.personUserControl1 = new Grupptenta2.PersonUserControl();
 			this.menuPanel.SuspendLayout();
 			this.profilePnl.SuspendLayout();
@@ -179,7 +181,7 @@
 			// 
 			this.profilePnl.BackColor = System.Drawing.Color.DarkGray;
 			this.profilePnl.Controls.Add(this.personUserControl1);
-			this.profilePnl.Location = new System.Drawing.Point(0, 654);
+			this.profilePnl.Location = new System.Drawing.Point(0, 652);
 			this.profilePnl.Margin = new System.Windows.Forms.Padding(0);
 			this.profilePnl.Name = "profilePnl";
 			this.profilePnl.Size = new System.Drawing.Size(346, 415);
@@ -187,11 +189,12 @@
 			// 
 			// listProjectsPnl
 			// 
-			this.listProjectsPnl.BackColor = System.Drawing.Color.Maroon;
+			this.listProjectsPnl.BackColor = System.Drawing.Color.Gainsboro;
+			this.listProjectsPnl.Controls.Add(this.chooseFromList_Control1);
 			this.listProjectsPnl.Controls.Add(this.goToProjectBtn);
-			this.listProjectsPnl.Location = new System.Drawing.Point(28, 637);
+			this.listProjectsPnl.Location = new System.Drawing.Point(25, 639);
 			this.listProjectsPnl.Name = "listProjectsPnl";
-			this.listProjectsPnl.Size = new System.Drawing.Size(250, 415);
+			this.listProjectsPnl.Size = new System.Drawing.Size(321, 415);
 			this.listProjectsPnl.TabIndex = 2;
 			// 
 			// goToProjectBtn
@@ -256,10 +259,11 @@
 			// listContactsPnl
 			// 
 			this.listContactsPnl.BackColor = System.Drawing.Color.Gainsboro;
+			this.listContactsPnl.Controls.Add(this.chooseContact);
 			this.listContactsPnl.Controls.Add(this.goToContactBtn);
-			this.listContactsPnl.Location = new System.Drawing.Point(194, 582);
+			this.listContactsPnl.Location = new System.Drawing.Point(203, 0);
 			this.listContactsPnl.Name = "listContactsPnl";
-			this.listContactsPnl.Size = new System.Drawing.Size(250, 415);
+			this.listContactsPnl.Size = new System.Drawing.Size(320, 415);
 			this.listContactsPnl.TabIndex = 5;
 			// 
 			// goToContactBtn
@@ -331,6 +335,15 @@
 			this.clientPnl.Size = new System.Drawing.Size(200, 415);
 			this.clientPnl.TabIndex = 8;
 			// 
+			// clientViewLbl
+			// 
+			this.clientViewLbl.AutoSize = true;
+			this.clientViewLbl.Location = new System.Drawing.Point(64, 104);
+			this.clientViewLbl.Name = "clientViewLbl";
+			this.clientViewLbl.Size = new System.Drawing.Size(59, 13);
+			this.clientViewLbl.TabIndex = 1;
+			this.clientViewLbl.Text = "Client View";
+			// 
 			// closeClientBtn
 			// 
 			this.closeClientBtn.Location = new System.Drawing.Point(64, 57);
@@ -341,14 +354,21 @@
 			this.closeClientBtn.UseVisualStyleBackColor = true;
 			this.closeClientBtn.Click += new System.EventHandler(this.closeClientBtn_Click);
 			// 
-			// clientViewLbl
+			// chooseContact
 			// 
-			this.clientViewLbl.AutoSize = true;
-			this.clientViewLbl.Location = new System.Drawing.Point(64, 104);
-			this.clientViewLbl.Name = "clientViewLbl";
-			this.clientViewLbl.Size = new System.Drawing.Size(59, 13);
-			this.clientViewLbl.TabIndex = 1;
-			this.clientViewLbl.Text = "Client View";
+			this.chooseContact.BackColor = System.Drawing.Color.White;
+			this.chooseContact.Location = new System.Drawing.Point(10, 145);
+			this.chooseContact.Name = "chooseContact";
+			this.chooseContact.Size = new System.Drawing.Size(286, 215);
+			this.chooseContact.TabIndex = 1;
+			// 
+			// chooseFromList_Control1
+			// 
+			this.chooseFromList_Control1.BackColor = System.Drawing.Color.White;
+			this.chooseFromList_Control1.Location = new System.Drawing.Point(18, 87);
+			this.chooseFromList_Control1.Name = "chooseFromList_Control1";
+			this.chooseFromList_Control1.Size = new System.Drawing.Size(286, 215);
+			this.chooseFromList_Control1.TabIndex = 1;
 			// 
 			// personUserControl1
 			// 
@@ -424,6 +444,8 @@
 		private System.Windows.Forms.Panel clientPnl;
 		private System.Windows.Forms.Label clientViewLbl;
 		private System.Windows.Forms.Button closeClientBtn;
+		private ChooseFromList_Control chooseFromList_Control1;
+		private ChooseFromList_Control chooseContact;
 
 	}
 }

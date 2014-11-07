@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBase", "CodeBase\CodeBa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForms", "TestForms\TestForms.csproj", "{077F459F-DFC4-4E18-B287-98BE026D6A13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestClasses", "TestClasses\TestClasses.csproj", "{78356373-EC60-414F-B839-F9E255D1A34D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{077F459F-DFC4-4E18-B287-98BE026D6A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{077F459F-DFC4-4E18-B287-98BE026D6A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{077F459F-DFC4-4E18-B287-98BE026D6A13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78356373-EC60-414F-B839-F9E255D1A34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78356373-EC60-414F-B839-F9E255D1A34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78356373-EC60-414F-B839-F9E255D1A34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78356373-EC60-414F-B839-F9E255D1A34D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

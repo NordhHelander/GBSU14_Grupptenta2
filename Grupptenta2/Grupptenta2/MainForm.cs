@@ -7,16 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestClasses;
+using CodeBase;
 
 namespace Grupptenta2
 {
 	public partial class MainForm : Form
 	{
 		private static List<Panel> _panels = new List<Panel>();
+		private static PersonManager _personManager = new PersonManager();
 
 		public MainForm()
 		{
 			InitializeComponent();
+			MockPersons.CreatePersons(5, _personManager);
 			this.Width = 800;
 			this.Height = 415;
 			LoadPanelsList();
@@ -115,7 +119,7 @@ namespace Grupptenta2
 		private void goToContactBtn_Click(object sender, EventArgs e)
 		{
 			contactPnl.Visible = true;
-			this.contactPnl.Location = new System.Drawing.Point(450, 0);
+			this.contactPnl.Location = new System.Drawing.Point(520, 0);
 		}
 
 		private void closeContactBtn_Click(object sender, EventArgs e)

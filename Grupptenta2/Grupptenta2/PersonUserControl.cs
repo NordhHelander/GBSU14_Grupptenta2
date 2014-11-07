@@ -12,14 +12,11 @@ namespace Grupptenta2
 {
 	public partial class PersonUserControl : UserControl
 	{
+		public Action ShowPersonControl { get; private set;}
+
 		public PersonUserControl()
 		{
 			InitializeComponent();
-		}
-
-		private void button1_Click(object sender, EventArgs e)
-		{
-			firstNameBox.Enabled = true;
 		}
 	}
 }

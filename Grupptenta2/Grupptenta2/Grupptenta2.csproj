@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChooseFromList_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChooseFromList_Control.Designer.cs">
+      <DependentUpon>ChooseFromList_Control.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +64,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ChooseFromList_Control.resx">
+      <DependentUpon>ChooseFromList_Control.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,6 +94,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeBase\CodeBase.csproj">
+      <Project>{c80f35a8-2e59-4e83-a808-4f10aec56dc8}</Project>
+      <Name>CodeBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestClasses\TestClasses.csproj">
+      <Project>{78356373-ec60-414f-b839-f9e255d1a34d}</Project>
+      <Name>TestClasses</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
