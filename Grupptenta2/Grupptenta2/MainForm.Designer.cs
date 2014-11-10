@@ -48,6 +48,8 @@
 			this.clientSearchBox = new Grupptenta2.SearchBox();
 			this.personSearchBox = new Grupptenta2.SearchBox();
 			this.personInfoBox1 = new Grupptenta2.PersonInfoBox();
+			this.projectBox = new Grupptenta2.CustomListBox();
+			this.relationBox = new Grupptenta2.CustomListBox();
 			this.menuPanel.SuspendLayout();
 			this.choosePersonPnl.SuspendLayout();
 			this.chooseClientPnl.SuspendLayout();
@@ -205,6 +207,8 @@
 			// personPnl
 			// 
 			this.personPnl.BackColor = System.Drawing.Color.White;
+			this.personPnl.Controls.Add(this.relationBox);
+			this.personPnl.Controls.Add(this.projectBox);
 			this.personPnl.Controls.Add(this.personInfoBox1);
 			this.personPnl.Location = new System.Drawing.Point(203, 0);
 			this.personPnl.Margin = new System.Windows.Forms.Padding(0);
@@ -239,6 +243,22 @@
 			this.personInfoBox1.Name = "personInfoBox1";
 			this.personInfoBox1.Size = new System.Drawing.Size(240, 395);
 			this.personInfoBox1.TabIndex = 0;
+			// 
+			// projectBox
+			// 
+			this.projectBox.BackColor = System.Drawing.Color.White;
+			this.projectBox.Location = new System.Drawing.Point(307, 13);
+			this.projectBox.Name = "projectBox";
+			this.projectBox.Size = new System.Drawing.Size(241, 184);
+			this.projectBox.TabIndex = 1;
+			// 
+			// relationBox
+			// 
+			this.relationBox.BackColor = System.Drawing.Color.White;
+			this.relationBox.Location = new System.Drawing.Point(307, 203);
+			this.relationBox.Name = "relationBox";
+			this.relationBox.Size = new System.Drawing.Size(241, 184);
+			this.relationBox.TabIndex = 2;
 			// 
 			// MainForm
 			// 
@@ -287,6 +307,8 @@
 		private SearchBox projectSearchBox;
 		private System.Windows.Forms.Panel personPnl;
 		private PersonInfoBox personInfoBox1;
+		private CustomListBox relationBox;
+		private CustomListBox projectBox;
 	}
 }
 

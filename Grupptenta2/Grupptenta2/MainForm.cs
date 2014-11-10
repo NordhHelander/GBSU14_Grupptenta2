@@ -114,6 +114,8 @@ namespace Grupptenta2
 			this.personPnl.Location = new System.Drawing.Point(200, 0);
 
 			personInfoBox1.BindPerson(currentPerson, _companyManager.GetCompanies());
+			projectBox.SetData("Projects", _projectManager.GetProjects(), "Name");
+			relationBox.SetData("Närstående", currentPerson.Relations, "Person");
 		}
 		private void GoToClient(Company currentCompany)
 		{

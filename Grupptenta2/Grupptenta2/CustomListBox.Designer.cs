@@ -38,8 +38,9 @@
 			this.headerBox.BackColor = System.Drawing.Color.White;
 			this.headerBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.headerBox.Enabled = false;
-			this.headerBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.headerBox.Location = new System.Drawing.Point(4, 4);
+			this.headerBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.headerBox.Location = new System.Drawing.Point(4, 3);
+			this.headerBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
 			this.headerBox.Name = "headerBox";
 			this.headerBox.Size = new System.Drawing.Size(150, 15);
 			this.headerBox.TabIndex = 0;
@@ -47,19 +48,21 @@
 			// listBox
 			// 
 			this.listBox.FormattingEnabled = true;
-			this.listBox.Location = new System.Drawing.Point(4, 33);
+			this.listBox.Location = new System.Drawing.Point(4, 18);
+			this.listBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
 			this.listBox.Name = "listBox";
 			this.listBox.Size = new System.Drawing.Size(150, 147);
 			this.listBox.TabIndex = 1;
 			// 
 			// goToChoiceBtn
 			// 
-			this.goToChoiceBtn.Location = new System.Drawing.Point(161, 33);
+			this.goToChoiceBtn.Location = new System.Drawing.Point(160, 18);
 			this.goToChoiceBtn.Name = "goToChoiceBtn";
 			this.goToChoiceBtn.Size = new System.Drawing.Size(75, 23);
 			this.goToChoiceBtn.TabIndex = 2;
 			this.goToChoiceBtn.Text = "Gå till";
 			this.goToChoiceBtn.UseVisualStyleBackColor = true;
+			this.goToChoiceBtn.Click += new System.EventHandler(this.goToChoiceBtn_Click);
 			// 
 			// CustomListBox
 			// 
