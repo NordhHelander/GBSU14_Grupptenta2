@@ -15,23 +15,21 @@ namespace Grupptenta2
 	{
 		public delegate void SearchEventHandler(object sender, SearchHandlerEventArgs e);
 		public delegate void OrderByEventHandler(object sender, OrderByHandlerEventArgs e);
+		public delegate void GoToChoiceEventHandler(object sender, GoToChoiceHandlerEventArgs e);
 
 		public event SearchEventHandler OnSearch;
 		public event OrderByEventHandler OnOrderByChanged;
+		public event GoToChoiceEventHandler OnGoToChoice;
 
 		public SearchBox()
 		{
 			InitializeComponent();
 		}
 
-		public List<string> OrderBy_Datasource
+		public void BindListBoxData(Object dataSource, string displayMember)
 		{
-			set { orderByBox.DataSource = value; }
-		}
-
-		public string SearchText
-		{
-			set { searchField.Text = value; }
+			choiceBox.DataSource = dataSource;
+			choiceBox.DisplayMember = displayMember;
 		}
 
 		private void searchBtn_Click(object sender, EventArgs e)
@@ -44,6 +42,12 @@ namespace Grupptenta2
 		{
 			if (OnOrderByChanged != null)
 				OnOrderByChanged(sender, new OrderByHandlerEventArgs((string)orderByBox.SelectedValue));
+		}
+
+		private void goToChoiceBtn_Click(object sender, EventArgs e)
+		{
+			if (OnGoToChoice != null)
+				OnGoToChoice(sender, new GoToChoiceHandlerEventArgs(choiceBox.SelectedItem));
 		}
 	}
 
@@ -62,6 +66,15 @@ namespace Grupptenta2
 		public OrderByHandlerEventArgs(string orderByValue)
 		{
 			OrderByValue = orderByValue;
+		}
+	}
+
+	public class GoToChoiceHandlerEventArgs : EventArgs
+	{
+		public object ChosenItem { get; set; }
+		public GoToChoiceHandlerEventArgs(object chosenItem)
+		{
+			ChosenItem = chosenItem;
 		}
 	}
 }

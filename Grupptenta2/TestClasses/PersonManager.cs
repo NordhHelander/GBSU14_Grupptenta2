@@ -19,6 +19,8 @@ namespace TestClasses
 		{
 			Person person = new Person();
 			person.Id = _persons.Count + 1;
+			person.Relations = new List<Person>();
+			person.IsActive = true;
 
 			_persons.Add(person);
 		}

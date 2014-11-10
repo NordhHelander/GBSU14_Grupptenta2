@@ -32,6 +32,9 @@
 			this.searchBtn = new System.Windows.Forms.Button();
 			this.orderByBox = new System.Windows.Forms.ComboBox();
 			this.orderByBtn = new System.Windows.Forms.Button();
+			this.choiceBox = new System.Windows.Forms.ListBox();
+			this.goToChoiceBtn = new System.Windows.Forms.Button();
+			this.createBtn = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// searchField
@@ -69,16 +72,46 @@
 			this.orderByBtn.UseVisualStyleBackColor = true;
 			this.orderByBtn.Click += new System.EventHandler(this.orderBy_Click);
 			// 
+			// choiceBox
+			// 
+			this.choiceBox.FormattingEnabled = true;
+			this.choiceBox.Location = new System.Drawing.Point(0, 59);
+			this.choiceBox.Name = "choiceBox";
+			this.choiceBox.Size = new System.Drawing.Size(195, 212);
+			this.choiceBox.TabIndex = 4;
+			// 
+			// goToChoiceBtn
+			// 
+			this.goToChoiceBtn.Location = new System.Drawing.Point(202, 59);
+			this.goToChoiceBtn.Name = "goToChoiceBtn";
+			this.goToChoiceBtn.Size = new System.Drawing.Size(76, 23);
+			this.goToChoiceBtn.TabIndex = 5;
+			this.goToChoiceBtn.Text = "Gå till";
+			this.goToChoiceBtn.UseVisualStyleBackColor = true;
+			this.goToChoiceBtn.Click += new System.EventHandler(this.goToChoiceBtn_Click);
+			// 
+			// createBtn
+			// 
+			this.createBtn.Location = new System.Drawing.Point(202, 88);
+			this.createBtn.Name = "createBtn";
+			this.createBtn.Size = new System.Drawing.Size(76, 23);
+			this.createBtn.TabIndex = 6;
+			this.createBtn.Text = "Skapa";
+			this.createBtn.UseVisualStyleBackColor = true;
+			// 
 			// SearchBox
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.createBtn);
+			this.Controls.Add(this.goToChoiceBtn);
+			this.Controls.Add(this.choiceBox);
 			this.Controls.Add(this.orderByBtn);
 			this.Controls.Add(this.orderByBox);
 			this.Controls.Add(this.searchBtn);
 			this.Controls.Add(this.searchField);
 			this.Name = "SearchBox";
-			this.Size = new System.Drawing.Size(278, 54);
+			this.Size = new System.Drawing.Size(278, 276);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -90,5 +123,8 @@
 		private System.Windows.Forms.Button searchBtn;
 		private System.Windows.Forms.ComboBox orderByBox;
 		private System.Windows.Forms.Button orderByBtn;
+		private System.Windows.Forms.ListBox choiceBox;
+		private System.Windows.Forms.Button goToChoiceBtn;
+		private System.Windows.Forms.Button createBtn;
 	}
 }

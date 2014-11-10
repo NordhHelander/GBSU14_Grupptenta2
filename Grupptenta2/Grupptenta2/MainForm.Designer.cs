@@ -38,20 +38,21 @@
 			this.profileBtn = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
-			this.choicePnl = new System.Windows.Forms.Panel();
-			this.choiceGrid = new System.Windows.Forms.DataGridView();
-			this.orderBtn = new System.Windows.Forms.Button();
-			this.searchBtn = new System.Windows.Forms.Button();
-			this.filterBox = new System.Windows.Forms.ComboBox();
-			this.searchBox = new System.Windows.Forms.TextBox();
-			this.createBtn = new System.Windows.Forms.Button();
-			this.goToChoiceBtn = new System.Windows.Forms.Button();
-			this.personPnl = new System.Windows.Forms.Panel();
 			this.clientPnl = new System.Windows.Forms.Panel();
 			this.projectPnl = new System.Windows.Forms.Panel();
+			this.choosePersonPnl = new System.Windows.Forms.Panel();
+			this.chooseClientPnl = new System.Windows.Forms.Panel();
+			this.chooseProjectPnl = new System.Windows.Forms.Panel();
+			this.personPnl = new System.Windows.Forms.Panel();
+			this.projectSearchBox = new Grupptenta2.SearchBox();
+			this.clientSearchBox = new Grupptenta2.SearchBox();
+			this.personSearchBox = new Grupptenta2.SearchBox();
+			this.personInfoBox1 = new Grupptenta2.PersonInfoBox();
 			this.menuPanel.SuspendLayout();
-			this.choicePnl.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.choiceGrid)).BeginInit();
+			this.choosePersonPnl.SuspendLayout();
+			this.chooseClientPnl.SuspendLayout();
+			this.chooseProjectPnl.SuspendLayout();
+			this.personPnl.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuPanel
@@ -161,122 +162,105 @@
 			this.button1.Text = "Inloggad som: Tant Nordh";
 			this.button1.UseVisualStyleBackColor = true;
 			// 
-			// choicePnl
-			// 
-			this.choicePnl.Controls.Add(this.choiceGrid);
-			this.choicePnl.Controls.Add(this.orderBtn);
-			this.choicePnl.Controls.Add(this.searchBtn);
-			this.choicePnl.Controls.Add(this.filterBox);
-			this.choicePnl.Controls.Add(this.searchBox);
-			this.choicePnl.Controls.Add(this.createBtn);
-			this.choicePnl.Controls.Add(this.goToChoiceBtn);
-			this.choicePnl.Location = new System.Drawing.Point(203, 0);
-			this.choicePnl.Name = "choicePnl";
-			this.choicePnl.Size = new System.Drawing.Size(320, 415);
-			this.choicePnl.TabIndex = 9;
-			// 
-			// choiceGrid
-			// 
-			this.choiceGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.choiceGrid.Location = new System.Drawing.Point(15, 73);
-			this.choiceGrid.Name = "choiceGrid";
-			this.choiceGrid.Size = new System.Drawing.Size(278, 150);
-			this.choiceGrid.TabIndex = 15;
-			// 
-			// orderBtn
-			// 
-			this.orderBtn.Location = new System.Drawing.Point(217, 44);
-			this.orderBtn.Name = "orderBtn";
-			this.orderBtn.Size = new System.Drawing.Size(76, 23);
-			this.orderBtn.TabIndex = 14;
-			this.orderBtn.Text = "Ordna";
-			this.orderBtn.UseVisualStyleBackColor = true;
-			// 
-			// searchBtn
-			// 
-			this.searchBtn.Location = new System.Drawing.Point(217, 15);
-			this.searchBtn.Name = "searchBtn";
-			this.searchBtn.Size = new System.Drawing.Size(76, 23);
-			this.searchBtn.TabIndex = 13;
-			this.searchBtn.Text = "Sök";
-			this.searchBtn.UseVisualStyleBackColor = true;
-			// 
-			// filterBox
-			// 
-			this.filterBox.FormattingEnabled = true;
-			this.filterBox.Location = new System.Drawing.Point(15, 46);
-			this.filterBox.Name = "filterBox";
-			this.filterBox.Size = new System.Drawing.Size(185, 21);
-			this.filterBox.TabIndex = 12;
-			// 
-			// searchBox
-			// 
-			this.searchBox.Location = new System.Drawing.Point(15, 17);
-			this.searchBox.Name = "searchBox";
-			this.searchBox.Size = new System.Drawing.Size(185, 20);
-			this.searchBox.TabIndex = 11;
-			// 
-			// createBtn
-			// 
-			this.createBtn.Location = new System.Drawing.Point(135, 229);
-			this.createBtn.Name = "createBtn";
-			this.createBtn.Size = new System.Drawing.Size(76, 23);
-			this.createBtn.TabIndex = 10;
-			this.createBtn.Text = "Skapa";
-			this.createBtn.UseVisualStyleBackColor = true;
-			// 
-			// goToChoiceBtn
-			// 
-			this.goToChoiceBtn.Location = new System.Drawing.Point(217, 229);
-			this.goToChoiceBtn.Name = "goToChoiceBtn";
-			this.goToChoiceBtn.Size = new System.Drawing.Size(76, 23);
-			this.goToChoiceBtn.TabIndex = 9;
-			this.goToChoiceBtn.Text = "Välj";
-			this.goToChoiceBtn.UseVisualStyleBackColor = true;
-			this.goToChoiceBtn.Click += new System.EventHandler(this.goToChoiceBtn_Click);
-			// 
-			// personPnl
-			// 
-			this.personPnl.BackColor = System.Drawing.Color.Silver;
-			this.personPnl.Location = new System.Drawing.Point(529, 0);
-			this.personPnl.Name = "personPnl";
-			this.personPnl.Size = new System.Drawing.Size(200, 415);
-			this.personPnl.TabIndex = 10;
-			// 
 			// clientPnl
 			// 
 			this.clientPnl.BackColor = System.Drawing.Color.Maroon;
-			this.clientPnl.Location = new System.Drawing.Point(203, 418);
+			this.clientPnl.Location = new System.Drawing.Point(374, 787);
 			this.clientPnl.Name = "clientPnl";
-			this.clientPnl.Size = new System.Drawing.Size(200, 415);
+			this.clientPnl.Size = new System.Drawing.Size(380, 415);
 			this.clientPnl.TabIndex = 11;
 			// 
 			// projectPnl
 			// 
 			this.projectPnl.BackColor = System.Drawing.Color.Azure;
-			this.projectPnl.Location = new System.Drawing.Point(409, 421);
+			this.projectPnl.Location = new System.Drawing.Point(393, 767);
 			this.projectPnl.Name = "projectPnl";
-			this.projectPnl.Size = new System.Drawing.Size(200, 415);
+			this.projectPnl.Size = new System.Drawing.Size(380, 415);
 			this.projectPnl.TabIndex = 12;
+			// 
+			// choosePersonPnl
+			// 
+			this.choosePersonPnl.Controls.Add(this.personSearchBox);
+			this.choosePersonPnl.Location = new System.Drawing.Point(12, 466);
+			this.choosePersonPnl.Name = "choosePersonPnl";
+			this.choosePersonPnl.Size = new System.Drawing.Size(320, 415);
+			this.choosePersonPnl.TabIndex = 14;
+			// 
+			// chooseClientPnl
+			// 
+			this.chooseClientPnl.Controls.Add(this.clientSearchBox);
+			this.chooseClientPnl.Location = new System.Drawing.Point(202, 454);
+			this.chooseClientPnl.Name = "chooseClientPnl";
+			this.chooseClientPnl.Size = new System.Drawing.Size(320, 415);
+			this.chooseClientPnl.TabIndex = 15;
+			// 
+			// chooseProjectPnl
+			// 
+			this.chooseProjectPnl.Controls.Add(this.projectSearchBox);
+			this.chooseProjectPnl.Location = new System.Drawing.Point(510, 442);
+			this.chooseProjectPnl.Name = "chooseProjectPnl";
+			this.chooseProjectPnl.Size = new System.Drawing.Size(320, 415);
+			this.chooseProjectPnl.TabIndex = 16;
+			// 
+			// personPnl
+			// 
+			this.personPnl.BackColor = System.Drawing.Color.White;
+			this.personPnl.Controls.Add(this.personInfoBox1);
+			this.personPnl.Location = new System.Drawing.Point(203, 0);
+			this.personPnl.Margin = new System.Windows.Forms.Padding(0);
+			this.personPnl.Name = "personPnl";
+			this.personPnl.Size = new System.Drawing.Size(700, 415);
+			this.personPnl.TabIndex = 10;
+			// 
+			// projectSearchBox
+			// 
+			this.projectSearchBox.Location = new System.Drawing.Point(18, 12);
+			this.projectSearchBox.Name = "projectSearchBox";
+			this.projectSearchBox.Size = new System.Drawing.Size(278, 276);
+			this.projectSearchBox.TabIndex = 0;
+			// 
+			// clientSearchBox
+			// 
+			this.clientSearchBox.Location = new System.Drawing.Point(18, 12);
+			this.clientSearchBox.Name = "clientSearchBox";
+			this.clientSearchBox.Size = new System.Drawing.Size(278, 276);
+			this.clientSearchBox.TabIndex = 0;
+			// 
+			// personSearchBox
+			// 
+			this.personSearchBox.Location = new System.Drawing.Point(18, 12);
+			this.personSearchBox.Name = "personSearchBox";
+			this.personSearchBox.Size = new System.Drawing.Size(278, 276);
+			this.personSearchBox.TabIndex = 0;
+			// 
+			// personInfoBox1
+			// 
+			this.personInfoBox1.Location = new System.Drawing.Point(3, 3);
+			this.personInfoBox1.Name = "personInfoBox1";
+			this.personInfoBox1.Size = new System.Drawing.Size(240, 395);
+			this.personInfoBox1.TabIndex = 0;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(892, 839);
+			this.ClientSize = new System.Drawing.Size(900, 839);
+			this.Controls.Add(this.chooseProjectPnl);
+			this.Controls.Add(this.chooseClientPnl);
+			this.Controls.Add(this.choosePersonPnl);
 			this.Controls.Add(this.projectPnl);
 			this.Controls.Add(this.clientPnl);
 			this.Controls.Add(this.personPnl);
-			this.Controls.Add(this.choicePnl);
 			this.Controls.Add(this.menuPanel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "MainForm";
 			this.Text = "Form1";
 			this.menuPanel.ResumeLayout(false);
-			this.choicePnl.ResumeLayout(false);
-			this.choicePnl.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.choiceGrid)).EndInit();
+			this.choosePersonPnl.ResumeLayout(false);
+			this.chooseClientPnl.ResumeLayout(false);
+			this.chooseProjectPnl.ResumeLayout(false);
+			this.personPnl.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -293,18 +277,16 @@
 		private System.Windows.Forms.Button calendarBtn;
 		private System.Windows.Forms.Button projectBtn;
 		private System.Windows.Forms.Button profileBtn;
-		private System.Windows.Forms.Panel choicePnl;
-		private System.Windows.Forms.Button goToChoiceBtn;
-		private System.Windows.Forms.Button createBtn;
-		private System.Windows.Forms.Panel personPnl;
 		private System.Windows.Forms.Panel clientPnl;
 		private System.Windows.Forms.Panel projectPnl;
-		private System.Windows.Forms.Button orderBtn;
-		private System.Windows.Forms.Button searchBtn;
-		private System.Windows.Forms.ComboBox filterBox;
-		private System.Windows.Forms.TextBox searchBox;
-		private System.Windows.Forms.DataGridView choiceGrid;
-
+		private System.Windows.Forms.Panel choosePersonPnl;
+		private SearchBox personSearchBox;
+		private System.Windows.Forms.Panel chooseClientPnl;
+		private SearchBox clientSearchBox;
+		private System.Windows.Forms.Panel chooseProjectPnl;
+		private SearchBox projectSearchBox;
+		private System.Windows.Forms.Panel personPnl;
+		private PersonInfoBox personInfoBox1;
 	}
 }
 

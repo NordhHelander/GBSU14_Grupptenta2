@@ -24,6 +24,10 @@ namespace CodeBase
 
         public string Password { get; set; }
 
-
+		// Lagt till en ToString-metod för att få snyggare person-presentationer i personlistor. /Tanya
+		public override string ToString()
+		{
+			return string.Format("{0} {1}", FirstName, LastName);
+		}
     }
 }
