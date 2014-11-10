@@ -13,10 +13,11 @@ namespace Grupptenta2
 {
 	public partial class SearchBox : UserControl
 	{
-		// EVENTS
+		public delegate void SearchEventHandler(object sender, SearchHandlerEventArgs e);
+		public delegate void OrderByEventHandler(object sender, OrderByHandlerEventArgs e);
+
 		public event SearchEventHandler OnSearch;
 		public event OrderByEventHandler OnOrderByChanged;
-		public event GoToChoiceEventHandler OnGoToChoice;
 
 		public SearchBox()
 		{
@@ -44,22 +45,8 @@ namespace Grupptenta2
 			if (OnOrderByChanged != null)
 				OnOrderByChanged(sender, new OrderByHandlerEventArgs((string)orderByBox.SelectedValue));
 		}
-
-		private void goToChoiceBtn_Click(object sender, EventArgs e)
-		{
-			if (OnGoToChoice != null)
-			{
-				OnGoToChoice(sender, new GoToChoiceHandlerEventArgs(listBox.SelectedItem, listBox.DataSource));
-			}
-		}
 	}
 
-	// DELEGATER
-	public delegate void SearchEventHandler(object sender, SearchHandlerEventArgs e);
-	public delegate void OrderByEventHandler(object sender, OrderByHandlerEventArgs e);
-	public delegate void GoToChoiceEventHandler(object sender, OrderByHandlerEventArgs e);
-
-	// DATABÄRANDE EVENTARGS-KLASSER
 	public class SearchHandlerEventArgs : EventArgs
 	{
 		public string SearchText { get; set; }
@@ -75,28 +62,6 @@ namespace Grupptenta2
 		public OrderByHandlerEventArgs(string orderByValue)
 		{
 			OrderByValue = orderByValue;
-		}
-	}
-
-	public class GoToChoiceHandlerEventArgs<object, object> : EventArgs
-	{
-		private object _listItem;
-		private List<object> _list;
-
-		public object GetListItem()
-		{
-			return _listItem;
-		}
-
-		public object GetList()
-		{
-			return _list;
-		}
-
-		public GoToChoiceHandlerEventArgs(object listItem, List<object> list)
-		{
-			this._listItem = listItem;
-			this._list = list;
 		}
 	}
 }

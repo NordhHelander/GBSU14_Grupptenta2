@@ -14,6 +14,7 @@ namespace TestClasses
 			for (int i = 0; i < number; i++)
 			{
 				personManager.CreatePerson();
+				personManager.GetPersons()[i].FirstName = "Person" + (i + 1);
 			}
 		}
 	}
