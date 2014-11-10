@@ -25,19 +25,29 @@ namespace Grupptenta2
 			this.Height = 415;
 			LoadPanelsList();
 			HidePanels();
+
+			searchBox1.SearchText = "Nisse";
+			searchBox1.OnSearch += searchBox1_OnSearch;
+			
+			searchBox1.OrderBy_Datasource = new List<string> { "Test1", "Test2" };
+			searchBox1.OnOrderByChanged += searchBox1_OnFilterChanged;
 		}
 
-		#region "Panel Control"
+		public void searchBox1_OnSearch(object sender, SearchHandlerEventArgs e)
+		{
+			var searchText = e.SearchText;
+		}
+
+		public void searchBox1_OnFilterChanged(object sender, OrderByHandlerEventArgs e)
+		{
+			var i = 1;
+		}
+
+
+		// PANEL CONTROL
 		private void LoadPanelsList()
 		{
-			_panels.Add(profilePnl);
-			_panels.Add(listProjectsPnl);
-			_panels.Add(projectPnl);
-			_panels.Add(calendarPnl);
-			_panels.Add(listContactsPnl);
-			_panels.Add(contactPnl);
-			_panels.Add(listClientsPnl);
-			_panels.Add(clientPnl);
+			_panels.Add(choicePnl);
 		}
 		private void SwitchPanel(Panel panel)
 		{
@@ -61,83 +71,45 @@ namespace Grupptenta2
 				panel.Visible = false;
 			}
 		}
-		#endregion
-		#region "Menu"
+
+		// MENU ITEMS
 		private void profileBtn_Click(object sender, EventArgs e)
 		{
-			SwitchPanel(profilePnl);
-			this.profilePnl.Location = new System.Drawing.Point(200, 0);
+			//SwitchPanel(profilePnl);
+			//this.profilePnl.Location = new System.Drawing.Point(200, 0);
 		}
 
 		private void projectBtn_Click(object sender, EventArgs e)
 		{
-			SwitchPanel(listProjectsPnl);
-			this.listProjectsPnl.Location = new System.Drawing.Point(200, 0);
+			SwitchPanel(choicePnl);
+			this.choicePnl.Location = new System.Drawing.Point(200, 0);
 		}
 
 		private void calendarBtn_Click(object sender, EventArgs e)
 		{
-			SwitchPanel(calendarPnl);
-			this.calendarPnl.Location = new System.Drawing.Point(200, 0);
+			//SwitchPanel(calendarPnl);
+			//this.calendarPnl.Location = new System.Drawing.Point(200, 0);
 		}
 
 		private void contactsBtn_Click(object sender, EventArgs e)
 		{
-			SwitchPanel(listContactsPnl);
-			this.listContactsPnl.Location = new System.Drawing.Point(200, 0);
+			SwitchPanel(choicePnl);
+			this.choicePnl.Location = new System.Drawing.Point(200, 0);
 		}
 
 		private void clientBtn_Click(object sender, EventArgs e)
 		{
-			SwitchPanel(listClientsPnl);
-			this.listClientsPnl.Location = new System.Drawing.Point(200, 0);
+			SwitchPanel(choicePnl);
+			this.choicePnl.Location = new System.Drawing.Point(200, 0);
 		}
 
 		private void logOutBtn_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
-
 		private void quitBtn_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
 		}
-		#endregion
-		#region "Project"
-		private void goToProjectBtn_Click(object sender, EventArgs e)
-		{
-			projectPnl.Visible = true;
-			this.projectPnl.Location = new System.Drawing.Point(520, 0);
-		}
-
-		private void closeProjectPnlBtn_Click(object sender, EventArgs e)
-		{
-			projectPnl.Visible = false;
-		}
-		#endregion
-		#region "Contact"
-		private void goToContactBtn_Click(object sender, EventArgs e)
-		{
-			contactPnl.Visible = true;
-			this.contactPnl.Location = new System.Drawing.Point(520, 0);
-		}
-
-		private void closeContactBtn_Click(object sender, EventArgs e)
-		{
-			contactPnl.Visible = false;
-		}
-		#endregion
-		#region "Client"
-		private void goToClientBtn_Click(object sender, EventArgs e)
-		{
-			clientPnl.Visible = true;
-			this.clientPnl.Location = new System.Drawing.Point(450, 0);
-		}
-
-		private void closeClientBtn_Click(object sender, EventArgs e)
-		{
-			clientPnl.Visible = false;
-		}
-		#endregion
 	}
 }
