@@ -13,13 +13,13 @@ namespace TestClasses
 
 		public void CreatePerson()
 		{
-			Person person = new Person();
+			Person person = new Person("Adam");
 			person.Id = Persons.Count + 1;
 		}
 
 		public void CreatePerson(string firstName, string lastName, string cellPhone, string phone, string password) 
 		{
-			Person person = new Person();
+			Person person = new Person("Bertil");
 			person.FirstName = firstName;
 			person.LastName = lastName;
 			person.CellPhoneNumber = cellPhone;

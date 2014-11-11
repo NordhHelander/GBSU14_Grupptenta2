@@ -16,14 +16,19 @@ namespace CodeBase
         public string PhoneNumber { get; set; }
         public string CellPhoneNumber { get; set; }
         public Address ResidentalAddress { get; set; }
-        public string Notes { get; set; }
+        public List<Note> Notes { get; set; }
         public string Type { get; set; }
+        public Company Employer { get; set; }
         public bool IsActive { get; set; }
 
         public List<Person> Relations { get; set; }
 
         public string Password { get; set; }
 
-
+        public Person(string name, Company company)
+        {
+            FirstName = name;
+            Employer = company;
+        }
     }
 }
