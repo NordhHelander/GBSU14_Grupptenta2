@@ -10,8 +10,8 @@ namespace TestClasses
 {
 	public class CompanyManager
 	{
-		private static List<Company> _companies;
-		public List<Company> GetCompanies()
+		private static BindingList<Company> _companies;
+		public BindingList<Company> GetCompanies()
 		{
 			return _companies;
 		}
@@ -27,7 +27,7 @@ namespace TestClasses
 
 		public CompanyManager()
 		{
-			_companies = new List<Company>();
+			_companies = new BindingList<Company>();
 		}
 	}
 }

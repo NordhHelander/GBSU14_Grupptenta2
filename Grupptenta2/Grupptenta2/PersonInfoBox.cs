@@ -18,7 +18,7 @@ namespace Grupptenta2
 			InitializeComponent();
 		}
 
-		public void BindPerson(Person person, List<Company> companies)
+		public void BindPerson(Person person, BindingList<Company> companies)
 		{
 			Company company = companies.SingleOrDefault(c => c.Employees.Any(e => e.Id == person.Id));
 

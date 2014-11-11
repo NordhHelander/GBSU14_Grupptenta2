@@ -45,6 +45,7 @@ namespace Grupptenta2
 			_panels.Add(choosePersonPnl);
 			_panels.Add(chooseClientPnl);
 			_panels.Add(chooseProjectPnl);
+			_panels.Add(createPersonPnl);
 		}
 		private void SwitchPanel(Panel panel)
 		{

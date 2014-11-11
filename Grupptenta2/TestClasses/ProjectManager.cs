@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodeBase;
+using System.ComponentModel;
 
 namespace TestClasses
 {
 	public class ProjectManager
 	{
-		private static List<Project> _projects;
-		public List<Project> GetProjects()
+		private static BindingList<Project> _projects;
+		public BindingList<Project> GetProjects()
 		{
 			return _projects;
 		}
@@ -28,7 +29,7 @@ namespace TestClasses
 
 		public ProjectManager()
 		{
-			_projects = new List<Project>();
+			_projects = new BindingList<Project>();
 		}
 	}
 }

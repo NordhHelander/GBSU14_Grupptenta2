@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodeBase;
+using System.ComponentModel;
 
 namespace TestClasses
 {
 	public class PersonManager
 	{
-		private static List<Person> _persons;
-		public List<Person> GetPersons()
+		private static BindingList<Person> _persons;
+		public BindingList<Person> GetPersons()
 		{
 			return _persons;
 		}
@@ -27,7 +28,7 @@ namespace TestClasses
 
 		public PersonManager()
 		{
-			_persons = new List<Person>();
+			_persons = new BindingList<Person>();
 		}
 	}
 }

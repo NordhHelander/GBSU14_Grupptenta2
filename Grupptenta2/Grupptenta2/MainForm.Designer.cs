@@ -44,7 +44,7 @@
 			this.chooseClientPnl = new System.Windows.Forms.Panel();
 			this.chooseProjectPnl = new System.Windows.Forms.Panel();
 			this.personPnl = new System.Windows.Forms.Panel();
-			this.createPnl = new System.Windows.Forms.Panel();
+			this.createPersonPnl = new System.Windows.Forms.Panel();
 			this.projectSearchBox = new Grupptenta2.SearchBox();
 			this.clientSearchBox = new Grupptenta2.SearchBox();
 			this.personSearchBox = new Grupptenta2.SearchBox();
@@ -184,7 +184,7 @@
 			// choosePersonPnl
 			// 
 			this.choosePersonPnl.Controls.Add(this.personSearchBox);
-			this.choosePersonPnl.Location = new System.Drawing.Point(12, 622);
+			this.choosePersonPnl.Location = new System.Drawing.Point(12, 529);
 			this.choosePersonPnl.Name = "choosePersonPnl";
 			this.choosePersonPnl.Size = new System.Drawing.Size(320, 415);
 			this.choosePersonPnl.TabIndex = 14;
@@ -192,7 +192,7 @@
 			// chooseClientPnl
 			// 
 			this.chooseClientPnl.Controls.Add(this.clientSearchBox);
-			this.chooseClientPnl.Location = new System.Drawing.Point(67, 580);
+			this.chooseClientPnl.Location = new System.Drawing.Point(94, 481);
 			this.chooseClientPnl.Name = "chooseClientPnl";
 			this.chooseClientPnl.Size = new System.Drawing.Size(320, 415);
 			this.chooseClientPnl.TabIndex = 15;
@@ -200,7 +200,7 @@
 			// chooseProjectPnl
 			// 
 			this.chooseProjectPnl.Controls.Add(this.projectSearchBox);
-			this.chooseProjectPnl.Location = new System.Drawing.Point(126, 551);
+			this.chooseProjectPnl.Location = new System.Drawing.Point(251, 453);
 			this.chooseProjectPnl.Name = "chooseProjectPnl";
 			this.chooseProjectPnl.Size = new System.Drawing.Size(320, 415);
 			this.chooseProjectPnl.TabIndex = 16;
@@ -211,19 +211,19 @@
 			this.personPnl.Controls.Add(this.relationBox);
 			this.personPnl.Controls.Add(this.projectBox);
 			this.personPnl.Controls.Add(this.personInfoBox1);
-			this.personPnl.Location = new System.Drawing.Point(216, 516);
+			this.personPnl.Location = new System.Drawing.Point(494, 436);
 			this.personPnl.Margin = new System.Windows.Forms.Padding(0);
 			this.personPnl.Name = "personPnl";
 			this.personPnl.Size = new System.Drawing.Size(700, 415);
 			this.personPnl.TabIndex = 10;
 			// 
-			// createPnl
+			// createPersonPnl
 			// 
-			this.createPnl.Location = new System.Drawing.Point(203, 0);
-			this.createPnl.Margin = new System.Windows.Forms.Padding(0);
-			this.createPnl.Name = "createPnl";
-			this.createPnl.Size = new System.Drawing.Size(700, 415);
-			this.createPnl.TabIndex = 17;
+			this.createPersonPnl.Location = new System.Drawing.Point(203, 0);
+			this.createPersonPnl.Margin = new System.Windows.Forms.Padding(0);
+			this.createPersonPnl.Name = "createPersonPnl";
+			this.createPersonPnl.Size = new System.Drawing.Size(700, 415);
+			this.createPersonPnl.TabIndex = 17;
 			// 
 			// projectSearchBox
 			// 
@@ -275,7 +275,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(900, 839);
-			this.Controls.Add(this.createPnl);
+			this.Controls.Add(this.createPersonPnl);
 			this.Controls.Add(this.chooseProjectPnl);
 			this.Controls.Add(this.chooseClientPnl);
 			this.Controls.Add(this.choosePersonPnl);
@@ -319,7 +319,7 @@
 		private PersonInfoBox personInfoBox1;
 		private CustomListBox relationBox;
 		private CustomListBox projectBox;
-		private System.Windows.Forms.Panel createPnl;
+		private System.Windows.Forms.Panel createPersonPnl;
 	}
 }
 
