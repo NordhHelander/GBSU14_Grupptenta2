@@ -184,8 +184,7 @@ namespace Grupptenta2
 
 			for (int i = 0; i < numberOfPersons; i++)
 			{
-				_personManager.CreatePerson();
-				_personManager.GetPersons()[i].FirstName = "Per" + (i + 1);
+				_personManager.CreatePerson("Per" + (i + 1));
 				_personManager.GetPersons()[i].LastName = "Persson" + (i + 1);
 				_personManager.GetPersons()[i].Birthdate = DateTime.Today.AddYears(-(i + 1));
 				_personManager.GetPersons()[i].EmailAddress = "Per" + (i + 1) + "@" + "Persson" + (i + 1) + ".com";
