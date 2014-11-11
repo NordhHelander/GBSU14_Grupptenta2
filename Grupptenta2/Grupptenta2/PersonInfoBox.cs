@@ -33,7 +33,7 @@ namespace Grupptenta2
 			emailBox.Text = person.EmailAddress;
 			typeBox.Text = person.Type;
 			companyBox.Text = company.Name;
-			notesBox.Text = person.Notes;
+			//notesBox.Text = person.Notes;
 			activeBox.Checked = person.IsActive;
 		}
 	}

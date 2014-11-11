@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodeBase;
+using System.ComponentModel;
 
 namespace TestClasses
 {
@@ -18,7 +19,7 @@ namespace TestClasses
 		public void CreateCompany(string name)
 		{
 			Company company = new Company(name);
-			company.Employees = new List<Person>();
+			company.Employees = new BindingList<Person>();
 			company.Projects = new List<Project>();
 			company.IsActive = true;
 			_companies.Add(company);
