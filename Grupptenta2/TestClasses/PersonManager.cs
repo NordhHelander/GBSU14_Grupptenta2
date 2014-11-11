@@ -15,9 +15,9 @@ namespace TestClasses
 			return _persons;
 		}
 
-		public void CreatePerson()
+		public void CreatePerson(string name)
 		{
-			Person person = new Person();
+			Person person = new Person(name);
 			person.Id = _persons.Count + 1;
 			person.Relations = new List<Person>();
 			person.IsActive = true;
