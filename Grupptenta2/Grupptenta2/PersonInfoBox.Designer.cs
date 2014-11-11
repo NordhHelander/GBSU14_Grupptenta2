@@ -89,9 +89,9 @@
 			// 
 			// dobBox
 			// 
-			this.dobBox.Enabled = false;
 			this.dobBox.Location = new System.Drawing.Point(106, 32);
 			this.dobBox.Name = "dobBox";
+			this.dobBox.ReadOnly = true;
 			this.dobBox.Size = new System.Drawing.Size(131, 20);
 			this.dobBox.TabIndex = 3;
 			// 
