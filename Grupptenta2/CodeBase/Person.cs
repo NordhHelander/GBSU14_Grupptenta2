@@ -18,17 +18,20 @@ namespace CodeBase
         public Address ResidentalAddress { get; set; }
         public List<Note> Notes { get; set; }
         public string Type { get; set; }
-        public Company Employer { get; set; }
         public bool IsActive { get; set; }
 
         public List<Person> Relations { get; set; }
 
         public string Password { get; set; }
 
-        public Person(string name, Company company)
+        public Person(string name)
         {
             FirstName = name;
-            Employer = company;
         }
+
+		public override string ToString()
+		{
+			return FirstName + LastName;
+		}
     }
 }
