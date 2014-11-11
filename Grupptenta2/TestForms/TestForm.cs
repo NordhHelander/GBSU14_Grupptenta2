@@ -21,10 +21,10 @@ namespace TestForms
             Companies = new List<Company>();
             Companies.Add(new Company("Volvo Cars AB"));
             Companies.Add(new Company("Apple, inc."));
-            Companies[0].Employees.Add(new Person("Bertil Larsson", Companies[0]));
-            Companies[0].Employees.Add(new Person("Ceasar Oscarsson", Companies[0]));
-            Companies[1].Employees.Add(new Person("David Lind", Companies[1]));
-            Companies[1].Employees.Add(new Person("Eric Gates", Companies[1]));
+            //Companies[0].Employees.Add(new Person("Bertil Larsson", Companies[0]));
+            //Companies[0].Employees.Add(new Person("Ceasar Oscarsson", Companies[0]));
+            //Companies[1].Employees.Add(new Person("David Lind", Companies[1]));
+            //Companies[1].Employees.Add(new Person("Eric Gates", Companies[1]));
 
             lstBx_Companies.DataSource = Companies;
             lstBx_Companies.DisplayMember = "Name";
@@ -48,7 +48,7 @@ namespace TestForms
         private void btn_addEmployee_Click(object sender, EventArgs e)
         {
             Company employeeCompany = ((Company)lstBx_Companies.SelectedItem);
-            employeeCompany.Employees.Add(new Person("Adam Svensson", employeeCompany));
+            //employeeCompany.Employees.Add(new Person("Adam Svensson", employeeCompany));
         }
 
         private void lstBx_Employees_DoubleClick(object sender, EventArgs e)

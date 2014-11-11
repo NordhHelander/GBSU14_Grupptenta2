@@ -14,12 +14,12 @@ namespace TestForms
     public partial class PersonForm : Form
     {
         Person Employee; 
-        Company Employer; 
+        //Company Employer; 
         
         public PersonForm(Person selectedEmployee)
         {
             Employee = selectedEmployee;
-            Employer = selectedEmployee.Employer;
+            //Employer = selectedEmployee.Employer;
             InitializeComponent();
             
         }
@@ -28,13 +28,13 @@ namespace TestForms
         {
             this.Text = Employee.FirstName;
             lb_FirstName.Text = Employee.FirstName;
-            llb_Company.Text = Employee.Employer.Name;
+            //llb_Company.Text = Employee.Employer.Name;
         }
 
         private void llb_Company_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CompanyForm companyForm = new CompanyForm(Employer);
-            companyForm.Show();
+            //CompanyForm companyForm = new CompanyForm(Employer);
+            //companyForm.Show();
         }
     }
 }
