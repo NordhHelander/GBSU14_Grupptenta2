@@ -16,10 +16,12 @@ namespace Grupptenta2
 		public delegate void SearchEventHandler(object sender, SearchHandlerEventArgs e);
 		public delegate void OrderByEventHandler(object sender, OrderByHandlerEventArgs e);
 		public delegate void GoToChoiceEventHandler(object sender, GoToChoiceHandlerEventArgs e);
+		public delegate void CreateEventHandler();
 
 		public event SearchEventHandler OnSearch;
 		public event OrderByEventHandler OnOrderByChanged;
 		public event GoToChoiceEventHandler OnGoToChoice;
+		public event CreateEventHandler OnCreate;
 
 		public SearchBox()
 		{
@@ -30,6 +32,11 @@ namespace Grupptenta2
 		{
 			choiceBox.DataSource = dataSource;
 			choiceBox.DisplayMember = displayMember;
+		}
+
+		public void ResetListBoxData()
+		{
+			choiceBox.DataSource = null;
 		}
 
 		private void searchBtn_Click(object sender, EventArgs e)
@@ -48,6 +55,12 @@ namespace Grupptenta2
 		{
 			if (OnGoToChoice != null)
 				OnGoToChoice(sender, new GoToChoiceHandlerEventArgs(choiceBox.SelectedItem));
+		}
+
+		private void createBtn_Click(object sender, EventArgs e)
+		{
+			if (OnCreate != null)
+				OnCreate();
 		}
 	}
 

@@ -98,6 +98,7 @@
 			this.createBtn.TabIndex = 6;
 			this.createBtn.Text = "Skapa";
 			this.createBtn.UseVisualStyleBackColor = true;
+			this.createBtn.Click += new System.EventHandler(this.createBtn_Click);
 			// 
 			// SearchBox
 			// 

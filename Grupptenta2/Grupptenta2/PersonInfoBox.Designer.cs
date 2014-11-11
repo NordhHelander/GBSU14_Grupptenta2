@@ -69,10 +69,10 @@
 			// 
 			this.firstNameBox.BackColor = System.Drawing.Color.White;
 			this.firstNameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.firstNameBox.Enabled = false;
 			this.firstNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.firstNameBox.Location = new System.Drawing.Point(0, 0);
 			this.firstNameBox.Name = "firstNameBox";
+			this.firstNameBox.ReadOnly = true;
 			this.firstNameBox.Size = new System.Drawing.Size(120, 19);
 			this.firstNameBox.TabIndex = 1;
 			// 
@@ -80,10 +80,10 @@
 			// 
 			this.lastNameBox.BackColor = System.Drawing.Color.White;
 			this.lastNameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.lastNameBox.Enabled = false;
 			this.lastNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lastNameBox.Location = new System.Drawing.Point(120, 0);
 			this.lastNameBox.Name = "lastNameBox";
+			this.lastNameBox.ReadOnly = true;
 			this.lastNameBox.Size = new System.Drawing.Size(120, 19);
 			this.lastNameBox.TabIndex = 2;
 			// 
@@ -97,58 +97,58 @@
 			// 
 			// streetBox
 			// 
-			this.streetBox.Enabled = false;
 			this.streetBox.Location = new System.Drawing.Point(106, 58);
 			this.streetBox.Name = "streetBox";
+			this.streetBox.ReadOnly = true;
 			this.streetBox.Size = new System.Drawing.Size(131, 20);
 			this.streetBox.TabIndex = 4;
 			// 
 			// postalCodeBox
 			// 
-			this.postalCodeBox.Enabled = false;
 			this.postalCodeBox.Location = new System.Drawing.Point(106, 84);
 			this.postalCodeBox.Name = "postalCodeBox";
+			this.postalCodeBox.ReadOnly = true;
 			this.postalCodeBox.Size = new System.Drawing.Size(131, 20);
 			this.postalCodeBox.TabIndex = 5;
 			// 
 			// cityBox
 			// 
-			this.cityBox.Enabled = false;
 			this.cityBox.Location = new System.Drawing.Point(106, 110);
 			this.cityBox.Name = "cityBox";
+			this.cityBox.ReadOnly = true;
 			this.cityBox.Size = new System.Drawing.Size(131, 20);
 			this.cityBox.TabIndex = 6;
 			// 
 			// phoneBox
 			// 
-			this.phoneBox.Enabled = false;
 			this.phoneBox.Location = new System.Drawing.Point(106, 136);
 			this.phoneBox.Name = "phoneBox";
+			this.phoneBox.ReadOnly = true;
 			this.phoneBox.Size = new System.Drawing.Size(131, 20);
 			this.phoneBox.TabIndex = 7;
 			// 
 			// cellPhoneBox
 			// 
-			this.cellPhoneBox.Enabled = false;
 			this.cellPhoneBox.Location = new System.Drawing.Point(106, 162);
 			this.cellPhoneBox.Name = "cellPhoneBox";
+			this.cellPhoneBox.ReadOnly = true;
 			this.cellPhoneBox.Size = new System.Drawing.Size(131, 20);
 			this.cellPhoneBox.TabIndex = 8;
 			// 
 			// typeBox
 			// 
-			this.typeBox.Enabled = false;
 			this.typeBox.Location = new System.Drawing.Point(106, 214);
 			this.typeBox.Name = "typeBox";
+			this.typeBox.ReadOnly = true;
 			this.typeBox.Size = new System.Drawing.Size(131, 20);
 			this.typeBox.TabIndex = 9;
 			// 
 			// notesBox
 			// 
-			this.notesBox.Enabled = false;
 			this.notesBox.Location = new System.Drawing.Point(106, 266);
 			this.notesBox.Multiline = true;
 			this.notesBox.Name = "notesBox";
+			this.notesBox.ReadOnly = true;
 			this.notesBox.Size = new System.Drawing.Size(131, 79);
 			this.notesBox.TabIndex = 10;
 			// 
@@ -226,9 +226,9 @@
 			// 
 			// companyBox
 			// 
-			this.companyBox.Enabled = false;
 			this.companyBox.Location = new System.Drawing.Point(106, 240);
 			this.companyBox.Name = "companyBox";
+			this.companyBox.ReadOnly = true;
 			this.companyBox.Size = new System.Drawing.Size(131, 20);
 			this.companyBox.TabIndex = 19;
 			// 
@@ -261,6 +261,7 @@
 			this.editBtn.TabIndex = 22;
 			this.editBtn.Text = "Redigera";
 			this.editBtn.UseVisualStyleBackColor = true;
+			this.editBtn.Click += new System.EventHandler(this.OpenForEdit);
 			// 
 			// saveBtn
 			// 
@@ -270,12 +271,13 @@
 			this.saveBtn.TabIndex = 23;
 			this.saveBtn.Text = "Spara";
 			this.saveBtn.UseVisualStyleBackColor = true;
+			this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
 			// 
 			// emailBox
 			// 
-			this.emailBox.Enabled = false;
 			this.emailBox.Location = new System.Drawing.Point(106, 188);
 			this.emailBox.Name = "emailBox";
+			this.emailBox.ReadOnly = true;
 			this.emailBox.Size = new System.Drawing.Size(131, 20);
 			this.emailBox.TabIndex = 24;
 			// 

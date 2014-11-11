@@ -13,9 +13,34 @@ namespace Grupptenta2
 {
 	public partial class PersonInfoBox : UserControl
 	{
+		public delegate void SaveChangesEventHandler(object sender, SaveChangesHandlerEventArgs e);
+		public event SaveChangesEventHandler OnSaveChanges;
+
 		public PersonInfoBox()
 		{
 			InitializeComponent();
+		}
+
+		public void OpenForEdit()
+		{
+			firstNameBox.ReadOnly = false;
+			lastNameBox.ReadOnly = false;
+			dobBox.ReadOnly = false;
+			streetBox.ReadOnly = false;
+			postalCodeBox.ReadOnly = false;
+			cityBox.ReadOnly = false;
+			phoneBox.ReadOnly = false;
+			cellPhoneBox.ReadOnly = false;
+			emailBox.ReadOnly = false;
+			typeBox.ReadOnly = false;
+			companyBox.ReadOnly = false;
+			notesBox.ReadOnly = false;
+			activeBox.Enabled = true;
+		}
+
+		public void HideEditBtn()
+		{
+			editBtn.Visible = false;
 		}
 
 		public void BindPerson(Person person, BindingList<Company> companies)
@@ -36,5 +61,28 @@ namespace Grupptenta2
 			//notesBox.Text = person.Notes;
 			activeBox.Checked = person.IsActive;
 		}
+
+		private void OpenForEdit(object sender, EventArgs e)
+		{
+			OpenForEdit();
+		}
+
+		private void saveBtn_Click(object sender, EventArgs e)
+		{
+			if (OnSaveChanges != null)
+				OnSaveChanges(sender, new SaveChangesHandlerEventArgs(firstNameBox.Text, lastNameBox.Text));
+		}
+	}
+
+	public class SaveChangesHandlerEventArgs : EventArgs
+	{
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public SaveChangesHandlerEventArgs(string firstName, string lastName)
+		{
+			FirstName = firstName;
+			LastName = lastName;
+		}
+
 	}
 }

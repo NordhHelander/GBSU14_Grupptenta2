@@ -18,22 +18,26 @@ namespace Grupptenta2
 		private static PersonManager _personManager = new PersonManager();
 		private static CompanyManager _companyManager = new CompanyManager();
 		private static ProjectManager _projectManager = new ProjectManager();
+		private Person _selectedPerson;
 
 		public MainForm()
 		{
 			InitializeComponent();
 			CreateMocks();
 			this.Width = 900;
-			this.Height = 415;
+			this.Height = 425;
 			LoadPanelsList();
 			HidePanels();
 
 			personSearchBox.OnGoToChoice += personSearchBox_OnGoToChoice;
 			personSearchBox.OnSearch += personSearchBox_OnSearch;
+			personSearchBox.OnCreate += personSearchBox_OnCreate;
 			clientSearchBox.OnGoToChoice += clientSearchBox_OnGoToChoice;
 			clientSearchBox.OnSearch += clientSearchBox_OnSearch;
 			projectSearchBox.OnGoToChoice += projectSearchBox_OnGoToChoice;
 			projectSearchBox.OnSearch += projectSearchBox_OnSearch;
+
+			personPnlInfoBox.OnSaveChanges += personPnlInfoBox_OnSaveChanges;
 		}
 
 		// PANEL CONTROL
@@ -45,7 +49,6 @@ namespace Grupptenta2
 			_panels.Add(choosePersonPnl);
 			_panels.Add(chooseClientPnl);
 			_panels.Add(chooseProjectPnl);
-			_panels.Add(createPersonPnl);
 		}
 		private void SwitchPanel(Panel panel)
 		{
@@ -114,7 +117,7 @@ namespace Grupptenta2
 			SwitchPanel(personPnl);
 			this.personPnl.Location = new System.Drawing.Point(200, 0);
 
-			personInfoBox1.BindPerson(currentPerson, _companyManager.GetCompanies());
+			personPnlInfoBox.BindPerson(currentPerson, _companyManager.GetCompanies());
 			projectBox.SetData("Projects", _projectManager.GetProjects(), "Name");
 			relationBox.SetData("Närstående", currentPerson.Relations, "Person");
 		}
@@ -139,8 +142,13 @@ namespace Grupptenta2
 		}
 		private void personSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
 		{
-			Person person = (Person)e.ChosenItem;
-			GoToPerson(person);
+			_selectedPerson = (Person)e.ChosenItem;
+			GoToPerson(_selectedPerson);
+		}
+		private void personSearchBox_OnCreate()
+		{
+			CreatePersonForm createPersonForm = new CreatePersonForm();
+			createPersonForm.ShowDialog();
 		}
 
 		// ChooseClient-events
@@ -169,6 +177,15 @@ namespace Grupptenta2
 		{
 			Project project = (Project)e.ChosenItem;
 			GoToProject(project);
+		}
+
+		// PersonPanel-events
+		private void personPnlInfoBox_OnSaveChanges(object sender, SaveChangesHandlerEventArgs e)
+		{
+			_selectedPerson.FirstName = e.FirstName;
+			_selectedPerson.LastName = e.LastName;
+			personSearchBox.ResetListBoxData();
+			personSearchBox.BindListBoxData(_personManager.GetPersons(), "Person");
 		}
 
 		// MOCK SETUP
