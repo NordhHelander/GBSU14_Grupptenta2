@@ -20,6 +20,7 @@ namespace TestClasses
 		{
 			Person person = new Person(name);
 			person.Id = _persons.Count + 1;
+			person.ResidentalAddress = new Address();
 			person.Relations = new List<Person>();
 			person.IsActive = true;
 

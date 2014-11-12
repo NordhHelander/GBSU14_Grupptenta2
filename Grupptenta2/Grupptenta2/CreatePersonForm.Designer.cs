@@ -35,14 +35,14 @@
 			// 
 			this.personInfoBox.Location = new System.Drawing.Point(21, 10);
 			this.personInfoBox.Name = "personInfoBox";
-			this.personInfoBox.Size = new System.Drawing.Size(240, 384);
+			this.personInfoBox.Size = new System.Drawing.Size(240, 438);
 			this.personInfoBox.TabIndex = 0;
 			// 
 			// CreatePersonForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 483);
+			this.ClientSize = new System.Drawing.Size(284, 640);
 			this.Controls.Add(this.personInfoBox);
 			this.Name = "CreatePersonForm";
 			this.Text = "CreatePersonForm";

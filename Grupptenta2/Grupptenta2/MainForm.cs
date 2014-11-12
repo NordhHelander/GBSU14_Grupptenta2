@@ -25,7 +25,7 @@ namespace Grupptenta2
 			InitializeComponent();
 			CreateMocks();
 			this.Width = 900;
-			this.Height = 425;
+			this.Height = 675;
 			LoadPanelsList();
 			HidePanels();
 
@@ -84,14 +84,17 @@ namespace Grupptenta2
 		}
 		private void profileBtn_Click(object sender, EventArgs e)
 		{
+			this.Text = "Din profil";
 		}
 		private void calendarBtn_Click(object sender, EventArgs e)
 		{
+			this.Text = "Kalender";
 			//SwitchPanel(calendarPnl);
 			//this.calendarPnl.Location = new System.Drawing.Point(200, 0);
 		}
 		private void projectBtn_Click(object sender, EventArgs e)
 		{
+			this.Text = "Dina projekt";
 			SwitchPanel(chooseProjectPnl);
 			this.chooseProjectPnl.Location = new System.Drawing.Point(200, 0);
 
@@ -99,6 +102,7 @@ namespace Grupptenta2
 		}
 		private void clientBtn_Click(object sender, EventArgs e)
 		{
+			this.Text = "Dina företagskunder";
 			SwitchPanel(chooseClientPnl);
 			this.chooseClientPnl.Location = new System.Drawing.Point(200, 0);
 
@@ -106,6 +110,7 @@ namespace Grupptenta2
 		}
 		private void contactsBtn_Click(object sender, EventArgs e)
 		{
+			this.Text = "Dina kontakter";
 			SwitchPanel(choosePersonPnl);
 			this.choosePersonPnl.Location = new System.Drawing.Point(200, 0);
 
@@ -114,6 +119,7 @@ namespace Grupptenta2
 
 		private void GoToPerson(Person currentPerson)
 		{
+			this.Text = currentPerson.ToString();
 			SwitchPanel(personPnl);
 			this.personPnl.Location = new System.Drawing.Point(200, 0);
 
@@ -123,11 +129,13 @@ namespace Grupptenta2
 		}
 		private void GoToClient(Company currentCompany)
 		{
+			this.Text = currentCompany.Name;
 			clientPnl.Visible = true;
 			this.clientPnl.Location = new System.Drawing.Point(520, 0);
 		}
 		private void GoToProject(Project currentProject)
 		{
+			this.Text = currentProject.Name;
 			projectPnl.Visible = true;
 			this.projectPnl.Location = new System.Drawing.Point(520, 0);
 		}
@@ -147,7 +155,7 @@ namespace Grupptenta2
 		}
 		private void personSearchBox_OnCreate()
 		{
-			CreatePersonForm createPersonForm = new CreatePersonForm();
+			CreatePersonForm createPersonForm = new CreatePersonForm(_personManager, _companyManager);
 			createPersonForm.ShowDialog();
 		}
 
@@ -184,6 +192,15 @@ namespace Grupptenta2
 		{
 			_selectedPerson.FirstName = e.FirstName;
 			_selectedPerson.LastName = e.LastName;
+			_selectedPerson.Birthdate = e.DateOfBirth;
+			_selectedPerson.ResidentalAddress.Street = e.Street;
+			_selectedPerson.ResidentalAddress.ZipCode = e.PostalCode;
+			_selectedPerson.ResidentalAddress.City = e.City;
+			_selectedPerson.PhoneNumber = e.PhoneNumber;
+			_selectedPerson.CellPhoneNumber = e.CellPhoneNumber;
+			_selectedPerson.EmailAddress = e.EmailAddress;
+			_selectedPerson.Type = e.Type;
+			// Lägg in metod för att ändra företag. Måste välja bland befintliga.
 			personSearchBox.ResetListBoxData();
 			personSearchBox.BindListBoxData(_personManager.GetPersons(), "Person");
 		}
