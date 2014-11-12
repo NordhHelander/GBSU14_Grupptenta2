@@ -75,7 +75,7 @@ namespace Grupptenta2
 			cellPhoneBox.ReadOnly = false;
 			emailBox.ReadOnly = false;
 			typeBox.ReadOnly = false;
-			companyBox.Enabled = true;
+			//companyBox.Enabled = true;
 			notesBox.ReadOnly = false;
 			activeBox.Enabled = true;
 		}
@@ -92,7 +92,7 @@ namespace Grupptenta2
 			cellPhoneBox.ReadOnly = true;
 			emailBox.ReadOnly = true;
 			typeBox.ReadOnly = true;
-			companyBox.Enabled = false;
+			//companyBox.Enabled = false;
 			notesBox.ReadOnly = true;
 			activeBox.Enabled = false;
 		}

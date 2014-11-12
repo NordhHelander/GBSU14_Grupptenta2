@@ -79,6 +79,8 @@
 			this.choiceBox.Name = "choiceBox";
 			this.choiceBox.Size = new System.Drawing.Size(195, 212);
 			this.choiceBox.TabIndex = 4;
+			this.choiceBox.SelectedIndexChanged += new System.EventHandler(this.choiceBox_SelectedIndexChanged);
+			this.choiceBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.choiceBox_DoubleClick);
 			// 
 			// goToChoiceBtn
 			// 

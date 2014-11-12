@@ -44,13 +44,13 @@
 			this.chooseClientPnl = new System.Windows.Forms.Panel();
 			this.chooseProjectPnl = new System.Windows.Forms.Panel();
 			this.personPnl = new System.Windows.Forms.Panel();
+			this.personPopUpBtn = new System.Windows.Forms.Button();
 			this.projectSearchBox = new Grupptenta2.SearchBox();
 			this.clientSearchBox = new Grupptenta2.SearchBox();
 			this.personSearchBox = new Grupptenta2.SearchBox();
 			this.relationBox = new Grupptenta2.CustomListBox();
 			this.projectBox = new Grupptenta2.CustomListBox();
 			this.personPnlInfoBox = new Grupptenta2.PersonInfoBox();
-			this.personPopUpBtn = new System.Windows.Forms.Button();
 			this.menuPanel.SuspendLayout();
 			this.choosePersonPnl.SuspendLayout();
 			this.chooseClientPnl.SuspendLayout();
@@ -184,7 +184,7 @@
 			// choosePersonPnl
 			// 
 			this.choosePersonPnl.Controls.Add(this.personSearchBox);
-			this.choosePersonPnl.Location = new System.Drawing.Point(206, 0);
+			this.choosePersonPnl.Location = new System.Drawing.Point(6, 759);
 			this.choosePersonPnl.Name = "choosePersonPnl";
 			this.choosePersonPnl.Size = new System.Drawing.Size(320, 415);
 			this.choosePersonPnl.TabIndex = 14;
@@ -212,11 +212,21 @@
 			this.personPnl.Controls.Add(this.relationBox);
 			this.personPnl.Controls.Add(this.projectBox);
 			this.personPnl.Controls.Add(this.personPnlInfoBox);
-			this.personPnl.Location = new System.Drawing.Point(437, 729);
+			this.personPnl.Location = new System.Drawing.Point(203, 0);
 			this.personPnl.Margin = new System.Windows.Forms.Padding(0);
 			this.personPnl.Name = "personPnl";
 			this.personPnl.Size = new System.Drawing.Size(700, 675);
 			this.personPnl.TabIndex = 10;
+			// 
+			// personPopUpBtn
+			// 
+			this.personPopUpBtn.Location = new System.Drawing.Point(109, 437);
+			this.personPopUpBtn.Name = "personPopUpBtn";
+			this.personPopUpBtn.Size = new System.Drawing.Size(134, 23);
+			this.personPopUpBtn.TabIndex = 3;
+			this.personPopUpBtn.Text = "Öppna i nytt fönster";
+			this.personPopUpBtn.UseVisualStyleBackColor = true;
+			this.personPopUpBtn.Click += new System.EventHandler(this.personPopUpBtn_Click);
 			// 
 			// projectSearchBox
 			// 
@@ -261,15 +271,6 @@
 			this.personPnlInfoBox.Name = "personPnlInfoBox";
 			this.personPnlInfoBox.Size = new System.Drawing.Size(240, 669);
 			this.personPnlInfoBox.TabIndex = 0;
-			// 
-			// personPopUpBtn
-			// 
-			this.personPopUpBtn.Location = new System.Drawing.Point(109, 437);
-			this.personPopUpBtn.Name = "personPopUpBtn";
-			this.personPopUpBtn.Size = new System.Drawing.Size(134, 23);
-			this.personPopUpBtn.TabIndex = 3;
-			this.personPopUpBtn.Text = "Öppna i nytt fönster";
-			this.personPopUpBtn.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
