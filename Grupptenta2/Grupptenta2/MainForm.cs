@@ -23,7 +23,9 @@ namespace Grupptenta2
 		public MainForm()
 		{
 			InitializeComponent();
-			CreateMocks();
+            //CreateMocks();
+            //SaveDataXml.SaveCompanies(_companyManager._companies);
+            //SaveDataXml.SavePersons(_personManager._persons);
 			this.Width = 900;
 			this.Height = 675;
 			LoadPanelsList();
@@ -131,11 +133,15 @@ namespace Grupptenta2
 		#region "Main Menu Items"
 		private void logOutBtn_Click(object sender, EventArgs e)
 		{
-			this.Close();
+            SaveDataXml.SaveCompanies(_companyManager._companies);
+            SaveDataXml.SavePersons(_personManager._persons);
+            this.Close();
 		}
 		private void quitBtn_Click(object sender, EventArgs e)
 		{
-			Application.Exit();
+            SaveDataXml.SaveCompanies(_companyManager._companies);
+            SaveDataXml.SavePersons(_personManager._persons);
+            Application.Exit();
 		}
 		private void profileBtn_Click(object sender, EventArgs e)
 		{
@@ -295,5 +301,11 @@ namespace Grupptenta2
 			GoToProject(project);
 		}
 		#endregion
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            SaveDataXml.SaveCompanies(_companyManager._companies);
+            SaveDataXml.SavePersons(_personManager._persons);
+        }
 	}
 }
