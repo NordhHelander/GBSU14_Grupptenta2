@@ -5,13 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeBase;
 using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace TestClasses
 {
-	public class CompanyManager
+    [Serializable]
+    [XmlRoot("Foo")]
+    public class CompanyManager
 	{
-		private static BindingList<Company> _companies;
-		public BindingList<Company> GetCompanies()
+        [XmlArray("CompanyList"), XmlArrayItem(typeof(Company), ElementName = "Company")]
+        public BindingList<Company> _companies;
+        public BindingList<Company> GetCompanies()
 		{
 			return _companies;
 		}
@@ -28,7 +32,8 @@ namespace TestClasses
 
 		public CompanyManager()
 		{
-			_companies = new BindingList<Company>();
+            _companies = new BindingList<Company>();
+            //_companies = SaveDataXml.LoadCompanies();
 		}
 	}
 }
