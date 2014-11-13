@@ -232,6 +232,7 @@ namespace Grupptenta2
 			_selectedPerson.Type = e.Type;
 			// Ska läggas in sätt att ändra företag. Måste välja bland befintliga och tas bort från tidigare företag.
 			RefreshPersonSearchBox();
+			this.Text = _selectedPerson.ToString();
 		}
 
 		private void RefreshPersonSearchBox()
@@ -245,6 +246,7 @@ namespace Grupptenta2
 			PersonPopUp personPopUp = new PersonPopUp(_selectedPerson, _companyManager, _projectManager);
 			personPopUp.ShowDialog();
 			LoadPersonPnl();
+			this.Text = _selectedPerson.ToString();
 		}
 		#endregion
 

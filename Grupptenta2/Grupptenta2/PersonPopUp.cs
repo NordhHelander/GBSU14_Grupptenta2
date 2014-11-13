@@ -44,6 +44,7 @@ namespace Grupptenta2
 			_person.EmailAddress = e.EmailAddress;
 			_person.Type = e.Type;
 			// Ska läggas in metod för att ändra företag. Måste välja bland befintliga och tas bort från tidigare företag.
+			this.Text = _person.ToString();
 		}
 
 		private void LoadPerson()
