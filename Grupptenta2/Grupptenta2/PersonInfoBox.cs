@@ -18,7 +18,7 @@ namespace Grupptenta2
 			InitializeComponent();
 		}
 
-		public void BindPerson(Person person, BindingList<Company> companies)
+        public void BindPerson(Person person, BindingList<Company> companies)
 		{
 			Company company = companies.SingleOrDefault(c => c.Employees.Any(e => e.Id == person.Id));
 
@@ -36,5 +36,10 @@ namespace Grupptenta2
 			//notesBox.Text = person.Notes;
 			activeBox.Checked = person.IsActive;
 		}
+
+        private void firstNameBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 	}
 }

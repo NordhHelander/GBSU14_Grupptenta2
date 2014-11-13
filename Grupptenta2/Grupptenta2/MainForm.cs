@@ -21,9 +21,13 @@ namespace Grupptenta2
 
 		public MainForm()
 		{
-			InitializeComponent();
-			CreateMocks();
-			this.Width = 900;
+            InitializeComponent();
+            _companyManager._companies = SaveDataXml.LoadCompanies();
+            _personManager._persons = SaveDataXml.LoadPersons();
+            //CreateMocks();
+            //SaveDataXml.SaveCompanies(_companyManager._companies);
+            //SaveDataXml.SavePersons(_personManager._persons);
+            this.Width = 900;
 			this.Height = 415;
 			LoadPanelsList();
 			HidePanels();
@@ -218,5 +222,10 @@ namespace Grupptenta2
 			_companyManager.GetCompanies()[2].Projects.Add(_projectManager.GetProjects()[4]);
 			_companyManager.GetCompanies()[2].Projects.Add(_projectManager.GetProjects()[5]);
 		}
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
 	}
 }

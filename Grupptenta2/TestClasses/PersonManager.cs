@@ -5,13 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeBase;
 using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace TestClasses
 {
-	public class PersonManager
+    [Serializable]
+    //[XmlRoot("Foo")]
+    public class PersonManager
 	{
-		private static BindingList<Person> _persons;
-		public BindingList<Person> GetPersons()
+        [XmlArray("PersonList"), XmlArrayItem(typeof(Person), ElementName = "Person")]
+        public BindingList<Person> _persons;
+		
+        public BindingList<Person> GetPersons()
 		{
 			return _persons;
 		}

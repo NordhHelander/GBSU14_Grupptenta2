@@ -4,19 +4,28 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace CodeBase
 {
+    [Serializable]
     public class Company
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public Address Location { get; set; }
+        [XmlIgnore]
         public BindingList<Person> Employees { get; set; }
+        [XmlIgnore]
         public List<Project> Projects { get; set; }    
         public bool IsActive { get; set; }
 
-        Random rnd = new Random();   
+        Random rnd = new Random();
+
+        public Company()
+        {
+
+        }
 
         public Company(string name)
         {
@@ -26,6 +35,18 @@ namespace CodeBase
 
             Employees = new BindingList<Person>();
         }
+
+        public void AddEmployeesOnLoad(BindingList<Person> persons)
+        {
+            foreach (Person p in persons)
+            {
+                if (true)
+                {
+                    // TODO: Koppla personer till rätt företag...
+                }
+            }
+        }
+
     }
 
 }

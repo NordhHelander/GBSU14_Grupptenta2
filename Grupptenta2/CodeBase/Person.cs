@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeBase
 {
+    [Serializable]
     public class Person
     {
         public int Id { get; set; }
@@ -23,6 +24,11 @@ namespace CodeBase
         public List<Person> Relations { get; set; }
 
         public string Password { get; set; }
+
+        public Person()
+        {
+
+        }
 
         public Person(string name)
         {
