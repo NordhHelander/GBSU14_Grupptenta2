@@ -24,13 +24,13 @@ namespace Grupptenta2
 		public MainForm()
 		{
 			InitializeComponent();
+			this.ClientSize = new Size(1100, 675);
 			CreateMocks();
-			this.Width = 1100;
-			this.Height = 675;
 			LoadPanelsList();
 			HidePanels();
 			HideUserControls();
 			SetEventMethods();
+
 		}
 
 		private void SetEventMethods()
@@ -47,6 +47,7 @@ namespace Grupptenta2
 			personPnlInfoBox.OnSaveChanges += personPnlInfoBox_OnSaveChanges;
 
 			companyUserForm.OnSaveCompanyChanges += companyUserForm_OnSaveCompanyChanges;
+			companyUserForm.OnClosePopUp += companyUserForm_OnClosePopUp;
 		}
 
 		private static void CreateMocks()
@@ -293,6 +294,12 @@ namespace Grupptenta2
 			_selectedCompany.Location.City = e.City;
 			_selectedCompany.IsActive = e.IsActive;
 
+			RefreshCompanySearchBox();
+			this.Text = _selectedCompany.Name;
+		}
+
+		private void companyUserForm_OnClosePopUp()
+		{
 			RefreshCompanySearchBox();
 			this.Text = _selectedCompany.Name;
 		}

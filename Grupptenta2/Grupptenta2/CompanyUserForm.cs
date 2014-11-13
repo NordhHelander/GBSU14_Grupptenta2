@@ -14,14 +14,21 @@ namespace Grupptenta2
 	public partial class CompanyUserForm : UserControl
 	{
 		public delegate void SaveCompanyChangesEventHandler(object sender, SaveCompanyChangesHandlerEventArgs e);
+		public delegate void ClosePopUpEventHandler();
 
 		public event SaveCompanyChangesEventHandler OnSaveCompanyChanges;
+		public event ClosePopUpEventHandler OnClosePopUp;
 
 		private static Company _company;
 	
 		public CompanyUserForm()
 		{
 			InitializeComponent();
+		}
+
+		public void HidePopUpBtn()
+		{
+			popUpBtn.Visible = false;
 		}
 
 		public void SetCompanyInfo(Company company)
@@ -67,6 +74,16 @@ namespace Grupptenta2
 
 				editSaveBtn.Text = "Redigera";
 			}
+		}
+
+		private void popUpBtn_Click(object sender, EventArgs e)
+		{
+			CompanyPopUp companyPopUp = new CompanyPopUp(_company);
+			companyPopUp.ShowDialog();
+			SetCompanyInfo(_company);
+
+			if (OnClosePopUp != null)
+				OnClosePopUp();
 		}
 	}
 

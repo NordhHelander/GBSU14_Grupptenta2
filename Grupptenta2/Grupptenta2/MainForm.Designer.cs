@@ -41,22 +41,22 @@
 			this.clientPnl = new System.Windows.Forms.Panel();
 			this.projectPnl = new System.Windows.Forms.Panel();
 			this.choosePersonPnl = new System.Windows.Forms.Panel();
+			this.personSearchBox = new Grupptenta2.SearchBox();
 			this.chooseClientPnl = new System.Windows.Forms.Panel();
+			this.clientSearchBox = new Grupptenta2.SearchBox();
 			this.profilePnl = new System.Windows.Forms.Panel();
 			this.button2 = new System.Windows.Forms.Button();
-			this.chooseProjectPnl = new System.Windows.Forms.Panel();
-			this.personPnl = new System.Windows.Forms.Panel();
-			this.personPopUpBtn = new System.Windows.Forms.Button();
-			this.companyUserForm = new Grupptenta2.CompanyUserForm();
-			this.projectSearchBox = new Grupptenta2.SearchBox();
-			this.clientSearchBox = new Grupptenta2.SearchBox();
 			this.customListBox1 = new Grupptenta2.CustomListBox();
 			this.customListBox2 = new Grupptenta2.CustomListBox();
 			this.personInfoBox1 = new Grupptenta2.PersonInfoBox();
-			this.personSearchBox = new Grupptenta2.SearchBox();
+			this.chooseProjectPnl = new System.Windows.Forms.Panel();
+			this.projectSearchBox = new Grupptenta2.SearchBox();
+			this.personPnl = new System.Windows.Forms.Panel();
+			this.personPopUpBtn = new System.Windows.Forms.Button();
 			this.relationBox = new Grupptenta2.CustomListBox();
 			this.projectBox = new Grupptenta2.CustomListBox();
 			this.personPnlInfoBox = new Grupptenta2.PersonInfoBox();
+			this.companyUserForm = new Grupptenta2.CompanyUserForm();
 			this.menuPanel.SuspendLayout();
 			this.choosePersonPnl.SuspendLayout();
 			this.chooseClientPnl.SuspendLayout();
@@ -196,14 +196,28 @@
 			this.choosePersonPnl.Size = new System.Drawing.Size(320, 415);
 			this.choosePersonPnl.TabIndex = 14;
 			// 
+			// personSearchBox
+			// 
+			this.personSearchBox.Location = new System.Drawing.Point(18, 12);
+			this.personSearchBox.Name = "personSearchBox";
+			this.personSearchBox.Size = new System.Drawing.Size(278, 276);
+			this.personSearchBox.TabIndex = 0;
+			// 
 			// chooseClientPnl
 			// 
 			this.chooseClientPnl.Controls.Add(this.clientSearchBox);
 			this.chooseClientPnl.Controls.Add(this.profilePnl);
-			this.chooseClientPnl.Location = new System.Drawing.Point(206, 412);
+			this.chooseClientPnl.Location = new System.Drawing.Point(66, 712);
 			this.chooseClientPnl.Name = "chooseClientPnl";
 			this.chooseClientPnl.Size = new System.Drawing.Size(320, 415);
 			this.chooseClientPnl.TabIndex = 15;
+			// 
+			// clientSearchBox
+			// 
+			this.clientSearchBox.Location = new System.Drawing.Point(18, 12);
+			this.clientSearchBox.Name = "clientSearchBox";
+			this.clientSearchBox.Size = new System.Drawing.Size(278, 276);
+			this.clientSearchBox.TabIndex = 0;
 			// 
 			// profilePnl
 			// 
@@ -226,59 +240,6 @@
 			this.button2.TabIndex = 3;
 			this.button2.Text = "Öppna i nytt fönster";
 			this.button2.UseVisualStyleBackColor = true;
-			// 
-			// chooseProjectPnl
-			// 
-			this.chooseProjectPnl.Controls.Add(this.projectSearchBox);
-			this.chooseProjectPnl.Location = new System.Drawing.Point(48, 729);
-			this.chooseProjectPnl.Name = "chooseProjectPnl";
-			this.chooseProjectPnl.Size = new System.Drawing.Size(320, 415);
-			this.chooseProjectPnl.TabIndex = 16;
-			// 
-			// personPnl
-			// 
-			this.personPnl.BackColor = System.Drawing.Color.White;
-			this.personPnl.Controls.Add(this.personPopUpBtn);
-			this.personPnl.Controls.Add(this.relationBox);
-			this.personPnl.Controls.Add(this.projectBox);
-			this.personPnl.Controls.Add(this.personPnlInfoBox);
-			this.personPnl.Location = new System.Drawing.Point(421, 729);
-			this.personPnl.Margin = new System.Windows.Forms.Padding(0);
-			this.personPnl.Name = "personPnl";
-			this.personPnl.Size = new System.Drawing.Size(700, 675);
-			this.personPnl.TabIndex = 10;
-			// 
-			// personPopUpBtn
-			// 
-			this.personPopUpBtn.Location = new System.Drawing.Point(109, 437);
-			this.personPopUpBtn.Name = "personPopUpBtn";
-			this.personPopUpBtn.Size = new System.Drawing.Size(134, 23);
-			this.personPopUpBtn.TabIndex = 3;
-			this.personPopUpBtn.Text = "Öppna i nytt fönster";
-			this.personPopUpBtn.UseVisualStyleBackColor = true;
-			this.personPopUpBtn.Click += new System.EventHandler(this.personPopUpBtn_Click);
-			// 
-			// companyUserForm
-			// 
-			this.companyUserForm.BackColor = System.Drawing.Color.White;
-			this.companyUserForm.Location = new System.Drawing.Point(203, 0);
-			this.companyUserForm.Name = "companyUserForm";
-			this.companyUserForm.Size = new System.Drawing.Size(810, 312);
-			this.companyUserForm.TabIndex = 18;
-			// 
-			// projectSearchBox
-			// 
-			this.projectSearchBox.Location = new System.Drawing.Point(18, 12);
-			this.projectSearchBox.Name = "projectSearchBox";
-			this.projectSearchBox.Size = new System.Drawing.Size(278, 276);
-			this.projectSearchBox.TabIndex = 0;
-			// 
-			// clientSearchBox
-			// 
-			this.clientSearchBox.Location = new System.Drawing.Point(18, 12);
-			this.clientSearchBox.Name = "clientSearchBox";
-			this.clientSearchBox.Size = new System.Drawing.Size(278, 276);
-			this.clientSearchBox.TabIndex = 0;
 			// 
 			// customListBox1
 			// 
@@ -303,12 +264,43 @@
 			this.personInfoBox1.Size = new System.Drawing.Size(240, 669);
 			this.personInfoBox1.TabIndex = 0;
 			// 
-			// personSearchBox
+			// chooseProjectPnl
 			// 
-			this.personSearchBox.Location = new System.Drawing.Point(18, 12);
-			this.personSearchBox.Name = "personSearchBox";
-			this.personSearchBox.Size = new System.Drawing.Size(278, 276);
-			this.personSearchBox.TabIndex = 0;
+			this.chooseProjectPnl.Controls.Add(this.projectSearchBox);
+			this.chooseProjectPnl.Location = new System.Drawing.Point(48, 729);
+			this.chooseProjectPnl.Name = "chooseProjectPnl";
+			this.chooseProjectPnl.Size = new System.Drawing.Size(320, 415);
+			this.chooseProjectPnl.TabIndex = 16;
+			// 
+			// projectSearchBox
+			// 
+			this.projectSearchBox.Location = new System.Drawing.Point(18, 12);
+			this.projectSearchBox.Name = "projectSearchBox";
+			this.projectSearchBox.Size = new System.Drawing.Size(278, 276);
+			this.projectSearchBox.TabIndex = 0;
+			// 
+			// personPnl
+			// 
+			this.personPnl.BackColor = System.Drawing.Color.White;
+			this.personPnl.Controls.Add(this.personPopUpBtn);
+			this.personPnl.Controls.Add(this.relationBox);
+			this.personPnl.Controls.Add(this.projectBox);
+			this.personPnl.Controls.Add(this.personPnlInfoBox);
+			this.personPnl.Location = new System.Drawing.Point(421, 729);
+			this.personPnl.Margin = new System.Windows.Forms.Padding(0);
+			this.personPnl.Name = "personPnl";
+			this.personPnl.Size = new System.Drawing.Size(700, 675);
+			this.personPnl.TabIndex = 10;
+			// 
+			// personPopUpBtn
+			// 
+			this.personPopUpBtn.Location = new System.Drawing.Point(109, 437);
+			this.personPopUpBtn.Name = "personPopUpBtn";
+			this.personPopUpBtn.Size = new System.Drawing.Size(134, 23);
+			this.personPopUpBtn.TabIndex = 3;
+			this.personPopUpBtn.Text = "Öppna i nytt fönster";
+			this.personPopUpBtn.UseVisualStyleBackColor = true;
+			this.personPopUpBtn.Click += new System.EventHandler(this.personPopUpBtn_Click);
 			// 
 			// relationBox
 			// 
@@ -332,6 +324,14 @@
 			this.personPnlInfoBox.Name = "personPnlInfoBox";
 			this.personPnlInfoBox.Size = new System.Drawing.Size(240, 669);
 			this.personPnlInfoBox.TabIndex = 0;
+			// 
+			// companyUserForm
+			// 
+			this.companyUserForm.BackColor = System.Drawing.Color.White;
+			this.companyUserForm.Location = new System.Drawing.Point(203, 0);
+			this.companyUserForm.Name = "companyUserForm";
+			this.companyUserForm.Size = new System.Drawing.Size(810, 341);
+			this.companyUserForm.TabIndex = 18;
 			// 
 			// MainForm
 			// 

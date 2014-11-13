@@ -58,6 +58,7 @@
 			this.contactOrderBtn = new System.Windows.Forms.Button();
 			this.goToContactBtn = new System.Windows.Forms.Button();
 			this.createContactBtn = new System.Windows.Forms.Button();
+			this.popUpBtn = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// nameBox
@@ -158,9 +159,9 @@
 			// 
 			// editSaveBtn
 			// 
-			this.editSaveBtn.Location = new System.Drawing.Point(106, 159);
+			this.editSaveBtn.Location = new System.Drawing.Point(64, 277);
 			this.editSaveBtn.Name = "editSaveBtn";
-			this.editSaveBtn.Size = new System.Drawing.Size(75, 23);
+			this.editSaveBtn.Size = new System.Drawing.Size(117, 23);
 			this.editSaveBtn.TabIndex = 11;
 			this.editSaveBtn.Text = "Redigera";
 			this.editSaveBtn.UseVisualStyleBackColor = true;
@@ -318,11 +319,22 @@
 			this.createContactBtn.Text = "Skapa";
 			this.createContactBtn.UseVisualStyleBackColor = true;
 			// 
+			// popUpBtn
+			// 
+			this.popUpBtn.Location = new System.Drawing.Point(64, 248);
+			this.popUpBtn.Name = "popUpBtn";
+			this.popUpBtn.Size = new System.Drawing.Size(117, 23);
+			this.popUpBtn.TabIndex = 30;
+			this.popUpBtn.Text = "Öppna i nytt fönster";
+			this.popUpBtn.UseVisualStyleBackColor = true;
+			this.popUpBtn.Click += new System.EventHandler(this.popUpBtn_Click);
+			// 
 			// CompanyUserForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.popUpBtn);
 			this.Controls.Add(this.createContactBtn);
 			this.Controls.Add(this.goToContactBtn);
 			this.Controls.Add(this.contactOrderBtn);
@@ -352,7 +364,7 @@
 			this.Controls.Add(this.idBox);
 			this.Controls.Add(this.nameBox);
 			this.Name = "CompanyUserForm";
-			this.Size = new System.Drawing.Size(810, 312);
+			this.Size = new System.Drawing.Size(810, 319);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -390,5 +402,6 @@
 		private System.Windows.Forms.Button contactOrderBtn;
 		private System.Windows.Forms.Button goToContactBtn;
 		private System.Windows.Forms.Button createContactBtn;
+		private System.Windows.Forms.Button popUpBtn;
 	}
 }
