@@ -22,6 +22,7 @@ namespace TestClasses
 			company.Employees = new BindingList<Person>();
 			company.Projects = new List<Project>();
 			company.IsActive = true;
+			company.Location = new Address();
 			_companies.Add(company);
 		}
 

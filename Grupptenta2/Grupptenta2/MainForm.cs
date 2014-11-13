@@ -19,16 +19,17 @@ namespace Grupptenta2
 		private static CompanyManager _companyManager = new CompanyManager();
 		private static ProjectManager _projectManager = new ProjectManager();
 		private Person _selectedPerson;
+		private Company _selectedCompany;
 
 		public MainForm()
 		{
 			InitializeComponent();
 			CreateMocks();
-			this.Width = 900;
+			this.Width = 1100;
 			this.Height = 675;
 			LoadPanelsList();
 			HidePanels();
-
+			HideUserControls();
 			SetEventMethods();
 		}
 
@@ -44,6 +45,8 @@ namespace Grupptenta2
 			projectSearchBox.OnGoToChoice += projectSearchBox_OnGoToChoice;
 			projectSearchBox.OnSearch += projectSearchBox_OnSearch;
 			personPnlInfoBox.OnSaveChanges += personPnlInfoBox_OnSaveChanges;
+
+			companyUserForm.OnSaveCompanyChanges += companyUserForm_OnSaveCompanyChanges;
 		}
 
 		private static void CreateMocks()
@@ -108,6 +111,7 @@ namespace Grupptenta2
 		{
 			panel.Visible = true;
 			HideAllPanelsExceptThis(panel);
+			HideUserControls();
 		}
 		private void HideAllPanelsExceptThis(Panel currentPanel)
 		{
@@ -126,6 +130,11 @@ namespace Grupptenta2
 				panel.Visible = false;
 			}
 		}
+		private void HideUserControls()
+		{
+			companyUserForm.Visible = false;
+		}
+
 		#endregion
 
 		#region "Main Menu Items"
@@ -251,11 +260,14 @@ namespace Grupptenta2
 		#endregion
 
 		#region "Client"
-		private void GoToClient(Company currentCompany)
+		private void GoToClient(Company company)
 		{
-			this.Text = currentCompany.Name;
-			clientPnl.Visible = true;
-			this.clientPnl.Location = new System.Drawing.Point(520, 0);
+			this.Text = company.Name;
+			HidePanels();
+			companyUserForm.Visible = true;
+			companyUserForm.SetCompanyInfo(company);
+
+			this.companyUserForm.Location = new System.Drawing.Point(210, 10);
 		}
 
 		private void clientSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
@@ -268,8 +280,27 @@ namespace Grupptenta2
 
 		private void clientSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
 		{
-			Company company = (Company)e.ChosenItem;
-			GoToClient(company);
+			_selectedCompany = (Company)e.ChosenItem;
+			GoToClient(_selectedCompany);
+		}
+
+		private void companyUserForm_OnSaveCompanyChanges(object sender, SaveCompanyChangesHandlerEventArgs e)
+		{
+			_selectedCompany.Name = e.Name;
+			_selectedCompany.Id = e.Id;
+			_selectedCompany.Location.Street = e.Street;
+			_selectedCompany.Location.ZipCode = e.ZipCode;
+			_selectedCompany.Location.City = e.City;
+			_selectedCompany.IsActive = e.IsActive;
+
+			RefreshCompanySearchBox();
+			this.Text = _selectedCompany.Name;
+		}
+
+		private void RefreshCompanySearchBox()
+		{
+			clientSearchBox.ResetListBoxData();
+			clientSearchBox.BindListBoxData(_companyManager.GetCompanies(), "Name");
 		}
 		#endregion
 

@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompanyUserForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CompanyUserForm.Designer.cs">
+      <DependentUpon>CompanyUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreatePersonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     <Compile Include="SearchBox.Designer.cs">
       <DependentUpon>SearchBox.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CompanyUserForm.resx">
+      <DependentUpon>CompanyUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreatePersonForm.resx">
       <DependentUpon>CreatePersonForm.cs</DependentUpon>
     </EmbeddedResource>
