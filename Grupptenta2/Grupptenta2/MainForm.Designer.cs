@@ -51,11 +51,17 @@
 			this.relationBox = new Grupptenta2.CustomListBox();
 			this.projectBox = new Grupptenta2.CustomListBox();
 			this.personPnlInfoBox = new Grupptenta2.PersonInfoBox();
+			this.profilePnl = new System.Windows.Forms.Panel();
+			this.button2 = new System.Windows.Forms.Button();
+			this.customListBox1 = new Grupptenta2.CustomListBox();
+			this.customListBox2 = new Grupptenta2.CustomListBox();
+			this.personInfoBox1 = new Grupptenta2.PersonInfoBox();
 			this.menuPanel.SuspendLayout();
 			this.choosePersonPnl.SuspendLayout();
 			this.chooseClientPnl.SuspendLayout();
 			this.chooseProjectPnl.SuspendLayout();
 			this.personPnl.SuspendLayout();
+			this.profilePnl.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuPanel
@@ -212,7 +218,7 @@
 			this.personPnl.Controls.Add(this.relationBox);
 			this.personPnl.Controls.Add(this.projectBox);
 			this.personPnl.Controls.Add(this.personPnlInfoBox);
-			this.personPnl.Location = new System.Drawing.Point(203, 0);
+			this.personPnl.Location = new System.Drawing.Point(421, 729);
 			this.personPnl.Margin = new System.Windows.Forms.Padding(0);
 			this.personPnl.Name = "personPnl";
 			this.personPnl.Size = new System.Drawing.Size(700, 675);
@@ -272,12 +278,58 @@
 			this.personPnlInfoBox.Size = new System.Drawing.Size(240, 669);
 			this.personPnlInfoBox.TabIndex = 0;
 			// 
+			// profilePnl
+			// 
+			this.profilePnl.BackColor = System.Drawing.Color.White;
+			this.profilePnl.Controls.Add(this.button2);
+			this.profilePnl.Controls.Add(this.customListBox1);
+			this.profilePnl.Controls.Add(this.customListBox2);
+			this.profilePnl.Controls.Add(this.personInfoBox1);
+			this.profilePnl.Location = new System.Drawing.Point(203, 0);
+			this.profilePnl.Margin = new System.Windows.Forms.Padding(0);
+			this.profilePnl.Name = "profilePnl";
+			this.profilePnl.Size = new System.Drawing.Size(700, 675);
+			this.profilePnl.TabIndex = 17;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(109, 437);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(134, 23);
+			this.button2.TabIndex = 3;
+			this.button2.Text = "Öppna i nytt fönster";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
+			// customListBox1
+			// 
+			this.customListBox1.BackColor = System.Drawing.Color.White;
+			this.customListBox1.Location = new System.Drawing.Point(307, 203);
+			this.customListBox1.Name = "customListBox1";
+			this.customListBox1.Size = new System.Drawing.Size(241, 184);
+			this.customListBox1.TabIndex = 2;
+			// 
+			// customListBox2
+			// 
+			this.customListBox2.BackColor = System.Drawing.Color.White;
+			this.customListBox2.Location = new System.Drawing.Point(307, 13);
+			this.customListBox2.Name = "customListBox2";
+			this.customListBox2.Size = new System.Drawing.Size(241, 184);
+			this.customListBox2.TabIndex = 1;
+			// 
+			// personInfoBox1
+			// 
+			this.personInfoBox1.Location = new System.Drawing.Point(3, 3);
+			this.personInfoBox1.Name = "personInfoBox1";
+			this.personInfoBox1.Size = new System.Drawing.Size(240, 669);
+			this.personInfoBox1.TabIndex = 0;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(1245, 839);
+			this.Controls.Add(this.profilePnl);
 			this.Controls.Add(this.clientPnl);
 			this.Controls.Add(this.chooseProjectPnl);
 			this.Controls.Add(this.chooseClientPnl);
@@ -293,6 +345,7 @@
 			this.chooseClientPnl.ResumeLayout(false);
 			this.chooseProjectPnl.ResumeLayout(false);
 			this.personPnl.ResumeLayout(false);
+			this.profilePnl.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -322,6 +375,11 @@
 		private CustomListBox relationBox;
 		private CustomListBox projectBox;
 		private System.Windows.Forms.Button personPopUpBtn;
+		private System.Windows.Forms.Panel profilePnl;
+		private System.Windows.Forms.Button button2;
+		private CustomListBox customListBox1;
+		private CustomListBox customListBox2;
+		private PersonInfoBox personInfoBox1;
 	}
 }
 

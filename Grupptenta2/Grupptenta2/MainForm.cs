@@ -44,7 +44,6 @@ namespace Grupptenta2
 			projectSearchBox.OnGoToChoice += projectSearchBox_OnGoToChoice;
 			projectSearchBox.OnSearch += projectSearchBox_OnSearch;
 			personPnlInfoBox.OnSaveChanges += personPnlInfoBox_OnSaveChanges;
-
 		}
 
 		private static void CreateMocks()
@@ -103,6 +102,7 @@ namespace Grupptenta2
 			_panels.Add(choosePersonPnl);
 			_panels.Add(chooseClientPnl);
 			_panels.Add(chooseProjectPnl);
+			_panels.Add(profilePnl);
 		}
 		private void SwitchPanel(Panel panel)
 		{
