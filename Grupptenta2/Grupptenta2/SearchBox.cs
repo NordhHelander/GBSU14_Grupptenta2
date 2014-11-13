@@ -16,10 +16,16 @@ namespace Grupptenta2
 		public delegate void SearchEventHandler(object sender, SearchHandlerEventArgs e);
 		public delegate void OrderByEventHandler(object sender, OrderByHandlerEventArgs e);
 		public delegate void GoToChoiceEventHandler(object sender, GoToChoiceHandlerEventArgs e);
+		public delegate void CreateEventHandler();
+		public delegate void DoubleClickChoiceEventHandler(object sender, DoubleClickChoiceHandlerEventArgs e);
+		public delegate void ChoiceBoxSelectionChangedEventHandler(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e);
 
 		public event SearchEventHandler OnSearch;
 		public event OrderByEventHandler OnOrderByChanged;
 		public event GoToChoiceEventHandler OnGoToChoice;
+		public event CreateEventHandler OnCreate;
+		public event DoubleClickChoiceEventHandler OnDoubleClickChoice;
+		public event ChoiceBoxSelectionChangedEventHandler OnSelectionChanged;
 
 		public SearchBox()
 		{
@@ -30,6 +36,11 @@ namespace Grupptenta2
 		{
 			choiceBox.DataSource = dataSource;
 			choiceBox.DisplayMember = displayMember;
+		}
+
+		public void ResetListBoxData()
+		{
+			choiceBox.DataSource = null;
 		}
 
 		private void searchBtn_Click(object sender, EventArgs e)
@@ -48,6 +59,24 @@ namespace Grupptenta2
 		{
 			if (OnGoToChoice != null)
 				OnGoToChoice(sender, new GoToChoiceHandlerEventArgs(choiceBox.SelectedItem));
+		}
+
+		private void createBtn_Click(object sender, EventArgs e)
+		{
+			if (OnCreate != null)
+				OnCreate();
+		}
+
+		private void choiceBox_DoubleClick(object sender, MouseEventArgs e)
+		{
+			if (OnDoubleClickChoice != null)
+				OnDoubleClickChoice(sender, new DoubleClickChoiceHandlerEventArgs(choiceBox.SelectedItem));
+		}
+
+		private void choiceBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (OnSelectionChanged != null)
+				OnSelectionChanged(sender, new ChoiceBoxSelectionChangedHandlerEventArgs(choiceBox.SelectedItem));
 		}
 	}
 
@@ -73,6 +102,24 @@ namespace Grupptenta2
 	{
 		public object ChosenItem { get; set; }
 		public GoToChoiceHandlerEventArgs(object chosenItem)
+		{
+			ChosenItem = chosenItem;
+		}
+	}
+
+	public class DoubleClickChoiceHandlerEventArgs : EventArgs
+	{
+		public object ChosenItem { get; set; }
+		public DoubleClickChoiceHandlerEventArgs(object chosenItem)
+		{
+			ChosenItem = chosenItem;
+		}
+	}
+
+	public class ChoiceBoxSelectionChangedHandlerEventArgs : EventArgs
+	{
+		public object ChosenItem { get; set; }
+		public ChoiceBoxSelectionChangedHandlerEventArgs(object chosenItem)
 		{
 			ChosenItem = chosenItem;
 		}

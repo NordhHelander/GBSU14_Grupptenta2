@@ -18,164 +18,34 @@ namespace Grupptenta2
 		private static PersonManager _personManager = new PersonManager();
 		private static CompanyManager _companyManager = new CompanyManager();
 		private static ProjectManager _projectManager = new ProjectManager();
+		private Person _selectedPerson;
 
 		public MainForm()
 		{
-            InitializeComponent();
-            _companyManager._companies = SaveDataXml.LoadCompanies();
-            _personManager._persons = SaveDataXml.LoadPersons();
-            //CreateMocks();
-            //SaveDataXml.SaveCompanies(_companyManager._companies);
-            //SaveDataXml.SavePersons(_personManager._persons);
-            this.Width = 900;
-			this.Height = 415;
+			InitializeComponent();
+			CreateMocks();
+			this.Width = 900;
+			this.Height = 675;
 			LoadPanelsList();
 			HidePanels();
 
+			SetEventMethods();
+		}
+
+		private void SetEventMethods()
+		{
 			personSearchBox.OnGoToChoice += personSearchBox_OnGoToChoice;
 			personSearchBox.OnSearch += personSearchBox_OnSearch;
+			personSearchBox.OnCreate += personSearchBox_OnCreate;
+			personSearchBox.OnDoubleClickChoice += personSearchBox_OnDoubleClickChoice;
+			personSearchBox.OnSelectionChanged += personSearchBox_OnSelectionChanged;
 			clientSearchBox.OnGoToChoice += clientSearchBox_OnGoToChoice;
 			clientSearchBox.OnSearch += clientSearchBox_OnSearch;
 			projectSearchBox.OnGoToChoice += projectSearchBox_OnGoToChoice;
 			projectSearchBox.OnSearch += projectSearchBox_OnSearch;
+			personPnlInfoBox.OnSaveChanges += personPnlInfoBox_OnSaveChanges;
 		}
 
-		// PANEL CONTROL
-		private void LoadPanelsList()
-		{
-			_panels.Add(personPnl);
-			_panels.Add(projectPnl);
-			_panels.Add(clientPnl);
-			_panels.Add(choosePersonPnl);
-			_panels.Add(chooseClientPnl);
-			_panels.Add(chooseProjectPnl);
-			_panels.Add(createPersonPnl);
-		}
-		private void SwitchPanel(Panel panel)
-		{
-			panel.Visible = true;
-			HideAllPanelsExceptThis(panel);
-		}
-		private void HideAllPanelsExceptThis(Panel currentPanel)
-		{
-			foreach (Panel panel in _panels)
-			{
-				if (panel != currentPanel)
-				{
-					panel.Visible = false;
-				}
-			}
-		}
-		private void HidePanels()
-		{
-			foreach (Panel panel in _panels)
-			{
-				panel.Visible = false;
-			}
-		}
-
-		// MENU ITEMS
-		private void logOutBtn_Click(object sender, EventArgs e)
-		{
-			this.Close();
-		}
-		private void quitBtn_Click(object sender, EventArgs e)
-		{
-			Application.Exit();
-		}
-		private void profileBtn_Click(object sender, EventArgs e)
-		{
-		}
-		private void calendarBtn_Click(object sender, EventArgs e)
-		{
-			//SwitchPanel(calendarPnl);
-			//this.calendarPnl.Location = new System.Drawing.Point(200, 0);
-		}
-		private void projectBtn_Click(object sender, EventArgs e)
-		{
-			SwitchPanel(chooseProjectPnl);
-			this.chooseProjectPnl.Location = new System.Drawing.Point(200, 0);
-
-			projectSearchBox.BindListBoxData(_projectManager.GetProjects(), "Name");
-		}
-		private void clientBtn_Click(object sender, EventArgs e)
-		{
-			SwitchPanel(chooseClientPnl);
-			this.chooseClientPnl.Location = new System.Drawing.Point(200, 0);
-
-			clientSearchBox.BindListBoxData(_companyManager.GetCompanies(), "Name");
-		}
-		private void contactsBtn_Click(object sender, EventArgs e)
-		{
-			SwitchPanel(choosePersonPnl);
-			this.choosePersonPnl.Location = new System.Drawing.Point(200, 0);
-
-			personSearchBox.BindListBoxData(_personManager.GetPersons(), "Person");
-		}
-
-		private void GoToPerson(Person currentPerson)
-		{
-			SwitchPanel(personPnl);
-			this.personPnl.Location = new System.Drawing.Point(200, 0);
-
-			personInfoBox1.BindPerson(currentPerson, _companyManager.GetCompanies());
-			projectBox.SetData("Projects", _projectManager.GetProjects(), "Name");
-			relationBox.SetData("Närstående", currentPerson.Relations, "Person");
-		}
-		private void GoToClient(Company currentCompany)
-		{
-			clientPnl.Visible = true;
-			this.clientPnl.Location = new System.Drawing.Point(520, 0);
-		}
-		private void GoToProject(Project currentProject)
-		{
-			projectPnl.Visible = true;
-			this.projectPnl.Location = new System.Drawing.Point(520, 0);
-		}
-
-		// ChoosePerson-events
-		private void personSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
-		{
-			string searchText = e.SearchText;
-			List<Person> searchResult = _personManager.GetPersons().Where(p => p.ToString().ToLower().Contains(searchText.ToLower())).ToList();
-			if (searchResult.Count > 0)
-				personSearchBox.BindListBoxData(searchResult, "Person");
-		}
-		private void personSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
-		{
-			Person person = (Person)e.ChosenItem;
-			GoToPerson(person);
-		}
-
-		// ChooseClient-events
-		private void clientSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
-		{
-			string searchText = e.SearchText;
-			List<Company> searchResult = _companyManager.GetCompanies().Where(c => c.Name.ToLower().Contains(searchText.ToLower())).ToList();
-			if (searchResult.Count > 0)
-				clientSearchBox.BindListBoxData(searchResult, "Name");
-		}
-		private void clientSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
-		{
-			Company company = (Company)e.ChosenItem;
-			GoToClient(company);
-		}
-
-		// ChooseProject-events
-		private void projectSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
-		{
-			string searchText = e.SearchText;
-			List<Project> searchResult = _projectManager.GetProjects().Where(p => p.Name.ToLower().Contains(searchText.ToLower())).ToList();
-			if (searchResult.Count > 0)
-				projectSearchBox.BindListBoxData(searchResult, "Name");
-		}
-		private void projectSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
-		{
-			Project project = (Project)e.ChosenItem;
-			GoToProject(project);
-		}
-
-		// MOCK SETUP
 		private static void CreateMocks()
 		{
 			int numberOfCompanies = 3;
@@ -223,9 +93,207 @@ namespace Grupptenta2
 			_companyManager.GetCompanies()[2].Projects.Add(_projectManager.GetProjects()[5]);
 		}
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
+		#region "Panel Control"
+		private void LoadPanelsList()
+		{
+			_panels.Add(personPnl);
+			_panels.Add(projectPnl);
+			_panels.Add(clientPnl);
+			_panels.Add(choosePersonPnl);
+			_panels.Add(chooseClientPnl);
+			_panels.Add(chooseProjectPnl);
+			_panels.Add(profilePnl);
+		}
+		private void SwitchPanel(Panel panel)
+		{
+			panel.Visible = true;
+			HideAllPanelsExceptThis(panel);
+		}
+		private void HideAllPanelsExceptThis(Panel currentPanel)
+		{
+			foreach (Panel panel in _panels)
+			{
+				if (panel != currentPanel)
+				{
+					panel.Visible = false;
+				}
+			}
+		}
+		private void HidePanels()
+		{
+			foreach (Panel panel in _panels)
+			{
+				panel.Visible = false;
+			}
+		}
+		#endregion
 
-        }
+		#region "Main Menu Items"
+		private void logOutBtn_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+		private void quitBtn_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
+		private void profileBtn_Click(object sender, EventArgs e)
+		{
+			this.Text = "Din profil";
+		}
+		private void calendarBtn_Click(object sender, EventArgs e)
+		{
+			this.Text = "Kalender";
+			//SwitchPanel(calendarPnl);
+			//this.calendarPnl.Location = new System.Drawing.Point(200, 0);
+		}
+		private void projectBtn_Click(object sender, EventArgs e)
+		{
+			this.Text = "Dina projekt";
+			SwitchPanel(chooseProjectPnl);
+			this.chooseProjectPnl.Location = new System.Drawing.Point(200, 0);
+
+			projectSearchBox.BindListBoxData(_projectManager.GetProjects(), "Name");
+		}
+		private void clientBtn_Click(object sender, EventArgs e)
+		{
+			this.Text = "Dina företagskunder";
+			SwitchPanel(chooseClientPnl);
+			this.chooseClientPnl.Location = new System.Drawing.Point(200, 0);
+
+			clientSearchBox.BindListBoxData(_companyManager.GetCompanies(), "Name");
+		}
+		private void contactsBtn_Click(object sender, EventArgs e)
+		{
+			this.Text = "Dina kontakter";
+			SwitchPanel(choosePersonPnl);
+			this.choosePersonPnl.Location = new System.Drawing.Point(200, 0);
+
+			personSearchBox.BindListBoxData(_personManager.GetPersons(), "Person");
+		}
+		#endregion
+
+		#region "Person"
+		// choosePersonPnl
+		private void personSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
+		{
+			string searchText = e.SearchText;
+			List<Person> searchResult = _personManager.GetPersons().Where(p => p.ToString().ToLower().Contains(searchText.ToLower())).ToList();
+			if (searchResult.Count > 0)
+				personSearchBox.BindListBoxData(searchResult, "Person");
+		}
+
+		private void personSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
+		{
+			this.Text = _selectedPerson.ToString();
+			SwitchPanel(personPnl);
+			this.personPnl.Location = new System.Drawing.Point(200, 0);
+			LoadPersonPnl();
+		}
+
+		private void personSearchBox_OnCreate()
+		{
+			CreatePersonForm createPersonForm = new CreatePersonForm(_personManager, _companyManager);
+			createPersonForm.ShowDialog();
+		}
+
+		private void personSearchBox_OnDoubleClickChoice(object sender, DoubleClickChoiceHandlerEventArgs e)
+		{
+			PersonPopUp personPopUp = new PersonPopUp((Person)e.ChosenItem, _companyManager, _projectManager);
+			personPopUp.ShowDialog();
+			RefreshPersonSearchBox();
+
+		}
+
+		private void personSearchBox_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
+		{
+			_selectedPerson = (Person)e.ChosenItem;
+		}
+
+		// personPnl
+		private void LoadPersonPnl()
+		{
+			personPnlInfoBox.BindPerson(_selectedPerson, _companyManager.GetCompanies());
+			projectBox.SetData("Projects", _projectManager.GetProjects(), "Name");
+			relationBox.SetData("Närstående", _selectedPerson.Relations, "Person");
+		}
+
+		private void personPnlInfoBox_OnSaveChanges(object sender, SaveChangesHandlerEventArgs e)
+		{
+			_selectedPerson.FirstName = e.FirstName;
+			_selectedPerson.LastName = e.LastName;
+			_selectedPerson.Birthdate = e.DateOfBirth;
+			_selectedPerson.ResidentalAddress.Street = e.Street;
+			_selectedPerson.ResidentalAddress.ZipCode = e.PostalCode;
+			_selectedPerson.ResidentalAddress.City = e.City;
+			_selectedPerson.PhoneNumber = e.PhoneNumber;
+			_selectedPerson.CellPhoneNumber = e.CellPhoneNumber;
+			_selectedPerson.EmailAddress = e.EmailAddress;
+			_selectedPerson.Type = e.Type;
+			// Ska läggas in sätt att ändra företag. Måste välja bland befintliga och tas bort från tidigare företag.
+			RefreshPersonSearchBox();
+			this.Text = _selectedPerson.ToString();
+		}
+
+		private void RefreshPersonSearchBox()
+		{
+			personSearchBox.ResetListBoxData();
+			personSearchBox.BindListBoxData(_personManager.GetPersons(), "Person");
+		}
+
+		private void personPopUpBtn_Click(object sender, EventArgs e)
+		{
+			PersonPopUp personPopUp = new PersonPopUp(_selectedPerson, _companyManager, _projectManager);
+			personPopUp.ShowDialog();
+			LoadPersonPnl();
+			this.Text = _selectedPerson.ToString();
+		}
+		#endregion
+
+		#region "Client"
+		private void GoToClient(Company currentCompany)
+		{
+			this.Text = currentCompany.Name;
+			clientPnl.Visible = true;
+			this.clientPnl.Location = new System.Drawing.Point(520, 0);
+		}
+
+		private void clientSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
+		{
+			string searchText = e.SearchText;
+			List<Company> searchResult = _companyManager.GetCompanies().Where(c => c.Name.ToLower().Contains(searchText.ToLower())).ToList();
+			if (searchResult.Count > 0)
+				clientSearchBox.BindListBoxData(searchResult, "Name");
+		}
+
+		private void clientSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
+		{
+			Company company = (Company)e.ChosenItem;
+			GoToClient(company);
+		}
+		#endregion
+
+		#region "Project"
+		private void GoToProject(Project currentProject)
+		{
+			this.Text = currentProject.Name;
+			projectPnl.Visible = true;
+			this.projectPnl.Location = new System.Drawing.Point(520, 0);
+		}
+
+		private void projectSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
+		{
+			string searchText = e.SearchText;
+			List<Project> searchResult = _projectManager.GetProjects().Where(p => p.Name.ToLower().Contains(searchText.ToLower())).ToList();
+			if (searchResult.Count > 0)
+				projectSearchBox.BindListBoxData(searchResult, "Name");
+		}
+
+		private void projectSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
+		{
+			Project project = (Project)e.ChosenItem;
+			GoToProject(project);
+		}
+		#endregion
 	}
 }
