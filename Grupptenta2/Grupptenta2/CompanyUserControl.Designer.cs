@@ -1,6 +1,6 @@
 ﻿namespace Grupptenta2
 {
-	partial class CompanyUserForm
+	partial class CompanyUserControl
 	{
 		/// <summary> 
 		/// Required designer variable.

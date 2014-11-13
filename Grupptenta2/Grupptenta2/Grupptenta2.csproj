@@ -50,11 +50,17 @@
     <Compile Include="CompanyPopUp.Designer.cs">
       <DependentUpon>CompanyPopUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="CompanyUserForm.cs">
+    <Compile Include="CompanyUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CompanyUserForm.Designer.cs">
-      <DependentUpon>CompanyUserForm.cs</DependentUpon>
+    <Compile Include="CompanyUserControl.Designer.cs">
+      <DependentUpon>CompanyUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateCompanyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateCompanyForm.Designer.cs">
+      <DependentUpon>CreateCompanyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CreatePersonForm.cs">
       <SubType>Form</SubType>
@@ -97,8 +103,11 @@
     <EmbeddedResource Include="CompanyPopUp.resx">
       <DependentUpon>CompanyPopUp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CompanyUserForm.resx">
-      <DependentUpon>CompanyUserForm.cs</DependentUpon>
+    <EmbeddedResource Include="CompanyUserControl.resx">
+      <DependentUpon>CompanyUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateCompanyForm.resx">
+      <DependentUpon>CreateCompanyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreatePersonForm.resx">
       <DependentUpon>CreatePersonForm.cs</DependentUpon>

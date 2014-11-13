@@ -11,7 +11,7 @@ using CodeBase;
 
 namespace Grupptenta2
 {
-	public partial class CompanyUserForm : UserControl
+	public partial class CompanyUserControl : UserControl
 	{
 		public delegate void SaveCompanyChangesEventHandler(object sender, SaveCompanyChangesHandlerEventArgs e);
 		public delegate void ClosePopUpEventHandler();
@@ -21,7 +21,7 @@ namespace Grupptenta2
 
 		private static Company _company;
 	
-		public CompanyUserForm()
+		public CompanyUserControl()
 		{
 			InitializeComponent();
 		}

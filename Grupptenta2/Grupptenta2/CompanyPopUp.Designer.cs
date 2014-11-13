@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.companyUserForm = new Grupptenta2.CompanyUserForm();
+			this.companyUserForm = new Grupptenta2.CompanyUserControl();
 			this.SuspendLayout();
 			// 
 			// companyUserForm
@@ -55,6 +55,6 @@
 
 		#endregion
 
-		private CompanyUserForm companyUserForm;
+		private CompanyUserControl companyUserForm;
 	}
 }
