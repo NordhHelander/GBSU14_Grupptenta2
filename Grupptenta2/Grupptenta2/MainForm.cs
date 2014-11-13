@@ -40,8 +40,12 @@ namespace Grupptenta2
 			personSearchBox.OnCreate += personSearchBox_OnCreate;
 			personSearchBox.OnDoubleClickChoice += personSearchBox_OnDoubleClickChoice;
 			personSearchBox.OnSelectionChanged += personSearchBox_OnSelectionChanged;
+
 			clientSearchBox.OnGoToChoice += clientSearchBox_OnGoToChoice;
 			clientSearchBox.OnSearch += clientSearchBox_OnSearch;
+			clientSearchBox.OnSelectionChanged += clientSearchBox_OnSelectionChanged;
+			clientSearchBox.OnDoubleClickChoice += clientSearchBox_OnDoubleClickChoice;
+
 			projectSearchBox.OnGoToChoice += projectSearchBox_OnGoToChoice;
 			projectSearchBox.OnSearch += projectSearchBox_OnSearch;
 			personPnlInfoBox.OnSaveChanges += personPnlInfoBox_OnSaveChanges;
@@ -212,7 +216,6 @@ namespace Grupptenta2
 			PersonPopUp personPopUp = new PersonPopUp((Person)e.ChosenItem, _companyManager, _projectManager);
 			personPopUp.ShowDialog();
 			RefreshPersonSearchBox();
-
 		}
 
 		private void personSearchBox_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
@@ -279,10 +282,21 @@ namespace Grupptenta2
 				clientSearchBox.BindListBoxData(searchResult, "Name");
 		}
 
-		private void clientSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
+		private void clientSearchBox_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedCompany = (Company)e.ChosenItem;
+		}
+
+		private void clientSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
+		{
 			GoToClient(_selectedCompany);
+		}
+
+		private void clientSearchBox_OnDoubleClickChoice(object sender, DoubleClickChoiceHandlerEventArgs e)
+		{
+			CompanyPopUp companyPopUp = new CompanyPopUp(_selectedCompany);
+			companyPopUp.ShowDialog();
+			RefreshCompanySearchBox();
 		}
 
 		private void companyUserForm_OnSaveCompanyChanges(object sender, SaveCompanyChangesHandlerEventArgs e)

@@ -191,7 +191,7 @@
 			// choosePersonPnl
 			// 
 			this.choosePersonPnl.Controls.Add(this.personSearchBox);
-			this.choosePersonPnl.Location = new System.Drawing.Point(6, 759);
+			this.choosePersonPnl.Location = new System.Drawing.Point(12, 759);
 			this.choosePersonPnl.Name = "choosePersonPnl";
 			this.choosePersonPnl.Size = new System.Drawing.Size(320, 415);
 			this.choosePersonPnl.TabIndex = 14;
@@ -206,10 +206,9 @@
 			// chooseClientPnl
 			// 
 			this.chooseClientPnl.Controls.Add(this.clientSearchBox);
-			this.chooseClientPnl.Controls.Add(this.profilePnl);
-			this.chooseClientPnl.Location = new System.Drawing.Point(66, 712);
+			this.chooseClientPnl.Location = new System.Drawing.Point(203, 0);
 			this.chooseClientPnl.Name = "chooseClientPnl";
-			this.chooseClientPnl.Size = new System.Drawing.Size(320, 415);
+			this.chooseClientPnl.Size = new System.Drawing.Size(356, 415);
 			this.chooseClientPnl.TabIndex = 15;
 			// 
 			// clientSearchBox
@@ -226,7 +225,7 @@
 			this.profilePnl.Controls.Add(this.customListBox1);
 			this.profilePnl.Controls.Add(this.customListBox2);
 			this.profilePnl.Controls.Add(this.personInfoBox1);
-			this.profilePnl.Location = new System.Drawing.Point(206, 57);
+			this.profilePnl.Location = new System.Drawing.Point(491, 729);
 			this.profilePnl.Margin = new System.Windows.Forms.Padding(0);
 			this.profilePnl.Name = "profilePnl";
 			this.profilePnl.Size = new System.Drawing.Size(700, 675);
@@ -286,7 +285,7 @@
 			this.personPnl.Controls.Add(this.relationBox);
 			this.personPnl.Controls.Add(this.projectBox);
 			this.personPnl.Controls.Add(this.personPnlInfoBox);
-			this.personPnl.Location = new System.Drawing.Point(421, 729);
+			this.personPnl.Location = new System.Drawing.Point(588, 652);
 			this.personPnl.Margin = new System.Windows.Forms.Padding(0);
 			this.personPnl.Name = "personPnl";
 			this.personPnl.Size = new System.Drawing.Size(700, 675);
@@ -328,7 +327,7 @@
 			// companyUserForm
 			// 
 			this.companyUserForm.BackColor = System.Drawing.Color.White;
-			this.companyUserForm.Location = new System.Drawing.Point(203, 0);
+			this.companyUserForm.Location = new System.Drawing.Point(661, 0);
 			this.companyUserForm.Name = "companyUserForm";
 			this.companyUserForm.Size = new System.Drawing.Size(810, 341);
 			this.companyUserForm.TabIndex = 18;
@@ -338,8 +337,9 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(1407, 782);
+			this.ClientSize = new System.Drawing.Size(1407, 810);
 			this.Controls.Add(this.companyUserForm);
+			this.Controls.Add(this.profilePnl);
 			this.Controls.Add(this.clientPnl);
 			this.Controls.Add(this.chooseProjectPnl);
 			this.Controls.Add(this.chooseClientPnl);
