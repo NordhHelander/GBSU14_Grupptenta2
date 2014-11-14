@@ -15,37 +15,50 @@ namespace Grupptenta2
 	public partial class MainForm : Form
 	{
 		private static List<Panel> _panels = new List<Panel>();
+		private static List<UserControl> _userControls = new List<UserControl>();
 		private static PersonManager _personManager = new PersonManager();
 		private static CompanyManager _companyManager = new CompanyManager();
 		private static ProjectManager _projectManager = new ProjectManager();
 		private Person _selectedPerson;
+		private Company _selectedCompany;
 
 		public MainForm()
 		{
 			InitializeComponent();
+			this.ClientSize = new Size(1100, 675);
             //CreateMocks();
             //SaveDataXml.SaveCompanies(_companyManager._companies);
             //SaveDataXml.SavePersons(_personManager._persons);
-			this.Width = 900;
-			this.Height = 675;
 			LoadPanelsList();
 			HidePanels();
 
+			LoadUserControlList();
+			HideUserControls();
+
 			SetEventMethods();
+
 		}
 
 		private void SetEventMethods()
 		{
-			personSearchBox.OnGoToChoice += personSearchBox_OnGoToChoice;
-			personSearchBox.OnSearch += personSearchBox_OnSearch;
-			personSearchBox.OnCreate += personSearchBox_OnCreate;
-			personSearchBox.OnDoubleClickChoice += personSearchBox_OnDoubleClickChoice;
-			personSearchBox.OnSelectionChanged += personSearchBox_OnSelectionChanged;
-			clientSearchBox.OnGoToChoice += clientSearchBox_OnGoToChoice;
-			clientSearchBox.OnSearch += clientSearchBox_OnSearch;
-			projectSearchBox.OnGoToChoice += projectSearchBox_OnGoToChoice;
-			projectSearchBox.OnSearch += projectSearchBox_OnSearch;
+			personSearchControl.OnGoToChoice += personSearchBox_OnGoToChoice;
+			personSearchControl.OnSearch += personSearchBox_OnSearch;
+			personSearchControl.OnCreate += personSearchBox_OnCreate;
+			personSearchControl.OnDoubleClickChoice += personSearchBox_OnDoubleClickChoice;
+			personSearchControl.OnSelectionChanged += personSearchBox_OnSelectionChanged;
+
+			companySearchControl.OnGoToChoice += clientSearchBox_OnGoToChoice;
+			companySearchControl.OnSearch += clientSearchBox_OnSearch;
+			companySearchControl.OnCreate += companySearchControl_OnCreate;
+			companySearchControl.OnSelectionChanged += clientSearchBox_OnSelectionChanged;
+			companySearchControl.OnDoubleClickChoice += clientSearchBox_OnDoubleClickChoice;
+
+			projectSearchControl.OnGoToChoice += projectSearchBox_OnGoToChoice;
+			projectSearchControl.OnSearch += projectSearchBox_OnSearch;
 			personPnlInfoBox.OnSaveChanges += personPnlInfoBox_OnSaveChanges;
+
+			companyControl.OnSaveCompanyChanges += companyUserForm_OnSaveCompanyChanges;
+			companyControl.OnClosePopUp += companyUserForm_OnClosePopUp;
 		}
 
 		private static void CreateMocks()
@@ -69,7 +82,7 @@ namespace Grupptenta2
 
 			for (int i = 0; i < numberOfProjects; i++)
 			{
-				_projectManager.CreateProject();
+				//_projectManager.CreateProject();
 				_projectManager.GetProjects()[i].Name = "Project no." + (i + 1);
 				_projectManager.GetProjects()[i].ProjectJournal = new Journal();
 			}
@@ -101,15 +114,20 @@ namespace Grupptenta2
 			_panels.Add(personPnl);
 			_panels.Add(projectPnl);
 			_panels.Add(clientPnl);
-			_panels.Add(choosePersonPnl);
-			_panels.Add(chooseClientPnl);
-			_panels.Add(chooseProjectPnl);
 			_panels.Add(profilePnl);
+		}
+		private void LoadUserControlList()
+		{
+			_userControls.Add(projectSearchControl);
+			_userControls.Add(personSearchControl);
+			_userControls.Add(companySearchControl);
+			_userControls.Add(companyControl);
 		}
 		private void SwitchPanel(Panel panel)
 		{
 			panel.Visible = true;
 			HideAllPanelsExceptThis(panel);
+			HideUserControls();
 		}
 		private void HideAllPanelsExceptThis(Panel currentPanel)
 		{
@@ -128,6 +146,14 @@ namespace Grupptenta2
 				panel.Visible = false;
 			}
 		}
+		private void HideUserControls()
+		{
+			foreach (var userControl in _userControls)
+			{
+				userControl.Visible = false;
+			}
+		}
+
 		#endregion
 
 		#region "Main Menu Items"
@@ -135,12 +161,14 @@ namespace Grupptenta2
 		{
             SaveDataXml.SaveCompanies(_companyManager._companies);
             SaveDataXml.SavePersons(_personManager._persons);
+            SaveDataXml.SaveProjects(_projectManager._projects);
             this.Close();
 		}
 		private void quitBtn_Click(object sender, EventArgs e)
 		{
             SaveDataXml.SaveCompanies(_companyManager._companies);
             SaveDataXml.SavePersons(_personManager._persons);
+            SaveDataXml.SaveProjects(_projectManager._projects);
             Application.Exit();
 		}
 		private void profileBtn_Click(object sender, EventArgs e)
@@ -156,26 +184,29 @@ namespace Grupptenta2
 		private void projectBtn_Click(object sender, EventArgs e)
 		{
 			this.Text = "Dina projekt";
-			SwitchPanel(chooseProjectPnl);
-			this.chooseProjectPnl.Location = new System.Drawing.Point(200, 0);
-
-			projectSearchBox.BindListBoxData(_projectManager.GetProjects(), "Name");
+			HidePanels();
+			HideUserControls();
+			projectSearchControl.Visible = true;
+			this.projectSearchControl.Location = new System.Drawing.Point(210, 10);
+			projectSearchControl.BindListBoxData(_projectManager.GetProjects(), "Name");
 		}
 		private void clientBtn_Click(object sender, EventArgs e)
 		{
 			this.Text = "Dina företagskunder";
-			SwitchPanel(chooseClientPnl);
-			this.chooseClientPnl.Location = new System.Drawing.Point(200, 0);
-
-			clientSearchBox.BindListBoxData(_companyManager.GetCompanies(), "Name");
+			HidePanels();
+			HideUserControls();
+			companySearchControl.Visible = true;
+			this.companySearchControl.Location = new System.Drawing.Point(210, 10);
+			companySearchControl.BindListBoxData(_companyManager.GetCompanies(), "Name");
 		}
 		private void contactsBtn_Click(object sender, EventArgs e)
 		{
 			this.Text = "Dina kontakter";
-			SwitchPanel(choosePersonPnl);
-			this.choosePersonPnl.Location = new System.Drawing.Point(200, 0);
-
-			personSearchBox.BindListBoxData(_personManager.GetPersons(), "Person");
+			HidePanels();
+			HideUserControls();
+			personSearchControl.Visible = true;
+			this.personSearchControl.Location = new System.Drawing.Point(210, 10);
+			personSearchControl.BindListBoxData(_personManager.GetPersons(), "Person");
 		}
 		#endregion
 
@@ -186,7 +217,7 @@ namespace Grupptenta2
 			string searchText = e.SearchText;
 			List<Person> searchResult = _personManager.GetPersons().Where(p => p.ToString().ToLower().Contains(searchText.ToLower())).ToList();
 			if (searchResult.Count > 0)
-				personSearchBox.BindListBoxData(searchResult, "Person");
+				personSearchControl.BindListBoxData(searchResult, "Person");
 		}
 
 		private void personSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
@@ -208,7 +239,6 @@ namespace Grupptenta2
 			PersonPopUp personPopUp = new PersonPopUp((Person)e.ChosenItem, _companyManager, _projectManager);
 			personPopUp.ShowDialog();
 			RefreshPersonSearchBox();
-
 		}
 
 		private void personSearchBox_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
@@ -243,8 +273,8 @@ namespace Grupptenta2
 
 		private void RefreshPersonSearchBox()
 		{
-			personSearchBox.ResetListBoxData();
-			personSearchBox.BindListBoxData(_personManager.GetPersons(), "Person");
+			personSearchControl.ResetListBoxData();
+			personSearchControl.BindListBoxData(_personManager.GetPersons(), "Person");
 		}
 
 		private void personPopUpBtn_Click(object sender, EventArgs e)
@@ -257,25 +287,66 @@ namespace Grupptenta2
 		#endregion
 
 		#region "Client"
-		private void GoToClient(Company currentCompany)
-		{
-			this.Text = currentCompany.Name;
-			clientPnl.Visible = true;
-			this.clientPnl.Location = new System.Drawing.Point(520, 0);
-		}
-
 		private void clientSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
 		{
 			string searchText = e.SearchText;
 			List<Company> searchResult = _companyManager.GetCompanies().Where(c => c.Name.ToLower().Contains(searchText.ToLower())).ToList();
 			if (searchResult.Count > 0)
-				clientSearchBox.BindListBoxData(searchResult, "Name");
+				companySearchControl.BindListBoxData(searchResult, "Name");
 		}
 
 		private void clientSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
 		{
-			Company company = (Company)e.ChosenItem;
-			GoToClient(company);
+			this.Text = _selectedCompany.Name;
+			HidePanels();
+			HideUserControls();
+			companyControl.Visible = true;
+			companyControl.SetCompanyInfo(_selectedCompany);
+			this.companyControl.Location = new System.Drawing.Point(210, 10);
+		}
+		
+		private void companySearchControl_OnCreate()
+		{
+			CreateCompanyForm createCompanyForm = new CreateCompanyForm(_companyManager);
+			createCompanyForm.ShowDialog();
+			RefreshCompanySearchBox();
+		}
+
+		private void clientSearchBox_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
+		{
+			_selectedCompany = (Company)e.ChosenItem;
+		}
+
+		private void clientSearchBox_OnDoubleClickChoice(object sender, DoubleClickChoiceHandlerEventArgs e)
+		{
+			CompanyPopUp companyPopUp = new CompanyPopUp(_selectedCompany);
+			companyPopUp.ShowDialog();
+			RefreshCompanySearchBox();
+		}
+
+		private void companyUserForm_OnSaveCompanyChanges(object sender, SaveCompanyChangesHandlerEventArgs e)
+		{
+			_selectedCompany.Name = e.Name;
+			_selectedCompany.Id = e.Id;
+			_selectedCompany.Location.Street = e.Street;
+			_selectedCompany.Location.ZipCode = e.ZipCode;
+			_selectedCompany.Location.City = e.City;
+			_selectedCompany.IsActive = e.IsActive;
+
+			RefreshCompanySearchBox();
+			this.Text = _selectedCompany.Name;
+		}
+
+		private void companyUserForm_OnClosePopUp()
+		{
+			RefreshCompanySearchBox();
+			this.Text = _selectedCompany.Name;
+		}
+
+		private void RefreshCompanySearchBox()
+		{
+			companySearchControl.ResetListBoxData();
+			companySearchControl.BindListBoxData(_companyManager.GetCompanies(), "Name");
 		}
 		#endregion
 
@@ -292,7 +363,7 @@ namespace Grupptenta2
 			string searchText = e.SearchText;
 			List<Project> searchResult = _projectManager.GetProjects().Where(p => p.Name.ToLower().Contains(searchText.ToLower())).ToList();
 			if (searchResult.Count > 0)
-				projectSearchBox.BindListBoxData(searchResult, "Name");
+				projectSearchControl.BindListBoxData(searchResult, "Name");
 		}
 
 		private void projectSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
@@ -302,10 +373,15 @@ namespace Grupptenta2
 		}
 		#endregion
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void projectSearchControl_Load(object sender, EventArgs e)
         {
-            SaveDataXml.SaveCompanies(_companyManager._companies);
-            SaveDataXml.SavePersons(_personManager._persons);
+
+        }
+
+        private void projectSearchControl_OnCreate()
+        {
+            CreateProjectForm createProjectForm = new CreateProjectForm(_projectManager, _personManager);
+            createProjectForm.Show();
         }
 	}
 }

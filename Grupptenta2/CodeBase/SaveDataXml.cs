@@ -31,6 +31,16 @@ namespace CodeBase
             }
         }
 
+        public static void SaveProjects(BindingList<Project> projects)
+        {
+            XmlSerializer ser = new XmlSerializer(typeof(BindingList<Project>));
+
+            using (FileStream fs = new FileStream(@"Projects.xml", FileMode.Create))
+            {
+                ser.Serialize(fs, projects);
+            }
+        }
+
         public static BindingList<Company> LoadCompanies()
         {
             XmlSerializer ser = new XmlSerializer(typeof(BindingList<Company>));
@@ -48,6 +58,16 @@ namespace CodeBase
             using (FileStream fs = new FileStream(@"Persons.xml", FileMode.Open))
             {
                 return (BindingList<Person>)ser.Deserialize(fs);
+            }
+        }
+
+        public static BindingList<Project> LoadProjects()
+        {
+            XmlSerializer ser = new XmlSerializer(typeof(BindingList<Project>));
+
+            using (FileStream fs = new FileStream(@"Projects.xml", FileMode.Open))
+            {
+                return (BindingList<Project>)ser.Deserialize(fs);
             }
         }
     }

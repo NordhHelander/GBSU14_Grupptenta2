@@ -36,17 +36,6 @@ namespace CodeBase
             Employees = new BindingList<Person>();
         }
 
-        public void AddEmployeesOnLoad(BindingList<Person> persons)
-        {
-            foreach (Person p in persons)
-            {
-                if (true)
-                {
-                    // TODO: Koppla personer till rätt företag...
-                }
-            }
-        }
-
     }
 
 }
