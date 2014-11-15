@@ -13,12 +13,9 @@ namespace TestClasses
     [XmlRoot("Foo")]
     public class CompanyManager
 	{
-        [XmlArray("CompanyList"), XmlArrayItem(typeof(Company), ElementName = "Company")]
-        public BindingList<Company> _companies;
-        public BindingList<Company> GetCompanies()
-		{
-			return _companies;
-		}
+		[XmlArray("CompanyList"), XmlArrayItem(typeof(Company), ElementName = "Company")]
+
+		public BindingList<Company> Companies { get; private set; }
 
 		public void CreateCompany(string name)
 		{
@@ -27,13 +24,13 @@ namespace TestClasses
 			company.Projects = new List<Project>();
 			company.IsActive = true;
 			company.Location = new Address();
-			_companies.Add(company);
+			Companies.Add(company);
 		}
 
 		public CompanyManager()
 		{
-            _companies = new BindingList<Company>();
-            _companies = SaveDataXml.LoadCompanies();
+            Companies = new BindingList<Company>();
+            Companies = SaveDataXml.LoadCompanies();
 		}
 	}
 }

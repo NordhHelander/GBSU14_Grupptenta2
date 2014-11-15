@@ -25,15 +25,15 @@ namespace Grupptenta2
 			InitializeComponent();
 			personInfoBox.HideEditBtn();
 			personInfoBox.EnableEdit();
-			personInfoBox.BindCompanyBox(_companyManager.GetCompanies(), "Name");
+			personInfoBox.BindCompanyBox(_companyManager.Companies, "Name");
 			personInfoBox.OnSaveChanges += personInfoBox_OnSaveChanges;
 		}
 
 		private void personInfoBox_OnSaveChanges(object sender, SaveChangesHandlerEventArgs e)
 		{
 			_personManager.CreatePerson(e.FirstName);
-			int indexOfNewPerson = _personManager.GetPersons().Count - 1;
-			Person person = _personManager.GetPersons()[indexOfNewPerson];
+			int indexOfNewPerson = _personManager.Persons.Count - 1;
+			Person person = _personManager.Persons[indexOfNewPerson];
 
 			person.LastName = e.LastName;
 			person.Birthdate = e.DateOfBirth;
@@ -45,7 +45,7 @@ namespace Grupptenta2
 			person.EmailAddress = e.EmailAddress;
 			person.Type = e.Type;
 
-			_companyManager.GetCompanies().SingleOrDefault(c => c == e.Company).Employees.Add(person);
+			_companyManager.Companies.SingleOrDefault(c => c == e.Company).Employees.Add(person);
 		}
 
 

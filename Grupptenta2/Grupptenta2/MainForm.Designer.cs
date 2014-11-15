@@ -247,8 +247,7 @@
             this.projectSearchControl.Name = "projectSearchControl";
             this.projectSearchControl.Size = new System.Drawing.Size(278, 276);
             this.projectSearchControl.TabIndex = 0;
-            this.projectSearchControl.OnCreate += new Grupptenta2.SearchBox.CreateEventHandler(this.projectSearchControl_OnCreate);
-            this.projectSearchControl.Load += new System.EventHandler(this.projectSearchControl_Load);
+			this.projectSearchControl.OnCreate += new Grupptenta2.SearchBox.CreateEventHandler(this.projectSearchControl_OnCreate);
             // 
             // personPnl
             // 

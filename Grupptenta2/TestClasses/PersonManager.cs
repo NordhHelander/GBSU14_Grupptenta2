@@ -13,29 +13,25 @@ namespace TestClasses
     //[XmlRoot("Foo")]
     public class PersonManager
 	{
-        [XmlArray("PersonList"), XmlArrayItem(typeof(Person), ElementName = "Person")]
-        public BindingList<Person> _persons;
-		
-        public BindingList<Person> GetPersons()
-		{
-			return _persons;
-		}
+		[XmlArray("PersonList"), XmlArrayItem(typeof(Person), ElementName = "Person")]
+
+		public BindingList<Person> Persons { get; private set; }
 
 		public void CreatePerson(string name)
 		{
 			Person person = new Person(name);
-			person.Id = _persons.Count + 1;
+			person.Id = Persons.Count + 1;
 			person.ResidentalAddress = new Address();
 			person.Relations = new List<Person>();
 			person.IsActive = true;
 
-			_persons.Add(person);
+			Persons.Add(person);
 		}
 
 		public PersonManager()
 		{
-			_persons = new BindingList<Person>();
-            _persons = SaveDataXml.LoadPersons();
+			Persons = new BindingList<Person>();
+            Persons = SaveDataXml.LoadPersons();
 		}
 	}
 }

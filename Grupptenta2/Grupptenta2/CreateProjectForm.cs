@@ -25,22 +25,17 @@ namespace Grupptenta2
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void CreateProjectForm_Load(object sender, EventArgs e)
         {
-            lstBx_Participants.DataSource = _personManager._persons;
-            lstBx_Participants.DisplayMember = _personManager._persons.ToString();
+            lstBx_Participants.DataSource = _personManager.Persons;
+            lstBx_Participants.DisplayMember = _personManager.Persons.ToString();
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
             _projectManager.CreateProject(nameBox.Text, (Person)lstBx_Participants.SelectedItem);
-            int indexOfNewProject = _projectManager.GetProjects().Count - 1;
-            Project project = _projectManager.GetProjects()[indexOfNewProject];
+            int indexOfNewProject = _projectManager.Projects.Count - 1;
+            Project project = _projectManager.Projects[indexOfNewProject];
             this.Close();
         }
     }

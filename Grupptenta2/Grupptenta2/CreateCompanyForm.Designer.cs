@@ -1,6 +1,18 @@
-﻿namespace Grupptenta2
+﻿using CodeBase;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TestClasses;
+
+namespace Grupptenta2
 {
-	partial class CreateCompanyForm
+	partial class CreateCompanyForm : Form
 	{
 		/// <summary>
 		/// Required designer variable.

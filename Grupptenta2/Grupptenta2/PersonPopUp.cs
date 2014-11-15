@@ -49,8 +49,8 @@ namespace Grupptenta2
 
 		private void LoadPerson()
 		{
-			personInfoBox.BindPerson(_person, _companyManager.GetCompanies());
-			projectBox.SetData("Projects", _projectManager.GetProjects(), "Name");
+			personInfoBox.BindPerson(_person, _companyManager.Companies);
+			projectBox.SetData("Projects", _projectManager.Projects, "Name");
 			relationBox.SetData("Närstående", _person.Relations, "Person");
 		}
 

@@ -26,8 +26,8 @@ namespace Grupptenta2
 		private void saveBtn_Click(object sender, EventArgs e)
 		{
 			_companyManager.CreateCompany(nameBox.Text);
-			int indexOfNewCompany = _companyManager.GetCompanies().Count - 1;
-			Company company = _companyManager.GetCompanies()[indexOfNewCompany];
+			int indexOfNewCompany = _companyManager.Companies.Count - 1;
+			Company company = _companyManager.Companies[indexOfNewCompany];
 
 			company.Location.Street = streetBox.Text;
 			company.Location.ZipCode = zipBox.Text;
