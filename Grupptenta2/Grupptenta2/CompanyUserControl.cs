@@ -37,9 +37,9 @@ namespace Grupptenta2
 
 			nameBox.Text = _company.Name;
 			idBox.Text = _company.Id.ToString();
-			//streetBox.Text = _company.Location.Street;
-            //zipBox.Text = _company.Location.ZipCode;
-            //cityBox.Text = _company.Location.City;
+			streetBox.Text = _company.Location.Street;
+			zipBox.Text = _company.Location.ZipCode;
+			cityBox.Text = _company.Location.City;
 			activeCheckBox.Checked = _company.IsActive;
 
 			projectBox.DataSource = _company.Projects;

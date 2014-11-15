@@ -28,67 +28,32 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.personPnl = new System.Windows.Forms.Panel();
-			this.relationBox = new Grupptenta2.CustomListBox();
-			this.projectBox = new Grupptenta2.CustomListBox();
-			this.personInfoBox = new Grupptenta2.PersonInfoBox();
-			this.personPnl.SuspendLayout();
+			this.personControl = new Grupptenta2.PersonUserControl();
 			this.SuspendLayout();
 			// 
-			// personPnl
+			// personControl
 			// 
-			this.personPnl.BackColor = System.Drawing.Color.White;
-			this.personPnl.Controls.Add(this.relationBox);
-			this.personPnl.Controls.Add(this.projectBox);
-			this.personPnl.Controls.Add(this.personInfoBox);
-			this.personPnl.Location = new System.Drawing.Point(9, 9);
-			this.personPnl.Margin = new System.Windows.Forms.Padding(0);
-			this.personPnl.Name = "personPnl";
-			this.personPnl.Size = new System.Drawing.Size(685, 675);
-			this.personPnl.TabIndex = 11;
-			// 
-			// relationBox
-			// 
-			this.relationBox.BackColor = System.Drawing.Color.White;
-			this.relationBox.Location = new System.Drawing.Point(307, 203);
-			this.relationBox.Name = "relationBox";
-			this.relationBox.Size = new System.Drawing.Size(241, 184);
-			this.relationBox.TabIndex = 2;
-			// 
-			// projectBox
-			// 
-			this.projectBox.BackColor = System.Drawing.Color.White;
-			this.projectBox.Location = new System.Drawing.Point(307, 13);
-			this.projectBox.Name = "projectBox";
-			this.projectBox.Size = new System.Drawing.Size(241, 184);
-			this.projectBox.TabIndex = 1;
-			// 
-			// personInfoBox
-			// 
-			this.personInfoBox.Location = new System.Drawing.Point(3, 3);
-			this.personInfoBox.Name = "personInfoBox";
-			this.personInfoBox.Size = new System.Drawing.Size(240, 669);
-			this.personInfoBox.TabIndex = 0;
+			this.personControl.BackColor = System.Drawing.Color.White;
+			this.personControl.Location = new System.Drawing.Point(12, 12);
+			this.personControl.Name = "personControl";
+			this.personControl.Size = new System.Drawing.Size(810, 574);
+			this.personControl.TabIndex = 0;
 			// 
 			// PersonPopUp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(703, 694);
-			this.Controls.Add(this.personPnl);
+			this.ClientSize = new System.Drawing.Size(834, 609);
+			this.Controls.Add(this.personControl);
 			this.Name = "PersonPopUp";
 			this.Text = "PersonPopUp";
-			this.personPnl.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.Panel personPnl;
-		private CustomListBox relationBox;
-		private CustomListBox projectBox;
-		private PersonInfoBox personInfoBox;
+		private PersonUserControl personControl;
 	}
 }

@@ -1,5 +1,4 @@
-﻿using CodeBase;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CodeBase;
 using TestClasses;
 
 namespace Grupptenta2
 {
 	public partial class CreatePersonForm : Form
 	{
-		private static PersonManager _personManager;
-		private static CompanyManager _companyManager;
+		private PersonManager _personManager;
+		private CompanyManager _companyManager;
 
 		public CreatePersonForm(PersonManager personManager, CompanyManager companyManager)
 		{
@@ -23,31 +23,34 @@ namespace Grupptenta2
 			_companyManager = companyManager;
 
 			InitializeComponent();
-			personInfoBox.HideEditBtn();
-			personInfoBox.EnableEdit();
-			personInfoBox.BindCompanyBox(_companyManager.Companies, "Name");
-			personInfoBox.OnSaveChanges += personInfoBox_OnSaveChanges;
+
+			companyBox.DataSource = _companyManager.Companies;
+			companyBox.DisplayMember = "Name";
+
+			typeBox.DataSource = new List<string> { "Anställd", "Konsult", "Kontakt", "Närstående" };
 		}
 
-		private void personInfoBox_OnSaveChanges(object sender, SaveChangesHandlerEventArgs e)
+		private void saveBtn_Click(object sender, EventArgs e)
 		{
-			_personManager.CreatePerson(e.FirstName);
+			_personManager.CreatePerson(firstNameBox.Text);
 			int indexOfNewPerson = _personManager.Persons.Count - 1;
 			Person person = _personManager.Persons[indexOfNewPerson];
 
-			person.LastName = e.LastName;
-			person.Birthdate = e.DateOfBirth;
-			person.ResidentalAddress.Street = e.Street;
-			person.ResidentalAddress.ZipCode = e.PostalCode;
-			person.ResidentalAddress.City = e.City;
-			person.PhoneNumber = e.PhoneNumber;
-			person.CellPhoneNumber = e.CellPhoneNumber;
-			person.EmailAddress = e.EmailAddress;
-			person.Type = e.Type;
-
-			_companyManager.Companies.SingleOrDefault(c => c == e.Company).Employees.Add(person);
+			person.LastName = lastNameBox.Text;
+			DateTime birthDate;
+			DateTime.TryParse(birthdateBox.Text, out birthDate);
+			person.Birthdate = birthDate;
+			person.ResidentialAddress.Street = streetBox.Text;
+			person.ResidentialAddress.ZipCode = zipBox.Text;
+			person.ResidentialAddress.City = cityBox.Text;
+			person.PhoneNumber = phoneBox.Text;
+			person.CellPhoneNumber = cellPhoneBox.Text;
+			person.EmailAddress = emailBox.Text;
+			person.Type = (string)typeBox.SelectedItem;
+			_companyManager.Companies.SingleOrDefault(c => c == companyBox.SelectedItem).Employees.Add(person);
+			//person.Notes = lägg till metod för att lägga till note på knappklick och på dubbelklick i noteBox.
+			person.IsActive = activeCheckBox.Checked;
+			this.Close();
 		}
-
-
 	}
 }

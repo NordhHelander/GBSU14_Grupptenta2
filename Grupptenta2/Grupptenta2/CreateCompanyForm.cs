@@ -33,11 +33,8 @@ namespace Grupptenta2
 			company.Location.ZipCode = zipBox.Text;
 			company.Location.City = cityBox.Text;
 			company.IsActive = activeCheckBox.Checked;
+
+			this.Close();
 		}
-
-        private void CreateCompanyForm_Load(object sender, EventArgs e)
-        {
-
-        }
 	}
 }

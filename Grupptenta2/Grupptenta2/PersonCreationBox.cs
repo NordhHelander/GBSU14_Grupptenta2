@@ -11,12 +11,12 @@ using CodeBase;
 
 namespace Grupptenta2
 {
-	public partial class PersonInfoBox : UserControl
+	public partial class PersonCreationBox : UserControl
 	{
 		public delegate void SaveChangesEventHandler(object sender, SaveChangesHandlerEventArgs e);
 		public event SaveChangesEventHandler OnSaveChanges;
 
-		public PersonInfoBox()
+		public PersonCreationBox()
 		{
 			InitializeComponent();
 		}
@@ -29,9 +29,9 @@ namespace Grupptenta2
 			firstNameBox.Text = person.FirstName;
 			lastNameBox.Text = person.LastName;
 			dobBox.Text = person.Birthdate.ToShortDateString();
-			streetBox.Text = person.ResidentalAddress.Street;
-			postalCodeBox.Text = person.ResidentalAddress.ZipCode;
-			cityBox.Text = person.ResidentalAddress.City;
+			streetBox.Text = person.ResidentialAddress.Street;
+			postalCodeBox.Text = person.ResidentialAddress.ZipCode;
+			cityBox.Text = person.ResidentialAddress.City;
 			phoneBox.Text = person.PhoneNumber;
 			cellPhoneBox.Text = person.CellPhoneNumber;
 			emailBox.Text = person.EmailAddress;

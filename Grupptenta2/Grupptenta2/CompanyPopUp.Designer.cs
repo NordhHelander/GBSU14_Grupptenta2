@@ -28,16 +28,16 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.companyUserForm = new Grupptenta2.CompanyUserControl();
+			this.companyControl = new Grupptenta2.CompanyUserControl();
 			this.SuspendLayout();
 			// 
-			// companyUserForm
+			// companyControl
 			// 
-			this.companyUserForm.BackColor = System.Drawing.Color.White;
-			this.companyUserForm.Location = new System.Drawing.Point(13, 13);
-			this.companyUserForm.Name = "companyUserForm";
-			this.companyUserForm.Size = new System.Drawing.Size(810, 320);
-			this.companyUserForm.TabIndex = 0;
+			this.companyControl.BackColor = System.Drawing.Color.White;
+			this.companyControl.Location = new System.Drawing.Point(13, 13);
+			this.companyControl.Name = "companyControl";
+			this.companyControl.Size = new System.Drawing.Size(810, 320);
+			this.companyControl.TabIndex = 0;
 			// 
 			// CompanyPopUp
 			// 
@@ -45,7 +45,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(834, 344);
-			this.Controls.Add(this.companyUserForm);
+			this.Controls.Add(this.companyControl);
 			this.Name = "CompanyPopUp";
 			this.Padding = new System.Windows.Forms.Padding(10);
 			this.Text = "CompanyPopUp";
@@ -55,6 +55,6 @@
 
 		#endregion
 
-		private CompanyUserControl companyUserForm;
+		private CompanyUserControl companyControl;
 	}
 }

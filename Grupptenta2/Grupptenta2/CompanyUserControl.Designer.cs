@@ -40,7 +40,7 @@
 			this.cityLbl = new System.Windows.Forms.Label();
 			this.activeLbl = new System.Windows.Forms.Label();
 			this.editSaveBtn = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
+			this.projectsLbl = new System.Windows.Forms.Label();
 			this.employeesLbl = new System.Windows.Forms.Label();
 			this.searchBox1 = new Grupptenta2.SearchBox();
 			this.searchBox2 = new Grupptenta2.SearchBox();
@@ -167,15 +167,15 @@
 			this.editSaveBtn.UseVisualStyleBackColor = true;
 			this.editSaveBtn.Click += new System.EventHandler(this.editSaveBtn_Click);
 			// 
-			// label1
+			// projectsLbl
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(211, 10);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(55, 18);
-			this.label1.TabIndex = 14;
-			this.label1.Text = "Projekt";
+			this.projectsLbl.AutoSize = true;
+			this.projectsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.projectsLbl.Location = new System.Drawing.Point(211, 10);
+			this.projectsLbl.Name = "projectsLbl";
+			this.projectsLbl.Size = new System.Drawing.Size(55, 18);
+			this.projectsLbl.TabIndex = 14;
+			this.projectsLbl.Text = "Projekt";
 			// 
 			// employeesLbl
 			// 
@@ -203,7 +203,7 @@
 			// 
 			// projectSearchField
 			// 
-			this.projectSearchField.Location = new System.Drawing.Point(214, 35);
+			this.projectSearchField.Location = new System.Drawing.Point(211, 35);
 			this.projectSearchField.Name = "projectSearchField";
 			this.projectSearchField.Size = new System.Drawing.Size(195, 20);
 			this.projectSearchField.TabIndex = 16;
@@ -211,7 +211,7 @@
 			// projectOrderBox
 			// 
 			this.projectOrderBox.FormattingEnabled = true;
-			this.projectOrderBox.Location = new System.Drawing.Point(214, 61);
+			this.projectOrderBox.Location = new System.Drawing.Point(211, 61);
 			this.projectOrderBox.Name = "projectOrderBox";
 			this.projectOrderBox.Size = new System.Drawing.Size(195, 21);
 			this.projectOrderBox.TabIndex = 17;
@@ -219,14 +219,14 @@
 			// projectBox
 			// 
 			this.projectBox.FormattingEnabled = true;
-			this.projectBox.Location = new System.Drawing.Point(214, 88);
+			this.projectBox.Location = new System.Drawing.Point(211, 88);
 			this.projectBox.Name = "projectBox";
 			this.projectBox.Size = new System.Drawing.Size(195, 212);
 			this.projectBox.TabIndex = 18;
 			// 
 			// projectSearchBtn
 			// 
-			this.projectSearchBtn.Location = new System.Drawing.Point(415, 33);
+			this.projectSearchBtn.Location = new System.Drawing.Point(412, 35);
 			this.projectSearchBtn.Name = "projectSearchBtn";
 			this.projectSearchBtn.Size = new System.Drawing.Size(76, 23);
 			this.projectSearchBtn.TabIndex = 19;
@@ -235,7 +235,7 @@
 			// 
 			// projectOrderBtn
 			// 
-			this.projectOrderBtn.Location = new System.Drawing.Point(415, 61);
+			this.projectOrderBtn.Location = new System.Drawing.Point(412, 61);
 			this.projectOrderBtn.Name = "projectOrderBtn";
 			this.projectOrderBtn.Size = new System.Drawing.Size(76, 23);
 			this.projectOrderBtn.TabIndex = 20;
@@ -244,7 +244,7 @@
 			// 
 			// goToProjectBtn
 			// 
-			this.goToProjectBtn.Location = new System.Drawing.Point(415, 90);
+			this.goToProjectBtn.Location = new System.Drawing.Point(412, 88);
 			this.goToProjectBtn.Name = "goToProjectBtn";
 			this.goToProjectBtn.Size = new System.Drawing.Size(76, 23);
 			this.goToProjectBtn.TabIndex = 21;
@@ -253,7 +253,7 @@
 			// 
 			// createProjectBtn
 			// 
-			this.createProjectBtn.Location = new System.Drawing.Point(415, 119);
+			this.createProjectBtn.Location = new System.Drawing.Point(412, 116);
 			this.createProjectBtn.Name = "createProjectBtn";
 			this.createProjectBtn.Size = new System.Drawing.Size(76, 23);
 			this.createProjectBtn.TabIndex = 22;
@@ -262,7 +262,7 @@
 			// 
 			// contactSearchField
 			// 
-			this.contactSearchField.Location = new System.Drawing.Point(524, 35);
+			this.contactSearchField.Location = new System.Drawing.Point(521, 35);
 			this.contactSearchField.Name = "contactSearchField";
 			this.contactSearchField.Size = new System.Drawing.Size(195, 20);
 			this.contactSearchField.TabIndex = 23;
@@ -270,7 +270,7 @@
 			// contactOrderBox
 			// 
 			this.contactOrderBox.FormattingEnabled = true;
-			this.contactOrderBox.Location = new System.Drawing.Point(524, 61);
+			this.contactOrderBox.Location = new System.Drawing.Point(521, 61);
 			this.contactOrderBox.Name = "contactOrderBox";
 			this.contactOrderBox.Size = new System.Drawing.Size(195, 21);
 			this.contactOrderBox.TabIndex = 24;
@@ -278,14 +278,14 @@
 			// contactBox
 			// 
 			this.contactBox.FormattingEnabled = true;
-			this.contactBox.Location = new System.Drawing.Point(524, 88);
+			this.contactBox.Location = new System.Drawing.Point(521, 88);
 			this.contactBox.Name = "contactBox";
 			this.contactBox.Size = new System.Drawing.Size(195, 212);
 			this.contactBox.TabIndex = 25;
 			// 
 			// companySearchBox
 			// 
-			this.companySearchBox.Location = new System.Drawing.Point(725, 35);
+			this.companySearchBox.Location = new System.Drawing.Point(722, 35);
 			this.companySearchBox.Name = "companySearchBox";
 			this.companySearchBox.Size = new System.Drawing.Size(76, 23);
 			this.companySearchBox.TabIndex = 26;
@@ -294,7 +294,7 @@
 			// 
 			// contactOrderBtn
 			// 
-			this.contactOrderBtn.Location = new System.Drawing.Point(725, 61);
+			this.contactOrderBtn.Location = new System.Drawing.Point(722, 61);
 			this.contactOrderBtn.Name = "contactOrderBtn";
 			this.contactOrderBtn.Size = new System.Drawing.Size(76, 23);
 			this.contactOrderBtn.TabIndex = 27;
@@ -303,7 +303,7 @@
 			// 
 			// goToContactBtn
 			// 
-			this.goToContactBtn.Location = new System.Drawing.Point(725, 90);
+			this.goToContactBtn.Location = new System.Drawing.Point(722, 88);
 			this.goToContactBtn.Name = "goToContactBtn";
 			this.goToContactBtn.Size = new System.Drawing.Size(76, 23);
 			this.goToContactBtn.TabIndex = 28;
@@ -312,7 +312,7 @@
 			// 
 			// createContactBtn
 			// 
-			this.createContactBtn.Location = new System.Drawing.Point(725, 119);
+			this.createContactBtn.Location = new System.Drawing.Point(722, 117);
 			this.createContactBtn.Name = "createContactBtn";
 			this.createContactBtn.Size = new System.Drawing.Size(76, 23);
 			this.createContactBtn.TabIndex = 29;
@@ -329,7 +329,7 @@
 			this.popUpBtn.UseVisualStyleBackColor = true;
 			this.popUpBtn.Click += new System.EventHandler(this.popUpBtn_Click);
 			// 
-			// CompanyUserForm
+			// CompanyUserControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -350,7 +350,7 @@
 			this.Controls.Add(this.projectOrderBox);
 			this.Controls.Add(this.projectSearchField);
 			this.Controls.Add(this.employeesLbl);
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.projectsLbl);
 			this.Controls.Add(this.editSaveBtn);
 			this.Controls.Add(this.activeLbl);
 			this.Controls.Add(this.cityLbl);
@@ -363,7 +363,7 @@
 			this.Controls.Add(this.streetBox);
 			this.Controls.Add(this.idBox);
 			this.Controls.Add(this.nameBox);
-			this.Name = "CompanyUserForm";
+			this.Name = "CompanyUserControl";
 			this.Size = new System.Drawing.Size(810, 319);
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -386,7 +386,7 @@
 		private System.Windows.Forms.Button editSaveBtn;
 		private SearchBox searchBox1;
 		private SearchBox searchBox2;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label projectsLbl;
 		private System.Windows.Forms.Label employeesLbl;
 		private System.Windows.Forms.TextBox projectSearchField;
 		private System.Windows.Forms.ComboBox projectOrderBox;

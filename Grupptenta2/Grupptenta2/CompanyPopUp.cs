@@ -22,9 +22,9 @@ namespace Grupptenta2
 
 			InitializeComponent();
 			this.Text = _company.Name;
-			companyUserForm.SetCompanyInfo(_company);
-			companyUserForm.OnSaveCompanyChanges += companyUserForm_OnSaveCompanyChanges;
-			companyUserForm.HidePopUpBtn();
+			companyControl.SetCompanyInfo(_company);
+			companyControl.OnSaveCompanyChanges += companyUserForm_OnSaveCompanyChanges;
+			companyControl.HidePopUpBtn();
 		}
 
 		private void companyUserForm_OnSaveCompanyChanges(object sender, SaveCompanyChangesHandlerEventArgs e)

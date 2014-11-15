@@ -17,11 +17,11 @@ namespace TestClasses
 
 		public BindingList<Person> Persons { get; private set; }
 
-		public void CreatePerson(string name)
+		public void CreatePerson(string firstName)
 		{
-			Person person = new Person(name);
+			Person person = new Person(firstName);
 			person.Id = Persons.Count + 1;
-			person.ResidentalAddress = new Address();
+			person.ResidentialAddress = new Address();
 			person.Relations = new List<Person>();
 			person.IsActive = true;
 

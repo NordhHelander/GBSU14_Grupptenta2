@@ -86,17 +86,23 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PersonInfoBox.cs">
+    <Compile Include="PersonCreationBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PersonInfoBox.Designer.cs">
-      <DependentUpon>PersonInfoBox.cs</DependentUpon>
+    <Compile Include="PersonCreationBox.Designer.cs">
+      <DependentUpon>PersonCreationBox.cs</DependentUpon>
     </Compile>
     <Compile Include="PersonPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PersonPopUp.Designer.cs">
       <DependentUpon>PersonPopUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PersonUserControl.Designer.cs">
+      <DependentUpon>PersonUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,11 +133,14 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PersonInfoBox.resx">
-      <DependentUpon>PersonInfoBox.cs</DependentUpon>
+    <EmbeddedResource Include="PersonCreationBox.resx">
+      <DependentUpon>PersonCreationBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PersonPopUp.resx">
       <DependentUpon>PersonPopUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonUserControl.resx">
+      <DependentUpon>PersonUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -167,6 +176,17 @@
       <Project>{78356373-ec60-414f-b839-f9e255d1a34d}</Project>
       <Name>TestClasses</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Companies.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Persons.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

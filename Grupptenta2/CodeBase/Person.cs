@@ -16,7 +16,7 @@ namespace CodeBase
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
         public string CellPhoneNumber { get; set; }
-        public Address ResidentalAddress { get; set; }
+        public Address ResidentialAddress { get; set; }
         public List<Note> Notes { get; set; }
         public string Type { get; set; }
         public bool IsActive { get; set; }

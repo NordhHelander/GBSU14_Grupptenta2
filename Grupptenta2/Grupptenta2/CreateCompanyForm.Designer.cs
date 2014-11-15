@@ -157,7 +157,6 @@ namespace Grupptenta2
             this.Controls.Add(this.nameBox);
             this.Name = "CreateCompanyForm";
             this.Text = "CreateCompanyForm";
-            this.Load += new System.EventHandler(this.CreateCompanyForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

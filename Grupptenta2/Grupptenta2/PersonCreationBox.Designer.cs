@@ -1,6 +1,6 @@
 ﻿namespace Grupptenta2
 {
-	partial class PersonInfoBox
+	partial class PersonCreationBox
 	{
 		/// <summary> 
 		/// Required designer variable.
