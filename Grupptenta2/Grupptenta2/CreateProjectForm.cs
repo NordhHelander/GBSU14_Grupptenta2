@@ -12,31 +12,83 @@ using TestClasses;
 
 namespace Grupptenta2
 {
-    public partial class CreateProjectForm : Form
-    {
-        private static ProjectManager _projectManager;
-        private static PersonManager _personManager;
+	public partial class CreateProjectForm : Form
+	{
+		private static ProjectManager _projectManager;
+		private static PersonManager _personManager;
+		private static CompanyManager _companyManager;
+		private static Project _newProject;
+		private static BindingList<Person> _tempParticipantList;
 
-        public CreateProjectForm(ProjectManager projectManager, PersonManager personManager)
-        {
-            _projectManager = projectManager;
-            _personManager = personManager;
+		public CreateProjectForm(ProjectManager projectManager, PersonManager personManager, CompanyManager companyManager)
+		{
+			_projectManager = projectManager;
+			_personManager = personManager;
+			_companyManager = companyManager;
 
-            InitializeComponent();
-        }
+			InitializeComponent();
+		}
 
-        private void CreateProjectForm_Load(object sender, EventArgs e)
-        {
-            lstBx_Participants.DataSource = _personManager.Persons;
-            lstBx_Participants.DisplayMember = _personManager.Persons.ToString();
-        }
+		private void CreateProjectForm_Load(object sender, EventArgs e)
+		{
+			this.Text = "Nytt projekt";
+			companyBox.DataSource = _companyManager.Companies;
+			companyBox.DisplayMember = "Name";
+			createProjectContainer.Panel2.Hide();
+		}
 
-        private void btn_Save_Click(object sender, EventArgs e)
-        {
-			//_projectManager.CreateProject(nameBox.Text, (Person)lstBx_Participants.SelectedItem);
-			//int indexOfNewProject = _projectManager.Projects.Count - 1;
-			//Project project = _projectManager.Projects[indexOfNewProject];
-            this.Close();
-        }
-    }
+		private void saveBtn_Click(object sender, EventArgs e)
+		{
+			createProjectContainer.Panel2.Show();
+			projectNameBox.ReadOnly = true;
+			companyBox.Enabled = false;
+			projectDescBox.ReadOnly = true;
+			saveBtn.Enabled = false;
+
+			_projectManager.CreateProject(projectNameBox.Text);
+			_newProject = _projectManager.Projects[_projectManager.Projects.Count - 1];
+			_newProject.Description = projectDescBox.Text;
+			// Se till att den inloggade personalen automatiskt läggs till i deltagarlistan.
+			Company company = (Company)companyBox.SelectedItem;
+			company.Projects.Add(_newProject);
+
+			personBox.DataSource = company.Employees;
+			personBox.DisplayMember = "Person";
+			_tempParticipantList = new BindingList<Person>();
+			participantBox.DataSource =_tempParticipantList;
+			participantBox.DisplayMember = "Person";
+		}
+
+		private void addPartBtn_Click(object sender, EventArgs e)
+		{
+			_tempParticipantList.Add((Person)personBox.SelectedItem);
+			participantBox.DataSource = null;
+			participantBox.DataSource = _tempParticipantList;
+			participantBox.DisplayMember = "Person";
+		}
+
+		private void removePartBtn_Click(object sender, EventArgs e)
+		{
+			_tempParticipantList.Remove((Person)participantBox.SelectedItem);
+			participantBox.DataSource = null;
+			participantBox.DataSource = _tempParticipantList;
+			participantBox.DisplayMember = "Person";
+		}
+
+		private void saveParticipantsBtn_Click(object sender, EventArgs e)
+		{
+			_newProject.Roles = _tempParticipantList;
+			this.Close();
+		}
+
+
+
+		//private void btn_Save_Click(object sender, EventArgs e)
+		//{
+		//	//_projectManager.CreateProject(nameBox.Text, (Person)lstBx_Participants.SelectedItem);
+		//	//int indexOfNewProject = _projectManager.Projects.Count - 1;
+		//	//Project project = _projectManager.Projects[indexOfNewProject];
+		//	this.Close();
+		//}
+	}
 }

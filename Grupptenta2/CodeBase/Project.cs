@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,8 @@ namespace CodeBase
         public string Name { get; set; }
 		public string Description { get; set; }
         public Journal ProjectJournal { get; set; }
-        public List<Note> Notes { get; set; }
-        public List<Person> Roles { get; set; }
+        public BindingList<Note> Notes { get; set; }
+        public BindingList<Person> Roles { get; set; }
         public bool IsActive { get; set; }
 
         public Project()

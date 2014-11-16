@@ -22,7 +22,7 @@ namespace TestClasses
 			Person person = new Person(firstName);
 			person.Id = Persons.Count + 1;
 			person.ResidentialAddress = new Address();
-			person.Relations = new List<Person>();
+			person.Relations = new BindingList<Person>();
 			person.IsActive = true;
 
 			Persons.Add(person);

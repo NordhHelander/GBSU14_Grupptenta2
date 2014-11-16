@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +18,11 @@ namespace CodeBase
         public string PhoneNumber { get; set; }
         public string CellPhoneNumber { get; set; }
         public Address ResidentialAddress { get; set; }
-        public List<Note> Notes { get; set; }
+        public BindingList<Note> Notes { get; set; }
         public string Type { get; set; }
         public bool IsActive { get; set; }
 
-        public List<Person> Relations { get; set; }
+        public BindingList<Person> Relations { get; set; }
 
         public string Password { get; set; }
 

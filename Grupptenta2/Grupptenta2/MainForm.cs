@@ -291,7 +291,6 @@ namespace Grupptenta2
 			projectEventBox.SetHeader("Händelser");
 			projectNoteBox.SetHeader("Anteckningar");
 		}
-
 		private void projectSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
 		{
 			string searchText = e.SearchText;
@@ -311,11 +310,10 @@ namespace Grupptenta2
 		{
 			_selectedProject.Name = projectNameBox.Text;
 			_selectedProject.Description = projectDescBox.Text;
-
 		}
 		private void projectSearchControl_OnCreate()
 		{
-			CreateProjectForm createProjectForm = new CreateProjectForm(_projectManager, _personManager);
+			CreateProjectForm createProjectForm = new CreateProjectForm(_projectManager, _personManager, _companyManager);
 			createProjectForm.Show();
 			RefreshProjectSearchBox();
 		}
