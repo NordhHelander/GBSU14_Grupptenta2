@@ -10,19 +10,33 @@ using System.Windows.Forms;
 
 namespace Grupptenta2
 {
-	public partial class CustomListBox : UserControl
+	public partial class ChoiceBox : UserControl
 	{
 		public delegate void GoToEventHandler(object sender, GoToHandlerEventArgs e);
-		public event GoToEventHandler OnGoTo;
+		public delegate void AddItemEventHandler();
 
-		public CustomListBox()
+		public event GoToEventHandler OnGoTo;
+		public event AddItemEventHandler OnAdd;
+
+		public ChoiceBox()
 		{
 			InitializeComponent();
 		}
 
-		public void SetData(string header, Object dataSource, string displayMember)
+		public void SetHeader(string header)
 		{
-			headerBox.Text = header;
+			headerLbl.Text = header;
+		}
+
+		public void SetButtonTexts(string goToChoiceBtnText, string editListBtnText)
+		{
+			goToChoiceBtn.Text = goToChoiceBtnText;
+			editListBtn.Text = editListBtnText;
+		}
+
+		public void SetData(Object dataSource, string displayMember)
+		{
+			listBox.DataSource = null;
 			listBox.DataSource = dataSource;
 			listBox.DisplayMember = displayMember;
 		}
@@ -31,6 +45,12 @@ namespace Grupptenta2
 		{
 			if (OnGoTo != null)
 				OnGoTo(sender, new GoToHandlerEventArgs(listBox.SelectedItem));
+		}
+
+		private void editListBtn_Click(object sender, EventArgs e)
+		{
+			if (OnAdd != null)
+				OnAdd();
 		}
 	}
 

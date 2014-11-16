@@ -32,15 +32,11 @@ namespace Grupptenta2
 			InitializeComponent();
 		}
 
-		public void BindListBoxData(Object dataSource, string displayMember)
-		{
-			choiceBox.DataSource = dataSource;
-			choiceBox.DisplayMember = displayMember;
-		}
-
-		public void ResetListBoxData()
+		public void SetData(Object dataSource, string displayMember)
 		{
 			choiceBox.DataSource = null;
+			choiceBox.DataSource = dataSource;
+			choiceBox.DisplayMember = displayMember;
 		}
 
 		public void SetHeader(string header)

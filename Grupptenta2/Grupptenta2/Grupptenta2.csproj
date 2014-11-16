@@ -44,6 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateNoteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNoteForm.Designer.cs">
+      <DependentUpon>CreateNoteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditParticipantListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditParticipantListForm.Designer.cs">
+      <DependentUpon>EditParticipantListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CompanyPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,11 +86,11 @@
     <Compile Include="CreateProjectForm.Designer.cs">
       <DependentUpon>CreateProjectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomListBox.cs">
+    <Compile Include="ChoiceBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomListBox.Designer.cs">
-      <DependentUpon>CustomListBox.cs</DependentUpon>
+    <Compile Include="ChoiceBox.Designer.cs">
+      <DependentUpon>ChoiceBox.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -112,6 +124,12 @@
     <Compile Include="SearchBox.Designer.cs">
       <DependentUpon>SearchBox.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CreateNoteForm.resx">
+      <DependentUpon>CreateNoteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditParticipantListForm.resx">
+      <DependentUpon>EditParticipantListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CompanyPopUp.resx">
       <DependentUpon>CompanyPopUp.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,8 +145,8 @@
     <EmbeddedResource Include="CreateProjectForm.resx">
       <DependentUpon>CreateProjectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomListBox.resx">
-      <DependentUpon>CustomListBox.cs</DependentUpon>
+    <EmbeddedResource Include="ChoiceBox.resx">
+      <DependentUpon>ChoiceBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

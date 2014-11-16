@@ -13,5 +13,9 @@ namespace CodeBase
         public string Text { get; set; }
         public bool IsPublic { get; set; }
 
+		public override string ToString()
+		{
+			return NoteDate.ToShortDateString() + ": " + Text;
+		}
     }
 }

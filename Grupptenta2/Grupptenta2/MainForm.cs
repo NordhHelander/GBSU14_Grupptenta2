@@ -128,6 +128,13 @@ namespace Grupptenta2
 			projectSearchControl.OnCreate += projectSearchControl_OnCreate;
 			projectSearchControl.OnSelectionChanged += projectSearchControl_OnSelectionChanged;
 			projectSearchControl.OnDoubleClickChoice += projectSearchControl_OnDoubleClickChoice;
+
+			projectParticipantBox.OnGoTo += projectParticipantBox_OnGoTo;
+			projectParticipantBox.OnAdd += projectParticipantBox_OnAdd;
+			projectEventBox.OnGoTo += projectEventBox_OnGoTo;
+			projectEventBox.OnAdd += projectEventBox_OnAdd;
+			projectNoteBox.OnGoTo += projectNoteBox_OnGoTo;
+			projectNoteBox.OnAdd += projectNoteBox_OnAdd;
 		}
 
 		private void logOutBtn_Click(object sender, EventArgs e)
@@ -149,14 +156,14 @@ namespace Grupptenta2
 		{
 			this.Text = "Dina företagskunder";
 			this.companySearchControl.Location = new System.Drawing.Point(210, 10);
-			companySearchControl.BindListBoxData(_companyManager.Companies, "Name");
+			companySearchControl.SetData(_companyManager.Companies, "Name");
 		}
 
 		private void contactsBtn_Click(object sender, EventArgs e)
 		{
 			this.Text = "Dina kontakter";
 			this.personSearchControl.Location = new System.Drawing.Point(210, 10);
-			personSearchControl.BindListBoxData(_personManager.Persons, "Person");
+			personSearchControl.SetData(_personManager.Persons, "Person");
 		}
 
 		private void profileBtn_Click(object sender, EventArgs e)
@@ -174,7 +181,7 @@ namespace Grupptenta2
 			string searchText = e.SearchText;
 			List<Person> searchResult = _personManager.Persons.Where(p => p.ToString().ToLower().Contains(searchText.ToLower())).ToList();
 			if (searchResult.Count > 0)
-				personSearchControl.BindListBoxData(searchResult, "Person");
+				personSearchControl.SetData(searchResult, "Person");
 		}
 		private void personSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
 		{
@@ -222,8 +229,7 @@ namespace Grupptenta2
 		}
 		private void RefreshPersonSearchBox()
 		{
-			personSearchControl.ResetListBoxData();
-			personSearchControl.BindListBoxData(_personManager.Persons, "Person");
+			personSearchControl.SetData(_personManager.Persons, "Person");
 		}
 		#endregion
 
@@ -233,7 +239,7 @@ namespace Grupptenta2
 			string searchText = e.SearchText;
 			List<Company> searchResult = _companyManager.Companies.Where(c => c.Name.ToLower().Contains(searchText.ToLower())).ToList();
 			if (searchResult.Count > 0)
-				companySearchControl.BindListBoxData(searchResult, "Name");
+				companySearchControl.SetData(searchResult, "Name");
 		}
 		private void companySearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
 		{
@@ -277,8 +283,7 @@ namespace Grupptenta2
 		}
 		private void RefreshCompanySearchBox()
 		{
-			companySearchControl.ResetListBoxData();
-			companySearchControl.BindListBoxData(_companyManager.Companies, "Name");
+			companySearchControl.SetData(_companyManager.Companies, "Name");
 		}
 		#endregion
 
@@ -286,17 +291,19 @@ namespace Grupptenta2
 		private void ProjectTabSetup()
 		{
 			projectSearchControl.SetHeader("Dina Project");
-			projectSearchControl.BindListBoxData(_projectManager.Projects, "Name");
+			projectSearchControl.SetData(_projectManager.Projects, "Name");
 			projectParticipantBox.SetHeader("Deltagare");
 			projectEventBox.SetHeader("Händelser");
 			projectNoteBox.SetHeader("Anteckningar");
+			projectEventBox.SetButtonTexts("Öppna", "Lägg till");
+			projectNoteBox.SetButtonTexts("Öppna", "Lägg till");
 		}
 		private void projectSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
 		{
 			string searchText = e.SearchText;
 			List<Project> searchResult = _projectManager.Projects.Where(p => p.Name.ToLower().Contains(searchText.ToLower())).ToList();
 			if (searchResult.Count > 0)
-				projectSearchControl.BindListBoxData(searchResult, "Name");
+				projectSearchControl.SetData(searchResult, "Name");
 		}
 		private void projectSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
 		{
@@ -305,6 +312,10 @@ namespace Grupptenta2
 			projectIdBox.Text = _selectedProject.Id.ToString();
 			projectCompanyBox.Text = _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Id == _selectedProject.Id)).Name;
 			projectDescBox.Text = _selectedProject.Description;
+
+			projectParticipantBox.SetData(_selectedProject.Roles, "Person");
+			projectEventBox.SetData(_selectedProject.ProjectJournal.Events, "ProjectEvent");
+			projectNoteBox.SetData(_selectedProject.ProjectJournal.Notes, "Note");
 		}
 		private void saveBtn_Click(object sender, EventArgs e)
 		{
@@ -323,13 +334,52 @@ namespace Grupptenta2
 		}
 		private void projectSearchControl_OnDoubleClickChoice(object sender, DoubleClickChoiceHandlerEventArgs e)
 		{
-			throw new NotImplementedException();
+			// Ska fixa projekt-popup.
 		}
+
 		private void RefreshProjectSearchBox()
 		{
-			projectSearchControl.ResetListBoxData();
-			projectSearchControl.BindListBoxData(_projectManager.Projects, "Name");
+			projectSearchControl.SetData(_projectManager.Projects, "Name");
 		}
+
+		private void projectParticipantBox_OnAdd()
+		{
+			EditParticipantListForm editParticipantListForm = new EditParticipantListForm(_selectedProject, _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Id == _selectedProject.Id)));
+			editParticipantListForm.ShowDialog();
+			projectParticipantBox.SetData(_selectedProject.Roles, "Person");
+		}
+		private void projectParticipantBox_OnGoTo(object sender, GoToHandlerEventArgs e)
+		{
+			// Ska fixa person-popup.
+		}
+
+		private void projectNoteBox_OnAdd()
+		{
+			CreateNoteForm createNoteForm = new CreateNoteForm(_selectedProject.Notes);
+			createNoteForm.ShowDialog();
+			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
+		}
+
+		private void RefreshChoiceBox(ChoiceBox choiceBox, object dataSource, string displayMember)
+		{
+			choiceBox.SetData(dataSource, displayMember);
+		}
+
+		private void projectNoteBox_OnGoTo(object sender, GoToHandlerEventArgs e)
+		{
+			// Ska fixa note-popup
+		}
+
+		private void projectEventBox_OnAdd()
+		{
+			// Ska fixa createEventForm
+		}
+
+		private void projectEventBox_OnGoTo(object sender, GoToHandlerEventArgs e)
+		{
+			// Ska fixa event-popup
+		}
+
 		#endregion
 
 		private void tabControl_SelectedIndexChanged(object sender, EventArgs e)

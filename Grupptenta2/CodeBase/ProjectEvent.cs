@@ -12,6 +12,10 @@ namespace CodeBase
         public DateTime StartDate { get; set; }
         public List<Note> Notes { get; set; }
         // public string Type { get; set; }
-        
+
+		public override string ToString()
+		{
+			return StartDate.ToShortDateString() + ": " + Name;
+		}
     }
 }
