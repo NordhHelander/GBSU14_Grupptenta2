@@ -14,8 +14,6 @@ namespace Grupptenta2
 {
 	public partial class MainForm : Form
 	{
-		private static List<Panel> _panels;
-		private static List<UserControl> _userControls;
 		private static PersonManager _personManager;
 		private static CompanyManager _companyManager;
 		private static ProjectManager _projectManager;
@@ -25,74 +23,86 @@ namespace Grupptenta2
 
 		public MainForm()
 		{
-			_panels = new List<Panel>();
-			_userControls = new List<UserControl>();
 			_personManager = new PersonManager();
 			_companyManager = new CompanyManager();
 			_projectManager = new ProjectManager();
 
 			InitializeComponent();
-			this.ClientSize = new Size(1100, 675);
+			//this.ClientSize = new Size(1200, 675);
 
 			//CreateMocks();
 			//SaveDataXml.SaveCompanies(_companyManager.Companies);
 			//SaveDataXml.SavePersons(_personManager.Persons);
 			//SaveDataXml.SaveProjects(_projectManager.Projects);
 
-			LoadPanelsList();
-			HidePanels();
-			LoadUserControlList();
-			HideUserControls();
 			SetEventMethods();
+			ProjectTabSetup();
+			projectSearchControl.SetHeader("Dina projekt");
 		}
 
-		//private static void CreateMocks()
-		//{
-		//	int numberOfCompanies = 3;
-		//	int numberOfPersons = 12;
-		//	int numberOfProjects = 6;
+		private static void CreateMocks()
+		{
+			int numberOfCompanies = 3;
+			int numberOfPersons = 12;
+			int numberOfProjects = 6;
 
-		//	for (int i = 0; i < numberOfCompanies; i++)
-		//	{
-		//		_companyManager.CreateCompany("Company no." + (i + 1));
-		//	}
+			for (int i = 0; i < numberOfCompanies; i++)
+			{
+				_companyManager.CreateCompany("Company no." + (i + 1));
+			}
 
-		//	for (int i = 0; i < numberOfPersons; i++)
-		//	{
-		//		_personManager.CreatePerson("Per" + (i + 1));
-		//		_personManager.Persons[i].LastName = "Persson" + (i + 1);
-		//		_personManager.Persons[i].Birthdate = DateTime.Today.AddYears(-(i + 1));
-		//		_personManager.Persons[i].EmailAddress = "Per" + (i + 1) + "@" + "Persson" + (i + 1) + ".com";
-		//	}
+			for (int i = 0; i < numberOfPersons; i++)
+			{
+				_personManager.CreatePerson("Per" + (i + 1));
+				_personManager.Persons[i].LastName = "Persson" + (i + 1);
+				_personManager.Persons[i].Birthdate = DateTime.Today.AddYears(-(i + 1));
+				_personManager.Persons[i].EmailAddress = "Per" + (i + 1) + "@" + "Persson" + (i + 1) + ".com";
+			}
 
-		//	for (int i = 0; i < numberOfProjects; i++)
-		//	{
-		//		_projectManager.CreateProject("Project no." + (i + 1), _personManager.Persons[i]);
-		//		_projectManager.Projects[i].Name = "Project no." + (i + 1);
-		//		_projectManager.Projects[i].ProjectJournal = new Journal();
-		//	}
+			for (int i = 0; i < numberOfProjects; i++)
+			{
+				_projectManager.CreateProject("Project no." + (i + 1));
+				_projectManager.Projects[i].Name = "Project no." + (i + 1);
+				_projectManager.Projects[i].ProjectJournal = new Journal();
+			}
 
-		//	_companyManager.Companies[0].Employees.Add(_personManager.Persons[0]);
-		//	_companyManager.Companies[0].Employees.Add(_personManager.Persons[1]);
-		//	_companyManager.Companies[0].Employees.Add(_personManager.Persons[2]);
-		//	_companyManager.Companies[0].Employees.Add(_personManager.Persons[3]);
-		//	_companyManager.Companies[1].Employees.Add(_personManager.Persons[4]);
-		//	_companyManager.Companies[1].Employees.Add(_personManager.Persons[5]);
-		//	_companyManager.Companies[1].Employees.Add(_personManager.Persons[6]);
-		//	_companyManager.Companies[1].Employees.Add(_personManager.Persons[7]);
-		//	_companyManager.Companies[2].Employees.Add(_personManager.Persons[8]);
-		//	_companyManager.Companies[2].Employees.Add(_personManager.Persons[9]);
-		//	_companyManager.Companies[2].Employees.Add(_personManager.Persons[10]);
-		//	_companyManager.Companies[2].Employees.Add(_personManager.Persons[11]);
+			_companyManager.Companies[0].Employees.Add(_personManager.Persons[0]);
+			_companyManager.Companies[0].Employees.Add(_personManager.Persons[1]);
+			_companyManager.Companies[0].Employees.Add(_personManager.Persons[2]);
+			_companyManager.Companies[0].Employees.Add(_personManager.Persons[3]);
+			_companyManager.Companies[1].Employees.Add(_personManager.Persons[4]);
+			_companyManager.Companies[1].Employees.Add(_personManager.Persons[5]);
+			_companyManager.Companies[1].Employees.Add(_personManager.Persons[6]);
+			_companyManager.Companies[1].Employees.Add(_personManager.Persons[7]);
+			_companyManager.Companies[2].Employees.Add(_personManager.Persons[8]);
+			_companyManager.Companies[2].Employees.Add(_personManager.Persons[9]);
+			_companyManager.Companies[2].Employees.Add(_personManager.Persons[10]);
+			_companyManager.Companies[2].Employees.Add(_personManager.Persons[11]);
 
-		//	_companyManager.Companies[0].Projects.Add(_projectManager.Projects[0]);
-		//	_companyManager.Companies[0].Projects.Add(_projectManager.Projects[1]);
-		//	_companyManager.Companies[1].Projects.Add(_projectManager.Projects[2]);
-		//	_companyManager.Companies[1].Projects.Add(_projectManager.Projects[3]);
-		//	_companyManager.Companies[2].Projects.Add(_projectManager.Projects[4]);
-		//	_companyManager.Companies[2].Projects.Add(_projectManager.Projects[5]);
-		//}
+			_companyManager.Companies[0].Projects.Add(_projectManager.Projects[0]);
+			_companyManager.Companies[0].Projects[0].Roles.Add(_personManager.Persons[0]);
+			_companyManager.Companies[0].Projects[0].Roles.Add(_personManager.Persons[1]);
 
+			_companyManager.Companies[0].Projects.Add(_projectManager.Projects[1]);
+			_companyManager.Companies[0].Projects[1].Roles.Add(_personManager.Persons[2]);
+			_companyManager.Companies[0].Projects[1].Roles.Add(_personManager.Persons[3]);
+
+			_companyManager.Companies[1].Projects.Add(_projectManager.Projects[2]);
+			_companyManager.Companies[1].Projects[0].Roles.Add(_personManager.Persons[4]);
+			_companyManager.Companies[1].Projects[0].Roles.Add(_personManager.Persons[5]);
+
+			_companyManager.Companies[1].Projects.Add(_projectManager.Projects[3]);
+			_companyManager.Companies[1].Projects[1].Roles.Add(_personManager.Persons[6]);
+			_companyManager.Companies[1].Projects[1].Roles.Add(_personManager.Persons[7]);
+
+			_companyManager.Companies[2].Projects.Add(_projectManager.Projects[4]);
+			_companyManager.Companies[2].Projects[0].Roles.Add(_personManager.Persons[8]);
+			_companyManager.Companies[2].Projects[0].Roles.Add(_personManager.Persons[9]);
+
+			_companyManager.Companies[2].Projects.Add(_projectManager.Projects[5]);
+			_companyManager.Companies[2].Projects[1].Roles.Add(_personManager.Persons[10]);
+			_companyManager.Companies[2].Projects[1].Roles.Add(_personManager.Persons[11]);
+		}
 		private void SetEventMethods()
 		{
 			personSearchControl.OnSearch += personSearchBox_OnSearch;
@@ -120,55 +130,6 @@ namespace Grupptenta2
 			projectSearchControl.OnDoubleClickChoice += projectSearchControl_OnDoubleClickChoice;
 		}
 
-		#region "Panel Control"
-		private void LoadPanelsList()
-		{
-			_panels.Add(projectPnl);
-			_panels.Add(clientPnl);
-			_panels.Add(profilePnl);
-		}
-		private void LoadUserControlList()
-		{
-			_userControls.Add(projectSearchControl);
-			_userControls.Add(personSearchControl);
-			_userControls.Add(companySearchControl);
-			_userControls.Add(companyControl);
-			_userControls.Add(personControl);
-		}
-		private void SwitchPanel(Panel panel)
-		{
-			panel.Visible = true;
-			HideAllPanelsExceptThis(panel);
-			HideUserControls();
-		}
-		private void HideAllPanelsExceptThis(Panel currentPanel)
-		{
-			foreach (Panel panel in _panels)
-			{
-				if (panel != currentPanel)
-				{
-					panel.Visible = false;
-				}
-			}
-		}
-		private void HidePanels()
-		{
-			foreach (Panel panel in _panels)
-			{
-				panel.Visible = false;
-			}
-		}
-		private void HideUserControls()
-		{
-			foreach (var userControl in _userControls)
-			{
-				userControl.Visible = false;
-			}
-		}
-
-		#endregion
-
-		#region "Main Menu Items"
 		private void logOutBtn_Click(object sender, EventArgs e)
 		{
 			SaveDataXml.SaveCompanies(_companyManager.Companies);
@@ -184,22 +145,9 @@ namespace Grupptenta2
 			Application.Exit();
 		}
 
-		private void projectBtn_Click(object sender, EventArgs e)
-		{
-			this.Text = "Dina projekt";
-			HidePanels();
-			HideUserControls();
-			projectSearchControl.Visible = true;
-			this.projectSearchControl.Location = new System.Drawing.Point(210, 10);
-			projectSearchControl.BindListBoxData(_projectManager.Projects, "Name");
-		}
-
 		private void clientBtn_Click(object sender, EventArgs e)
 		{
 			this.Text = "Dina företagskunder";
-			HidePanels();
-			HideUserControls();
-			companySearchControl.Visible = true;
 			this.companySearchControl.Location = new System.Drawing.Point(210, 10);
 			companySearchControl.BindListBoxData(_companyManager.Companies, "Name");
 		}
@@ -207,9 +155,6 @@ namespace Grupptenta2
 		private void contactsBtn_Click(object sender, EventArgs e)
 		{
 			this.Text = "Dina kontakter";
-			HidePanels();
-			HideUserControls();
-			personSearchControl.Visible = true;
 			this.personSearchControl.Location = new System.Drawing.Point(210, 10);
 			personSearchControl.BindListBoxData(_personManager.Persons, "Person");
 		}
@@ -222,7 +167,6 @@ namespace Grupptenta2
 		{
 			this.Text = "Kalender";
 		}
-		#endregion
 
 		#region "Person"
 		private void personSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
@@ -235,8 +179,6 @@ namespace Grupptenta2
 		private void personSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
 		{
 			this.Text = _selectedPerson.ToString();
-			HidePanels();
-			HideUserControls();
 			personControl.Visible = true;
 			personControl.SetPersonInfo(_selectedPerson, _companyManager);
 			this.personControl.Location = new System.Drawing.Point(210, 10);
@@ -296,8 +238,6 @@ namespace Grupptenta2
 		private void companySearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
 		{
 			this.Text = _selectedCompany.Name;
-			HidePanels();
-			HideUserControls();
 			companyControl.Visible = true;
 			companyControl.SetCompanyInfo(_selectedCompany);
 			this.companyControl.Location = new System.Drawing.Point(210, 10);
@@ -343,6 +283,15 @@ namespace Grupptenta2
 		#endregion
 
 		#region "Project"
+		private void ProjectTabSetup()
+		{
+			projectSearchControl.SetHeader("Dina Project");
+			projectSearchControl.BindListBoxData(_projectManager.Projects, "Name");
+			projectParticipantBox.SetHeader("Deltagare");
+			projectEventBox.SetHeader("Händelser");
+			projectNoteBox.SetHeader("Anteckningar");
+		}
+
 		private void projectSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
 		{
 			string searchText = e.SearchText;
@@ -352,11 +301,17 @@ namespace Grupptenta2
 		}
 		private void projectSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
 		{
-			_selectedProject = (Project)e.ChosenItem;
-
 			this.Text = _selectedProject.Name;
-			projectPnl.Visible = true;
-			this.projectPnl.Location = new System.Drawing.Point(520, 0);
+			projectNameBox.Text = _selectedProject.Name;
+			projectIdBox.Text = _selectedProject.Id.ToString();
+			projectCompanyBox.Text = _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Id == _selectedProject.Id)).Name;
+			projectDescBox.Text = _selectedProject.Description;
+		}
+		private void saveBtn_Click(object sender, EventArgs e)
+		{
+			_selectedProject.Name = projectNameBox.Text;
+			_selectedProject.Description = projectDescBox.Text;
+
 		}
 		private void projectSearchControl_OnCreate()
 		{
@@ -366,7 +321,7 @@ namespace Grupptenta2
 		}
 		private void projectSearchControl_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
 		{
-			throw new NotImplementedException();
+			_selectedProject = (Project)e.ChosenItem;
 		}
 		private void projectSearchControl_OnDoubleClickChoice(object sender, DoubleClickChoiceHandlerEventArgs e)
 		{
@@ -378,5 +333,10 @@ namespace Grupptenta2
 			projectSearchControl.BindListBoxData(_projectManager.Projects, "Name");
 		}
 		#endregion
+
+		private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			this.Text = tabControl.SelectedTab.Text;
+		}
 	}
 }

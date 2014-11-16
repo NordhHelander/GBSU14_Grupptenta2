@@ -33,9 +33,9 @@ namespace Grupptenta2
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
-            _projectManager.CreateProject(nameBox.Text, (Person)lstBx_Participants.SelectedItem);
-            int indexOfNewProject = _projectManager.Projects.Count - 1;
-            Project project = _projectManager.Projects[indexOfNewProject];
+			//_projectManager.CreateProject(nameBox.Text, (Person)lstBx_Participants.SelectedItem);
+			//int indexOfNewProject = _projectManager.Projects.Count - 1;
+			//Project project = _projectManager.Projects[indexOfNewProject];
             this.Close();
         }
     }

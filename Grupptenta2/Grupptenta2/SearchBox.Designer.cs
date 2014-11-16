@@ -35,18 +35,19 @@
 			this.choiceBox = new System.Windows.Forms.ListBox();
 			this.goToChoiceBtn = new System.Windows.Forms.Button();
 			this.createBtn = new System.Windows.Forms.Button();
+			this.headerLbl = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// searchField
 			// 
-			this.searchField.Location = new System.Drawing.Point(0, 4);
+			this.searchField.Location = new System.Drawing.Point(0, 24);
 			this.searchField.Name = "searchField";
 			this.searchField.Size = new System.Drawing.Size(195, 20);
 			this.searchField.TabIndex = 0;
 			// 
 			// searchBtn
 			// 
-			this.searchBtn.Location = new System.Drawing.Point(202, 2);
+			this.searchBtn.Location = new System.Drawing.Point(199, 24);
 			this.searchBtn.Name = "searchBtn";
 			this.searchBtn.Size = new System.Drawing.Size(76, 23);
 			this.searchBtn.TabIndex = 1;
@@ -57,14 +58,14 @@
 			// orderByBox
 			// 
 			this.orderByBox.FormattingEnabled = true;
-			this.orderByBox.Location = new System.Drawing.Point(0, 31);
+			this.orderByBox.Location = new System.Drawing.Point(0, 50);
 			this.orderByBox.Name = "orderByBox";
 			this.orderByBox.Size = new System.Drawing.Size(195, 21);
 			this.orderByBox.TabIndex = 2;
 			// 
 			// orderByBtn
 			// 
-			this.orderByBtn.Location = new System.Drawing.Point(202, 29);
+			this.orderByBtn.Location = new System.Drawing.Point(199, 50);
 			this.orderByBtn.Name = "orderByBtn";
 			this.orderByBtn.Size = new System.Drawing.Size(76, 23);
 			this.orderByBtn.TabIndex = 3;
@@ -75,7 +76,7 @@
 			// choiceBox
 			// 
 			this.choiceBox.FormattingEnabled = true;
-			this.choiceBox.Location = new System.Drawing.Point(0, 59);
+			this.choiceBox.Location = new System.Drawing.Point(0, 77);
 			this.choiceBox.Name = "choiceBox";
 			this.choiceBox.Size = new System.Drawing.Size(195, 212);
 			this.choiceBox.TabIndex = 4;
@@ -84,7 +85,7 @@
 			// 
 			// goToChoiceBtn
 			// 
-			this.goToChoiceBtn.Location = new System.Drawing.Point(202, 59);
+			this.goToChoiceBtn.Location = new System.Drawing.Point(199, 77);
 			this.goToChoiceBtn.Name = "goToChoiceBtn";
 			this.goToChoiceBtn.Size = new System.Drawing.Size(76, 23);
 			this.goToChoiceBtn.TabIndex = 5;
@@ -94,7 +95,7 @@
 			// 
 			// createBtn
 			// 
-			this.createBtn.Location = new System.Drawing.Point(202, 88);
+			this.createBtn.Location = new System.Drawing.Point(199, 106);
 			this.createBtn.Name = "createBtn";
 			this.createBtn.Size = new System.Drawing.Size(76, 23);
 			this.createBtn.TabIndex = 6;
@@ -102,10 +103,20 @@
 			this.createBtn.UseVisualStyleBackColor = true;
 			this.createBtn.Click += new System.EventHandler(this.createBtn_Click);
 			// 
+			// headerLbl
+			// 
+			this.headerLbl.AutoSize = true;
+			this.headerLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.headerLbl.Location = new System.Drawing.Point(3, 3);
+			this.headerLbl.Name = "headerLbl";
+			this.headerLbl.Size = new System.Drawing.Size(0, 18);
+			this.headerLbl.TabIndex = 32;
+			// 
 			// SearchBox
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.headerLbl);
 			this.Controls.Add(this.createBtn);
 			this.Controls.Add(this.goToChoiceBtn);
 			this.Controls.Add(this.choiceBox);
@@ -114,7 +125,7 @@
 			this.Controls.Add(this.searchBtn);
 			this.Controls.Add(this.searchField);
 			this.Name = "SearchBox";
-			this.Size = new System.Drawing.Size(278, 276);
+			this.Size = new System.Drawing.Size(278, 353);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -129,5 +140,6 @@
 		private System.Windows.Forms.ListBox choiceBox;
 		private System.Windows.Forms.Button goToChoiceBtn;
 		private System.Windows.Forms.Button createBtn;
+		private System.Windows.Forms.Label headerLbl;
 	}
 }

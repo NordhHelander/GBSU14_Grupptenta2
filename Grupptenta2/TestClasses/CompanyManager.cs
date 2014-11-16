@@ -30,7 +30,7 @@ namespace TestClasses
 		public CompanyManager()
 		{
             Companies = new BindingList<Company>();
-            Companies = SaveDataXml.LoadCompanies();
+			Companies = SaveDataXml.LoadCompanies();
 		}
 	}
 }

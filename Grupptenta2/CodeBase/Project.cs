@@ -11,6 +11,7 @@ namespace CodeBase
     {
         public int Id { get; set; }
         public string Name { get; set; }
+		public string Description { get; set; }
         public Journal ProjectJournal { get; set; }
         public List<Note> Notes { get; set; }
         public List<Person> Roles { get; set; }

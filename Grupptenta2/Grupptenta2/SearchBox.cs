@@ -43,6 +43,11 @@ namespace Grupptenta2
 			choiceBox.DataSource = null;
 		}
 
+		public void SetHeader(string header)
+		{
+			headerLbl.Text = header;
+		}
+
 		private void searchBtn_Click(object sender, EventArgs e)
 		{
 			if (OnSearch != null)

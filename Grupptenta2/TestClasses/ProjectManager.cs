@@ -16,14 +16,25 @@ namespace TestClasses
 
 		public BindingList<Project> Projects { get; private set; }
 
-		public void CreateProject(string name, Person participant)
+		public void CreateProject(string name)
 		{
 			Project project = new Project();
             project.Id = Projects.Count + 1;
             project.Name = name;
             project.Notes = new List<Note>();
 			project.Roles = new List<Person>();
-            project.Roles.Add(participant);
+			project.IsActive = true;
+
+			Projects.Add(project);
+		}
+
+		public void CreateProject(string name, List<Person> participants)
+		{
+			Project project = new Project();
+			project.Id = Projects.Count + 1;
+			project.Name = name;
+			project.Notes = new List<Note>();
+			project.Roles = participants;
 			project.IsActive = true;
 
 			Projects.Add(project);
@@ -32,7 +43,7 @@ namespace TestClasses
 		public ProjectManager()
 		{
 			Projects = new BindingList<Project>();
-            Projects = SaveDataXml.LoadProjects();
+			Projects = SaveDataXml.LoadProjects();
 		}
 	}
 }
