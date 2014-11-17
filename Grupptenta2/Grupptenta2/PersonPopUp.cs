@@ -27,19 +27,8 @@ namespace Grupptenta2
 			personControl.HidePopUpBtn();
 		}
 
-		private void personControl_OnSavePersonChanges(object sender, SavePersonChangesHandlerEventArgs e)
+		private void personControl_OnSavePersonChanges()
 		{
-			_person.FirstName = e.FirstName;
-			_person.LastName = e.LastName;
-			_person.Birthdate = e.DateOfBirth;
-			_person.ResidentialAddress.Street = e.Street;
-			_person.ResidentialAddress.ZipCode = e.ZipCode;
-			_person.ResidentialAddress.City = e.City;
-			_person.PhoneNumber = e.PhoneNumber;
-			_person.CellPhoneNumber = e.CellPhoneNumber;
-			_person.EmailAddress = e.EmailAddress;
-			_person.Type = e.Type;
-			// Ska läggas in sätt att ändra företag. Måste välja bland befintliga och tas bort från tidigare företag.
 			this.Text = _person.ToString();
 		}
 	}

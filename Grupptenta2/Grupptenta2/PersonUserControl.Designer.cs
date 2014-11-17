@@ -47,17 +47,10 @@
 			this.companyBox = new System.Windows.Forms.ComboBox();
 			this.companyLbl = new System.Windows.Forms.Label();
 			this.notesLbl = new System.Windows.Forms.Label();
-			this.editSaveBtn = new System.Windows.Forms.Button();
+			this.saveBtn = new System.Windows.Forms.Button();
 			this.popUpBtn = new System.Windows.Forms.Button();
 			this.passwordBtn = new System.Windows.Forms.Button();
-			this.activeCheckBox = new System.Windows.Forms.CheckBox();
-			this.activeLbl = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.employeesLbl = new System.Windows.Forms.Label();
-			this.projectBox = new System.Windows.Forms.ListBox();
-			this.contactBox = new System.Windows.Forms.ListBox();
-			this.goToProjectBtn = new System.Windows.Forms.Button();
-			this.goToContactBtn = new System.Windows.Forms.Button();
+			this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
 			this.noteBox = new System.Windows.Forms.ListBox();
 			this.addNoteBtn = new System.Windows.Forms.Button();
 			this.lastNameBox = new System.Windows.Forms.TextBox();
@@ -69,7 +62,6 @@
 			this.firstNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.firstNameBox.Location = new System.Drawing.Point(3, 3);
 			this.firstNameBox.Name = "firstNameBox";
-			this.firstNameBox.ReadOnly = true;
 			this.firstNameBox.Size = new System.Drawing.Size(186, 26);
 			this.firstNameBox.TabIndex = 1;
 			// 
@@ -77,7 +69,6 @@
 			// 
 			this.birthdateBox.Location = new System.Drawing.Point(89, 67);
 			this.birthdateBox.Name = "birthdateBox";
-			this.birthdateBox.ReadOnly = true;
 			this.birthdateBox.Size = new System.Drawing.Size(100, 20);
 			this.birthdateBox.TabIndex = 2;
 			// 
@@ -94,7 +85,6 @@
 			// 
 			this.streetBox.Location = new System.Drawing.Point(89, 93);
 			this.streetBox.Name = "streetBox";
-			this.streetBox.ReadOnly = true;
 			this.streetBox.Size = new System.Drawing.Size(100, 20);
 			this.streetBox.TabIndex = 8;
 			// 
@@ -102,7 +92,7 @@
 			// 
 			this.zipBox.Location = new System.Drawing.Point(89, 119);
 			this.zipBox.Name = "zipBox";
-			this.zipBox.ReadOnly = true;
+			this.zipBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.zipBox.Size = new System.Drawing.Size(100, 20);
 			this.zipBox.TabIndex = 9;
 			// 
@@ -110,7 +100,6 @@
 			// 
 			this.cityBox.Location = new System.Drawing.Point(89, 145);
 			this.cityBox.Name = "cityBox";
-			this.cityBox.ReadOnly = true;
 			this.cityBox.Size = new System.Drawing.Size(100, 20);
 			this.cityBox.TabIndex = 10;
 			// 
@@ -118,7 +107,6 @@
 			// 
 			this.phoneBox.Location = new System.Drawing.Point(89, 171);
 			this.phoneBox.Name = "phoneBox";
-			this.phoneBox.ReadOnly = true;
 			this.phoneBox.Size = new System.Drawing.Size(100, 20);
 			this.phoneBox.TabIndex = 11;
 			// 
@@ -126,7 +114,6 @@
 			// 
 			this.cellPhoneBox.Location = new System.Drawing.Point(89, 197);
 			this.cellPhoneBox.Name = "cellPhoneBox";
-			this.cellPhoneBox.ReadOnly = true;
 			this.cellPhoneBox.Size = new System.Drawing.Size(100, 20);
 			this.cellPhoneBox.TabIndex = 12;
 			// 
@@ -134,7 +121,6 @@
 			// 
 			this.emailBox.Location = new System.Drawing.Point(89, 223);
 			this.emailBox.Name = "emailBox";
-			this.emailBox.ReadOnly = true;
 			this.emailBox.Size = new System.Drawing.Size(100, 20);
 			this.emailBox.TabIndex = 13;
 			// 
@@ -203,7 +189,6 @@
 			// 
 			// companyBox
 			// 
-			this.companyBox.Enabled = false;
 			this.companyBox.FormattingEnabled = true;
 			this.companyBox.Location = new System.Drawing.Point(89, 276);
 			this.companyBox.Name = "companyBox";
@@ -228,21 +213,21 @@
 			this.notesLbl.TabIndex = 25;
 			this.notesLbl.Text = "Anteckningar";
 			// 
-			// editSaveBtn
+			// saveBtn
 			// 
-			this.editSaveBtn.Location = new System.Drawing.Point(72, 466);
-			this.editSaveBtn.Name = "editSaveBtn";
-			this.editSaveBtn.Size = new System.Drawing.Size(117, 23);
-			this.editSaveBtn.TabIndex = 26;
-			this.editSaveBtn.Text = "Redigera";
-			this.editSaveBtn.UseVisualStyleBackColor = true;
-			this.editSaveBtn.Click += new System.EventHandler(this.editSaveBtn_Click);
+			this.saveBtn.Location = new System.Drawing.Point(36, 466);
+			this.saveBtn.Name = "saveBtn";
+			this.saveBtn.Size = new System.Drawing.Size(153, 23);
+			this.saveBtn.TabIndex = 26;
+			this.saveBtn.Text = "Spara";
+			this.saveBtn.UseVisualStyleBackColor = true;
+			this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
 			// 
 			// popUpBtn
 			// 
-			this.popUpBtn.Location = new System.Drawing.Point(72, 437);
+			this.popUpBtn.Location = new System.Drawing.Point(36, 437);
 			this.popUpBtn.Name = "popUpBtn";
-			this.popUpBtn.Size = new System.Drawing.Size(117, 23);
+			this.popUpBtn.Size = new System.Drawing.Size(153, 23);
 			this.popUpBtn.TabIndex = 27;
 			this.popUpBtn.Text = "Öppna i nytt fönster";
 			this.popUpBtn.UseVisualStyleBackColor = true;
@@ -250,90 +235,26 @@
 			// 
 			// passwordBtn
 			// 
-			this.passwordBtn.Location = new System.Drawing.Point(72, 524);
+			this.passwordBtn.Location = new System.Drawing.Point(36, 524);
 			this.passwordBtn.Name = "passwordBtn";
-			this.passwordBtn.Size = new System.Drawing.Size(117, 23);
+			this.passwordBtn.Size = new System.Drawing.Size(153, 23);
 			this.passwordBtn.TabIndex = 28;
 			this.passwordBtn.Text = "Ändra lösenord";
 			this.passwordBtn.UseVisualStyleBackColor = true;
 			this.passwordBtn.Visible = false;
 			// 
-			// activeCheckBox
+			// isActiveCheckBox
 			// 
-			this.activeCheckBox.AutoSize = true;
-			this.activeCheckBox.Enabled = false;
-			this.activeCheckBox.Location = new System.Drawing.Point(89, 404);
-			this.activeCheckBox.Name = "activeCheckBox";
-			this.activeCheckBox.Size = new System.Drawing.Size(15, 14);
-			this.activeCheckBox.TabIndex = 29;
-			this.activeCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// activeLbl
-			// 
-			this.activeLbl.AutoSize = true;
-			this.activeLbl.Location = new System.Drawing.Point(0, 404);
-			this.activeLbl.Name = "activeLbl";
-			this.activeLbl.Size = new System.Drawing.Size(31, 13);
-			this.activeLbl.TabIndex = 30;
-			this.activeLbl.Text = "Aktiv";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(211, 10);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(55, 18);
-			this.label1.TabIndex = 31;
-			this.label1.Text = "Projekt";
-			// 
-			// employeesLbl
-			// 
-			this.employeesLbl.AutoSize = true;
-			this.employeesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.employeesLbl.Location = new System.Drawing.Point(521, 10);
-			this.employeesLbl.Name = "employeesLbl";
-			this.employeesLbl.Size = new System.Drawing.Size(72, 18);
-			this.employeesLbl.TabIndex = 32;
-			this.employeesLbl.Text = "Kontakter";
-			// 
-			// projectBox
-			// 
-			this.projectBox.FormattingEnabled = true;
-			this.projectBox.Location = new System.Drawing.Point(214, 32);
-			this.projectBox.Name = "projectBox";
-			this.projectBox.Size = new System.Drawing.Size(195, 212);
-			this.projectBox.TabIndex = 33;
-			// 
-			// contactBox
-			// 
-			this.contactBox.FormattingEnabled = true;
-			this.contactBox.Location = new System.Drawing.Point(521, 35);
-			this.contactBox.Name = "contactBox";
-			this.contactBox.Size = new System.Drawing.Size(195, 212);
-			this.contactBox.TabIndex = 34;
-			// 
-			// goToProjectBtn
-			// 
-			this.goToProjectBtn.Location = new System.Drawing.Point(415, 32);
-			this.goToProjectBtn.Name = "goToProjectBtn";
-			this.goToProjectBtn.Size = new System.Drawing.Size(76, 23);
-			this.goToProjectBtn.TabIndex = 35;
-			this.goToProjectBtn.Text = "Gå till";
-			this.goToProjectBtn.UseVisualStyleBackColor = true;
-			// 
-			// goToContactBtn
-			// 
-			this.goToContactBtn.Location = new System.Drawing.Point(722, 35);
-			this.goToContactBtn.Name = "goToContactBtn";
-			this.goToContactBtn.Size = new System.Drawing.Size(76, 23);
-			this.goToContactBtn.TabIndex = 36;
-			this.goToContactBtn.Text = "Gå till";
-			this.goToContactBtn.UseVisualStyleBackColor = true;
+			this.isActiveCheckBox.AutoSize = true;
+			this.isActiveCheckBox.Location = new System.Drawing.Point(89, 404);
+			this.isActiveCheckBox.Name = "isActiveCheckBox";
+			this.isActiveCheckBox.Size = new System.Drawing.Size(50, 17);
+			this.isActiveCheckBox.TabIndex = 29;
+			this.isActiveCheckBox.Text = "Aktiv";
+			this.isActiveCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// noteBox
 			// 
-			this.noteBox.Enabled = false;
 			this.noteBox.FormattingEnabled = true;
 			this.noteBox.Location = new System.Drawing.Point(89, 303);
 			this.noteBox.Name = "noteBox";
@@ -342,27 +263,24 @@
 			// 
 			// addNoteBtn
 			// 
-			this.addNoteBtn.Location = new System.Drawing.Point(72, 495);
+			this.addNoteBtn.Location = new System.Drawing.Point(36, 495);
 			this.addNoteBtn.Name = "addNoteBtn";
-			this.addNoteBtn.Size = new System.Drawing.Size(117, 23);
+			this.addNoteBtn.Size = new System.Drawing.Size(153, 23);
 			this.addNoteBtn.TabIndex = 38;
-			this.addNoteBtn.Text = "Lägg till anteckning";
+			this.addNoteBtn.Text = "Lägg till/Ta bort anteckning";
 			this.addNoteBtn.UseVisualStyleBackColor = true;
-			this.addNoteBtn.Visible = false;
 			// 
 			// lastNameBox
 			// 
 			this.lastNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lastNameBox.Location = new System.Drawing.Point(3, 35);
 			this.lastNameBox.Name = "lastNameBox";
-			this.lastNameBox.ReadOnly = true;
 			this.lastNameBox.Size = new System.Drawing.Size(186, 26);
 			this.lastNameBox.TabIndex = 3;
 			// 
 			// typeBox
 			// 
 			this.typeBox.BackColor = System.Drawing.Color.White;
-			this.typeBox.Enabled = false;
 			this.typeBox.FormattingEnabled = true;
 			this.typeBox.Location = new System.Drawing.Point(89, 249);
 			this.typeBox.Name = "typeBox";
@@ -377,17 +295,10 @@
 			this.Controls.Add(this.typeBox);
 			this.Controls.Add(this.addNoteBtn);
 			this.Controls.Add(this.noteBox);
-			this.Controls.Add(this.goToContactBtn);
-			this.Controls.Add(this.goToProjectBtn);
-			this.Controls.Add(this.contactBox);
-			this.Controls.Add(this.projectBox);
-			this.Controls.Add(this.employeesLbl);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.activeLbl);
-			this.Controls.Add(this.activeCheckBox);
+			this.Controls.Add(this.isActiveCheckBox);
 			this.Controls.Add(this.passwordBtn);
 			this.Controls.Add(this.popUpBtn);
-			this.Controls.Add(this.editSaveBtn);
+			this.Controls.Add(this.saveBtn);
 			this.Controls.Add(this.notesLbl);
 			this.Controls.Add(this.companyLbl);
 			this.Controls.Add(this.companyBox);
@@ -409,7 +320,7 @@
 			this.Controls.Add(this.birthdateBox);
 			this.Controls.Add(this.firstNameBox);
 			this.Name = "PersonUserControl";
-			this.Size = new System.Drawing.Size(810, 574);
+			this.Size = new System.Drawing.Size(201, 553);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -436,17 +347,10 @@
 		private System.Windows.Forms.ComboBox companyBox;
 		private System.Windows.Forms.Label companyLbl;
 		private System.Windows.Forms.Label notesLbl;
-		private System.Windows.Forms.Button editSaveBtn;
+		private System.Windows.Forms.Button saveBtn;
 		private System.Windows.Forms.Button popUpBtn;
 		private System.Windows.Forms.Button passwordBtn;
-		private System.Windows.Forms.CheckBox activeCheckBox;
-		private System.Windows.Forms.Label activeLbl;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label employeesLbl;
-		private System.Windows.Forms.ListBox projectBox;
-		private System.Windows.Forms.ListBox contactBox;
-		private System.Windows.Forms.Button goToProjectBtn;
-		private System.Windows.Forms.Button goToContactBtn;
+		private System.Windows.Forms.CheckBox isActiveCheckBox;
 		private System.Windows.Forms.ListBox noteBox;
 		private System.Windows.Forms.Button addNoteBtn;
 		private System.Windows.Forms.TextBox lastNameBox;
