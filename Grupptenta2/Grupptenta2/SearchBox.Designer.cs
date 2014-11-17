@@ -116,6 +116,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.headerLbl);
 			this.Controls.Add(this.createBtn);
 			this.Controls.Add(this.goToChoiceBtn);
@@ -125,7 +126,7 @@
 			this.Controls.Add(this.searchBtn);
 			this.Controls.Add(this.searchField);
 			this.Name = "SearchBox";
-			this.Size = new System.Drawing.Size(278, 353);
+			this.Size = new System.Drawing.Size(278, 307);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

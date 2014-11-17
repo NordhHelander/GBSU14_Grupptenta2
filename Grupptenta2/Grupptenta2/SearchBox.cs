@@ -32,6 +32,12 @@ namespace Grupptenta2
 			InitializeComponent();
 		}
 
+		public void SetButtonTexts(string goTo, string create)
+		{
+			goToChoiceBtn.Text = goTo;
+			createBtn.Text = create;
+		}
+
 		public void SetData(Object dataSource, string displayMember)
 		{
 			choiceBox.DataSource = null;

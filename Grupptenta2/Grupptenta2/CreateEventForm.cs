@@ -14,8 +14,8 @@ namespace Grupptenta2
 	public partial class CreateEventForm : Form
 	{
 		private static Project _project;
-		private static BindingList<Note> _tempNotes;
-		private static BindingList<Person> _tempParticipants;
+		//private static BindingList<Note> _tempNotes;
+		//private static BindingList<Person> _tempParticipants;
 
 		public CreateEventForm(Project project)
 		{

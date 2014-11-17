@@ -8,18 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CodeBase;
+using TestClasses;
 
 namespace Grupptenta2
 {
 	public partial class CompanyUserControl : UserControl
 	{
-		public delegate void SaveCompanyChangesEventHandler(object sender, SaveCompanyChangesHandlerEventArgs e);
+		public delegate void SaveCompanyChangesEventHandler();
 		public delegate void ClosePopUpEventHandler();
 
 		public event SaveCompanyChangesEventHandler OnSaveCompanyChanges;
 		public event ClosePopUpEventHandler OnClosePopUp;
 
 		private static Company _company;
+		private bool _newCompany;
+		private CompanyManager _companyManager;
 	
 		public CompanyUserControl()
 		{
@@ -31,8 +34,16 @@ namespace Grupptenta2
 			popUpBtn.Visible = false;
 		}
 
+		public void SetupForCreateCompany(CompanyManager companyManager)
+		{
+			_newCompany = true;
+			_companyManager = companyManager;
+			nameBox.Text = "Företagets namn";
+
+		}
 		public void SetCompanyInfo(Company company)
 		{
+			_newCompany = false;
 			_company = company;
 
 			nameBox.Text = _company.Name;
@@ -41,69 +52,35 @@ namespace Grupptenta2
 			zipBox.Text = _company.Location.ZipCode;
 			cityBox.Text = _company.Location.City;
 			activeCheckBox.Checked = _company.IsActive;
-
-			projectBox.DataSource = _company.Projects;
-			projectBox.DisplayMember = "Name";
-			contactBox.DataSource = _company.Employees;
-			contactBox.DisplayMember = "Person";
 		}
-		private void editSaveBtn_Click(object sender, EventArgs e)
+		private void saveBtn_Click(object sender, EventArgs e)
 		{
-			if (editSaveBtn.Text == "Redigera")
+			if (_newCompany)
 			{
-				nameBox.ReadOnly = false;
-				idBox.ReadOnly = false;
-				streetBox.ReadOnly = false;
-				zipBox.ReadOnly = false;
-				cityBox.ReadOnly = false;
-				activeCheckBox.Enabled = true;
-
-				editSaveBtn.Text = "Spara";
+				_companyManager.CreateCompany(nameBox.Text);
+				_company = _companyManager.Companies[_companyManager.Companies.Count - 1];
 			}
-			else if (editSaveBtn.Text == "Spara")
-			{
-				nameBox.ReadOnly = true;
-				idBox.ReadOnly = true;
-				streetBox.ReadOnly = true;
-				zipBox.ReadOnly = true;
-				cityBox.ReadOnly = true;
-				activeCheckBox.Enabled = false;
+
+			_company.Location.Street = streetBox.Text;
+			_company.Location.ZipCode = zipBox.Text;
+			_company.Location.City = cityBox.Text;
+			_company.IsActive = activeCheckBox.Checked;
 
 				if (OnSaveCompanyChanges != null)
-					OnSaveCompanyChanges(sender, new SaveCompanyChangesHandlerEventArgs(nameBox.Text, int.Parse(idBox.Text), streetBox.Text, zipBox.Text, cityBox.Text, activeCheckBox.Checked));
-
-				editSaveBtn.Text = "Redigera";
-			}
+					OnSaveCompanyChanges();
 		}
 
 		private void popUpBtn_Click(object sender, EventArgs e)
 		{
-			CompanyPopUp companyPopUp = new CompanyPopUp(_company);
-			companyPopUp.ShowDialog();
-			SetCompanyInfo(_company);
+			if (_company != null)
+			{
+				CompanyPopUp companyPopUp = new CompanyPopUp(_company);
+				companyPopUp.ShowDialog();
+				SetCompanyInfo(_company);
+			}
 
 			if (OnClosePopUp != null)
 				OnClosePopUp();
-		}
-	}
-
-	public class SaveCompanyChangesHandlerEventArgs : EventArgs
-	{
-		public string Name { get; set; }
-		public int Id { get; set; }
-		public string Street { get; set; }
-		public string ZipCode { get; set; }
-		public string City { get; set; }
-		public bool IsActive { get; set; }
-
-		public SaveCompanyChangesHandlerEventArgs(string name, int id, string street, string zipCode, string city, bool isActive)
-		{
-			Name = name;
-			Id = id;
-			Street = street;
-			ZipCode = zipCode;
-			City = city;
-			IsActive = isActive;
 		}
 	}
 }

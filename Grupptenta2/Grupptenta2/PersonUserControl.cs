@@ -120,9 +120,12 @@ namespace Grupptenta2
 
 		private void popUpBtn_Click(object sender, EventArgs e)
 		{
-			PersonPopUp personPopUp = new PersonPopUp(_person, _companyManager, _projectManager);
-			personPopUp.ShowDialog();
-			SetPersonInfo(_person, _companyManager, _projectManager);
+			if (_person != null)
+			{
+				PersonPopUp personPopUp = new PersonPopUp(_person, _companyManager, _projectManager);
+				personPopUp.ShowDialog();
+				SetPersonInfo(_person, _companyManager, _projectManager);
+			}
 
 			if (OnClosePopUp != null)
 				OnClosePopUp();

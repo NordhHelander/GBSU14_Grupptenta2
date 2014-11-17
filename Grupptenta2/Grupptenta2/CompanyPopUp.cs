@@ -27,16 +27,9 @@ namespace Grupptenta2
 			companyControl.HidePopUpBtn();
 		}
 
-		private void companyUserForm_OnSaveCompanyChanges(object sender, SaveCompanyChangesHandlerEventArgs e)
+		private void companyUserForm_OnSaveCompanyChanges()
 		{
-			_company.Name = e.Name;
-			_company.Id = e.Id;
-			_company.Location.Street = e.Street;
-			_company.Location.ZipCode = e.ZipCode;
-			_company.Location.City = e.City;
-			_company.IsActive = e.IsActive;
-
-			this.Text = _company.Name;
+			this.Close();
 		}
 	}
 }
