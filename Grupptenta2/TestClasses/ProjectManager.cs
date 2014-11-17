@@ -21,6 +21,9 @@ namespace TestClasses
 			Project project = new Project();
             project.Id = Projects.Count + 1;
             project.Name = name;
+			project.ProjectJournal = new Journal();
+			project.ProjectJournal.Notes = new BindingList<Note>();
+			project.ProjectJournal.Events = new BindingList<ProjectEvent>();
             project.Notes = new BindingList<Note>();
 			project.Roles = new BindingList<Person>();
 			project.IsActive = true;

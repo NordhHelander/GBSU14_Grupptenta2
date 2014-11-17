@@ -28,7 +28,6 @@ namespace Grupptenta2
 			_projectManager = new ProjectManager();
 
 			InitializeComponent();
-			//this.ClientSize = new Size(1200, 675);
 
 			//CreateMocks();
 			//SaveDataXml.SaveCompanies(_companyManager.Companies);
@@ -337,11 +336,6 @@ namespace Grupptenta2
 			// Ska fixa projekt-popup.
 		}
 
-		private void RefreshProjectSearchBox()
-		{
-			projectSearchControl.SetData(_projectManager.Projects, "Name");
-		}
-
 		private void projectParticipantBox_OnAdd()
 		{
 			EditParticipantListForm editParticipantListForm = new EditParticipantListForm(_selectedProject, _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Id == _selectedProject.Id)));
@@ -364,6 +358,11 @@ namespace Grupptenta2
 		{
 			choiceBox.SetData(dataSource, displayMember);
 		}
+		private void RefreshProjectSearchBox()
+		{
+			projectSearchControl.SetData(_projectManager.Projects, "Name");
+			// Ska göra allmän metod för att refresha vilken searchbox som helst.
+		}
 
 		private void projectNoteBox_OnGoTo(object sender, GoToHandlerEventArgs e)
 		{
@@ -379,7 +378,6 @@ namespace Grupptenta2
 		{
 			// Ska fixa event-popup
 		}
-
 		#endregion
 
 		private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
