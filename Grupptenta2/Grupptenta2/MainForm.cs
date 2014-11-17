@@ -371,7 +371,9 @@ namespace Grupptenta2
 
 		private void projectEventBox_OnAdd()
 		{
-			// Ska fixa createEventForm
+			CreateEventForm createEventForm = new CreateEventForm(_selectedProject);
+			createEventForm.ShowDialog();
+			RefreshChoiceBox(projectEventBox, _selectedProject.ProjectJournal.Events, "ProjectEvent");
 		}
 
 		private void projectEventBox_OnGoTo(object sender, GoToHandlerEventArgs e)

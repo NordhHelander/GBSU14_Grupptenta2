@@ -10,6 +10,5 @@ namespace CodeBase
     {
         public Address Location { get; set; }
         public List<Person> Attendees { get; set; }
-
     }
 }

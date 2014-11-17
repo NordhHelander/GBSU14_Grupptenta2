@@ -14,6 +14,8 @@ namespace Grupptenta2
 	public partial class CreateEventForm : Form
 	{
 		private static Project _project;
+		private static BindingList<Note> _tempNotes;
+		private static BindingList<Person> _tempParticipants;
 
 		public CreateEventForm(Project project)
 		{
@@ -21,6 +23,22 @@ namespace Grupptenta2
 
 			InitializeComponent();
 			this.Text = "Skapa händelse";
+			eventCreationContainer.Panel2.Hide();
+			personList.DataSource = _project.Roles;
+			personList.DisplayMember = "Person";
+		}
+
+		private void isMeetingCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			if (isMeetingCheckBox.Checked == true)
+			{
+				eventCreationContainer.Panel2.Show();
+			}
+			else
+			{
+				eventCreationContainer.Panel2.Hide();
+			}
 		}
 	}
 }
+
