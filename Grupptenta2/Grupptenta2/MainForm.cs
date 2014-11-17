@@ -200,13 +200,13 @@ namespace Grupptenta2
 		{
 			CreatePersonForm createPersonForm = new CreatePersonForm(_personManager, _companyManager);
 			createPersonForm.ShowDialog();
-			RefreshPersonSearchBox();
+			RefreshSearchBox(contactSearchControl, _personManager.Persons, "Person");
 		}
 		private void personSearchBox_OnDoubleClickChoice(object sender, DoubleClickChoiceHandlerEventArgs e)
 		{
 			PersonPopUp personPopUp = new PersonPopUp(_selectedPerson, _companyManager);
 			personPopUp.ShowDialog();
-			RefreshPersonSearchBox();
+			RefreshSearchBox(contactSearchControl, _personManager.Persons, "Person");
 		}
 		private void personSearchBox_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
 		{
@@ -214,18 +214,15 @@ namespace Grupptenta2
 		}
 		private void personControl_OnSavePersonChanges()
 		{
-			RefreshPersonSearchBox();
+			RefreshSearchBox(contactSearchControl, _personManager.Persons, "Person");
 			this.Text = _selectedPerson.ToString();
 		}
 		private void personControl_OnClosePopUp()
 		{
-			RefreshPersonSearchBox();
+			RefreshSearchBox(contactSearchControl, _personManager.Persons, "Person");
 			this.Text = _selectedPerson.ToString();
 		}
-		private void RefreshPersonSearchBox()
-		{
-			contactSearchControl.SetData(_personManager.Persons, "Person");
-		}
+
 		#endregion
 
 		#region "Company"
@@ -247,7 +244,7 @@ namespace Grupptenta2
 		{
 			CreateCompanyForm createCompanyForm = new CreateCompanyForm(_companyManager);
 			createCompanyForm.ShowDialog();
-			RefreshCompanySearchBox();
+			RefreshSearchBox(companySearchControl, _companyManager.Companies, "Name");
 		}
 		private void companySearchBox_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
 		{
@@ -257,7 +254,7 @@ namespace Grupptenta2
 		{
 			CompanyPopUp companyPopUp = new CompanyPopUp(_selectedCompany);
 			companyPopUp.ShowDialog();
-			RefreshCompanySearchBox();
+			RefreshSearchBox(companySearchControl, _companyManager.Companies, "Name");
 		}
 		private void companyControl_OnSaveCompanyChanges(object sender, SaveCompanyChangesHandlerEventArgs e)
 		{
@@ -268,17 +265,13 @@ namespace Grupptenta2
 			_selectedCompany.Location.City = e.City;
 			_selectedCompany.IsActive = e.IsActive;
 
-			RefreshCompanySearchBox();
+			RefreshSearchBox(companySearchControl, _companyManager.Companies, "Name");
 			this.Text = _selectedCompany.Name;
 		}
 		private void companyControl_OnClosePopUp()
 		{
-			RefreshCompanySearchBox();
+			RefreshSearchBox(companySearchControl, _companyManager.Companies, "Name");
 			this.Text = _selectedCompany.Name;
-		}
-		private void RefreshCompanySearchBox()
-		{
-			companySearchControl.SetData(_companyManager.Companies, "Name");
 		}
 		#endregion
 
@@ -321,7 +314,7 @@ namespace Grupptenta2
 		{
 			CreateProjectForm createProjectForm = new CreateProjectForm(_projectManager, _personManager, _companyManager);
 			createProjectForm.Show();
-			RefreshProjectSearchBox();
+			RefreshSearchBox(projectSearchControl, _projectManager.Projects, "Name");
 		}
 		private void projectSearchControl_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
 		{
@@ -347,15 +340,6 @@ namespace Grupptenta2
 			createNoteForm.ShowDialog();
 			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
-		private void RefreshChoiceBox(ChoiceBox choiceBox, object dataSource, string displayMember)
-		{
-			choiceBox.SetData(dataSource, displayMember);
-		}
-		private void RefreshProjectSearchBox()
-		{
-			projectSearchControl.SetData(_projectManager.Projects, "Name");
-			// Ska göra allmän metod för att refresha vilken searchbox som helst.
-		}
 		private void projectNoteBox_OnGoTo(object sender, GoToHandlerEventArgs e)
 		{
 			// Ska fixa note-popup
@@ -372,6 +356,15 @@ namespace Grupptenta2
 		}
 		#endregion
 
+		private void RefreshChoiceBox(ChoiceBox choiceBox, object dataSource, string displayMember)
+		{
+			choiceBox.SetData(dataSource, displayMember);
+		}
+
+		private void RefreshSearchBox(SearchBox searchBox, object dataSource, string displayMember)
+		{
+			searchBox.SetData(dataSource, displayMember);
+		}
 		private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			this.Text = tabControl.SelectedTab.Text;
