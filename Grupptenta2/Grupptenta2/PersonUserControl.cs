@@ -16,9 +16,12 @@ namespace Grupptenta2
 	{
 		public delegate void SavePersonChangesEventHandler();
 		public delegate void ClosePopUpEventHandler();
+		public delegate void DoubleClickNoteEventHandler(object sender, DoubleClickNoteHandlerEventArgs e);
+
 
 		public event SavePersonChangesEventHandler OnSavePersonChanges;
 		public event ClosePopUpEventHandler OnClosePopUp;
+		public event DoubleClickNoteEventHandler OnDoubleClickNote;
 
 		private static PersonManager _personManager;
 		private static CompanyManager _companyManager;
@@ -40,6 +43,18 @@ namespace Grupptenta2
 		}
 
 		public void SetupForCreatePerson(PersonManager personManager, CompanyManager companyManager)
+		{
+			SetupForGeneralNewPerson(personManager, companyManager);
+		}
+
+		public void SetupForCreateEmployee(Company company, PersonManager personManager, CompanyManager companyManager)
+		{
+			SetupForGeneralNewPerson(personManager, companyManager);
+			companyBox.SelectedItem = company;
+			companyBox.Enabled = false;
+		}
+
+		private void SetupForGeneralNewPerson(PersonManager personManager, CompanyManager companyManager)
 		{
 			_newPerson = true;
 			_personManager = personManager;
@@ -90,7 +105,11 @@ namespace Grupptenta2
 			{
 				_personManager.CreatePerson(firstNameBox.Text);
 				_person = _personManager.Persons[_personManager.Persons.Count - 1];
+				Company selectedCompany = (Company)companyBox.SelectedItem;
+				_company = _companyManager.Companies.SingleOrDefault(c => c.Id == selectedCompany.Id);
+				_company.Employees.Add(_person);
 			}
+
 			_person.FirstName = firstNameBox.Text;
 			_person.LastName = lastNameBox.Text;
 			_person.Birthdate = DateTime.Parse(birthdateBox.Text);
@@ -105,14 +124,14 @@ namespace Grupptenta2
 
 			_person.Notes = _tempNotes;
 
-			//if (companyBox.SelectedItem != _company)
-			//{
-			//	_company.Employees.Remove(_person);
-			//	Company selectedCompany = (Company)companyBox.SelectedItem;
-			//	Company companyToMovePersonTo = _companyManager.Companies.SingleOrDefault(c => c.Id == selectedCompany.Id);
-			//	companyToMovePersonTo.Employees.Add(_person);
-			//	_company = companyToMovePersonTo;
-			//}
+			if (companyBox.SelectedItem != _company)
+			{
+				List<Person> newEmployeeList = _company.Employees.Where(p => p.Id != _person.Id).ToList();
+				_company.Employees = new BindingList<Person>(newEmployeeList);
+
+				_company = (Company)companyBox.SelectedItem;
+				_company.Employees.Add(_person);
+			}
 
 			if (OnSavePersonChanges != null)
 				OnSavePersonChanges();
@@ -146,6 +165,23 @@ namespace Grupptenta2
 		private void removeNoteBtn_Click(object sender, EventArgs e)
 		{
 			_tempNotes.Remove((Note)notesBox.SelectedItem);
+		}
+
+		private void notesBox_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			if (OnDoubleClickNote != null)
+			{
+				OnDoubleClickNote(sender, new DoubleClickNoteHandlerEventArgs((Note)notesBox.SelectedItem));
+			}
+		}
+	}
+
+	public class DoubleClickNoteHandlerEventArgs : EventArgs
+	{
+		public Note SelectedNote { get; set; }
+		public DoubleClickNoteHandlerEventArgs(Note selectedNote)
+		{
+			SelectedNote = selectedNote;
 		}
 	}
 }

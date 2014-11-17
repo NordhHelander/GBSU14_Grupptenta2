@@ -29,7 +29,6 @@ namespace CodeBase
 
         public Company(string name)
         {
-            Id = rnd.Next(1, 10000);
             Name = name;
             IsActive = true;
 

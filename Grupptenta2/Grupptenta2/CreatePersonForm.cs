@@ -16,6 +16,7 @@ namespace Grupptenta2
 	{
 		private PersonManager _personManager;
 		private CompanyManager _companyManager;
+		private static Company _company;
 
 		public CreatePersonForm(PersonManager personManager, CompanyManager companyManager)
 		{
@@ -24,6 +25,18 @@ namespace Grupptenta2
 
 			InitializeComponent();
 			personControl.SetupForCreatePerson(_personManager, _companyManager);
+			personControl.HidePopUpBtn();
+			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
+		}
+
+		public CreatePersonForm(Company company, PersonManager personManager, CompanyManager companyManager)
+		{
+			_personManager = personManager;
+			_companyManager = companyManager;
+			_company = company;
+
+			InitializeComponent();
+			personControl.SetupForCreateEmployee(company, _personManager, _companyManager);
 			personControl.HidePopUpBtn();
 			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
 		}

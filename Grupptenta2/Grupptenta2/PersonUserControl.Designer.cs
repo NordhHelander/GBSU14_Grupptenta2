@@ -254,6 +254,7 @@
 			this.notesBox.Name = "notesBox";
 			this.notesBox.Size = new System.Drawing.Size(165, 121);
 			this.notesBox.TabIndex = 37;
+			this.notesBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notesBox_MouseDoubleClick);
 			// 
 			// addNoteBtn
 			// 

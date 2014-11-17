@@ -42,6 +42,8 @@
 			this.listBox.Name = "listBox";
 			this.listBox.Size = new System.Drawing.Size(150, 147);
 			this.listBox.TabIndex = 1;
+			this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
+			this.listBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox_MouseDoubleClick);
 			// 
 			// goToChoiceBtn
 			// 
@@ -72,7 +74,7 @@
 			this.headerLbl.Size = new System.Drawing.Size(0, 18);
 			this.headerLbl.TabIndex = 32;
 			// 
-			// choiceBox
+			// ChoiceBox
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -81,7 +83,7 @@
 			this.Controls.Add(this.editListBtn);
 			this.Controls.Add(this.goToChoiceBtn);
 			this.Controls.Add(this.listBox);
-			this.Name = "choiceBox";
+			this.Name = "ChoiceBox";
 			this.Size = new System.Drawing.Size(241, 175);
 			this.ResumeLayout(false);
 			this.PerformLayout();

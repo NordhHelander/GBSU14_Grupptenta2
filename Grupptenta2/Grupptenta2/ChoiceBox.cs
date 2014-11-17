@@ -14,9 +14,14 @@ namespace Grupptenta2
 	{
 		public delegate void GoToEventHandler(object sender, GoToHandlerEventArgs e);
 		public delegate void AddItemEventHandler();
+		public delegate void DoubleClickEventHandler(object sender, DoubleClickHandlerEventArgs e);
+		public delegate void ListBoxSelectionChangedEventHandler(object sender, ListBoxSelectionChangedHandlerEventArgs e);
+
 
 		public event GoToEventHandler OnGoTo;
 		public event AddItemEventHandler OnAdd;
+		public event DoubleClickEventHandler OnDoubleClickChoice;
+		public event ListBoxSelectionChangedEventHandler OnSelectionChanged;
 
 		public ChoiceBox()
 		{
@@ -41,6 +46,11 @@ namespace Grupptenta2
 			listBox.DisplayMember = displayMember;
 		}
 
+		public void HideEditListBtn()
+		{
+			editListBtn.Hide();
+		}
+
 		private void goToChoiceBtn_Click(object sender, EventArgs e)
 		{
 			if (OnGoTo != null)
@@ -52,6 +62,22 @@ namespace Grupptenta2
 			if (OnAdd != null)
 				OnAdd();
 		}
+
+		private void listBox_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			if (OnDoubleClickChoice != null)
+			{
+				OnDoubleClickChoice(sender, new DoubleClickHandlerEventArgs(listBox.SelectedItem));
+			}
+		}
+
+		private void listBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (OnSelectionChanged != null)
+			{
+				OnSelectionChanged(sender, new ListBoxSelectionChangedHandlerEventArgs(listBox.SelectedItem));
+			}
+		}
 	}
 
 	public class GoToHandlerEventArgs : EventArgs
@@ -59,6 +85,24 @@ namespace Grupptenta2
 		public object ChosenItem { get; set; }
 
 		public GoToHandlerEventArgs(object chosenItem)
+		{
+			ChosenItem = chosenItem;
+		}
+	}
+
+	public class DoubleClickHandlerEventArgs : EventArgs
+	{
+		public object ChosenItem { get; set; }
+		public DoubleClickHandlerEventArgs(object chosenItem)
+		{
+			ChosenItem = chosenItem;
+		}
+	}
+
+	public class ListBoxSelectionChangedHandlerEventArgs : EventArgs
+	{
+		public object ChosenItem { get; set; }
+		public ListBoxSelectionChangedHandlerEventArgs(object chosenItem)
 		{
 			ChosenItem = chosenItem;
 		}
