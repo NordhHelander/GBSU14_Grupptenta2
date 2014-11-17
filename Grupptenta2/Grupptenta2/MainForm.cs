@@ -172,7 +172,7 @@ namespace Grupptenta2
 		#region "Contacts"
 		private void ContactTabSetup()
 		{
-			contactSearchControl.SetHeader("Dina Project");
+			contactSearchControl.SetHeader("Dina kontakter");
 			contactSearchControl.SetData(_personManager.Persons, "Name");
 			contactProjectBox.SetHeader("Projekt");
 			contactRelationBox.SetHeader("Närstående");
@@ -191,7 +191,7 @@ namespace Grupptenta2
 			List<Project> projects = _projectManager.Projects.Where(p => p.Roles.Any(r => r.Id == _selectedPerson.Id)).ToList();
 
 			this.Text = _selectedPerson.ToString();
-			contactControl.SetPersonInfo(_selectedPerson, _companyManager);
+			contactControl.SetPersonInfo(_selectedPerson, _companyManager, _projectManager);
 
 			contactProjectBox.SetData(projects, "Name");
 			contactRelationBox.SetData(_selectedPerson.Relations, "Person");
@@ -204,7 +204,7 @@ namespace Grupptenta2
 		}
 		private void personSearchBox_OnDoubleClickChoice(object sender, DoubleClickChoiceHandlerEventArgs e)
 		{
-			PersonPopUp personPopUp = new PersonPopUp(_selectedPerson, _companyManager);
+			PersonPopUp personPopUp = new PersonPopUp(_selectedPerson, _companyManager, _projectManager);
 			personPopUp.ShowDialog();
 			RefreshSearchBox(contactSearchControl, _personManager.Persons, "Person");
 		}

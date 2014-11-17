@@ -20,9 +20,13 @@ namespace Grupptenta2
 		public event SavePersonChangesEventHandler OnSavePersonChanges;
 		public event ClosePopUpEventHandler OnClosePopUp;
 
-		private static Person _person;
+		private static PersonManager _personManager;
 		private static CompanyManager _companyManager;
+		private static ProjectManager _projectManager;
+		private static Person _person;
 		private static Company _company;
+		private static bool _newPerson;
+		private static BindingList<Note> _tempNotes;
 
 		public PersonUserControl()
 		{
@@ -35,13 +39,29 @@ namespace Grupptenta2
 			popUpBtn.Visible = false;
 		}
 
-		public void SetPersonInfo(Person person, CompanyManager companyManager)
+		public void SetupForCreatePerson(PersonManager personManager, CompanyManager companyManager)
 		{
+			_newPerson = true;
+			_personManager = personManager;
+			_companyManager = companyManager;
+
+			firstNameBox.Text = "Förnamn";
+			lastNameBox.Text = "Efternamn";
+			birthdateBox.Text = "ÅÅÅÅ-MM-DD";
+			_tempNotes = new BindingList<Note>();
+			notesBox.DataSource = _tempNotes;
+			notesBox.DisplayMember = "Note";
+			companyBox.DataSource = _companyManager.Companies;
+			companyBox.DisplayMember = "Name";
+		}
+
+		public void SetPersonInfo(Person person, CompanyManager companyManager, ProjectManager projectManager)
+		{
+			_newPerson = false;
 			_person = person;
 			_companyManager = companyManager;
+			_projectManager = projectManager;
 			_company = companyManager.Companies.SingleOrDefault(c => c.Employees.Any(e => e.Id == _person.Id));
-
-			// Se till att lösenords-knappen syns om det är den egna profilen man är inne på.
 
 			firstNameBox.Text = _person.FirstName;
 			lastNameBox.Text = _person.LastName;
@@ -56,11 +76,21 @@ namespace Grupptenta2
 			companyBox.DataSource = companyManager.Companies;
 			companyBox.DisplayMember = "Name";
 			companyBox.SelectedItem = _company;
-			noteBox.DataSource = _person.Notes;
+			notesBox.DataSource = _person.Notes;
 			isActiveCheckBox.Checked = _person.IsActive;
+
+			_tempNotes = _person.Notes;
+			notesBox.DataSource = _tempNotes;
+			notesBox.DisplayMember = "Note";
 		}
+		
 		private void saveBtn_Click(object sender, EventArgs e)
 		{
+			if (_newPerson)
+			{
+				_personManager.CreatePerson(firstNameBox.Text);
+				_person = _personManager.Persons[_personManager.Persons.Count - 1];
+			}
 			_person.FirstName = firstNameBox.Text;
 			_person.LastName = lastNameBox.Text;
 			_person.Birthdate = DateTime.Parse(birthdateBox.Text);
@@ -73,8 +103,8 @@ namespace Grupptenta2
 			_person.Type = (string)typeBox.SelectedItem;
 			_person.IsActive = isActiveCheckBox.Checked;
 
-			if (OnSavePersonChanges != null)
-				OnSavePersonChanges();
+			_person.Notes = _tempNotes;
+
 			//if (companyBox.SelectedItem != _company)
 			//{
 			//	_company.Employees.Remove(_person);
@@ -83,16 +113,36 @@ namespace Grupptenta2
 			//	companyToMovePersonTo.Employees.Add(_person);
 			//	_company = companyToMovePersonTo;
 			//}
+
+			if (OnSavePersonChanges != null)
+				OnSavePersonChanges();
 		}
 
 		private void popUpBtn_Click(object sender, EventArgs e)
 		{
-			PersonPopUp personPopUp = new PersonPopUp(_person, _companyManager);
+			PersonPopUp personPopUp = new PersonPopUp(_person, _companyManager, _projectManager);
 			personPopUp.ShowDialog();
-			SetPersonInfo(_person, _companyManager);
+			SetPersonInfo(_person, _companyManager, _projectManager);
 
 			if (OnClosePopUp != null)
 				OnClosePopUp();
+		}
+
+		private void addNoteBtn_Click(object sender, EventArgs e)
+		{
+			Note note = new Note();
+			// Se till att author blir = inloggad personal.
+			note.NoteDate = DateTime.Now;
+			note.Text = newNoteBox.Text;
+			note.IsPublic = isPublicNoteCheckBox.Checked;
+			newNoteBox.Text = "";
+
+			_tempNotes.Add(note);
+		}
+
+		private void removeNoteBtn_Click(object sender, EventArgs e)
+		{
+			_tempNotes.Remove((Note)notesBox.SelectedItem);
 		}
 	}
 }

@@ -339,13 +339,13 @@
 			this.contactControl.BackColor = System.Drawing.Color.White;
 			this.contactControl.Location = new System.Drawing.Point(3, 3);
 			this.contactControl.Name = "contactControl";
-			this.contactControl.Size = new System.Drawing.Size(201, 553);
+			this.contactControl.Size = new System.Drawing.Size(481, 485);
 			this.contactControl.TabIndex = 13;
 			// 
 			// contactRelationBox
 			// 
 			this.contactRelationBox.BackColor = System.Drawing.Color.White;
-			this.contactRelationBox.Location = new System.Drawing.Point(268, 216);
+			this.contactRelationBox.Location = new System.Drawing.Point(490, 13);
 			this.contactRelationBox.Name = "contactRelationBox";
 			this.contactRelationBox.Size = new System.Drawing.Size(241, 175);
 			this.contactRelationBox.TabIndex = 12;
@@ -353,7 +353,7 @@
 			// contactProjectBox
 			// 
 			this.contactProjectBox.BackColor = System.Drawing.Color.White;
-			this.contactProjectBox.Location = new System.Drawing.Point(268, 3);
+			this.contactProjectBox.Location = new System.Drawing.Point(490, 239);
 			this.contactProjectBox.Name = "contactProjectBox";
 			this.contactProjectBox.Size = new System.Drawing.Size(241, 175);
 			this.contactProjectBox.TabIndex = 10;

@@ -49,12 +49,15 @@
 			this.notesLbl = new System.Windows.Forms.Label();
 			this.saveBtn = new System.Windows.Forms.Button();
 			this.popUpBtn = new System.Windows.Forms.Button();
-			this.passwordBtn = new System.Windows.Forms.Button();
 			this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
-			this.noteBox = new System.Windows.Forms.ListBox();
+			this.notesBox = new System.Windows.Forms.ListBox();
 			this.addNoteBtn = new System.Windows.Forms.Button();
 			this.lastNameBox = new System.Windows.Forms.TextBox();
 			this.typeBox = new System.Windows.Forms.ComboBox();
+			this.newNoteLbl = new System.Windows.Forms.Label();
+			this.removeNoteBtn = new System.Windows.Forms.Button();
+			this.newNoteBox = new System.Windows.Forms.TextBox();
+			this.isPublicNoteCheckBox = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// firstNameBox
@@ -207,17 +210,18 @@
 			// notesLbl
 			// 
 			this.notesLbl.AutoSize = true;
-			this.notesLbl.Location = new System.Drawing.Point(0, 306);
+			this.notesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.notesLbl.Location = new System.Drawing.Point(221, 236);
 			this.notesLbl.Name = "notesLbl";
-			this.notesLbl.Size = new System.Drawing.Size(70, 13);
+			this.notesLbl.Size = new System.Drawing.Size(103, 20);
 			this.notesLbl.TabIndex = 25;
 			this.notesLbl.Text = "Anteckningar";
 			// 
 			// saveBtn
 			// 
-			this.saveBtn.Location = new System.Drawing.Point(36, 466);
+			this.saveBtn.Location = new System.Drawing.Point(273, 441);
 			this.saveBtn.Name = "saveBtn";
-			this.saveBtn.Size = new System.Drawing.Size(153, 23);
+			this.saveBtn.Size = new System.Drawing.Size(116, 23);
 			this.saveBtn.TabIndex = 26;
 			this.saveBtn.Text = "Spara";
 			this.saveBtn.UseVisualStyleBackColor = true;
@@ -225,50 +229,41 @@
 			// 
 			// popUpBtn
 			// 
-			this.popUpBtn.Location = new System.Drawing.Point(36, 437);
+			this.popUpBtn.Location = new System.Drawing.Point(76, 357);
 			this.popUpBtn.Name = "popUpBtn";
-			this.popUpBtn.Size = new System.Drawing.Size(153, 23);
+			this.popUpBtn.Size = new System.Drawing.Size(122, 23);
 			this.popUpBtn.TabIndex = 27;
 			this.popUpBtn.Text = "Öppna i nytt fönster";
 			this.popUpBtn.UseVisualStyleBackColor = true;
 			this.popUpBtn.Click += new System.EventHandler(this.popUpBtn_Click);
 			// 
-			// passwordBtn
-			// 
-			this.passwordBtn.Location = new System.Drawing.Point(36, 524);
-			this.passwordBtn.Name = "passwordBtn";
-			this.passwordBtn.Size = new System.Drawing.Size(153, 23);
-			this.passwordBtn.TabIndex = 28;
-			this.passwordBtn.Text = "Ändra lösenord";
-			this.passwordBtn.UseVisualStyleBackColor = true;
-			this.passwordBtn.Visible = false;
-			// 
 			// isActiveCheckBox
 			// 
 			this.isActiveCheckBox.AutoSize = true;
-			this.isActiveCheckBox.Location = new System.Drawing.Point(89, 404);
+			this.isActiveCheckBox.Location = new System.Drawing.Point(89, 303);
 			this.isActiveCheckBox.Name = "isActiveCheckBox";
 			this.isActiveCheckBox.Size = new System.Drawing.Size(50, 17);
 			this.isActiveCheckBox.TabIndex = 29;
 			this.isActiveCheckBox.Text = "Aktiv";
 			this.isActiveCheckBox.UseVisualStyleBackColor = true;
 			// 
-			// noteBox
+			// notesBox
 			// 
-			this.noteBox.FormattingEnabled = true;
-			this.noteBox.Location = new System.Drawing.Point(89, 303);
-			this.noteBox.Name = "noteBox";
-			this.noteBox.Size = new System.Drawing.Size(100, 95);
-			this.noteBox.TabIndex = 37;
+			this.notesBox.FormattingEnabled = true;
+			this.notesBox.Location = new System.Drawing.Point(224, 259);
+			this.notesBox.Name = "notesBox";
+			this.notesBox.Size = new System.Drawing.Size(165, 121);
+			this.notesBox.TabIndex = 37;
 			// 
 			// addNoteBtn
 			// 
-			this.addNoteBtn.Location = new System.Drawing.Point(36, 495);
+			this.addNoteBtn.Location = new System.Drawing.Point(273, 183);
 			this.addNoteBtn.Name = "addNoteBtn";
-			this.addNoteBtn.Size = new System.Drawing.Size(153, 23);
+			this.addNoteBtn.Size = new System.Drawing.Size(116, 23);
 			this.addNoteBtn.TabIndex = 38;
-			this.addNoteBtn.Text = "Lägg till/Ta bort anteckning";
+			this.addNoteBtn.Text = "Lägg till anteckning";
 			this.addNoteBtn.UseVisualStyleBackColor = true;
+			this.addNoteBtn.Click += new System.EventHandler(this.addNoteBtn_Click);
 			// 
 			// lastNameBox
 			// 
@@ -287,16 +282,57 @@
 			this.typeBox.Size = new System.Drawing.Size(100, 21);
 			this.typeBox.TabIndex = 55;
 			// 
+			// newNoteLbl
+			// 
+			this.newNoteLbl.AutoSize = true;
+			this.newNoteLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.newNoteLbl.Location = new System.Drawing.Point(221, 9);
+			this.newNoteLbl.Name = "newNoteLbl";
+			this.newNoteLbl.Size = new System.Drawing.Size(89, 20);
+			this.newNoteLbl.TabIndex = 57;
+			this.newNoteLbl.Text = "Anteckning";
+			// 
+			// removeNoteBtn
+			// 
+			this.removeNoteBtn.Location = new System.Drawing.Point(273, 386);
+			this.removeNoteBtn.Name = "removeNoteBtn";
+			this.removeNoteBtn.Size = new System.Drawing.Size(116, 23);
+			this.removeNoteBtn.TabIndex = 58;
+			this.removeNoteBtn.Text = "Ta bort anteckning";
+			this.removeNoteBtn.UseVisualStyleBackColor = true;
+			this.removeNoteBtn.Click += new System.EventHandler(this.removeNoteBtn_Click);
+			// 
+			// newNoteBox
+			// 
+			this.newNoteBox.Location = new System.Drawing.Point(224, 33);
+			this.newNoteBox.Multiline = true;
+			this.newNoteBox.Name = "newNoteBox";
+			this.newNoteBox.Size = new System.Drawing.Size(165, 121);
+			this.newNoteBox.TabIndex = 59;
+			// 
+			// isPublicNoteCheckBox
+			// 
+			this.isPublicNoteCheckBox.AutoSize = true;
+			this.isPublicNoteCheckBox.Location = new System.Drawing.Point(278, 160);
+			this.isPublicNoteCheckBox.Name = "isPublicNoteCheckBox";
+			this.isPublicNoteCheckBox.Size = new System.Drawing.Size(111, 17);
+			this.isPublicNoteCheckBox.TabIndex = 60;
+			this.isPublicNoteCheckBox.Text = "Publik anteckning";
+			this.isPublicNoteCheckBox.UseVisualStyleBackColor = true;
+			// 
 			// PersonUserControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.isPublicNoteCheckBox);
+			this.Controls.Add(this.newNoteBox);
+			this.Controls.Add(this.removeNoteBtn);
+			this.Controls.Add(this.newNoteLbl);
 			this.Controls.Add(this.typeBox);
 			this.Controls.Add(this.addNoteBtn);
-			this.Controls.Add(this.noteBox);
+			this.Controls.Add(this.notesBox);
 			this.Controls.Add(this.isActiveCheckBox);
-			this.Controls.Add(this.passwordBtn);
 			this.Controls.Add(this.popUpBtn);
 			this.Controls.Add(this.saveBtn);
 			this.Controls.Add(this.notesLbl);
@@ -320,7 +356,7 @@
 			this.Controls.Add(this.birthdateBox);
 			this.Controls.Add(this.firstNameBox);
 			this.Name = "PersonUserControl";
-			this.Size = new System.Drawing.Size(201, 553);
+			this.Size = new System.Drawing.Size(414, 467);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -349,11 +385,14 @@
 		private System.Windows.Forms.Label notesLbl;
 		private System.Windows.Forms.Button saveBtn;
 		private System.Windows.Forms.Button popUpBtn;
-		private System.Windows.Forms.Button passwordBtn;
 		private System.Windows.Forms.CheckBox isActiveCheckBox;
-		private System.Windows.Forms.ListBox noteBox;
+		private System.Windows.Forms.ListBox notesBox;
 		private System.Windows.Forms.Button addNoteBtn;
 		private System.Windows.Forms.TextBox lastNameBox;
 		private System.Windows.Forms.ComboBox typeBox;
+		private System.Windows.Forms.Label newNoteLbl;
+		private System.Windows.Forms.Button removeNoteBtn;
+		private System.Windows.Forms.TextBox newNoteBox;
+		private System.Windows.Forms.CheckBox isPublicNoteCheckBox;
 	}
 }

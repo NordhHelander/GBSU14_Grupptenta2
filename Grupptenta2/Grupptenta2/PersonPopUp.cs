@@ -14,22 +14,27 @@ namespace Grupptenta2
 {
 	public partial class PersonPopUp : Form
 	{
-		private static Person _person;
-
-		public PersonPopUp(Person person, CompanyManager companyManager)
+		public PersonPopUp(Person person, CompanyManager companyManager, ProjectManager projectManager)
 		{
-			_person = person;
-
 			InitializeComponent();
-			this.Text = _person.ToString();
-			personControl.SetPersonInfo(_person, companyManager);
+			this.Text = person.ToString();
+
+			List<Project> projects = projectManager.Projects.Where(p => p.Roles.Any(r => r.Id == person.Id)).ToList();
+			personControl.SetPersonInfo(person, companyManager, projectManager);
 			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
 			personControl.HidePopUpBtn();
+
+			projectBox.SetHeader("Projekt");
+			relationBox.SetHeader("Närstående");
+			projectBox.SetButtonTexts("Visa", "Lägg till");
+			relationBox.SetButtonTexts("Visa", "Lägg till");
+			projectBox.SetData(projects, "Name");
+			relationBox.SetData(person.Relations, "Person");
 		}
 
 		private void personControl_OnSavePersonChanges()
 		{
-			this.Text = _person.ToString();
+			this.Close();
 		}
 	}
 }
