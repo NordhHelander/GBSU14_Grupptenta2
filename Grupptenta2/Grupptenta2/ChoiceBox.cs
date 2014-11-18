@@ -52,6 +52,11 @@ namespace Grupptenta2
 			if (OnAdd != null)
 				OnAdd();
 		}
+
+        private void listBox_DoubleClick(object sender, EventArgs e)
+        {
+            OnGoTo(sender, new GoToHandlerEventArgs(listBox.SelectedItem));
+        }
 	}
 
 	public class GoToHandlerEventArgs : EventArgs

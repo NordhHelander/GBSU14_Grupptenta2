@@ -250,7 +250,7 @@ namespace Grupptenta2
 		private void companySearchControl_OnCreate()
 		{
 			CreateCompanyForm createCompanyForm = new CreateCompanyForm(_companyManager);
-			createCompanyForm.ShowDialog();
+			createCompanyForm.Show();
 			RefreshCompanySearchBox();
 		}
 		private void companySearchBox_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
@@ -353,7 +353,7 @@ namespace Grupptenta2
 			createNoteForm.ShowDialog();
 			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
-
+        
 		private void RefreshChoiceBox(ChoiceBox choiceBox, object dataSource, string displayMember)
 		{
 			choiceBox.SetData(dataSource, displayMember);
@@ -366,7 +366,10 @@ namespace Grupptenta2
 
 		private void projectNoteBox_OnGoTo(object sender, GoToHandlerEventArgs e)
 		{
-			// Ska fixa note-popup
+			Note noteToEdit = (Note)projectNoteBox.listBox.SelectedItem;
+            CreateNoteForm createNoteForm = new CreateNoteForm(noteToEdit);
+            createNoteForm.ShowDialog();
+            RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
 
 		private void projectEventBox_OnAdd()
@@ -386,5 +389,10 @@ namespace Grupptenta2
 		{
 			this.Text = tabControl.SelectedTab.Text;
 		}
+
+        private void projectParticipantBox_Load(object sender, EventArgs e)
+        {
+
+        }
 	}
 }
