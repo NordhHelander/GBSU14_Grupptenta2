@@ -16,6 +16,8 @@ namespace Grupptenta2
 	{
 		private static CompanyManager _companyManager;
 
+		public Company NewCompany { get; private set; }
+
 		public CreateCompanyForm(CompanyManager companyManager)
 		{
 			_companyManager = companyManager;

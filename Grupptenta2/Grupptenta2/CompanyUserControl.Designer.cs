@@ -39,8 +39,6 @@
 			this.zipLbl = new System.Windows.Forms.Label();
 			this.cityLbl = new System.Windows.Forms.Label();
 			this.saveBtn = new System.Windows.Forms.Button();
-			this.searchBox1 = new Grupptenta2.SearchBox();
-			this.searchBox2 = new Grupptenta2.SearchBox();
 			this.popUpBtn = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
@@ -136,20 +134,6 @@
 			this.saveBtn.UseVisualStyleBackColor = true;
 			this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
 			// 
-			// searchBox1
-			// 
-			this.searchBox1.Location = new System.Drawing.Point(0, 0);
-			this.searchBox1.Name = "searchBox1";
-			this.searchBox1.Size = new System.Drawing.Size(278, 276);
-			this.searchBox1.TabIndex = 0;
-			// 
-			// searchBox2
-			// 
-			this.searchBox2.Location = new System.Drawing.Point(0, 0);
-			this.searchBox2.Name = "searchBox2";
-			this.searchBox2.Size = new System.Drawing.Size(278, 276);
-			this.searchBox2.TabIndex = 0;
-			// 
 			// popUpBtn
 			// 
 			this.popUpBtn.Location = new System.Drawing.Point(64, 248);
@@ -197,8 +181,6 @@
 		private System.Windows.Forms.Label zipLbl;
 		private System.Windows.Forms.Label cityLbl;
 		private System.Windows.Forms.Button saveBtn;
-		private SearchBox searchBox1;
-		private SearchBox searchBox2;
 		private System.Windows.Forms.Button popUpBtn;
 	}
 }

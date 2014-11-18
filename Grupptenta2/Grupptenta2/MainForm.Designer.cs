@@ -45,25 +45,25 @@
 			this.projectDescBox = new System.Windows.Forms.TextBox();
 			this.projectCompanyBox = new System.Windows.Forms.TextBox();
 			this.contactTab = new System.Windows.Forms.TabPage();
-			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.companyTab = new System.Windows.Forms.TabPage();
 			this.companyContainer = new System.Windows.Forms.SplitContainer();
 			this.profileControl = new Grupptenta2.PersonUserControl();
-			this.projectSearchControl = new Grupptenta2.SearchBox();
 			this.projectNoteBox = new Grupptenta2.ChoiceBox();
 			this.projectEventBox = new Grupptenta2.ChoiceBox();
 			this.projectParticipantBox = new Grupptenta2.ChoiceBox();
-			this.contactSearchControl = new Grupptenta2.SearchBox();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.contactChoiceBox = new Grupptenta2.ChoiceBox();
 			this.contactControl = new Grupptenta2.PersonUserControl();
 			this.contactRelationBox = new Grupptenta2.ChoiceBox();
 			this.contactProjectBox = new Grupptenta2.ChoiceBox();
-			this.companySearchControl = new Grupptenta2.SearchBox();
+			this.companyChoiceBox = new Grupptenta2.ChoiceBox();
 			this.companyEmployeeBox = new Grupptenta2.ChoiceBox();
 			this.companyProjectBox = new Grupptenta2.ChoiceBox();
 			this.companyControl = new Grupptenta2.CompanyUserControl();
 			this.customListBox1 = new Grupptenta2.ChoiceBox();
 			this.customListBox2 = new Grupptenta2.ChoiceBox();
 			this.personInfoBox1 = new Grupptenta2.PersonCreationBox();
+			this.projectChoiceBox = new Grupptenta2.ChoiceBox();
 			this.tabControl.SuspendLayout();
 			this.profileTab.SuspendLayout();
 			this.projectTab.SuspendLayout();
@@ -73,15 +73,15 @@
 			this.projectContainer.SuspendLayout();
 			this.projectInfoPnl.SuspendLayout();
 			this.contactTab.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-			this.splitContainer1.Panel1.SuspendLayout();
-			this.splitContainer1.Panel2.SuspendLayout();
-			this.splitContainer1.SuspendLayout();
 			this.companyTab.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.companyContainer)).BeginInit();
 			this.companyContainer.Panel1.SuspendLayout();
 			this.companyContainer.Panel2.SuspendLayout();
 			this.companyContainer.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// quitBtn
@@ -156,7 +156,7 @@
 			// 
 			// projectContainer.Panel1
 			// 
-			this.projectContainer.Panel1.Controls.Add(this.projectSearchControl);
+			this.projectContainer.Panel1.Controls.Add(this.projectChoiceBox);
 			// 
 			// projectContainer.Panel2
 			// 
@@ -266,24 +266,6 @@
 			this.contactTab.Text = "Kontakter";
 			this.contactTab.UseVisualStyleBackColor = true;
 			// 
-			// splitContainer1
-			// 
-			this.splitContainer1.Location = new System.Drawing.Point(3, 3);
-			this.splitContainer1.Name = "splitContainer1";
-			// 
-			// splitContainer1.Panel1
-			// 
-			this.splitContainer1.Panel1.Controls.Add(this.contactSearchControl);
-			// 
-			// splitContainer1.Panel2
-			// 
-			this.splitContainer1.Panel2.Controls.Add(this.contactControl);
-			this.splitContainer1.Panel2.Controls.Add(this.contactRelationBox);
-			this.splitContainer1.Panel2.Controls.Add(this.contactProjectBox);
-			this.splitContainer1.Size = new System.Drawing.Size(1103, 712);
-			this.splitContainer1.SplitterDistance = 341;
-			this.splitContainer1.TabIndex = 11;
-			// 
 			// companyTab
 			// 
 			this.companyTab.Controls.Add(this.companyContainer);
@@ -301,7 +283,7 @@
 			// 
 			// companyContainer.Panel1
 			// 
-			this.companyContainer.Panel1.Controls.Add(this.companySearchControl);
+			this.companyContainer.Panel1.Controls.Add(this.companyChoiceBox);
 			// 
 			// companyContainer.Panel2
 			// 
@@ -319,14 +301,6 @@
 			this.profileControl.Name = "profileControl";
 			this.profileControl.Size = new System.Drawing.Size(810, 574);
 			this.profileControl.TabIndex = 0;
-			// 
-			// projectSearchControl
-			// 
-			this.projectSearchControl.BackColor = System.Drawing.Color.White;
-			this.projectSearchControl.Location = new System.Drawing.Point(3, 3);
-			this.projectSearchControl.Name = "projectSearchControl";
-			this.projectSearchControl.Size = new System.Drawing.Size(278, 301);
-			this.projectSearchControl.TabIndex = 0;
 			// 
 			// projectNoteBox
 			// 
@@ -352,13 +326,31 @@
 			this.projectParticipantBox.Size = new System.Drawing.Size(241, 175);
 			this.projectParticipantBox.TabIndex = 10;
 			// 
-			// contactSearchControl
+			// splitContainer1
 			// 
-			this.contactSearchControl.BackColor = System.Drawing.Color.White;
-			this.contactSearchControl.Location = new System.Drawing.Point(0, 0);
-			this.contactSearchControl.Name = "contactSearchControl";
-			this.contactSearchControl.Size = new System.Drawing.Size(278, 353);
-			this.contactSearchControl.TabIndex = 0;
+			this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.contactChoiceBox);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.contactControl);
+			this.splitContainer1.Panel2.Controls.Add(this.contactRelationBox);
+			this.splitContainer1.Panel2.Controls.Add(this.contactProjectBox);
+			this.splitContainer1.Size = new System.Drawing.Size(1103, 712);
+			this.splitContainer1.SplitterDistance = 341;
+			this.splitContainer1.TabIndex = 11;
+			// 
+			// contactChoiceBox
+			// 
+			this.contactChoiceBox.BackColor = System.Drawing.Color.White;
+			this.contactChoiceBox.Location = new System.Drawing.Point(3, 3);
+			this.contactChoiceBox.Name = "contactChoiceBox";
+			this.contactChoiceBox.Size = new System.Drawing.Size(241, 175);
+			this.contactChoiceBox.TabIndex = 1;
 			// 
 			// contactControl
 			// 
@@ -384,13 +376,13 @@
 			this.contactProjectBox.Size = new System.Drawing.Size(241, 175);
 			this.contactProjectBox.TabIndex = 10;
 			// 
-			// companySearchControl
+			// companyChoiceBox
 			// 
-			this.companySearchControl.BackColor = System.Drawing.Color.White;
-			this.companySearchControl.Location = new System.Drawing.Point(3, 6);
-			this.companySearchControl.Name = "companySearchControl";
-			this.companySearchControl.Size = new System.Drawing.Size(278, 306);
-			this.companySearchControl.TabIndex = 0;
+			this.companyChoiceBox.BackColor = System.Drawing.Color.White;
+			this.companyChoiceBox.Location = new System.Drawing.Point(3, 3);
+			this.companyChoiceBox.Name = "companyChoiceBox";
+			this.companyChoiceBox.Size = new System.Drawing.Size(241, 175);
+			this.companyChoiceBox.TabIndex = 1;
 			// 
 			// companyEmployeeBox
 			// 
@@ -439,6 +431,14 @@
 			this.personInfoBox1.Size = new System.Drawing.Size(240, 669);
 			this.personInfoBox1.TabIndex = 0;
 			// 
+			// projectChoiceBox
+			// 
+			this.projectChoiceBox.BackColor = System.Drawing.Color.White;
+			this.projectChoiceBox.Location = new System.Drawing.Point(3, 3);
+			this.projectChoiceBox.Name = "projectChoiceBox";
+			this.projectChoiceBox.Size = new System.Drawing.Size(241, 175);
+			this.projectChoiceBox.TabIndex = 1;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -461,15 +461,15 @@
 			this.projectInfoPnl.ResumeLayout(false);
 			this.projectInfoPnl.PerformLayout();
 			this.contactTab.ResumeLayout(false);
-			this.splitContainer1.Panel1.ResumeLayout(false);
-			this.splitContainer1.Panel2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-			this.splitContainer1.ResumeLayout(false);
 			this.companyTab.ResumeLayout(false);
 			this.companyContainer.Panel1.ResumeLayout(false);
 			this.companyContainer.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.companyContainer)).EndInit();
 			this.companyContainer.ResumeLayout(false);
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -478,9 +478,6 @@
 
 		private System.Windows.Forms.Button quitBtn;
 		private System.Windows.Forms.Button logOutBtn;
-		private SearchBox contactSearchControl;
-		private SearchBox companySearchControl;
-		private SearchBox projectSearchControl;
 		private ChoiceBox customListBox1;
 		private ChoiceBox customListBox2;
 		private PersonCreationBox personInfoBox1;
@@ -512,6 +509,9 @@
 		private CompanyUserControl companyControl;
 		private ChoiceBox companyEmployeeBox;
 		private ChoiceBox companyProjectBox;
+		private ChoiceBox companyChoiceBox;
+		private ChoiceBox contactChoiceBox;
+		private ChoiceBox projectChoiceBox;
 	}
 }
 

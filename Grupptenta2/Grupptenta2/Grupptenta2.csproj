@@ -136,12 +136,6 @@
       <DependentUpon>ProjectPopUp.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SearchBox.Designer.cs">
-      <DependentUpon>SearchBox.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="CreateEventForm.resx">
       <DependentUpon>CreateEventForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -196,9 +190,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SearchBox.resx">
-      <DependentUpon>SearchBox.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

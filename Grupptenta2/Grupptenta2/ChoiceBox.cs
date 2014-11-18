@@ -32,10 +32,10 @@ namespace Grupptenta2
 			headerLbl.Text = header;
 		}
 
-		public void SetButtonTexts(string goToChoiceBtnText, string editListBtnText)
+		public void SetButtonTexts(string goToChoiceBtnText, string actionBtnText)
 		{
 			goToChoiceBtn.Text = goToChoiceBtnText;
-			editListBtn.Text = editListBtnText;
+			actionBtn.Text = actionBtnText;
 		}
 
 		public void SetData(Object dataSource, string displayMember)
@@ -45,9 +45,15 @@ namespace Grupptenta2
 			listBox.DisplayMember = displayMember;
 		}
 
-		public void HideEditListBtn()
+		public void HideActionBtn()
 		{
-			editListBtn.Hide();
+			actionBtn.Hide();
+		}
+
+		public void HideGoToChoiceBtn()
+		{
+			goToChoiceBtn.Visible = false;
+			actionBtn.Location = new Point(160, 21);
 		}
 
 		private void goToChoiceBtn_Click(object sender, EventArgs e)
