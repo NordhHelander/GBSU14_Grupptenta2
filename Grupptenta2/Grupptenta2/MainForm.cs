@@ -355,6 +355,7 @@ namespace Grupptenta2
 			projectParticipantBox.SetData(_selectedProject.Roles, "Person");
 			projectEventBox.SetData(_selectedProject.ProjectJournal.Events, "ProjectEvent");
 			projectNoteBox.SetData(_selectedProject.ProjectJournal.Notes, "Note");
+			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
 		private void saveBtn_Click(object sender, EventArgs e)
 		{
