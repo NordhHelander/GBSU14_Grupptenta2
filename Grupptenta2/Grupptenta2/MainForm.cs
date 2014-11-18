@@ -168,13 +168,6 @@ namespace Grupptenta2
 			Application.Exit();
 		}
 
-		//private void clientBtn_Click(object sender, EventArgs e)
-		//{
-		//	this.Text = "Dina företagskunder";
-		//	this.companySearchControl.Location = new System.Drawing.Point(210, 10);
-		//	companySearchControl.SetData(_companyManager.Companies, "Name");
-		//}
-
 		#region "Contacts"
 		private void ContactTabSetup()
 		{
