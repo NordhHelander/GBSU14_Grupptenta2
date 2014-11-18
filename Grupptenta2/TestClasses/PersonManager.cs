@@ -31,7 +31,7 @@ namespace TestClasses
 		public PersonManager()
 		{
 			Persons = new BindingList<Person>();
-			Persons = SaveDataXml.LoadPersons();
+			//Persons = SaveDataXml.LoadPersons();
 		}
 	}
 }
