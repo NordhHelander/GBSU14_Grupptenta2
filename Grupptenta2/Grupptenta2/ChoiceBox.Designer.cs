@@ -29,8 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.listBox = new System.Windows.Forms.ListBox();
-			this.goToChoiceBtn = new System.Windows.Forms.Button();
-			this.editListBtn = new System.Windows.Forms.Button();
+			this.actionBtn = new System.Windows.Forms.Button();
 			this.headerLbl = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
@@ -45,25 +44,15 @@
 			this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
 			this.listBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox_MouseDoubleClick);
 			// 
-			// goToChoiceBtn
+			// actionBtn
 			// 
-			this.goToChoiceBtn.Location = new System.Drawing.Point(160, 21);
-			this.goToChoiceBtn.Name = "goToChoiceBtn";
-			this.goToChoiceBtn.Size = new System.Drawing.Size(75, 23);
-			this.goToChoiceBtn.TabIndex = 2;
-			this.goToChoiceBtn.Text = "Öppna";
-			this.goToChoiceBtn.UseVisualStyleBackColor = true;
-			this.goToChoiceBtn.Click += new System.EventHandler(this.goToChoiceBtn_Click);
-			// 
-			// editListBtn
-			// 
-			this.editListBtn.Location = new System.Drawing.Point(160, 50);
-			this.editListBtn.Name = "editListBtn";
-			this.editListBtn.Size = new System.Drawing.Size(75, 23);
-			this.editListBtn.TabIndex = 3;
-			this.editListBtn.Text = "Ändra";
-			this.editListBtn.UseVisualStyleBackColor = true;
-			this.editListBtn.Click += new System.EventHandler(this.editListBtn_Click);
+			this.actionBtn.Location = new System.Drawing.Point(160, 21);
+			this.actionBtn.Name = "actionBtn";
+			this.actionBtn.Size = new System.Drawing.Size(75, 23);
+			this.actionBtn.TabIndex = 3;
+			this.actionBtn.Text = "Ändra";
+			this.actionBtn.UseVisualStyleBackColor = true;
+			this.actionBtn.Click += new System.EventHandler(this.editListBtn_Click);
 			// 
 			// headerLbl
 			// 
@@ -80,8 +69,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.headerLbl);
-			this.Controls.Add(this.editListBtn);
-			this.Controls.Add(this.goToChoiceBtn);
+			this.Controls.Add(this.actionBtn);
 			this.Controls.Add(this.listBox);
 			this.Name = "ChoiceBox";
 			this.Size = new System.Drawing.Size(241, 175);
@@ -92,8 +80,7 @@
 
 		#endregion
 
-        private System.Windows.Forms.Button goToChoiceBtn;
-		private System.Windows.Forms.Button editListBtn;
+		private System.Windows.Forms.Button actionBtn;
 		private System.Windows.Forms.Label headerLbl;
         public System.Windows.Forms.ListBox listBox;
 	}

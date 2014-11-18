@@ -62,12 +62,6 @@
     <Compile Include="EditParticipantListForm.Designer.cs">
       <DependentUpon>EditParticipantListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CompanyPopUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CompanyPopUp.Designer.cs">
-      <DependentUpon>CompanyPopUp.cs</DependentUpon>
-    </Compile>
     <Compile Include="CompanyUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -110,18 +104,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PersonCreationBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PersonCreationBox.Designer.cs">
-      <DependentUpon>PersonCreationBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PersonPopUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PersonPopUp.Designer.cs">
-      <DependentUpon>PersonPopUp.cs</DependentUpon>
-    </Compile>
     <Compile Include="PersonUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -129,19 +111,7 @@
       <DependentUpon>PersonUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectPopUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ProjectPopUp.Designer.cs">
-      <DependentUpon>ProjectPopUp.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SearchBox.Designer.cs">
-      <DependentUpon>SearchBox.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="CreateEventForm.resx">
       <DependentUpon>CreateEventForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,9 +120,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditParticipantListForm.resx">
       <DependentUpon>EditParticipantListForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CompanyPopUp.resx">
-      <DependentUpon>CompanyPopUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CompanyUserControl.resx">
       <DependentUpon>CompanyUserControl.cs</DependentUpon>
@@ -175,17 +142,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PersonCreationBox.resx">
-      <DependentUpon>PersonCreationBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PersonPopUp.resx">
-      <DependentUpon>PersonPopUp.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PersonUserControl.resx">
       <DependentUpon>PersonUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProjectPopUp.resx">
-      <DependentUpon>ProjectPopUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -196,9 +154,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SearchBox.resx">
-      <DependentUpon>SearchBox.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
