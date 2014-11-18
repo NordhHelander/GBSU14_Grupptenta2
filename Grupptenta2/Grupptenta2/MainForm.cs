@@ -352,7 +352,10 @@ namespace Grupptenta2
 		}
 		private void projectNoteBox_OnGoTo(object sender, GoToHandlerEventArgs e)
 		{
-			// Ska fixa note-popup
+			Note noteToEdit = (Note)projectNoteBox.listBox.SelectedItem;
+            CreateNoteForm createNoteForm = new CreateNoteForm(noteToEdit);
+            createNoteForm.ShowDialog();
+            RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
 		private void projectEventBox_OnAdd()
 		{
@@ -417,5 +420,10 @@ namespace Grupptenta2
 			contactProjectBox.SetData(projects, "Name");
 			contactRelationBox.SetData(_selectedPerson.Relations, "Person");
 		}
+
+        private void projectParticipantBox_Load(object sender, EventArgs e)
+        {
+
+        }
 	}
 }

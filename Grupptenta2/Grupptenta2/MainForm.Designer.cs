@@ -207,6 +207,7 @@
 			this.projectParticipantBox.Name = "projectParticipantBox";
 			this.projectParticipantBox.Size = new System.Drawing.Size(241, 175);
 			this.projectParticipantBox.TabIndex = 10;
+            this.projectParticipantBox.Load += new System.EventHandler(this.projectParticipantBox_Load);
 			// 
 			// projectInfoPnl
 			// 
