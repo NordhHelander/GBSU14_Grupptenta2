@@ -42,7 +42,8 @@
             this.listBox.Name = "listBox";
             this.listBox.Size = new System.Drawing.Size(150, 147);
             this.listBox.TabIndex = 1;
-            this.listBox.DoubleClick += new System.EventHandler(this.listBox_DoubleClick);
+            // TODO: Vad är detta? ListBox_DoubleClick
+            //this.listBox.DoubleClick += new System.EventHandler(this.listBox_MouseDoubleClick);
             // 
             // goToChoiceBtn
             // 

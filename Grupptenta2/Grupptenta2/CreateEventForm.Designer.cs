@@ -124,7 +124,7 @@
             this.addNoteBtn.TabIndex = 34;
             this.addNoteBtn.Text = "Spara anteckning";
             this.addNoteBtn.UseVisualStyleBackColor = true;
-            this.addNoteBtn.Click += new System.EventHandler(this.addNoteBtn_Click);
+            //this.addNoteBtn.Click += new System.EventHandler(this.addNoteBtn_Click);
             // 
             // isMeetingCheckBox
             // 
@@ -354,7 +354,8 @@
             this.Controls.Add(this.saveBtn);
             this.Name = "CreateEventForm";
             this.Text = "CreateEvent";
-            this.Load += new System.EventHandler(this.CreateEventForm_Load);
+            // TODO: Vad är detta? this.CreateEventForm_Load
+            //this.Load += new System.EventHandler(this.CreateEventForm_Load);
             this.eventCreationContainer.Panel1.ResumeLayout(false);
             this.eventCreationContainer.Panel1.PerformLayout();
             this.eventCreationContainer.Panel2.ResumeLayout(false);
