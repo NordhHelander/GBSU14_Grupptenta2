@@ -257,7 +257,7 @@ namespace Grupptenta2
 		private void companyChoiceBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedCompany = (Company)e.ChosenItem;
-            if (_selectedCompany != null)
+                        if (_selectedCompany != null)
             {
                 LoadSelectedCompany(); 
             }
