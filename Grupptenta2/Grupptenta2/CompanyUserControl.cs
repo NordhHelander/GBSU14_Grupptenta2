@@ -15,10 +15,8 @@ namespace Grupptenta2
 	public partial class CompanyUserControl : UserControl
 	{
 		public delegate void SaveCompanyChangesEventHandler();
-		public delegate void ClosePopUpEventHandler();
 
 		public event SaveCompanyChangesEventHandler OnSaveCompanyChanges;
-		public event ClosePopUpEventHandler OnClosePopUp;
 
 		private static Company _company;
 		private bool _newCompany;
@@ -27,11 +25,6 @@ namespace Grupptenta2
 		public CompanyUserControl()
 		{
 			InitializeComponent();
-		}
-
-		public void HidePopUpBtn()
-		{
-			popUpBtn.Visible = false;
 		}
 
 		public void SetupForCreateCompany(CompanyManager companyManager)
@@ -68,19 +61,6 @@ namespace Grupptenta2
 
 				if (OnSaveCompanyChanges != null)
 					OnSaveCompanyChanges();
-		}
-
-		private void popUpBtn_Click(object sender, EventArgs e)
-		{
-			if (_company != null)
-			{
-				CompanyPopUp companyPopUp = new CompanyPopUp(_company);
-				companyPopUp.ShowDialog();
-				SetCompanyInfo(_company);
-			}
-
-			if (OnClosePopUp != null)
-				OnClosePopUp();
 		}
 	}
 }

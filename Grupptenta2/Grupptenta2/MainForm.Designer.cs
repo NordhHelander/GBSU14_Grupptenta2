@@ -62,7 +62,6 @@
 			this.companyControl = new Grupptenta2.CompanyUserControl();
 			this.customListBox1 = new Grupptenta2.ChoiceBox();
 			this.customListBox2 = new Grupptenta2.ChoiceBox();
-			this.personInfoBox1 = new Grupptenta2.PersonCreationBox();
 			this.projectChoiceBox = new Grupptenta2.ChoiceBox();
 			this.tabControl.SuspendLayout();
 			this.profileTab.SuspendLayout();
@@ -424,13 +423,6 @@
 			this.customListBox2.Size = new System.Drawing.Size(241, 184);
 			this.customListBox2.TabIndex = 1;
 			// 
-			// personInfoBox1
-			// 
-			this.personInfoBox1.Location = new System.Drawing.Point(3, 3);
-			this.personInfoBox1.Name = "personInfoBox1";
-			this.personInfoBox1.Size = new System.Drawing.Size(240, 669);
-			this.personInfoBox1.TabIndex = 0;
-			// 
 			// projectChoiceBox
 			// 
 			this.projectChoiceBox.BackColor = System.Drawing.Color.White;
@@ -480,7 +472,6 @@
 		private System.Windows.Forms.Button logOutBtn;
 		private ChoiceBox customListBox1;
 		private ChoiceBox customListBox2;
-		private PersonCreationBox personInfoBox1;
 		private System.Windows.Forms.TabControl tabControl;
 		private System.Windows.Forms.TabPage profileTab;
 		private System.Windows.Forms.TabPage calendarTab;

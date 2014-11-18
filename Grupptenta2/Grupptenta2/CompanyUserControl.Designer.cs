@@ -39,7 +39,6 @@
 			this.zipLbl = new System.Windows.Forms.Label();
 			this.cityLbl = new System.Windows.Forms.Label();
 			this.saveBtn = new System.Windows.Forms.Button();
-			this.popUpBtn = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// nameBox
@@ -134,22 +133,11 @@
 			this.saveBtn.UseVisualStyleBackColor = true;
 			this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
 			// 
-			// popUpBtn
-			// 
-			this.popUpBtn.Location = new System.Drawing.Point(64, 248);
-			this.popUpBtn.Name = "popUpBtn";
-			this.popUpBtn.Size = new System.Drawing.Size(117, 23);
-			this.popUpBtn.TabIndex = 30;
-			this.popUpBtn.Text = "Öppna i nytt fönster";
-			this.popUpBtn.UseVisualStyleBackColor = true;
-			this.popUpBtn.Click += new System.EventHandler(this.popUpBtn_Click);
-			// 
 			// CompanyUserControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.popUpBtn);
 			this.Controls.Add(this.saveBtn);
 			this.Controls.Add(this.cityLbl);
 			this.Controls.Add(this.zipLbl);
@@ -181,6 +169,5 @@
 		private System.Windows.Forms.Label zipLbl;
 		private System.Windows.Forms.Label cityLbl;
 		private System.Windows.Forms.Button saveBtn;
-		private System.Windows.Forms.Button popUpBtn;
 	}
 }

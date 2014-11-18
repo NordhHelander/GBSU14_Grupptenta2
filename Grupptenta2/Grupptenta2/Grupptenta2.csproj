@@ -104,12 +104,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PersonCreationBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PersonCreationBox.Designer.cs">
-      <DependentUpon>PersonCreationBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="PersonUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -147,9 +141,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PersonCreationBox.resx">
-      <DependentUpon>PersonCreationBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PersonUserControl.resx">
       <DependentUpon>PersonUserControl.cs</DependentUpon>
