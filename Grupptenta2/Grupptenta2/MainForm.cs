@@ -182,7 +182,10 @@ namespace Grupptenta2
 		private void contactChoiceBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedPerson = (Person)e.ChosenItem;
-			LoadSelectedPerson();
+            if (_selectedPerson != null)
+            {
+                LoadSelectedPerson(); 
+            }
 		}
 		private void contactChoiceBox_OnAdd()
 		{
@@ -257,7 +260,10 @@ namespace Grupptenta2
 		private void companyChoiceBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedCompany = (Company)e.ChosenItem;
-			LoadSelectedCompany();
+                        if (_selectedCompany != null)
+            {
+                LoadSelectedCompany(); 
+            }
 		}
 
 		// Company Container: Panel 2
@@ -317,7 +323,10 @@ namespace Grupptenta2
 		private void projectChoiceBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedProject = (Project)e.ChosenItem;
-			LoadSelectedProject();
+            if (_selectedProject != null)
+            {
+                LoadSelectedProject(); 
+            }
 		}
 
 		private void projectChoiceBox_OnAdd()
