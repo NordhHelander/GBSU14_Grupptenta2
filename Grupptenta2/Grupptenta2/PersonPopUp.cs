@@ -22,7 +22,6 @@ namespace Grupptenta2
 			List<Project> projects = projectManager.Projects.Where(p => p.Roles.Any(r => r.Id == person.Id)).ToList();
 			personControl.SetPersonInfo(person, companyManager, projectManager);
 			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
-			personControl.HidePopUpBtn();
 
 			projectBox.SetHeader("Projekt");
 			relationBox.SetHeader("Närstående");

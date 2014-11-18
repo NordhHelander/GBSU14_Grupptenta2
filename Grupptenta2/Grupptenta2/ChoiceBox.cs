@@ -17,7 +17,6 @@ namespace Grupptenta2
 		public delegate void DoubleClickEventHandler(object sender, DoubleClickHandlerEventArgs e);
 		public delegate void ListBoxSelectionChangedEventHandler(object sender, ListBoxSelectionChangedHandlerEventArgs e);
 
-
 		public event GoToEventHandler OnGoTo;
 		public event AddItemEventHandler OnAdd;
 		public event DoubleClickEventHandler OnDoubleClickChoice;

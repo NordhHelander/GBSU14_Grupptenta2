@@ -14,30 +14,24 @@ namespace Grupptenta2
 {
 	public partial class CreatePersonForm : Form
 	{
-		private PersonManager _personManager;
-		private CompanyManager _companyManager;
-		private static Company _company;
-
 		public CreatePersonForm(PersonManager personManager, CompanyManager companyManager)
 		{
-			_personManager = personManager;
-			_companyManager = companyManager;
-
 			InitializeComponent();
-			personControl.SetupForCreatePerson(_personManager, _companyManager);
-			personControl.HidePopUpBtn();
+			personControl.SetupForCreatePerson(personManager, companyManager);
 			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
 		}
 
 		public CreatePersonForm(Company company, PersonManager personManager, CompanyManager companyManager)
 		{
-			_personManager = personManager;
-			_companyManager = companyManager;
-			_company = company;
-
 			InitializeComponent();
-			personControl.SetupForCreateEmployee(company, _personManager, _companyManager);
-			personControl.HidePopUpBtn();
+			personControl.SetupForCreateEmployee(company, personManager, companyManager);
+			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
+		}
+
+		public CreatePersonForm(bool isRelation, Person person, PersonManager personManager)
+		{
+			InitializeComponent();
+			personControl.SetupForCreateRelation(isRelation, person, personManager);
 			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
 		}
 

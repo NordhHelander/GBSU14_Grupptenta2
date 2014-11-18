@@ -48,7 +48,6 @@
 			this.companyLbl = new System.Windows.Forms.Label();
 			this.notesLbl = new System.Windows.Forms.Label();
 			this.saveBtn = new System.Windows.Forms.Button();
-			this.popUpBtn = new System.Windows.Forms.Button();
 			this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
 			this.notesBox = new System.Windows.Forms.ListBox();
 			this.addNoteBtn = new System.Windows.Forms.Button();
@@ -219,23 +218,13 @@
 			// 
 			// saveBtn
 			// 
-			this.saveBtn.Location = new System.Drawing.Point(273, 441);
+			this.saveBtn.Location = new System.Drawing.Point(73, 441);
 			this.saveBtn.Name = "saveBtn";
 			this.saveBtn.Size = new System.Drawing.Size(116, 23);
 			this.saveBtn.TabIndex = 26;
 			this.saveBtn.Text = "Spara";
 			this.saveBtn.UseVisualStyleBackColor = true;
 			this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
-			// 
-			// popUpBtn
-			// 
-			this.popUpBtn.Location = new System.Drawing.Point(76, 357);
-			this.popUpBtn.Name = "popUpBtn";
-			this.popUpBtn.Size = new System.Drawing.Size(122, 23);
-			this.popUpBtn.TabIndex = 27;
-			this.popUpBtn.Text = "Öppna i nytt fönster";
-			this.popUpBtn.UseVisualStyleBackColor = true;
-			this.popUpBtn.Click += new System.EventHandler(this.popUpBtn_Click);
 			// 
 			// isActiveCheckBox
 			// 
@@ -334,7 +323,6 @@
 			this.Controls.Add(this.addNoteBtn);
 			this.Controls.Add(this.notesBox);
 			this.Controls.Add(this.isActiveCheckBox);
-			this.Controls.Add(this.popUpBtn);
 			this.Controls.Add(this.saveBtn);
 			this.Controls.Add(this.notesLbl);
 			this.Controls.Add(this.companyLbl);
@@ -385,7 +373,6 @@
 		private System.Windows.Forms.Label companyLbl;
 		private System.Windows.Forms.Label notesLbl;
 		private System.Windows.Forms.Button saveBtn;
-		private System.Windows.Forms.Button popUpBtn;
 		private System.Windows.Forms.CheckBox isActiveCheckBox;
 		private System.Windows.Forms.ListBox notesBox;
 		private System.Windows.Forms.Button addNoteBtn;

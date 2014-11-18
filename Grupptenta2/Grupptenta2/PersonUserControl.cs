@@ -15,12 +15,10 @@ namespace Grupptenta2
 	public partial class PersonUserControl : UserControl
 	{
 		public delegate void SavePersonChangesEventHandler();
-		public delegate void ClosePopUpEventHandler();
 		public delegate void DoubleClickNoteEventHandler(object sender, DoubleClickNoteHandlerEventArgs e);
 
 
 		public event SavePersonChangesEventHandler OnSavePersonChanges;
-		public event ClosePopUpEventHandler OnClosePopUp;
 		public event DoubleClickNoteEventHandler OnDoubleClickNote;
 
 		private static PersonManager _personManager;
@@ -29,6 +27,8 @@ namespace Grupptenta2
 		private static Person _person;
 		private static Company _company;
 		private static bool _newPerson;
+		private static bool _isRelation;
+		private static Person _personWithNewRelation;
 		private static BindingList<Note> _tempNotes;
 
 		public PersonUserControl()
@@ -37,36 +37,48 @@ namespace Grupptenta2
 			typeBox.DataSource = new List<string> { "Anställd", "Konsult", "Kontakt", "Närstående" };
 		}
 
-		public void HidePopUpBtn()
-		{
-			popUpBtn.Visible = false;
-		}
-
 		public void SetupForCreatePerson(PersonManager personManager, CompanyManager companyManager)
 		{
-			SetupForGeneralNewPerson(personManager, companyManager);
+			SetupForCreateWorkingPerson(personManager, companyManager);
 		}
 
 		public void SetupForCreateEmployee(Company company, PersonManager personManager, CompanyManager companyManager)
 		{
-			SetupForGeneralNewPerson(personManager, companyManager);
+			SetupForCreateWorkingPerson(personManager, companyManager);
 			companyBox.SelectedItem = company;
 			companyBox.Enabled = false;
 		}
 
-		private void SetupForGeneralNewPerson(PersonManager personManager, CompanyManager companyManager)
+		public void SetupForCreateRelation(bool isRelation, Person person, PersonManager personManager)
+		{
+			_newPerson = true;
+			_isRelation = true;
+			_personWithNewRelation = person;
+			_personManager = personManager;
+			SetupBasicPerson();
+			typeBox.SelectedIndex = 3;
+			typeBox.Enabled = false;
+			companyBox.DataSource = null;
+			companyBox.Enabled = false;
+		}
+
+		private void SetupForCreateWorkingPerson(PersonManager personManager, CompanyManager companyManager)
 		{
 			_newPerson = true;
 			_personManager = personManager;
 			_companyManager = companyManager;
+			companyBox.DataSource = _companyManager.Companies;
+			SetupBasicPerson();
+		}
 
+		private void SetupBasicPerson()
+		{
 			firstNameBox.Text = "Förnamn";
 			lastNameBox.Text = "Efternamn";
 			birthdateBox.Text = "ÅÅÅÅ-MM-DD";
 			_tempNotes = new BindingList<Note>();
 			notesBox.DataSource = _tempNotes;
 			notesBox.DisplayMember = "Note";
-			companyBox.DataSource = _companyManager.Companies;
 			companyBox.DisplayMember = "Name";
 		}
 
@@ -106,8 +118,15 @@ namespace Grupptenta2
 				_personManager.CreatePerson(firstNameBox.Text);
 				_person = _personManager.Persons[_personManager.Persons.Count - 1];
 				Company selectedCompany = (Company)companyBox.SelectedItem;
-				_company = _companyManager.Companies.SingleOrDefault(c => c.Id == selectedCompany.Id);
-				_company.Employees.Add(_person);
+				if (_isRelation)
+				{
+					_personWithNewRelation.Relations.Add(_person);
+				}
+				else
+				{
+					_company = _companyManager.Companies.SingleOrDefault(c => c.Id == selectedCompany.Id);
+					_company.Employees.Add(_person);
+				}
 			}
 
 			_person.FirstName = firstNameBox.Text;
@@ -124,7 +143,7 @@ namespace Grupptenta2
 
 			_person.Notes = _tempNotes;
 
-			if (companyBox.SelectedItem != _company)
+			if (companyBox.SelectedItem != _company && !_isRelation )
 			{
 				List<Person> newEmployeeList = _company.Employees.Where(p => p.Id != _person.Id).ToList();
 				_company.Employees = new BindingList<Person>(newEmployeeList);
@@ -135,19 +154,6 @@ namespace Grupptenta2
 
 			if (OnSavePersonChanges != null)
 				OnSavePersonChanges();
-		}
-
-		private void popUpBtn_Click(object sender, EventArgs e)
-		{
-			if (_person != null)
-			{
-				PersonPopUp personPopUp = new PersonPopUp(_person, _companyManager, _projectManager);
-				personPopUp.ShowDialog();
-				SetPersonInfo(_person, _companyManager, _projectManager);
-			}
-
-			if (OnClosePopUp != null)
-				OnClosePopUp();
 		}
 
 		private void addNoteBtn_Click(object sender, EventArgs e)
