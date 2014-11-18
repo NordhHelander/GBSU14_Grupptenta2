@@ -14,19 +14,26 @@ namespace Grupptenta2
 {
 	public partial class PersonUserControl : UserControl
 	{
-		public delegate void SavePersonChangesEventHandler(object sender, SavePersonChangesHandlerEventArgs e);
+		public delegate void SavePersonChangesEventHandler();
 		public delegate void ClosePopUpEventHandler();
+		public delegate void DoubleClickNoteEventHandler(object sender, DoubleClickNoteHandlerEventArgs e);
+
 
 		public event SavePersonChangesEventHandler OnSavePersonChanges;
 		public event ClosePopUpEventHandler OnClosePopUp;
+		public event DoubleClickNoteEventHandler OnDoubleClickNote;
 
-		private static Person _person;
+		private static PersonManager _personManager;
 		private static CompanyManager _companyManager;
+		private static ProjectManager _projectManager;
+		private static Person _person;
+		private static Company _company;
+		private static bool _newPerson;
+		private static BindingList<Note> _tempNotes;
 
 		public PersonUserControl()
 		{
 			InitializeComponent();
-
 			typeBox.DataSource = new List<string> { "Anställd", "Konsult", "Kontakt", "Närstående" };
 		}
 
@@ -35,10 +42,41 @@ namespace Grupptenta2
 			popUpBtn.Visible = false;
 		}
 
-		public void SetPersonInfo(Person person, CompanyManager companyManager)
+		public void SetupForCreatePerson(PersonManager personManager, CompanyManager companyManager)
 		{
+			SetupForGeneralNewPerson(personManager, companyManager);
+		}
+
+		public void SetupForCreateEmployee(Company company, PersonManager personManager, CompanyManager companyManager)
+		{
+			SetupForGeneralNewPerson(personManager, companyManager);
+			companyBox.SelectedItem = company;
+			companyBox.Enabled = false;
+		}
+
+		private void SetupForGeneralNewPerson(PersonManager personManager, CompanyManager companyManager)
+		{
+			_newPerson = true;
+			_personManager = personManager;
+			_companyManager = companyManager;
+
+			firstNameBox.Text = "Förnamn";
+			lastNameBox.Text = "Efternamn";
+			birthdateBox.Text = "ÅÅÅÅ-MM-DD";
+			_tempNotes = new BindingList<Note>();
+			notesBox.DataSource = _tempNotes;
+			notesBox.DisplayMember = "Note";
+			companyBox.DataSource = _companyManager.Companies;
+			companyBox.DisplayMember = "Name";
+		}
+
+		public void SetPersonInfo(Person person, CompanyManager companyManager, ProjectManager projectManager)
+		{
+			_newPerson = false;
 			_person = person;
 			_companyManager = companyManager;
+			_projectManager = projectManager;
+			_company = companyManager.Companies.SingleOrDefault(c => c.Employees.Any(e => e.Id == _person.Id));
 
 			firstNameBox.Text = _person.FirstName;
 			lastNameBox.Text = _person.LastName;
@@ -52,105 +90,98 @@ namespace Grupptenta2
 			typeBox.Text = _person.Type;
 			companyBox.DataSource = companyManager.Companies;
 			companyBox.DisplayMember = "Name";
-			companyBox.SelectedItem = companyManager.Companies.SingleOrDefault(c => c.Employees.Any(e => e.Id == _person.Id));
-			noteBox.DataSource = _person.Notes;
-			activeCheckBox.Checked = _person.IsActive;
+			companyBox.SelectedItem = _company;
+			notesBox.DataSource = _person.Notes;
+			isActiveCheckBox.Checked = _person.IsActive;
 
-			//projectBox.DataSource =					Ska sättas till lista över projekt som personen är med i.
-			//projectBox.DisplayMember = "Name";
-			//contactBox.DataSource =					Ska sättas till personer som personen är relaterad till.
-			//contactBox.DisplayMember = "Person";
+			_tempNotes = _person.Notes;
+			notesBox.DataSource = _tempNotes;
+			notesBox.DisplayMember = "Note";
 		}
-		private void editSaveBtn_Click(object sender, EventArgs e)
+		
+		private void saveBtn_Click(object sender, EventArgs e)
 		{
-			if (editSaveBtn.Text == "Redigera")
+			if (_newPerson)
 			{
-				firstNameBox.ReadOnly = false;
-				lastNameBox.ReadOnly = false;
-				birthdateBox.ReadOnly = false;
-				streetBox.ReadOnly = false;
-				zipBox.ReadOnly = false;
-				cityBox.ReadOnly = false;
-				phoneBox.ReadOnly = false;
-				cellPhoneBox.ReadOnly = false;
-				emailBox.ReadOnly = false;
-				typeBox.Enabled = true;
-				companyBox.Enabled = true;
-				noteBox.Enabled = true;
-				activeCheckBox.Enabled = true;
-
-				editSaveBtn.Text = "Spara";
-				addNoteBtn.Visible = true;
-				passwordBtn.Visible = true;
+				_personManager.CreatePerson(firstNameBox.Text);
+				_person = _personManager.Persons[_personManager.Persons.Count - 1];
+				Company selectedCompany = (Company)companyBox.SelectedItem;
+				_company = _companyManager.Companies.SingleOrDefault(c => c.Id == selectedCompany.Id);
+				_company.Employees.Add(_person);
 			}
-			else if (editSaveBtn.Text == "Spara")
+
+			_person.FirstName = firstNameBox.Text;
+			_person.LastName = lastNameBox.Text;
+			_person.Birthdate = DateTime.Parse(birthdateBox.Text);
+			_person.ResidentialAddress.Street = streetBox.Text;
+			_person.ResidentialAddress.ZipCode = zipBox.Text;
+			_person.ResidentialAddress.City = cityBox.Text;
+			_person.PhoneNumber = phoneBox.Text;
+			_person.CellPhoneNumber = cellPhoneBox.Text;
+			_person.EmailAddress = emailBox.Text;
+			_person.Type = (string)typeBox.SelectedItem;
+			_person.IsActive = isActiveCheckBox.Checked;
+
+			_person.Notes = _tempNotes;
+
+			if (companyBox.SelectedItem != _company)
 			{
-				firstNameBox.ReadOnly = true;
-				lastNameBox.ReadOnly = true;
-				birthdateBox.ReadOnly = true;
-				streetBox.ReadOnly = true;
-				zipBox.ReadOnly = true;
-				cityBox.ReadOnly = true;
-				phoneBox.ReadOnly = true;
-				cellPhoneBox.ReadOnly = true;
-				emailBox.ReadOnly = true;
-				typeBox.Enabled = false;
-				companyBox.Enabled = false;
-				noteBox.Enabled = false;
-				activeCheckBox.Enabled = false;
+				List<Person> newEmployeeList = _company.Employees.Where(p => p.Id != _person.Id).ToList();
+				_company.Employees = new BindingList<Person>(newEmployeeList);
 
-				if (OnSavePersonChanges != null)
-					OnSavePersonChanges(sender, new SavePersonChangesHandlerEventArgs(firstNameBox.Text, lastNameBox.Text, DateTime.Parse(birthdateBox.Text), streetBox.Text,
-						zipBox.Text, cityBox.Text, phoneBox.Text, cellPhoneBox.Text, emailBox.Text, (string)typeBox.SelectedItem, (Company)companyBox.SelectedItem, (List<Note>)noteBox.DataSource, activeCheckBox.Checked));
-
-				editSaveBtn.Text = "Redigera";
-				addNoteBtn.Visible = false;
-				passwordBtn.Visible = false;
+				_company = (Company)companyBox.SelectedItem;
+				_company.Employees.Add(_person);
 			}
+
+			if (OnSavePersonChanges != null)
+				OnSavePersonChanges();
 		}
 
 		private void popUpBtn_Click(object sender, EventArgs e)
 		{
-			PersonPopUp personPopUp = new PersonPopUp(_person, _companyManager);
-			personPopUp.ShowDialog();
-			SetPersonInfo(_person, _companyManager);
+			if (_person != null)
+			{
+				PersonPopUp personPopUp = new PersonPopUp(_person, _companyManager, _projectManager);
+				personPopUp.ShowDialog();
+				SetPersonInfo(_person, _companyManager, _projectManager);
+			}
 
 			if (OnClosePopUp != null)
 				OnClosePopUp();
 		}
+
+		private void addNoteBtn_Click(object sender, EventArgs e)
+		{
+			Note note = new Note();
+			// Se till att author blir = inloggad personal.
+			note.NoteDate = DateTime.Now;
+			note.Text = newNoteBox.Text;
+			note.IsPublic = isPublicNoteCheckBox.Checked;
+			newNoteBox.Text = "";
+
+			_tempNotes.Add(note);
+		}
+
+		private void removeNoteBtn_Click(object sender, EventArgs e)
+		{
+			_tempNotes.Remove((Note)notesBox.SelectedItem);
+		}
+
+		private void notesBox_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			if (OnDoubleClickNote != null)
+			{
+				OnDoubleClickNote(sender, new DoubleClickNoteHandlerEventArgs((Note)notesBox.SelectedItem));
+			}
+		}
 	}
 
-	public class SavePersonChangesHandlerEventArgs : EventArgs
+	public class DoubleClickNoteHandlerEventArgs : EventArgs
 	{
-		public string FirstName { get; set; }
-		public string LastName { get; set; }
-		public DateTime DateOfBirth { get; set; }
-		public string Street { get; set; }
-		public string ZipCode { get; set; }
-		public string City { get; set; }
-		public string PhoneNumber { get; set; }
-		public string CellPhoneNumber { get; set; }
-		public string EmailAddress { get; set; }
-		public string Type { get; set; }
-		public Company Company { get; set; }
-		public List<Note> Notes { get; set; }
-		public bool IsActive { get; set; }
-
-		public SavePersonChangesHandlerEventArgs(string firstName, string lastName, DateTime dateOfBirth, string street, string zipCode, string city, string phoneNumber, string cellPhoneNumber, string emailAddress, string type, Company company, List<Note> notes, bool isActive)
+		public Note SelectedNote { get; set; }
+		public DoubleClickNoteHandlerEventArgs(Note selectedNote)
 		{
-			FirstName = firstName;
-			LastName = lastName;
-			DateOfBirth = dateOfBirth;
-			Street = street;
-			ZipCode = zipCode;
-			City = city;
-			PhoneNumber = phoneNumber;
-			CellPhoneNumber = cellPhoneNumber;
-			EmailAddress = emailAddress;
-			Type = type;
-			Company = company;
-			Notes = notes;
-			IsActive = isActive;
+			SelectedNote = selectedNote;
 		}
 	}
 }

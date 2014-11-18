@@ -16,6 +16,7 @@ namespace Grupptenta2
 	{
 		private PersonManager _personManager;
 		private CompanyManager _companyManager;
+		private static Company _company;
 
 		public CreatePersonForm(PersonManager personManager, CompanyManager companyManager)
 		{
@@ -23,33 +24,25 @@ namespace Grupptenta2
 			_companyManager = companyManager;
 
 			InitializeComponent();
-
-			companyBox.DataSource = _companyManager.Companies;
-			companyBox.DisplayMember = "Name";
-
-			typeBox.DataSource = new List<string> { "Anställd", "Konsult", "Kontakt", "Närstående" };
+			personControl.SetupForCreatePerson(_personManager, _companyManager);
+			personControl.HidePopUpBtn();
+			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
 		}
 
-		private void saveBtn_Click(object sender, EventArgs e)
+		public CreatePersonForm(Company company, PersonManager personManager, CompanyManager companyManager)
 		{
-			_personManager.CreatePerson(firstNameBox.Text);
-			int indexOfNewPerson = _personManager.Persons.Count - 1;
-			Person person = _personManager.Persons[indexOfNewPerson];
+			_personManager = personManager;
+			_companyManager = companyManager;
+			_company = company;
 
-			person.LastName = lastNameBox.Text;
-			DateTime birthDate;
-			DateTime.TryParse(birthdateBox.Text, out birthDate);
-			person.Birthdate = birthDate;
-			person.ResidentialAddress.Street = streetBox.Text;
-			person.ResidentialAddress.ZipCode = zipBox.Text;
-			person.ResidentialAddress.City = cityBox.Text;
-			person.PhoneNumber = phoneBox.Text;
-			person.CellPhoneNumber = cellPhoneBox.Text;
-			person.EmailAddress = emailBox.Text;
-			person.Type = (string)typeBox.SelectedItem;
-			_companyManager.Companies.SingleOrDefault(c => c == companyBox.SelectedItem).Employees.Add(person);
-			//person.Notes = lägg till metod för att lägga till note på knappklick och på dubbelklick i noteBox.
-			person.IsActive = activeCheckBox.Checked;
+			InitializeComponent();
+			personControl.SetupForCreateEmployee(company, _personManager, _companyManager);
+			personControl.HidePopUpBtn();
+			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
+		}
+
+		private void personControl_OnSavePersonChanges()
+		{
 			this.Close();
 		}
 	}

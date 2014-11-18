@@ -14,8 +14,7 @@ namespace Grupptenta2
 	public partial class CreateEventForm : Form
 	{
 		private static Project _project;
-		// TODO: varför är dessa oanvända?
-        //private static BindingList<Note> _tempNotes;
+		//private static BindingList<Note> _tempNotes;
 		//private static BindingList<Person> _tempParticipants;
 
 		public CreateEventForm(Project project)
@@ -40,16 +39,6 @@ namespace Grupptenta2
 				eventCreationContainer.Panel2.Hide();
 			}
 		}
-
-        private void CreateEventForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void addNoteBtn_Click(object sender, EventArgs e)
-        {
-
-        }
 	}
 }
 

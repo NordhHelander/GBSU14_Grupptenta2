@@ -20,6 +20,7 @@ namespace TestClasses
 		public void CreateCompany(string name)
 		{
 			Company company = new Company(name);
+			company.Id = Companies.Count + 1;
 			company.Employees = new BindingList<Person>();
 			company.Projects = new List<Project>();
 			company.IsActive = true;

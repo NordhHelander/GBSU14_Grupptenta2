@@ -37,6 +37,10 @@ namespace Grupptenta2
 			SetEventMethods();
 			ProjectTabSetup();
 			projectSearchControl.SetHeader("Dina projekt");
+			ContactTabSetup();
+			contactSearchControl.SetHeader("Dina kontakter");
+			CompanyTabSetup();
+			companySearchControl.SetHeader("Dina kundföretag");
 		}
 
 		private static void CreateMocks()
@@ -104,24 +108,37 @@ namespace Grupptenta2
 		}
 		private void SetEventMethods()
 		{
-			personSearchControl.OnSearch += personSearchBox_OnSearch;
-			personSearchControl.OnGoToChoice += personSearchBox_OnGoToChoice;
-			personSearchControl.OnCreate += personSearchBox_OnCreate;
-			personSearchControl.OnSelectionChanged += personSearchBox_OnSelectionChanged;
-			personSearchControl.OnDoubleClickChoice += personSearchBox_OnDoubleClickChoice;
+			// Contact
+			contactSearchControl.OnSearch += contactSearchControl_OnSearch;
+			contactSearchControl.OnGoToChoice += contactSearchControl_OnGoToChoice;
+			contactSearchControl.OnCreate += contactSearchControl_OnCreate;
+			contactSearchControl.OnSelectionChanged += contactSearchControl_OnSelectionChanged;
+			contactSearchControl.OnDoubleClickChoice += contactSearchControl_OnDoubleClickChoice;
 
-			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
-			personControl.OnClosePopUp += personControl_OnClosePopUp;
+			contactControl.OnSavePersonChanges += contactControl_OnSavePersonChanges;
+			contactControl.OnDoubleClickNote += contactControl_OnDoubleClickNote;
+			contactControl.OnClosePopUp += contactControl_OnClosePopUp;
 
-			companySearchControl.OnSearch += companySearchBox_OnSearch;
-			companySearchControl.OnGoToChoice += companySearchBox_OnGoToChoice;
+			//Company
+			companySearchControl.OnSearch += companySearchControl_OnSearch;
+			companySearchControl.OnGoToChoice += companySearchControl_OnGoToChoice;
 			companySearchControl.OnCreate += companySearchControl_OnCreate;
-			companySearchControl.OnSelectionChanged += companySearchBox_OnSelectionChanged;
-			companySearchControl.OnDoubleClickChoice += companySearchBox_OnDoubleClickChoice;
+			companySearchControl.OnSelectionChanged += companySearchControl_OnSelectionChanged;
+			companySearchControl.OnDoubleClickChoice += companySearchControl_OnDoubleClickChoice;
 
 			companyControl.OnSaveCompanyChanges += companyControl_OnSaveCompanyChanges;
 			companyControl.OnClosePopUp += companyControl_OnClosePopUp;
 
+			companyProjectBox.OnAdd += companyProjectBox_OnAdd;
+			companyProjectBox.OnGoTo += companyProjectBox_OnGoTo;
+			companyProjectBox.OnDoubleClickChoice += companyProjectBox_OnDoubleClick;
+
+			companyEmployeeBox.OnAdd += companyEmployeeBox_OnAdd;
+			companyEmployeeBox.OnDoubleClickChoice += companyEmployeeBox_OnDoubleClick;
+			companyEmployeeBox.OnGoTo += companyEmployeeBox_OnGoTo;
+			companyEmployeeBox.OnSelectionChanged += companyEmployeeBox_OnSelectionChanged;
+
+			// Project
 			projectSearchControl.OnSearch += projectSearchBox_OnSearch;
 			projectSearchControl.OnGoToChoice += projectSearchBox_OnGoToChoice;
 			projectSearchControl.OnCreate += projectSearchControl_OnCreate;
@@ -151,139 +168,162 @@ namespace Grupptenta2
 			Application.Exit();
 		}
 
-		private void clientBtn_Click(object sender, EventArgs e)
+		#region "Contacts"
+		private void ContactTabSetup()
 		{
-			this.Text = "Dina företagskunder";
-			this.companySearchControl.Location = new System.Drawing.Point(210, 10);
-			companySearchControl.SetData(_companyManager.Companies, "Name");
+			contactSearchControl.SetHeader("Dina kontakter");
+			contactSearchControl.SetData(_personManager.Persons, "Name");
+			contactProjectBox.SetHeader("Projekt");
+			contactProjectBox.SetButtonTexts("Visa", "Lägg till");
+			contactProjectBox.HideEditListBtn();
+			contactRelationBox.SetHeader("Närstående");
+			contactRelationBox.SetButtonTexts("Visa", "Lägg till");
 		}
-
-		private void contactsBtn_Click(object sender, EventArgs e)
-		{
-			this.Text = "Dina kontakter";
-			this.personSearchControl.Location = new System.Drawing.Point(210, 10);
-			personSearchControl.SetData(_personManager.Persons, "Person");
-		}
-
-		private void profileBtn_Click(object sender, EventArgs e)
-		{
-			this.Text = "Din profil";
-		}
-		private void calendarBtn_Click(object sender, EventArgs e)
-		{
-			this.Text = "Kalender";
-		}
-
-		#region "Person"
-		private void personSearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
+		private void contactSearchControl_OnSearch(object sender, SearchHandlerEventArgs e)
 		{
 			string searchText = e.SearchText;
 			List<Person> searchResult = _personManager.Persons.Where(p => p.ToString().ToLower().Contains(searchText.ToLower())).ToList();
 			if (searchResult.Count > 0)
-				personSearchControl.SetData(searchResult, "Person");
+				contactSearchControl.SetData(searchResult, "Person");
 		}
-		private void personSearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
+		private void contactSearchControl_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
 		{
+			List<Project> projects = _projectManager.Projects.Where(p => p.Roles.Any(r => r.Id == _selectedPerson.Id)).ToList();
+
 			this.Text = _selectedPerson.ToString();
-			personControl.Visible = true;
-			personControl.SetPersonInfo(_selectedPerson, _companyManager);
-			this.personControl.Location = new System.Drawing.Point(210, 10);
+			contactControl.SetPersonInfo(_selectedPerson, _companyManager, _projectManager);
+
+			contactProjectBox.SetData(projects, "Name");
+			contactRelationBox.SetData(_selectedPerson.Relations, "Person");
 		}
-		private void personSearchBox_OnCreate()
+		private void contactSearchControl_OnCreate()
 		{
 			CreatePersonForm createPersonForm = new CreatePersonForm(_personManager, _companyManager);
 			createPersonForm.ShowDialog();
-			RefreshPersonSearchBox();
+			RefreshSearchBox(contactSearchControl, _personManager.Persons, "Person");
 		}
-		private void personSearchBox_OnDoubleClickChoice(object sender, DoubleClickChoiceHandlerEventArgs e)
+		private void contactSearchControl_OnDoubleClickChoice(object sender, DoubleClickChoiceHandlerEventArgs e)
 		{
-			PersonPopUp personPopUp = new PersonPopUp(_selectedPerson, _companyManager);
+			PersonPopUp personPopUp = new PersonPopUp(_selectedPerson, _companyManager, _projectManager);
 			personPopUp.ShowDialog();
-			RefreshPersonSearchBox();
+			RefreshSearchBox(contactSearchControl, _personManager.Persons, "Person");
 		}
-		private void personSearchBox_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
+		private void contactSearchControl_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedPerson = (Person)e.ChosenItem;
 		}
-		private void personControl_OnSavePersonChanges(object sender, SavePersonChangesHandlerEventArgs e)
+		private void contactControl_OnSavePersonChanges()
 		{
-			_selectedPerson.FirstName = e.FirstName;
-			_selectedPerson.LastName = e.LastName;
-			_selectedPerson.Birthdate = e.DateOfBirth;
-			_selectedPerson.ResidentialAddress.Street = e.Street;
-			_selectedPerson.ResidentialAddress.ZipCode = e.ZipCode;
-			_selectedPerson.ResidentialAddress.City = e.City;
-			_selectedPerson.PhoneNumber = e.PhoneNumber;
-			_selectedPerson.CellPhoneNumber = e.CellPhoneNumber;
-			_selectedPerson.EmailAddress = e.EmailAddress;
-			_selectedPerson.Type = e.Type;
-			// Ska läggas in sätt att ändra företag. Måste välja bland befintliga och tas bort från tidigare företag.
-			RefreshPersonSearchBox();
+			RefreshSearchBox(contactSearchControl, _personManager.Persons, "Person");
 			this.Text = _selectedPerson.ToString();
 		}
-		private void personControl_OnClosePopUp()
+		private void contactControl_OnDoubleClickNote(object sender, DoubleClickNoteHandlerEventArgs e)
 		{
-			RefreshPersonSearchBox();
+			// Note popup(e.SelectedNote)
+		}
+		private void contactControl_OnClosePopUp()
+		{
+			RefreshSearchBox(contactSearchControl, _personManager.Persons, "Person");
 			this.Text = _selectedPerson.ToString();
 		}
-		private void RefreshPersonSearchBox()
-		{
-			personSearchControl.SetData(_personManager.Persons, "Person");
-		}
+
 		#endregion
 
 		#region "Company"
-		private void companySearchBox_OnSearch(object sender, SearchHandlerEventArgs e)
+		private void CompanyTabSetup()
+		{
+			companySearchControl.SetHeader("Dina kontakter");
+			companySearchControl.SetData(_companyManager.Companies, "Name");
+			companyProjectBox.SetHeader("Projekt");
+			companyEmployeeBox.SetHeader("Kontakter");
+			companyProjectBox.SetButtonTexts("Visa", "Skapa");
+			companyEmployeeBox.SetButtonTexts("Visa", "Skapa");
+		}
+		// Company Container: Panel 1
+		private void companySearchControl_OnSearch(object sender, SearchHandlerEventArgs e)
 		{
 			string searchText = e.SearchText;
 			List<Company> searchResult = _companyManager.Companies.Where(c => c.Name.ToLower().Contains(searchText.ToLower())).ToList();
 			if (searchResult.Count > 0)
 				companySearchControl.SetData(searchResult, "Name");
 		}
-		private void companySearchBox_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
+		private void companySearchControl_OnGoToChoice(object sender, GoToChoiceHandlerEventArgs e)
 		{
 			this.Text = _selectedCompany.Name;
-			companyControl.Visible = true;
 			companyControl.SetCompanyInfo(_selectedCompany);
-			this.companyControl.Location = new System.Drawing.Point(210, 10);
+
+			companyProjectBox.SetData(_selectedCompany.Projects, "Name");
+			companyEmployeeBox.SetData(_selectedCompany.Employees, "Person");
+
 		}
 		private void companySearchControl_OnCreate()
 		{
 			CreateCompanyForm createCompanyForm = new CreateCompanyForm(_companyManager);
-			createCompanyForm.Show();
-			RefreshCompanySearchBox();
+			createCompanyForm.ShowDialog();
+			RefreshSearchBox(companySearchControl, _companyManager.Companies, "Name");
 		}
-		private void companySearchBox_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
+		private void companySearchControl_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedCompany = (Company)e.ChosenItem;
 		}
-		private void companySearchBox_OnDoubleClickChoice(object sender, DoubleClickChoiceHandlerEventArgs e)
+		private void companySearchControl_OnDoubleClickChoice(object sender, DoubleClickChoiceHandlerEventArgs e)
 		{
-			CompanyPopUp companyPopUp = new CompanyPopUp(_selectedCompany);
-			companyPopUp.ShowDialog();
-			RefreshCompanySearchBox();
+			OpenCompanyPopUp();
 		}
-		private void companyControl_OnSaveCompanyChanges(object sender, SaveCompanyChangesHandlerEventArgs e)
-		{
-			_selectedCompany.Name = e.Name;
-			_selectedCompany.Id = e.Id;
-			_selectedCompany.Location.Street = e.Street;
-			_selectedCompany.Location.ZipCode = e.ZipCode;
-			_selectedCompany.Location.City = e.City;
-			_selectedCompany.IsActive = e.IsActive;
 
-			RefreshCompanySearchBox();
+		// Company Container: Panel 2
+		private void companyControl_OnSaveCompanyChanges()
+		{
+			RefreshSearchBox(companySearchControl, _companyManager.Companies, "Name");
 			this.Text = _selectedCompany.Name;
 		}
 		private void companyControl_OnClosePopUp()
 		{
-			RefreshCompanySearchBox();
+			RefreshSearchBox(companySearchControl, _companyManager.Companies, "Name");
 			this.Text = _selectedCompany.Name;
 		}
-		private void RefreshCompanySearchBox()
+
+		private void companyProjectBox_OnGoTo(object sender, GoToHandlerEventArgs e)
 		{
-			companySearchControl.SetData(_companyManager.Companies, "Name");
+			OpenProjectPopUp();
+			RefreshChoiceBox(companyProjectBox, _selectedCompany.Projects, "Name");
 		}
+		private void companyProjectBox_OnAdd()
+		{
+			CreateProjectForm createProjectForm = new CreateProjectForm(_selectedCompany, _projectManager, _personManager, _companyManager);
+			createProjectForm.ShowDialog();
+			RefreshChoiceBox(companyProjectBox, _selectedCompany.Projects, "Name");
+		}
+		private void companyProjectBox_OnDoubleClick(object sender, DoubleClickHandlerEventArgs e)
+		{
+			OpenProjectPopUp();
+			RefreshChoiceBox(companyProjectBox, _selectedCompany.Projects, "Name");
+		}
+
+		private void companyEmployeeBox_OnGoTo(object sender, GoToHandlerEventArgs e)
+		{
+			OpenPersonPopUp();
+			RefreshChoiceBox(companyEmployeeBox, _selectedCompany.Employees, "Person");
+		}
+
+		private void companyEmployeeBox_OnDoubleClick(object sender, DoubleClickHandlerEventArgs e)
+		{
+			OpenPersonPopUp();
+			RefreshChoiceBox(companyEmployeeBox, _selectedCompany.Employees, "Person");
+		}
+
+		private void companyEmployeeBox_OnAdd()
+		{
+			CreatePersonForm createPersonForm = new CreatePersonForm(_selectedCompany, _personManager, _companyManager);
+			createPersonForm.ShowDialog();
+			RefreshChoiceBox(companyEmployeeBox, _selectedCompany.Employees, "Person");
+		}
+
+		private void companyEmployeeBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
+		{
+			_selectedPerson = (Person)e.ChosenItem;
+		}
+
 		#endregion
 
 		#region "Project"
@@ -315,6 +355,7 @@ namespace Grupptenta2
 			projectParticipantBox.SetData(_selectedProject.Roles, "Person");
 			projectEventBox.SetData(_selectedProject.ProjectJournal.Events, "ProjectEvent");
 			projectNoteBox.SetData(_selectedProject.ProjectJournal.Notes, "Note");
+			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
 		private void saveBtn_Click(object sender, EventArgs e)
 		{
@@ -325,7 +366,7 @@ namespace Grupptenta2
 		{
 			CreateProjectForm createProjectForm = new CreateProjectForm(_projectManager, _personManager, _companyManager);
 			createProjectForm.Show();
-			RefreshProjectSearchBox();
+			RefreshSearchBox(projectSearchControl, _projectManager.Projects, "Name");
 		}
 		private void projectSearchControl_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
 		{
@@ -335,7 +376,6 @@ namespace Grupptenta2
 		{
 			// Ska fixa projekt-popup.
 		}
-
 		private void projectParticipantBox_OnAdd()
 		{
 			EditParticipantListForm editParticipantListForm = new EditParticipantListForm(_selectedProject, _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Id == _selectedProject.Id)));
@@ -346,24 +386,12 @@ namespace Grupptenta2
 		{
 			// Ska fixa person-popup.
 		}
-
 		private void projectNoteBox_OnAdd()
 		{
 			CreateNoteForm createNoteForm = new CreateNoteForm(_selectedProject.Notes);
 			createNoteForm.ShowDialog();
 			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
-        
-		private void RefreshChoiceBox(ChoiceBox choiceBox, object dataSource, string displayMember)
-		{
-			choiceBox.SetData(dataSource, displayMember);
-		}
-		private void RefreshProjectSearchBox()
-		{
-			projectSearchControl.SetData(_projectManager.Projects, "Name");
-			// Ska göra allmän metod för att refresha vilken searchbox som helst.
-		}
-
 		private void projectNoteBox_OnGoTo(object sender, GoToHandlerEventArgs e)
 		{
 			Note noteToEdit = (Note)projectNoteBox.listBox.SelectedItem;
@@ -371,19 +399,43 @@ namespace Grupptenta2
             createNoteForm.ShowDialog();
             RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
-
 		private void projectEventBox_OnAdd()
 		{
 			CreateEventForm createEventForm = new CreateEventForm(_selectedProject);
 			createEventForm.ShowDialog();
 			RefreshChoiceBox(projectEventBox, _selectedProject.ProjectJournal.Events, "ProjectEvent");
 		}
-
 		private void projectEventBox_OnGoTo(object sender, GoToHandlerEventArgs e)
 		{
 			// Ska fixa event-popup
 		}
 		#endregion
+
+		public static void RefreshChoiceBox(ChoiceBox choiceBox, object dataSource, string displayMember)
+		{
+			choiceBox.SetData(dataSource, displayMember);
+		}
+		public static void RefreshSearchBox(SearchBox searchBox, object dataSource, string displayMember)
+		{
+			searchBox.SetData(dataSource, displayMember);
+		}
+
+		private void OpenPersonPopUp()
+		{
+			PersonPopUp personPopUp = new PersonPopUp(_selectedPerson, _companyManager, _projectManager);
+			personPopUp.ShowDialog();
+		}
+		private void OpenCompanyPopUp()
+		{
+			CompanyPopUp companyPopUp = new CompanyPopUp(_selectedCompany);
+			companyPopUp.ShowDialog();
+			RefreshSearchBox(companySearchControl, _companyManager.Companies, "Name");
+		}
+		private void OpenProjectPopUp()
+		{
+			ProjectPopUp projectPopUp = new ProjectPopUp(_selectedProject, _companyManager, _projectManager);
+			projectPopUp.ShowDialog();
+		}
 
 		private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
 		{
