@@ -197,7 +197,10 @@ namespace Grupptenta2
 		private void contactSearchControl_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedPerson = (Person)e.ChosenItem;
-			LoadSelectedPerson();
+            if (_selectedPerson != null)
+            {
+                LoadSelectedPerson();
+            }
 		}
 
 		// Contact Container: Panel 2
@@ -269,7 +272,10 @@ namespace Grupptenta2
 		private void companySearchControl_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedCompany = (Company)e.ChosenItem;
-			LoadSelectedCompany();
+            if (_selectedCompany != null)
+            {
+                LoadSelectedCompany(); 
+            }
 		}
 
 		// Company Container: Panel 2
@@ -339,13 +345,16 @@ namespace Grupptenta2
 		private void projectSearchControl_OnCreate()
 		{
 			CreateProjectForm createProjectForm = new CreateProjectForm(_projectManager, _personManager, _companyManager);
-			createProjectForm.Show();
+            createProjectForm.ShowDialog();
 			RefreshSearchBox(projectSearchControl, _projectManager.Projects, "Name");
 		}
 		private void projectSearchControl_OnSelectionChanged(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedProject = (Project)e.ChosenItem;
-			LoadSelectedProject();
+            if (_selectedProject != null)
+            {
+                LoadSelectedProject();                
+            }
 		}
 		
 		// Project Container: Panel 2
