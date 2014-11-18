@@ -116,12 +116,6 @@
     <Compile Include="PersonCreationBox.Designer.cs">
       <DependentUpon>PersonCreationBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="PersonPopUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PersonPopUp.Designer.cs">
-      <DependentUpon>PersonPopUp.cs</DependentUpon>
-    </Compile>
     <Compile Include="PersonUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -129,12 +123,6 @@
       <DependentUpon>PersonUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectPopUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ProjectPopUp.Designer.cs">
-      <DependentUpon>ProjectPopUp.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CreateEventForm.resx">
       <DependentUpon>CreateEventForm.cs</DependentUpon>
@@ -172,14 +160,8 @@
     <EmbeddedResource Include="PersonCreationBox.resx">
       <DependentUpon>PersonCreationBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PersonPopUp.resx">
-      <DependentUpon>PersonPopUp.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PersonUserControl.resx">
       <DependentUpon>PersonUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProjectPopUp.resx">
-      <DependentUpon>ProjectPopUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

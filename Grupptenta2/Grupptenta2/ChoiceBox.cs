@@ -12,12 +12,10 @@ namespace Grupptenta2
 {
 	public partial class ChoiceBox : UserControl
 	{
-		public delegate void GoToEventHandler(object sender, GoToHandlerEventArgs e);
 		public delegate void AddItemEventHandler();
 		public delegate void DoubleClickEventHandler(object sender, DoubleClickHandlerEventArgs e);
 		public delegate void ListBoxSelectionChangedEventHandler(object sender, ListBoxSelectionChangedHandlerEventArgs e);
 
-		public event GoToEventHandler OnGoTo;
 		public event AddItemEventHandler OnAdd;
 		public event DoubleClickEventHandler OnDoubleClickChoice;
 		public event ListBoxSelectionChangedEventHandler OnSelectionChanged;
@@ -32,9 +30,8 @@ namespace Grupptenta2
 			headerLbl.Text = header;
 		}
 
-		public void SetButtonTexts(string goToChoiceBtnText, string actionBtnText)
+		public void SetButtonTexts(string actionBtnText)
 		{
-			goToChoiceBtn.Text = goToChoiceBtnText;
 			actionBtn.Text = actionBtnText;
 		}
 
@@ -48,18 +45,6 @@ namespace Grupptenta2
 		public void HideActionBtn()
 		{
 			actionBtn.Hide();
-		}
-
-		public void HideGoToChoiceBtn()
-		{
-			goToChoiceBtn.Visible = false;
-			actionBtn.Location = new Point(160, 21);
-		}
-
-		private void goToChoiceBtn_Click(object sender, EventArgs e)
-		{
-			if (OnGoTo != null)
-				OnGoTo(sender, new GoToHandlerEventArgs(listBox.SelectedItem));
 		}
 
 		private void editListBtn_Click(object sender, EventArgs e)
@@ -82,16 +67,6 @@ namespace Grupptenta2
 			{
 				OnSelectionChanged(sender, new ListBoxSelectionChangedHandlerEventArgs(listBox.SelectedItem));
 			}
-		}
-	}
-
-	public class GoToHandlerEventArgs : EventArgs
-	{
-		public object ChosenItem { get; set; }
-
-		public GoToHandlerEventArgs(object chosenItem)
-		{
-			ChosenItem = chosenItem;
 		}
 	}
 

@@ -142,11 +142,9 @@ namespace Grupptenta2
 			projectParticipantBox.OnDoubleClickChoice += projectParticipantBox_OnDoubleClickChoice;
 			projectParticipantBox.OnSelectionChanged += projectParticipantBox_OnSelectionChanged;
 
-			projectEventBox.OnGoTo += projectEventBox_OnGoTo;
 			projectEventBox.OnAdd += projectEventBox_OnAdd;
 			projectEventBox.OnDoubleClickChoice += projectEventBox_OnDoubleClickChoice;
 
-			//projectNoteBox.OnGoTo += projectNoteBox_OnGoTo;
 			projectNoteBox.OnAdd += projectNoteBox_OnAdd;
 			projectNoteBox.OnDoubleClickChoice += projectNoteBox_OnDoubleClickChoice;
 		}
@@ -171,13 +169,13 @@ namespace Grupptenta2
 		{
 			contactChoiceBox.SetHeader("Dina kontakter");
 			contactChoiceBox.SetData(_personManager.Persons, "Name");
-			contactChoiceBox.SetButtonTexts("", "Ny kontakt");
+			contactChoiceBox.SetButtonTexts("Ny kontakt");
 
 			contactProjectBox.SetHeader("Projekt");
-			contactProjectBox.SetButtonTexts("Visa", "Nytt projekt");
+			contactProjectBox.SetButtonTexts("Nytt projekt");
 
 			contactRelationBox.SetHeader("Närstående");
-			contactRelationBox.SetButtonTexts("Visa", "Lägg till");
+			contactRelationBox.SetButtonTexts("Lägg till");
 		}
 		// Contact Container: Panel 1
 		private void contactChoiceBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
@@ -239,13 +237,13 @@ namespace Grupptenta2
 		{
 			companyChoiceBox.SetHeader("Dina kundföretag");
 			companyChoiceBox.SetData(_companyManager.Companies, "Name");
-			companyChoiceBox.SetButtonTexts("", "Nytt företag");
+			companyChoiceBox.SetButtonTexts("Nytt företag");
 			
 			companyProjectBox.SetHeader("Projekt");
-			companyProjectBox.SetButtonTexts("Visa", "Skapa");
+			companyProjectBox.SetButtonTexts("Skapa");
 
 			companyEmployeeBox.SetHeader("Kontakter");
-			companyEmployeeBox.SetButtonTexts("Visa", "Skapa");
+			companyEmployeeBox.SetButtonTexts("Skapa");
 		}
 		// Company Container: Panel 1
 		private void companyChoiceBox_OnAdd()
@@ -302,15 +300,15 @@ namespace Grupptenta2
 		{
 			projectChoiceBox.SetHeader("Dina projekt");
 			projectChoiceBox.SetData(_projectManager.Projects, "Name");
-			projectChoiceBox.SetButtonTexts("", "Nytt projekt");
+			projectChoiceBox.SetButtonTexts("Nytt projekt");
 
 			projectParticipantBox.SetHeader("Deltagare");
 
 			projectEventBox.SetHeader("Händelser");
-			projectEventBox.SetButtonTexts("Öppna", "Lägg till");
+			projectEventBox.SetButtonTexts("Lägg till");
 
 			projectNoteBox.SetHeader("Anteckningar");
-			projectNoteBox.SetButtonTexts("Öppna", "Lägg till");
+			projectNoteBox.SetButtonTexts("Lägg till");
 		}
 		// Project Container: Panel 1
 		private void projectChoiceBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
@@ -355,13 +353,7 @@ namespace Grupptenta2
 			createNoteForm.ShowDialog();
 			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
-		private void projectNoteBox_OnGoTo(object sender, GoToHandlerEventArgs e)
-		{
-			Note noteToEdit = (Note)projectNoteBox.listBox.SelectedItem;
-			CreateNoteForm createNoteForm = new CreateNoteForm(noteToEdit);
-			createNoteForm.ShowDialog();
-			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
-		}
+
 		private void projectNoteBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
 			Note noteToEdit = (Note)projectNoteBox.listBox.SelectedItem;
@@ -376,10 +368,6 @@ namespace Grupptenta2
 			createEventForm.ShowDialog();
 			RefreshChoiceBox(projectEventBox, _selectedProject.ProjectJournal.Events, "ProjectEvent");
 		}
-		private void projectEventBox_OnGoTo(object sender, GoToHandlerEventArgs e)
-		{
-			// Ska fixa event-popup
-		}
 		private void projectEventBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
 			throw new NotImplementedException();
@@ -392,22 +380,6 @@ namespace Grupptenta2
 			choiceBox.SetData(dataSource, displayMember);
 		}
 
-		//private void OpenPersonPopUp()
-		//{
-		//	PersonPopUp personPopUp = new PersonPopUp(_selectedPerson, _companyManager, _projectManager);
-		//	personPopUp.ShowDialog();
-		//}
-		//private void OpenCompanyPopUp()
-		//{
-		//	CompanyPopUp companyPopUp = new CompanyPopUp(_selectedCompany);
-		//	companyPopUp.ShowDialog();
-		//	RefreshSearchBox(companySearchControl, _companyManager.Companies, "Name");
-		//}
-		//private void OpenProjectPopUp()
-		//{
-		//	ProjectPopUp projectPopUp = new ProjectPopUp(_selectedProject, _companyManager, _projectManager);
-		//	projectPopUp.ShowDialog();
-		//}
 		private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			this.Text = tabControl.SelectedTab.Text;
