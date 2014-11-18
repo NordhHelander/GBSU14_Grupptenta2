@@ -35,6 +35,11 @@ namespace Grupptenta2
 			actionBtn.Text = actionBtnText;
 		}
 
+		public Object GetSelectedItem()
+		{
+			return listBox.SelectedItem;
+		}
+
 		public void SetData(Object dataSource, string displayMember)
 		{
 			listBox.DataSource = null;

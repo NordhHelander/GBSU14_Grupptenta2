@@ -22,7 +22,7 @@ namespace Grupptenta2
 		{
 			_project = project;
 			_company = company;
-			_tempParticipantList = _project.Roles;
+			_tempParticipantList = new BindingList<Person>(_project.Roles);
 
 			InitializeComponent();
 			this.Text = "Ändra deltagarlistan";
@@ -34,10 +34,26 @@ namespace Grupptenta2
 
 		private void addPartBtn_Click(object sender, EventArgs e)
 		{
-			_tempParticipantList.Add((Person)personBox.SelectedItem);
+			Person participantToAdd = (Person)personBox.SelectedItem;
+
+			// Hade gärna haft linq till detta meeeen löser det inte just nu. /TN
+			if (!CheckIfParticipantIsAdded(participantToAdd))
+				_tempParticipantList.Add(participantToAdd);
+
 			participantBox.DataSource = null;
 			participantBox.DataSource = _tempParticipantList;
 			participantBox.DisplayMember = "Person";
+		}
+
+		private bool CheckIfParticipantIsAdded(Person participantToAdd)
+		{
+			foreach (Person participant in _tempParticipantList)
+			{
+				if (participant.Id == participantToAdd.Id)
+					return true;
+			}
+
+			return false;
 		}
 
 		private void removePartBtn_Click(object sender, EventArgs e)

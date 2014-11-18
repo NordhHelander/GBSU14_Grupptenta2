@@ -139,9 +139,11 @@ namespace Grupptenta2
 			projectChoiceBox.OnAdd += projectChoiceBox_OnAdd;
 			projectChoiceBox.OnSelectionChanged += projectChoiceBox_OnSelectionChanged;
 
-			projectParticipantBox.OnAdd += projectParticipantBox_OnAdd;
+			projectParticipantBox.OnAdd += projectParticipantBox_OnRemove;
 			projectParticipantBox.OnDoubleClickChoice += projectParticipantBox_OnDoubleClickChoice;
 			projectParticipantBox.OnSelectionChanged += projectParticipantBox_OnSelectionChanged;
+
+			projectAvailableParticipantsBox.OnAdd += projectAvailableParticipantsBox_OnAdd;
 
 			projectEventBox.OnAdd += projectEventBox_OnAdd;
 			projectEventBox.OnDoubleClickChoice += projectEventBox_OnDoubleClickChoice;
@@ -313,6 +315,10 @@ namespace Grupptenta2
 			projectChoiceBox.SetButtonTexts("Nytt projekt");
 
 			projectParticipantBox.SetHeader("Deltagare");
+			projectParticipantBox.SetButtonTexts("Ta bort");
+
+			projectAvailableParticipantsBox.SetHeader("Valbara kontakter");
+			projectAvailableParticipantsBox.SetButtonTexts("Lägg till");
 
 			projectEventBox.SetHeader("Händelser");
 			projectEventBox.SetButtonTexts("Lägg till");
@@ -344,11 +350,10 @@ namespace Grupptenta2
 		}
 		
 		// Project Container: Panel 2
-		private void projectParticipantBox_OnAdd()
+		private void projectParticipantBox_OnRemove()
 		{
-			EditParticipantListForm editParticipantListForm = new EditParticipantListForm(_selectedProject, _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Id == _selectedProject.Id)));
-			editParticipantListForm.ShowDialog();
-			projectParticipantBox.SetData(_selectedProject.Roles, "Person");
+			_selectedProject.Roles.Remove((Person)projectParticipantBox.GetSelectedItem());
+			RefreshChoiceBox(projectParticipantBox, _selectedProject.Roles, "Person");
 		}
 		private void projectParticipantBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
@@ -358,6 +363,16 @@ namespace Grupptenta2
 		{
 			tabControl.SelectedIndex = 3;
 			LoadSelectedPerson();
+		}
+
+		private void projectAvailableParticipantsBox_OnAdd()
+		{
+			Person selectedParticipantToAdd = (Person)projectAvailableParticipantsBox.GetSelectedItem();
+			if (_selectedProject.Roles.SingleOrDefault(r => r.Id == selectedParticipantToAdd.Id) == null)
+			{
+				_selectedProject.Roles.Add((Person)projectAvailableParticipantsBox.GetSelectedItem());
+				RefreshChoiceBox(projectParticipantBox, _selectedProject.Roles, "Person");
+			}
 		}
 
 		private void projectNoteBox_OnAdd()
@@ -406,6 +421,7 @@ namespace Grupptenta2
 			projectDescBox.Text = _selectedProject.Description;
 
 			projectParticipantBox.SetData(_selectedProject.Roles, "Person");
+			projectAvailableParticipantsBox.SetData(_companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Id == _selectedProject.Id)).Employees, "Person");
 			projectEventBox.SetData(_selectedProject.ProjectJournal.Events, "ProjectEvent");
 			projectNoteBox.SetData(_selectedProject.ProjectJournal.Notes, "Note");
 			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
