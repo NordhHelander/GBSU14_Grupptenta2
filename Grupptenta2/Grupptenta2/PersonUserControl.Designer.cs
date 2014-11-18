@@ -72,7 +72,7 @@
 			this.birthdateBox.Location = new System.Drawing.Point(89, 67);
 			this.birthdateBox.Name = "birthdateBox";
 			this.birthdateBox.Size = new System.Drawing.Size(100, 20);
-			this.birthdateBox.TabIndex = 2;
+			this.birthdateBox.TabIndex = 3;
 			// 
 			// birthdateLbl
 			// 
@@ -88,7 +88,7 @@
 			this.streetBox.Location = new System.Drawing.Point(89, 93);
 			this.streetBox.Name = "streetBox";
 			this.streetBox.Size = new System.Drawing.Size(100, 20);
-			this.streetBox.TabIndex = 8;
+			this.streetBox.TabIndex = 4;
 			// 
 			// zipBox
 			// 
@@ -96,35 +96,35 @@
 			this.zipBox.Name = "zipBox";
 			this.zipBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.zipBox.Size = new System.Drawing.Size(100, 20);
-			this.zipBox.TabIndex = 9;
+			this.zipBox.TabIndex = 5;
 			// 
 			// cityBox
 			// 
 			this.cityBox.Location = new System.Drawing.Point(89, 145);
 			this.cityBox.Name = "cityBox";
 			this.cityBox.Size = new System.Drawing.Size(100, 20);
-			this.cityBox.TabIndex = 10;
+			this.cityBox.TabIndex = 6;
 			// 
 			// phoneBox
 			// 
 			this.phoneBox.Location = new System.Drawing.Point(89, 171);
 			this.phoneBox.Name = "phoneBox";
 			this.phoneBox.Size = new System.Drawing.Size(100, 20);
-			this.phoneBox.TabIndex = 11;
+			this.phoneBox.TabIndex = 7;
 			// 
 			// cellPhoneBox
 			// 
 			this.cellPhoneBox.Location = new System.Drawing.Point(89, 197);
 			this.cellPhoneBox.Name = "cellPhoneBox";
 			this.cellPhoneBox.Size = new System.Drawing.Size(100, 20);
-			this.cellPhoneBox.TabIndex = 12;
+			this.cellPhoneBox.TabIndex = 8;
 			// 
 			// emailBox
 			// 
 			this.emailBox.Location = new System.Drawing.Point(89, 223);
 			this.emailBox.Name = "emailBox";
 			this.emailBox.Size = new System.Drawing.Size(100, 20);
-			this.emailBox.TabIndex = 13;
+			this.emailBox.TabIndex = 9;
 			// 
 			// streetLbl
 			// 
@@ -195,7 +195,7 @@
 			this.companyBox.Location = new System.Drawing.Point(89, 276);
 			this.companyBox.Name = "companyBox";
 			this.companyBox.Size = new System.Drawing.Size(100, 21);
-			this.companyBox.TabIndex = 22;
+			this.companyBox.TabIndex = 11;
 			// 
 			// companyLbl
 			// 
@@ -218,10 +218,10 @@
 			// 
 			// saveBtn
 			// 
-			this.saveBtn.Location = new System.Drawing.Point(73, 441);
+			this.saveBtn.Location = new System.Drawing.Point(273, 426);
 			this.saveBtn.Name = "saveBtn";
 			this.saveBtn.Size = new System.Drawing.Size(116, 23);
-			this.saveBtn.TabIndex = 26;
+			this.saveBtn.TabIndex = 13;
 			this.saveBtn.Text = "Spara";
 			this.saveBtn.UseVisualStyleBackColor = true;
 			this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
@@ -229,10 +229,12 @@
 			// isActiveCheckBox
 			// 
 			this.isActiveCheckBox.AutoSize = true;
+			this.isActiveCheckBox.Checked = true;
+			this.isActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.isActiveCheckBox.Location = new System.Drawing.Point(89, 303);
 			this.isActiveCheckBox.Name = "isActiveCheckBox";
 			this.isActiveCheckBox.Size = new System.Drawing.Size(50, 17);
-			this.isActiveCheckBox.TabIndex = 29;
+			this.isActiveCheckBox.TabIndex = 12;
 			this.isActiveCheckBox.Text = "Aktiv";
 			this.isActiveCheckBox.UseVisualStyleBackColor = true;
 			// 
@@ -261,7 +263,7 @@
 			this.lastNameBox.Location = new System.Drawing.Point(3, 35);
 			this.lastNameBox.Name = "lastNameBox";
 			this.lastNameBox.Size = new System.Drawing.Size(186, 26);
-			this.lastNameBox.TabIndex = 3;
+			this.lastNameBox.TabIndex = 2;
 			// 
 			// typeBox
 			// 
@@ -270,7 +272,7 @@
 			this.typeBox.Location = new System.Drawing.Point(89, 249);
 			this.typeBox.Name = "typeBox";
 			this.typeBox.Size = new System.Drawing.Size(100, 21);
-			this.typeBox.TabIndex = 55;
+			this.typeBox.TabIndex = 10;
 			// 
 			// newNoteLbl
 			// 

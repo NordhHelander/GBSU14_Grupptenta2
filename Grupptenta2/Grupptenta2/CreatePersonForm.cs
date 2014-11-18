@@ -17,14 +17,14 @@ namespace Grupptenta2
 		public CreatePersonForm(PersonManager personManager, CompanyManager companyManager)
 		{
 			InitializeComponent();
-			personControl.SetupForCreatePerson(personManager, companyManager);
+			personControl.SetupForCreateContact(personManager, companyManager);
 			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
 		}
 
 		public CreatePersonForm(Company company, PersonManager personManager, CompanyManager companyManager)
 		{
 			InitializeComponent();
-			personControl.SetupForCreateEmployee(company, personManager, companyManager);
+			personControl.SetupForCreateCompanyContact(company, personManager, companyManager);
 			personControl.OnSavePersonChanges += personControl_OnSavePersonChanges;
 		}
 

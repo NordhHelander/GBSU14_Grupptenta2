@@ -54,6 +54,7 @@ namespace Grupptenta2
 				_company = _companyManager.Companies[_companyManager.Companies.Count - 1];
 			}
 
+			_company.Name = nameBox.Text;
 			_company.Location.Street = streetBox.Text;
 			_company.Location.ZipCode = zipBox.Text;
 			_company.Location.City = cityBox.Text;

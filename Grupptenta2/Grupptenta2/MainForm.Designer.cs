@@ -48,6 +48,7 @@
 			this.companyTab = new System.Windows.Forms.TabPage();
 			this.companyContainer = new System.Windows.Forms.SplitContainer();
 			this.profileControl = new Grupptenta2.PersonUserControl();
+			this.projectChoiceBox = new Grupptenta2.ChoiceBox();
 			this.projectNoteBox = new Grupptenta2.ChoiceBox();
 			this.projectEventBox = new Grupptenta2.ChoiceBox();
 			this.projectParticipantBox = new Grupptenta2.ChoiceBox();
@@ -62,7 +63,6 @@
 			this.companyControl = new Grupptenta2.CompanyUserControl();
 			this.customListBox1 = new Grupptenta2.ChoiceBox();
 			this.customListBox2 = new Grupptenta2.ChoiceBox();
-			this.projectChoiceBox = new Grupptenta2.ChoiceBox();
 			this.tabControl.SuspendLayout();
 			this.profileTab.SuspendLayout();
 			this.projectTab.SuspendLayout();
@@ -301,6 +301,14 @@
 			this.profileControl.Size = new System.Drawing.Size(810, 574);
 			this.profileControl.TabIndex = 0;
 			// 
+			// projectChoiceBox
+			// 
+			this.projectChoiceBox.BackColor = System.Drawing.Color.White;
+			this.projectChoiceBox.Location = new System.Drawing.Point(3, 3);
+			this.projectChoiceBox.Name = "projectChoiceBox";
+			this.projectChoiceBox.Size = new System.Drawing.Size(241, 175);
+			this.projectChoiceBox.TabIndex = 1;
+			// 
 			// projectNoteBox
 			// 
 			this.projectNoteBox.BackColor = System.Drawing.Color.White;
@@ -354,7 +362,7 @@
 			// contactControl
 			// 
 			this.contactControl.BackColor = System.Drawing.Color.White;
-			this.contactControl.Location = new System.Drawing.Point(3, 3);
+			this.contactControl.Location = new System.Drawing.Point(3, 13);
 			this.contactControl.Name = "contactControl";
 			this.contactControl.Size = new System.Drawing.Size(481, 485);
 			this.contactControl.TabIndex = 13;
@@ -422,14 +430,6 @@
 			this.customListBox2.Name = "customListBox2";
 			this.customListBox2.Size = new System.Drawing.Size(241, 184);
 			this.customListBox2.TabIndex = 1;
-			// 
-			// projectChoiceBox
-			// 
-			this.projectChoiceBox.BackColor = System.Drawing.Color.White;
-			this.projectChoiceBox.Location = new System.Drawing.Point(3, 3);
-			this.projectChoiceBox.Name = "projectChoiceBox";
-			this.projectChoiceBox.Size = new System.Drawing.Size(241, 175);
-			this.projectChoiceBox.TabIndex = 1;
 			// 
 			// MainForm
 			// 

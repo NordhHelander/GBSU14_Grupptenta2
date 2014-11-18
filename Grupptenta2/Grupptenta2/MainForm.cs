@@ -276,6 +276,7 @@ namespace Grupptenta2
 		{
 			CreateProjectForm createProjectForm = new CreateProjectForm(_selectedCompany, _projectManager, _personManager, _companyManager);
 			createProjectForm.ShowDialog();
+			RefreshChoiceBox(companyProjectBox, _selectedCompany.Projects, "Name");
 		}
 		private void companyProjectBox_OnDoubleClick(object sender, DoubleClickHandlerEventArgs e)
 		{

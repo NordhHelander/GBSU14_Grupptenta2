@@ -53,6 +53,7 @@
 			// 
 			this.idBox.Location = new System.Drawing.Point(81, 35);
 			this.idBox.Name = "idBox";
+			this.idBox.ReadOnly = true;
 			this.idBox.Size = new System.Drawing.Size(100, 20);
 			this.idBox.TabIndex = 1;
 			// 
@@ -61,29 +62,31 @@
 			this.streetBox.Location = new System.Drawing.Point(81, 61);
 			this.streetBox.Name = "streetBox";
 			this.streetBox.Size = new System.Drawing.Size(100, 20);
-			this.streetBox.TabIndex = 2;
+			this.streetBox.TabIndex = 1;
 			// 
 			// zipBox
 			// 
 			this.zipBox.Location = new System.Drawing.Point(81, 87);
 			this.zipBox.Name = "zipBox";
 			this.zipBox.Size = new System.Drawing.Size(100, 20);
-			this.zipBox.TabIndex = 3;
+			this.zipBox.TabIndex = 2;
 			// 
 			// cityBox
 			// 
 			this.cityBox.Location = new System.Drawing.Point(81, 113);
 			this.cityBox.Name = "cityBox";
 			this.cityBox.Size = new System.Drawing.Size(100, 20);
-			this.cityBox.TabIndex = 4;
+			this.cityBox.TabIndex = 3;
 			// 
 			// activeCheckBox
 			// 
 			this.activeCheckBox.AutoSize = true;
+			this.activeCheckBox.Checked = true;
+			this.activeCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.activeCheckBox.Location = new System.Drawing.Point(81, 139);
 			this.activeCheckBox.Name = "activeCheckBox";
 			this.activeCheckBox.Size = new System.Drawing.Size(53, 17);
-			this.activeCheckBox.TabIndex = 5;
+			this.activeCheckBox.TabIndex = 4;
 			this.activeCheckBox.Text = "Aktivt";
 			this.activeCheckBox.UseVisualStyleBackColor = true;
 			// 
@@ -128,7 +131,7 @@
 			this.saveBtn.Location = new System.Drawing.Point(64, 277);
 			this.saveBtn.Name = "saveBtn";
 			this.saveBtn.Size = new System.Drawing.Size(117, 23);
-			this.saveBtn.TabIndex = 11;
+			this.saveBtn.TabIndex = 5;
 			this.saveBtn.Text = "Spara";
 			this.saveBtn.UseVisualStyleBackColor = true;
 			this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);

@@ -34,19 +34,25 @@ namespace Grupptenta2
 		public PersonUserControl()
 		{
 			InitializeComponent();
-			typeBox.DataSource = new List<string> { "Anställd", "Konsult", "Kontakt", "Närstående" };
+			typeBox.DataSource = new List<string> { "Kontakt", "Närstående" };
 		}
 
-		public void SetupForCreatePerson(PersonManager personManager, CompanyManager companyManager)
+		public void SetupForCreateContact(PersonManager personManager, CompanyManager companyManager)
 		{
-			SetupForCreateWorkingPerson(personManager, companyManager);
+			_newPerson = true;
+			_personManager = personManager;
+			_companyManager = companyManager;
+			companyBox.DataSource = _companyManager.Companies;
+			SetupBasicPerson();
 		}
 
-		public void SetupForCreateEmployee(Company company, PersonManager personManager, CompanyManager companyManager)
+		public void SetupForCreateCompanyContact(Company company, PersonManager personManager, CompanyManager companyManager)
 		{
-			SetupForCreateWorkingPerson(personManager, companyManager);
+			SetupForCreateContact(personManager, companyManager);
 			companyBox.SelectedItem = company;
 			companyBox.Enabled = false;
+			typeBox.SelectedIndex = 0;
+			typeBox.Enabled = false;
 		}
 
 		public void SetupForCreateRelation(bool isRelation, Person person, PersonManager personManager)
@@ -56,19 +62,10 @@ namespace Grupptenta2
 			_personWithNewRelation = person;
 			_personManager = personManager;
 			SetupBasicPerson();
-			typeBox.SelectedIndex = 3;
+			typeBox.SelectedIndex = 1;
 			typeBox.Enabled = false;
 			companyBox.DataSource = null;
 			companyBox.Enabled = false;
-		}
-
-		private void SetupForCreateWorkingPerson(PersonManager personManager, CompanyManager companyManager)
-		{
-			_newPerson = true;
-			_personManager = personManager;
-			_companyManager = companyManager;
-			companyBox.DataSource = _companyManager.Companies;
-			SetupBasicPerson();
 		}
 
 		private void SetupBasicPerson()
