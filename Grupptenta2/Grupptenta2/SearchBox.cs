@@ -14,26 +14,16 @@ namespace Grupptenta2
 	public partial class SearchBox : UserControl
 	{
 		public delegate void SearchEventHandler(object sender, SearchHandlerEventArgs e);
-		public delegate void GoToChoiceEventHandler(object sender, GoToChoiceHandlerEventArgs e);
 		public delegate void CreateEventHandler();
-		public delegate void DoubleClickChoiceEventHandler(object sender, DoubleClickChoiceHandlerEventArgs e);
 		public delegate void ChoiceBoxSelectionChangedEventHandler(object sender, ChoiceBoxSelectionChangedHandlerEventArgs e);
 
 		public event SearchEventHandler OnSearch;
-		public event GoToChoiceEventHandler OnGoToChoice;
 		public event CreateEventHandler OnCreate;
-		public event DoubleClickChoiceEventHandler OnDoubleClickChoice;
 		public event ChoiceBoxSelectionChangedEventHandler OnSelectionChanged;
 
 		public SearchBox()
 		{
 			InitializeComponent();
-		}
-
-		public void SetButtonTexts(string goTo, string create)
-		{
-			goToChoiceBtn.Text = goTo;
-			createBtn.Text = create;
 		}
 
 		public void SetData(Object dataSource, string displayMember)
@@ -54,22 +44,10 @@ namespace Grupptenta2
 				OnSearch(sender, new SearchHandlerEventArgs(searchField.Text));
 		}
 
-		private void goToChoiceBtn_Click(object sender, EventArgs e)
-		{
-			if (OnGoToChoice != null)
-				OnGoToChoice(sender, new GoToChoiceHandlerEventArgs(choiceBox.SelectedItem));
-		}
-
 		private void createBtn_Click(object sender, EventArgs e)
 		{
 			if (OnCreate != null)
 				OnCreate();
-		}
-
-		private void choiceBox_DoubleClick(object sender, MouseEventArgs e)
-		{
-			if (OnDoubleClickChoice != null)
-				OnDoubleClickChoice(sender, new DoubleClickChoiceHandlerEventArgs(choiceBox.SelectedItem));
 		}
 
 		private void choiceBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,24 +63,6 @@ namespace Grupptenta2
 		public SearchHandlerEventArgs(string searchText)
 		{
 			SearchText = searchText;
-		}
-	}
-
-	public class GoToChoiceHandlerEventArgs : EventArgs
-	{
-		public object ChosenItem { get; set; }
-		public GoToChoiceHandlerEventArgs(object chosenItem)
-		{
-			ChosenItem = chosenItem;
-		}
-	}
-
-	public class DoubleClickChoiceHandlerEventArgs : EventArgs
-	{
-		public object ChosenItem { get; set; }
-		public DoubleClickChoiceHandlerEventArgs(object chosenItem)
-		{
-			ChosenItem = chosenItem;
 		}
 	}
 

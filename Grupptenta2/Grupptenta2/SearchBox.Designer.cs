@@ -31,7 +31,6 @@
 			this.searchField = new System.Windows.Forms.TextBox();
 			this.searchBtn = new System.Windows.Forms.Button();
 			this.choiceBox = new System.Windows.Forms.ListBox();
-			this.goToChoiceBtn = new System.Windows.Forms.Button();
 			this.createBtn = new System.Windows.Forms.Button();
 			this.headerLbl = new System.Windows.Forms.Label();
 			this.SuspendLayout();
@@ -61,21 +60,10 @@
 			this.choiceBox.Size = new System.Drawing.Size(195, 212);
 			this.choiceBox.TabIndex = 4;
 			this.choiceBox.SelectedIndexChanged += new System.EventHandler(this.choiceBox_SelectedIndexChanged);
-			this.choiceBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.choiceBox_DoubleClick);
-			// 
-			// goToChoiceBtn
-			// 
-			this.goToChoiceBtn.Location = new System.Drawing.Point(199, 53);
-			this.goToChoiceBtn.Name = "goToChoiceBtn";
-			this.goToChoiceBtn.Size = new System.Drawing.Size(76, 23);
-			this.goToChoiceBtn.TabIndex = 5;
-			this.goToChoiceBtn.Text = "Gå till";
-			this.goToChoiceBtn.UseVisualStyleBackColor = true;
-			this.goToChoiceBtn.Click += new System.EventHandler(this.goToChoiceBtn_Click);
 			// 
 			// createBtn
 			// 
-			this.createBtn.Location = new System.Drawing.Point(199, 82);
+			this.createBtn.Location = new System.Drawing.Point(199, 53);
 			this.createBtn.Name = "createBtn";
 			this.createBtn.Size = new System.Drawing.Size(76, 23);
 			this.createBtn.TabIndex = 6;
@@ -99,7 +87,6 @@
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.headerLbl);
 			this.Controls.Add(this.createBtn);
-			this.Controls.Add(this.goToChoiceBtn);
 			this.Controls.Add(this.choiceBox);
 			this.Controls.Add(this.searchBtn);
 			this.Controls.Add(this.searchField);
@@ -115,7 +102,6 @@
 		private System.Windows.Forms.TextBox searchField;
 		private System.Windows.Forms.Button searchBtn;
 		private System.Windows.Forms.ListBox choiceBox;
-		private System.Windows.Forms.Button goToChoiceBtn;
 		private System.Windows.Forms.Button createBtn;
 		private System.Windows.Forms.Label headerLbl;
 	}
