@@ -16,6 +16,7 @@ namespace Grupptenta2
 	{
 		private static ProjectManager _projectManager;
 		private static PersonManager _personManager;
+		private static Person _person;
 		private static CompanyManager _companyManager;
 		private static Company _company;
 		private static Project _newProject;
@@ -40,15 +41,34 @@ namespace Grupptenta2
 			InitializeComponent();
 		}
 
+		public CreateProjectForm(Person person, ProjectManager projectManager, PersonManager personManager, CompanyManager companyManager)
+		{
+			_person = person;
+			_projectManager = projectManager;
+			_personManager = personManager;
+			_companyManager = companyManager;
+
+			InitializeComponent();
+		}
+
 		private void CreateProjectForm_Load(object sender, EventArgs e)
 		{
 			this.Text = "Nytt projekt";
 			companyBox.DataSource = _companyManager.Companies;
 			companyBox.DisplayMember = "Name";
+
+			_tempParticipantList = new BindingList<Person>();
+			participantBox.DataSource = _tempParticipantList;
+			participantBox.DisplayMember = "Person";
+
 			if (_company != null)
 			{
 				companyBox.SelectedItem = _company;
 				companyBox.Enabled = false;
+			}
+			if (_person != null)
+			{
+				_tempParticipantList.Add(_person);
 			}
 			createProjectContainer.Panel2.Hide();
 		}
@@ -70,9 +90,6 @@ namespace Grupptenta2
 
 			personBox.DataSource = company.Employees;
 			personBox.DisplayMember = "Person";
-			_tempParticipantList = new BindingList<Person>();
-			participantBox.DataSource =_tempParticipantList;
-			participantBox.DisplayMember = "Person";
 		}
 
 		private void addPartBtn_Click(object sender, EventArgs e)

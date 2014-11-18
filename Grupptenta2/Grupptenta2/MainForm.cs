@@ -119,6 +119,7 @@ namespace Grupptenta2
 
 			contactProjectBox.OnDoubleClickChoice += contactProjectBox_OnDoubleClickChoice;
 			contactProjectBox.OnSelectionChanged += contactProjectBox_OnSelectionChanged;
+			contactProjectBox.OnAdd += contactProjectBox_OnAdd;
 
 			//Company
 			companyChoiceBox.OnSelectionChanged += companyChoiceBox_OnSelectionChanged;
@@ -183,12 +184,10 @@ namespace Grupptenta2
 			_selectedPerson = (Person)e.ChosenItem;
 			LoadSelectedPerson();
 		}
-
 		private void contactChoiceBox_OnAdd()
 		{
 			CreatePersonForm createPersonForm = new CreatePersonForm(_personManager, _companyManager);
 			createPersonForm.ShowDialog();
-			RefreshChoiceBox(contactChoiceBox, _personManager.Persons, "Person");
 		}
 
 		// Contact Container: Panel 2
@@ -196,10 +195,10 @@ namespace Grupptenta2
 		{
 			this.Text = _selectedPerson.ToString();
 		}
-
 		private void contactControl_OnDoubleClickNote(object sender, DoubleClickNoteHandlerEventArgs e)
 		{
-			// Note popup(e.SelectedNote)
+			NoteForm noteForm = new NoteForm(e.SelectedNote);
+			noteForm.ShowDialog();
 		}
 
 		private void contactProjectBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
@@ -211,18 +210,22 @@ namespace Grupptenta2
 			tabControl.SelectedIndex = 2;
 			LoadSelectedProject();
 		}
+		private void contactProjectBox_OnAdd()
+		{
+			CreateProjectForm createProjectform = new CreateProjectForm(_selectedPerson, _projectManager, _personManager, _companyManager);
+			createProjectform.ShowDialog();
+			RefreshChoiceBox(contactProjectBox, _projectManager.Projects.Where(p => p.Roles.Any(r => r.Id == _selectedPerson.Id)).ToList(), "Name");
+		}
 
 		private void contactRelationBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedPerson = (Person)e.ChosenItem;
 		}
-
 		private void contactRelationBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
 			tabControl.SelectedIndex = 3;
 			LoadSelectedPerson();
 		}
-
 		private void contactRelationBox_OnAdd()
 		{
 			CreatePersonForm createRelationForm = new CreatePersonForm(true, _selectedPerson, _personManager);
