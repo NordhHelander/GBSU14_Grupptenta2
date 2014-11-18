@@ -62,12 +62,6 @@
     <Compile Include="EditParticipantListForm.Designer.cs">
       <DependentUpon>EditParticipantListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CompanyPopUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CompanyPopUp.Designer.cs">
-      <DependentUpon>CompanyPopUp.cs</DependentUpon>
-    </Compile>
     <Compile Include="CompanyUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,9 +126,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditParticipantListForm.resx">
       <DependentUpon>EditParticipantListForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CompanyPopUp.resx">
-      <DependentUpon>CompanyPopUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CompanyUserControl.resx">
       <DependentUpon>CompanyUserControl.cs</DependentUpon>
