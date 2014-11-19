@@ -205,6 +205,7 @@ namespace Grupptenta2
 
 			projectEventBox.OnAdd += projectEventBox_OnAdd;
 			projectEventBox.OnDoubleClickChoice += projectEventBox_OnDoubleClickChoice;
+			projectEventBox.OnSelectionChanged += projectEventBox_OnSelectionChanged;
 
 			projectNoteBox.OnAdd += projectNoteBox_OnAdd;
 			projectNoteBox.OnDoubleClickChoice += projectNoteBox_OnDoubleClickChoice;
@@ -310,13 +311,6 @@ namespace Grupptenta2
 			meetingAddParticipantBox.DataSource = _selectedProject.Roles;
 			meetingAddParticipantBox.DisplayMember = "Person";
 		}
-
-		//private void eventProjectBox_SelectedIndexChanged(object sender, EventArgs e)
-		//{
-		//	_selectedProject = (Project)eventProjectBox.SelectedItem;
-		//	meetingAddParticipantBox.DataSource = _selectedProject.Roles;
-		//	meetingAddParticipantBox.DisplayMember = "Person";
-		//}
 
 		private void createEventBtn_Click(object sender, EventArgs e)
 		{
@@ -633,6 +627,11 @@ namespace Grupptenta2
             LoadSelectedEvent();
 		}
 		}
+		private void projectEventBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
+		{
+			_selectedEvent = (ProjectEvent)projectEventBox.GetSelectedItem();
+		}
+
 		#endregion
 
 
