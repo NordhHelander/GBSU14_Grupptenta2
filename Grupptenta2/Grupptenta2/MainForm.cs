@@ -33,7 +33,7 @@ namespace Grupptenta2
 
 			InitializeComponent();
 
-			CreateMocks();
+			//CreateMocks();
 			//SaveDataXml.LoadCompanies();
 			//SaveDataXml.LoadPersons();
 			//SaveDataXml.LoadProjects();
@@ -585,9 +585,9 @@ namespace Grupptenta2
 		}
 		private void projectEventBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
-            _selectedEvent = (ProjectEvent)projectNoteBox.listBox.SelectedItem;
+            _selectedEvent = (ProjectEvent)projectEventBox.listBox.SelectedItem;
             tabControl.SelectedIndex = 0;
-			LoadSelectedEvent();
+            LoadSelectedEvent();
 		}
 		#endregion
 
