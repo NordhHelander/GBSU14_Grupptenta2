@@ -37,15 +37,6 @@ namespace Grupptenta2
 			typeBox.DataSource = new List<string> { "Kontakt", "Närstående" };
 		}
 
-		public void SetupForCreateContact(PersonManager personManager, CompanyManager companyManager)
-		{
-			_newPerson = true;
-			_personManager = personManager;
-			_companyManager = companyManager;
-			companyBox.DataSource = _companyManager.Companies;
-			SetupBasicPerson();
-		}
-
 		public void SetupForCreateCompanyContact(Company company, PersonManager personManager, CompanyManager companyManager)
 		{
 			SetupForCreateContact(personManager, companyManager);
@@ -55,25 +46,33 @@ namespace Grupptenta2
 			typeBox.Enabled = false;
 		}
 
+		public void SetupForCreateContact(PersonManager personManager, CompanyManager companyManager)
+		{
+			SetupForCreateBasicPerson();
+			_personManager = personManager;
+			_companyManager = companyManager;
+			companyBox.DataSource = _companyManager.Companies;
+		}
+
 		public void SetupForCreateRelation(bool isRelation, Person person, PersonManager personManager)
 		{
-			_newPerson = true;
+			SetupForCreateBasicPerson();
 			_isRelation = true;
 			_personWithNewRelation = person;
 			_personManager = personManager;
-			SetupBasicPerson();
 			typeBox.SelectedIndex = 1;
 			typeBox.Enabled = false;
 			companyBox.DataSource = null;
 			companyBox.Enabled = false;
 		}
 
-		private void SetupBasicPerson()
+		private void SetupForCreateBasicPerson()
 		{
+			_newPerson = true;
+			_tempNotes = new BindingList<Note>();
 			firstNameBox.Text = "Förnamn";
 			lastNameBox.Text = "Efternamn";
 			birthdateBox.Text = "ÅÅÅÅ-MM-DD";
-			_tempNotes = new BindingList<Note>();
 			notesBox.DataSource = _tempNotes;
 			notesBox.DisplayMember = "Note";
 			companyBox.DisplayMember = "Name";
@@ -110,53 +109,61 @@ namespace Grupptenta2
 		
 		private void saveBtn_Click(object sender, EventArgs e)
 		{
-			if (_newPerson)
+			DateTime dateOfBirth;
+			if (DateTime.TryParse(birthdateBox.Text, out dateOfBirth))
 			{
-				_personManager.CreatePerson(firstNameBox.Text);
-				_person = _personManager.Persons[_personManager.Persons.Count - 1];
-				Company selectedCompany = (Company)companyBox.SelectedItem;
-				if (_isRelation)
+				if (_newPerson)
 				{
-					_personWithNewRelation.Relations.Add(_person);
+					_personManager.CreatePerson(firstNameBox.Text);
+					_person = _personManager.Persons[_personManager.Persons.Count - 1];
+					Company selectedCompany = (Company)companyBox.SelectedItem;
+					if (_isRelation)
+					{
+						_personWithNewRelation.Relations.Add(_person);
+					}
+					else
+					{
+						_company = _companyManager.Companies.SingleOrDefault(c => c.Id == selectedCompany.Id);
+						_company.Employees.Add(_person);
+					}
 				}
-				else
+
+				_person.FirstName = firstNameBox.Text;
+				_person.LastName = lastNameBox.Text;
+				_person.Birthdate = DateTime.Parse(birthdateBox.Text);
+				_person.ResidentialAddress.Street = streetBox.Text;
+				_person.ResidentialAddress.ZipCode = zipBox.Text;
+				_person.ResidentialAddress.City = cityBox.Text;
+				_person.PhoneNumber = phoneBox.Text;
+				_person.CellPhoneNumber = cellPhoneBox.Text;
+				_person.EmailAddress = emailBox.Text;
+				_person.Type = (string)typeBox.SelectedItem;
+				_person.IsActive = isActiveCheckBox.Checked;
+
+				_person.Notes = _tempNotes;
+
+				if (companyBox.SelectedItem != _company && !_isRelation)
 				{
-					_company = _companyManager.Companies.SingleOrDefault(c => c.Id == selectedCompany.Id);
+					List<Person> newEmployeeList = _company.Employees.Where(p => p.Id != _person.Id).ToList();
+					_company.Employees = new BindingList<Person>(newEmployeeList);
+
+					_company = (Company)companyBox.SelectedItem;
 					_company.Employees.Add(_person);
 				}
+
+				if (OnSavePersonChanges != null)
+					OnSavePersonChanges();
 			}
-
-			_person.FirstName = firstNameBox.Text;
-			_person.LastName = lastNameBox.Text;
-			_person.Birthdate = DateTime.Parse(birthdateBox.Text);
-			_person.ResidentialAddress.Street = streetBox.Text;
-			_person.ResidentialAddress.ZipCode = zipBox.Text;
-			_person.ResidentialAddress.City = cityBox.Text;
-			_person.PhoneNumber = phoneBox.Text;
-			_person.CellPhoneNumber = cellPhoneBox.Text;
-			_person.EmailAddress = emailBox.Text;
-			_person.Type = (string)typeBox.SelectedItem;
-			_person.IsActive = isActiveCheckBox.Checked;
-
-			_person.Notes = _tempNotes;
-
-			if (companyBox.SelectedItem != _company && !_isRelation )
+			else
 			{
-				List<Person> newEmployeeList = _company.Employees.Where(p => p.Id != _person.Id).ToList();
-				_company.Employees = new BindingList<Person>(newEmployeeList);
-
-				_company = (Company)companyBox.SelectedItem;
-				_company.Employees.Add(_person);
+				dateOfBirthInvalidLbl.Visible = true;
 			}
-
-			if (OnSavePersonChanges != null)
-				OnSavePersonChanges();
+			
 		}
 
 		private void addNoteBtn_Click(object sender, EventArgs e)
 		{
 			Note note = new Note();
-			// Se till att author blir = inloggad personal.
 			note.NoteDate = DateTime.Now;
 			note.Text = newNoteBox.Text;
 			newNoteBox.Text = "";

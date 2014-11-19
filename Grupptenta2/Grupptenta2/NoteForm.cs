@@ -17,7 +17,6 @@ namespace Grupptenta2
 		{
 			InitializeComponent();
 			dateTimeBox.Text = note.NoteDate.ToString();
-			// authorBox.Text = note.Author.ToString(); Fixa när author automatiskt blir inloggad person.
 			textBox.Text = note.Text;
 		}
 

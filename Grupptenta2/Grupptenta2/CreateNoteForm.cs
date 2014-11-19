@@ -15,28 +15,27 @@ namespace Grupptenta2
 	public partial class CreateNoteForm : Form
 	{
 		private static BindingList<Note> _notes;
-        private Note _note;
+		private Note _note;
 
 		public CreateNoteForm(BindingList<Note> notes)
 		{
 			_notes = notes;
-            _note = new Note();
-            _notes.Add(_note);
+			_note = new Note();
+			_notes.Add(_note);
 			InitializeComponent();
 			this.Text = "Ny anteckning";
 		}
 
-        public CreateNoteForm(Note note)
-        {
-            _note = note;
-            InitializeComponent();
-            this.Text = "Ändra anteckning";
-            noteBox.Text = _note.Text;
-        }
+		public CreateNoteForm(Note note)
+		{
+			_note = note;
+			InitializeComponent();
+			this.Text = "Ändra anteckning";
+			noteBox.Text = _note.Text;
+		}
 
 		private void saveBtn_Click(object sender, EventArgs e)
 		{
-			// Se till att author blir inloggad personal.
 			_note.NoteDate = DateTime.Now;
 			_note.Text = noteBox.Text;
 

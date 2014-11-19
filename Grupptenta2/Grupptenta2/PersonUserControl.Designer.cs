@@ -56,6 +56,7 @@
 			this.newNoteLbl = new System.Windows.Forms.Label();
 			this.removeNoteBtn = new System.Windows.Forms.Button();
 			this.newNoteBox = new System.Windows.Forms.TextBox();
+			this.dateOfBirthInvalidLbl = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// firstNameBox
@@ -217,7 +218,7 @@
 			// 
 			// saveBtn
 			// 
-			this.saveBtn.Location = new System.Drawing.Point(273, 379);
+			this.saveBtn.Location = new System.Drawing.Point(73, 350);
 			this.saveBtn.Name = "saveBtn";
 			this.saveBtn.Size = new System.Drawing.Size(116, 23);
 			this.saveBtn.TabIndex = 13;
@@ -301,11 +302,23 @@
 			this.newNoteBox.Size = new System.Drawing.Size(165, 121);
 			this.newNoteBox.TabIndex = 59;
 			// 
+			// dateOfBirthInvalidLbl
+			// 
+			this.dateOfBirthInvalidLbl.AutoSize = true;
+			this.dateOfBirthInvalidLbl.ForeColor = System.Drawing.Color.DarkRed;
+			this.dateOfBirthInvalidLbl.Location = new System.Drawing.Point(195, 70);
+			this.dateOfBirthInvalidLbl.Name = "dateOfBirthInvalidLbl";
+			this.dateOfBirthInvalidLbl.Size = new System.Drawing.Size(14, 13);
+			this.dateOfBirthInvalidLbl.TabIndex = 60;
+			this.dateOfBirthInvalidLbl.Text = "X";
+			this.dateOfBirthInvalidLbl.Visible = false;
+			// 
 			// PersonUserControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.dateOfBirthInvalidLbl);
 			this.Controls.Add(this.newNoteBox);
 			this.Controls.Add(this.removeNoteBtn);
 			this.Controls.Add(this.newNoteLbl);
@@ -371,5 +384,6 @@
 		private System.Windows.Forms.Label newNoteLbl;
 		private System.Windows.Forms.Button removeNoteBtn;
 		private System.Windows.Forms.TextBox newNoteBox;
+		private System.Windows.Forms.Label dateOfBirthInvalidLbl;
 	}
 }
