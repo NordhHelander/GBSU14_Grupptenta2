@@ -243,37 +243,8 @@ namespace Grupptenta2
 		private void eventListBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_selectedEvent = (ProjectEvent)eventListBox.SelectedItem;
-			LoadEventInfo();
+			LoadSelectedEvent();
 			_isNewEvent = false;
-		}
-
-		private void LoadEventInfo()
-		{
-			Project eventProject = _projectManager.Projects.SingleOrDefault(p => p.ProjectJournal.Events.Any(pEvent => pEvent.Equals(_selectedEvent)));
-			Company eventCompany = _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Equals(eventProject)));
-
-			eventNameBox.Text = _selectedEvent.Name;
-			eventCompanyBox.DataSource = _companyManager.Companies;
-			eventCompanyBox.DisplayMember = "Name";
-			eventCompanyBox.SelectedItem = eventCompany;
-			eventProjectBox.DataSource = _projectManager.Projects;
-			eventProjectBox.DisplayMember = "Name";
-			eventProjectBox.SelectedItem = eventProject;
-
-			startDateTimePicker.Value = _selectedEvent.StartDate;
-			endDateTimePicker.Value = _selectedEvent.EndDate;
-			eventNoteBox.DataSource = _selectedEvent.Notes;
-			eventNoteBox.DisplayMember = "Name";
-
-			meetingStreetBox.Text = _selectedEvent.Location.Street;
-			meetingZipBox.Text = _selectedEvent.Location.ZipCode;
-			meetingCityBox.Text = _selectedEvent.Location.City;
-			meetingParticipantBox.DataSource = null;
-			meetingParticipantBox.DataSource = _selectedEvent.Participants;
-			meetingParticipantBox.DisplayMember = "Person";
-			meetingAddParticipantBox.DataSource = null;
-			meetingAddParticipantBox.DataSource = eventProject.Roles;
-			meetingAddParticipantBox.DisplayMember = "Person";
 		}
 
 		private void startDateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -646,7 +617,34 @@ namespace Grupptenta2
 			companyProjectBox.SetData(_selectedCompany.Projects, "Name");
 			companyEmployeeBox.SetData(_selectedCompany.Employees, "Person");
 		}
+		private void LoadSelectedEvent()
+		{
+			Project eventProject = _projectManager.Projects.SingleOrDefault(p => p.ProjectJournal.Events.Any(pEvent => pEvent.Equals(_selectedEvent)));
+			Company eventCompany = _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Equals(eventProject)));
 
+			eventNameBox.Text = _selectedEvent.Name;
+			eventCompanyBox.DataSource = _companyManager.Companies;
+			eventCompanyBox.DisplayMember = "Name";
+			eventCompanyBox.SelectedItem = eventCompany;
+			eventProjectBox.DataSource = _projectManager.Projects;
+			eventProjectBox.DisplayMember = "Name";
+			eventProjectBox.SelectedItem = eventProject;
+
+			startDateTimePicker.Value = _selectedEvent.StartDate;
+			endDateTimePicker.Value = _selectedEvent.EndDate;
+			eventNoteBox.DataSource = _selectedEvent.Notes;
+			eventNoteBox.DisplayMember = "Name";
+
+			meetingStreetBox.Text = _selectedEvent.Location.Street;
+			meetingZipBox.Text = _selectedEvent.Location.ZipCode;
+			meetingCityBox.Text = _selectedEvent.Location.City;
+			meetingParticipantBox.DataSource = null;
+			meetingParticipantBox.DataSource = _selectedEvent.Participants;
+			meetingParticipantBox.DisplayMember = "Person";
+			meetingAddParticipantBox.DataSource = null;
+			meetingAddParticipantBox.DataSource = eventProject.Roles;
+			meetingAddParticipantBox.DisplayMember = "Person";
+		}
 		private void quitBtn_Click(object sender, EventArgs e)
 		{
 			SaveDataXml.SaveCompanies(_companyManager.Companies);
