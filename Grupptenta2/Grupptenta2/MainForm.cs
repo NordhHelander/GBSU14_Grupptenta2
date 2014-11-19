@@ -30,10 +30,10 @@ namespace Grupptenta2
 
 			InitializeComponent();
 
-			CreateMocks();
-			//SaveDataXml.SaveCompanies(_companyManager.Companies);
-			//SaveDataXml.SavePersons(_personManager.Persons);
-			//SaveDataXml.SaveProjects(_projectManager.Projects);
+			//CreateMocks();
+			//SaveDataXml.LoadCompanies();
+			//SaveDataXml.LoadPersons();
+			//SaveDataXml.LoadProjects();
 
 			SetEventMethods();
 			ProjectTabSetup();

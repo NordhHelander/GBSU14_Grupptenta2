@@ -10,7 +10,6 @@ using System.Xml.Serialization;
 namespace TestClasses
 {
     [Serializable]
-    //[XmlRoot("Foo")]
     public class PersonManager
 	{
 		[XmlArray("PersonList"), XmlArrayItem(typeof(Person), ElementName = "Person")]
@@ -31,7 +30,7 @@ namespace TestClasses
 		public PersonManager()
 		{
 			Persons = new BindingList<Person>();
-			//Persons = SaveDataXml.LoadPersons();
+			Persons = SaveDataXml.LoadPersons();
 		}
 	}
 }

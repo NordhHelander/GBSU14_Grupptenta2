@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeBase
 {
+    [Serializable]
     public class Address
     {
         public string Street { get; set; }

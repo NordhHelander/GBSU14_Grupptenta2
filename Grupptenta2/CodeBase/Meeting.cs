@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CodeBase
 {
+    [Serializable]
     public class Meeting : ProjectEvent
     {
         public Address Location { get; set; }

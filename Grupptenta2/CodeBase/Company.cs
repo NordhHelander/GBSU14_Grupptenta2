@@ -14,9 +14,7 @@ namespace CodeBase
         public int Id { get; set; }
         public string Name { get; set; }
         public Address Location { get; set; }
-        //[XmlIgnore]
         public BindingList<Person> Employees { get; set; }
-        //[XmlIgnore]
         public List<Project> Projects { get; set; }    
         public bool IsActive { get; set; }
 

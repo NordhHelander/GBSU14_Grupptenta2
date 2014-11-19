@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CodeBase
 {
+    [Serializable]
     public class Journal
     {
         public BindingList<Note> Notes { get; set; }

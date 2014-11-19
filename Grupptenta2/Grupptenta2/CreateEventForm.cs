@@ -15,7 +15,7 @@ namespace Grupptenta2
 	{
 		private static Project _project;
         private ProjectEvent _event;
-        private Meeting _meeting;
+        //private Meeting _meeting;
         private static BindingList<Note> _tempNotes;
 		private static BindingList<Person> _tempParticipants;
 
@@ -65,27 +65,17 @@ namespace Grupptenta2
                 _event.StartDate = startPicker.Value;
                 _event.EndDate = stopPicker.Value;
                 _event.Notes = _tempNotes;
-
-                _project.ProjectJournal.Events.Add(_event);
             }
             else
             {
-                _meeting = new Meeting();
-                _meeting.Name = nameBox.Text;
-                _meeting.StartDate = startPicker.Value;
-                _meeting.EndDate = stopPicker.Value;
-                _meeting.Notes = _tempNotes;
-                _meeting.Participants = _tempParticipants;
-
                 Address meetingLocation = new Address();
                 meetingLocation.Street = streetTxtBx.Text;
                 meetingLocation.ZipCode = zipTxtBx.Text;
                 meetingLocation.City = cityTxtBx.Text;
 
-                _meeting.Location = meetingLocation;
-
-                _project.ProjectJournal.Events.Add(_meeting);
+                _event.Location = meetingLocation;
             }
+            _project.ProjectJournal.Events.Add(_event);
             this.Close();
         }
 
