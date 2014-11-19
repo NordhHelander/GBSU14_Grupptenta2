@@ -653,5 +653,12 @@ namespace Grupptenta2
 			SaveDataXml.SaveProjects(_projectManager.Projects);
 			Application.Exit();
 		}
+
+		private void eventNoteBox_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			Note selectedNote = (Note)eventNoteBox.SelectedItem;
+			NoteForm noteForm = new NoteForm(selectedNote);
+			noteForm.ShowDialog();
+		}
 	}
 }
