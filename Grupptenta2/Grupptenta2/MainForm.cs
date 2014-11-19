@@ -619,11 +619,12 @@ namespace Grupptenta2
 		}
 		private void projectEventBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
-            if (projectEventBox.listBox.SelectedItem != null)
-            {
-            _selectedEvent = (ProjectEvent)projectEventBox.listBox.SelectedItem;
-            tabControl.SelectedIndex = 0;
-            LoadSelectedEvent();
+			if (projectEventBox.listBox.SelectedItem != null)
+			{
+				_selectedEvent = (ProjectEvent)projectEventBox.listBox.SelectedItem;
+				tabControl.SelectedIndex = 0;
+				LoadSelectedEvent();
+			}
 		}
 		private void projectEventBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
