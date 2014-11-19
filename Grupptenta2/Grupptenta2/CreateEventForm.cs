@@ -27,10 +27,11 @@ namespace Grupptenta2
 
 			InitializeComponent();
 			this.Text = "Skapa händelse";
+			eventCreationContainer.Panel2.Hide();
 			personList.DataSource = _project.Roles;
 			personList.DisplayMember = "Person";
 		}
-
+         
         private void addNoteBtn_Click(object sender, EventArgs e)
         {
             Note newNote = new Note();
@@ -49,17 +50,28 @@ namespace Grupptenta2
             _event.StartDate = startPicker.Value;
             _event.EndDate = stopPicker.Value;
             _event.Notes = _tempNotes;
-
-            Address meetingLocation = new Address();
-            meetingLocation.Street = streetTxtBx.Text;
-            meetingLocation.ZipCode = zipTxtBx.Text;
-            meetingLocation.City = cityTxtBx.Text;
+            
+			//Address meetingLocation = new Address();
+			//meetingLocation.Street = streetTxtBx.Text;
+			//meetingLocation.ZipCode = zipTxtBx.Text;
+			//meetingLocation.City = cityTxtBx.Text;
                 
-            _event.Location = meetingLocation;
-            _event.Participants = _tempParticipants;
+			//_event.Location = meetingLocation;
+			//_event.Participants = _tempParticipants;
 
             _project.ProjectJournal.Events.Add(_event);
+
             this.Close();
+        }
+
+        private void noteList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void getAddressBtn_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void addParticipantBtn_Click(object sender, EventArgs e)
