@@ -9,12 +9,12 @@ using System.Xml.Serialization;
 
 namespace TestClasses
 {
-	[Serializable]
-	public class CompanyManager
+    [Serializable]
+    public class CompanyManager
 	{
 		[XmlArray("CompanyList"), XmlArrayItem(typeof(Company), ElementName = "Company")]
 
-		public BindingList<Company> Companies { get; private set; }
+        public BindingList<Company> Companies { get; private set; }
 
 		public void CreateCompany(string name)
 		{
@@ -29,8 +29,8 @@ namespace TestClasses
 
 		public CompanyManager()
 		{
-			Companies = new BindingList<Company>();
-			//Companies = SaveDataXml.LoadCompanies();
+            Companies = new BindingList<Company>();
+			Companies = SaveDataXml.LoadCompanies();
 		}
 	}
 }

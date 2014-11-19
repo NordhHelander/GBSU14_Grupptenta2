@@ -11,6 +11,13 @@ namespace CodeBase
 {
     public static class SaveDataXml
     {
+        public static void SaveAll(BindingList<Company> companies, BindingList<Person> persons, BindingList<Project> projects)
+        {
+            SaveCompanies(companies);
+            SavePersons(persons);
+            SaveProjects(projects);
+        }
+        
         public static void SaveCompanies(BindingList<Company> companies)
         {
             XmlSerializer ser = new XmlSerializer(typeof(BindingList<Company>));

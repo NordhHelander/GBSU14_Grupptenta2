@@ -28,28 +28,28 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.personControl = new Grupptenta2.PersonUserControl();
-			this.SuspendLayout();
-			// 
-			// personControl
-			// 
-			this.personControl.BackColor = System.Drawing.Color.White;
-			this.personControl.Location = new System.Drawing.Point(12, 12);
-			this.personControl.Name = "personControl";
-			this.personControl.Size = new System.Drawing.Size(414, 467);
-			this.personControl.TabIndex = 0;
-			// 
-			// CreatePersonForm
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(428, 493);
-			this.Controls.Add(this.personControl);
-			this.Name = "CreatePersonForm";
-			this.ShowInTaskbar = false;
-			this.Text = "CreatePersonForm";
-			this.ResumeLayout(false);
+            this.personControl = new Grupptenta2.PersonUserControl();
+            this.SuspendLayout();
+            // 
+            // personControl
+            // 
+            this.personControl.BackColor = System.Drawing.Color.White;
+            this.personControl.Location = new System.Drawing.Point(12, 12);
+            this.personControl.Name = "personControl";
+            this.personControl.Size = new System.Drawing.Size(414, 467);
+            this.personControl.TabIndex = 0;
+            // 
+            // CreatePersonForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(428, 493);
+            this.Controls.Add(this.personControl);
+            this.Name = "CreatePersonForm";
+            this.ShowInTaskbar = false;
+            this.Text = "CreatePersonForm";
+            this.ResumeLayout(false);
 
 		}
 

@@ -15,7 +15,6 @@ namespace Grupptenta2
 	{
 		private static Project _project;
         private ProjectEvent _event;
-        //private Meeting _meeting;
         private static BindingList<Note> _tempNotes;
 		private static BindingList<Person> _tempParticipants;
 
@@ -32,26 +31,7 @@ namespace Grupptenta2
 			personList.DataSource = _project.Roles;
 			personList.DisplayMember = "Person";
 		}
-
-        // TODO: ta bort detta?
-        //public CreateEventForm(Project project, ProjectEvent projectEvent)
-        //{
-        //    _project = project;
-        //    _event = projectEvent;
-        //    _tempNotes = new BindingList<Note>();
-        //    _tempParticipants = new BindingList<Person>();
-
-        //    InitializeComponent();
-        //    this.Text = "Redigera händelse";
-        //    eventCreationContainer.Panel2.Hide();
-        //    personList.DataSource = _project.Roles;
-        //    personList.DisplayMember = "Person";
-
-        //    nameBox.Text = projectEvent.Name;
-        //    noteList.DataSource = projectEvent.Notes;
-        //    participantList.DataSource = projectEvent.Participants;
-        //}
-
+         
 		private void isMeetingCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
             if (isMeetingCheckBox.Checked == true)

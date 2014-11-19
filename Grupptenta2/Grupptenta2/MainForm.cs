@@ -362,6 +362,8 @@ namespace Grupptenta2
 			_selectedEvent.Location.City = meetingCityBox.Text;
 
 			this.Text = _selectedEvent.Name;
+
+            SaveDataXml.SaveProjects(_projectManager.Projects);
 		}
 
 		private void eventNoteBox_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -567,6 +569,7 @@ namespace Grupptenta2
 			_selectedProject.Name = projectNameBox.Text;
 			_selectedProject.Description = projectDescBox.Text;
 			projectChoiceBox.SetData(_projectManager.Projects, "Name");
+            SaveDataXml.SaveAll(_companyManager.Companies, _personManager.Persons, _projectManager.Projects);
 		}
 
 		// Project Container: Panel 2
@@ -616,6 +619,8 @@ namespace Grupptenta2
 		}
 		private void projectEventBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
+            if (projectEventBox.listBox.SelectedItem != null)
+            {
             _selectedEvent = (ProjectEvent)projectEventBox.listBox.SelectedItem;
             tabControl.SelectedIndex = 0;
             LoadSelectedEvent();
@@ -697,9 +702,10 @@ namespace Grupptenta2
 		}
 		private void quitBtn_Click(object sender, EventArgs e)
 		{
-			SaveDataXml.SaveCompanies(_companyManager.Companies);
-			SaveDataXml.SavePersons(_personManager.Persons);
-			SaveDataXml.SaveProjects(_projectManager.Projects);
+            SaveDataXml.SaveAll(_companyManager.Companies, _personManager.Persons, _projectManager.Projects);
+            //SaveDataXml.SaveCompanies(_companyManager.Companies);
+            //SaveDataXml.SavePersons(_personManager.Persons);
+            //SaveDataXml.SaveProjects(_projectManager.Projects);
 			Application.Exit();
 		}
 	}

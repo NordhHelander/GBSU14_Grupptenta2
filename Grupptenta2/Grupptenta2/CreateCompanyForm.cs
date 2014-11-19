@@ -35,7 +35,8 @@ namespace Grupptenta2
 			company.Location.City = cityBox.Text;
 			company.IsActive = activeCheckBox.Checked;
 
-			this.Close();
+            SaveDataXml.SaveCompanies(_companyManager.Companies);
+            this.Close();
 		}
 	}
 }
