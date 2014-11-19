@@ -218,7 +218,7 @@ namespace Grupptenta2
 
 		private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
 		{
-			List<ProjectEvent> tempList = new List<ProjectEvent>();	
+			List<ProjectEvent> tempList = new List<ProjectEvent>();
 			_events = new BindingList<ProjectEvent>();
 			DateTime selectedDate = monthCalendar.SelectionRange.Start;
 			eventListLbl.Text = "Händelser " + selectedDate.ToShortDateString();
@@ -372,12 +372,14 @@ namespace Grupptenta2
 		{
 			CreatePersonForm createPersonForm = new CreatePersonForm(_personManager, _companyManager);
 			createPersonForm.ShowDialog();
+			contactChoiceBox.SetData(_personManager.Persons, "Person");
 		}
 
 		// Contact Container: Panel 2
 		private void contactControl_OnSavePersonChanges()
 		{
 			this.Text = _selectedPerson.ToString();
+			contactChoiceBox.SetData(_personManager.Persons, "Person");
 		}
 		private void contactControl_OnDoubleClickNote(object sender, DoubleClickNoteHandlerEventArgs e)
 		{
@@ -437,6 +439,7 @@ namespace Grupptenta2
 		{
 			CreateCompanyForm createCompanyForm = new CreateCompanyForm(_companyManager);
 			createCompanyForm.ShowDialog();
+			companyChoiceBox.SetData(_companyManager.Companies, "Name");
 		}
 		private void companyChoiceBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
@@ -451,6 +454,7 @@ namespace Grupptenta2
 		private void companyControl_OnSaveCompanyChanges()
 		{
 			this.Text = _selectedCompany.Name;
+			companyChoiceBox.SetData(_companyManager.Companies, "Name");
 		}
 
 		private void companyProjectBox_OnAdd()
@@ -518,12 +522,13 @@ namespace Grupptenta2
 		{
 			CreateProjectForm createProjectForm = new CreateProjectForm(_projectManager, _personManager, _companyManager);
 			createProjectForm.Show();
-			RefreshChoiceBox(projectChoiceBox, _projectManager.Projects, "Name");
+			projectChoiceBox.SetData(_projectManager.Projects, "Name");
 		}
 		private void saveBtn_Click(object sender, EventArgs e)
 		{
 			_selectedProject.Name = projectNameBox.Text;
 			_selectedProject.Description = projectDescBox.Text;
+			projectChoiceBox.SetData(_projectManager.Projects, "Name");
 		}
 
 		// Project Container: Panel 2
