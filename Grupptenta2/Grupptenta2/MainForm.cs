@@ -285,12 +285,19 @@ namespace Grupptenta2
 			eventProjectBox.DisplayMember = "Name";
 		}
 
-		private void eventProjectBox_SelectedIndexChanged(object sender, EventArgs e)
+		private void eventProjectBox_SelectedValueChanged(object sender, EventArgs e)
 		{
 			_selectedProject = (Project)eventProjectBox.SelectedItem;
 			meetingAddParticipantBox.DataSource = _selectedProject.Roles;
 			meetingAddParticipantBox.DisplayMember = "Person";
 		}
+
+		//private void eventProjectBox_SelectedIndexChanged(object sender, EventArgs e)
+		//{
+		//	_selectedProject = (Project)eventProjectBox.SelectedItem;
+		//	meetingAddParticipantBox.DataSource = _selectedProject.Roles;
+		//	meetingAddParticipantBox.DisplayMember = "Person";
+		//}
 
 		private void createEventBtn_Click(object sender, EventArgs e)
 		{

@@ -390,7 +390,7 @@
 			this.eventProjectBox.Name = "eventProjectBox";
 			this.eventProjectBox.Size = new System.Drawing.Size(142, 21);
 			this.eventProjectBox.TabIndex = 31;
-			this.eventProjectBox.SelectedIndexChanged += new System.EventHandler(this.eventProjectBox_SelectedIndexChanged);
+			this.eventProjectBox.SelectedValueChanged += new System.EventHandler(this.eventProjectBox_SelectedValueChanged);
 			// 
 			// showEndDateLbl
 			// 
