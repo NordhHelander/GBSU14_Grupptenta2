@@ -550,7 +550,9 @@ namespace Grupptenta2
 		}
 		private void projectEventBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
-			throw new NotImplementedException();
+            _selectedEvent = (ProjectEvent)projectNoteBox.listBox.SelectedItem;
+            tabControl.SelectedIndex = 0;
+            //LoadSelectedEvent();
 		}
 		#endregion
 
@@ -594,7 +596,7 @@ namespace Grupptenta2
 			companyProjectBox.SetData(_selectedCompany.Projects, "Name");
 			companyEmployeeBox.SetData(_selectedCompany.Employees, "Person");
 		}
-
+        
 		private void quitBtn_Click(object sender, EventArgs e)
 		{
 			SaveDataXml.SaveCompanies(_companyManager.Companies);

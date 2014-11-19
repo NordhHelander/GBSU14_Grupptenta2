@@ -33,6 +33,25 @@ namespace Grupptenta2
 			personList.DisplayMember = "Person";
 		}
 
+        // TODO: ta bort detta?
+        //public CreateEventForm(Project project, ProjectEvent projectEvent)
+        //{
+        //    _project = project;
+        //    _event = projectEvent;
+        //    _tempNotes = new BindingList<Note>();
+        //    _tempParticipants = new BindingList<Person>();
+
+        //    InitializeComponent();
+        //    this.Text = "Redigera händelse";
+        //    eventCreationContainer.Panel2.Hide();
+        //    personList.DataSource = _project.Roles;
+        //    personList.DisplayMember = "Person";
+
+        //    nameBox.Text = projectEvent.Name;
+        //    noteList.DataSource = projectEvent.Notes;
+        //    participantList.DataSource = projectEvent.Participants;
+        //}
+
 		private void isMeetingCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
             if (isMeetingCheckBox.Checked == true)
@@ -58,22 +77,21 @@ namespace Grupptenta2
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            if (!isMeetingCheckBox.Checked)
-            {
-                _event = new ProjectEvent();
-                _event.Name = nameBox.Text;
-                _event.StartDate = startPicker.Value;
-                _event.EndDate = stopPicker.Value;
-                _event.Notes = _tempNotes;
-            }
-            else
+            _event = new ProjectEvent();
+            _event.Name = nameBox.Text;
+            _event.StartDate = startPicker.Value;
+            _event.EndDate = stopPicker.Value;
+            _event.Notes = _tempNotes;
+            
+            if (isMeetingCheckBox.Checked)
             {
                 Address meetingLocation = new Address();
                 meetingLocation.Street = streetTxtBx.Text;
                 meetingLocation.ZipCode = zipTxtBx.Text;
                 meetingLocation.City = cityTxtBx.Text;
-
+                
                 _event.Location = meetingLocation;
+                _event.Participants = _tempParticipants;
             }
             _project.ProjectJournal.Events.Add(_event);
             this.Close();
