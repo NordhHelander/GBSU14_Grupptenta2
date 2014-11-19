@@ -33,7 +33,7 @@ namespace Grupptenta2
 
 			InitializeComponent();
 
-			CreateMocks();
+			//CreateMocks();
 			//SaveDataXml.LoadCompanies();
 			//SaveDataXml.LoadPersons();
 			//SaveDataXml.LoadProjects();
@@ -248,14 +248,14 @@ namespace Grupptenta2
 		}
 
 		private void startDateTimePicker_ValueChanged(object sender, EventArgs e)
-		{
+			{
 			showStartDateLbl.Text = startDateTimePicker.Value.ToLongDateString();
-		}
+			}
 
 		private void endDateTimePicker_ValueChanged(object sender, EventArgs e)
-		{
+			{
 			showEndDateLbl.Text = endDateTimePicker.Value.ToLongDateString();
-		}
+			}
 
 		private void eventAddNoteBtn_Click(object sender, EventArgs e)
 		{
@@ -324,7 +324,7 @@ namespace Grupptenta2
 		private void eventSaveBtn_Click(object sender, EventArgs e)
 		{
 			if (_isNewEvent)
-			{
+		{
 				eventCompanyBox.Enabled = false;
 				eventProjectBox.Enabled = false;
 				startDatetimeLbl.Enabled = false;
@@ -335,7 +335,7 @@ namespace Grupptenta2
 
 				BoldDates(_selectedEvent.StartDate, _selectedEvent.EndDate);
 				monthCalendar.BoldedDates = _boldedDates.ToArray();
-			}
+		}
 
 			_selectedEvent.Name = eventNameBox.Text;
 			_selectedEvent.Location.Street = meetingStreetBox.Text;
@@ -578,7 +578,9 @@ namespace Grupptenta2
 		}
 		private void projectEventBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
-			throw new NotImplementedException();
+            _selectedEvent = (ProjectEvent)projectNoteBox.listBox.SelectedItem;
+            tabControl.SelectedIndex = 0;
+            //LoadSelectedEvent();
 		}
 		#endregion
 
