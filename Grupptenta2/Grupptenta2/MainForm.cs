@@ -32,7 +32,6 @@ namespace Grupptenta2
 			_projectManager = new ProjectManager();
 
 			InitializeComponent();
-
 			CreateMocks();
 			//SaveDataXml.LoadCompanies();
 			//SaveDataXml.LoadPersons();
@@ -43,6 +42,17 @@ namespace Grupptenta2
 			ProjectTabSetup();
 			ContactTabSetup();
 			CompanyTabSetup();
+			BirthdayAlert();
+		}
+
+		private void BirthdayAlert()
+		{
+			List<Person> birthdayList = _personManager.Persons.Where(p => p.Birthdate.Month.Equals(DateTime.Now.Month) && p.Birthdate.Day.Equals(DateTime.Now.Day)).ToList();
+			if (birthdayList.Count > 0)
+			{
+				BirthdayAlertForm birthdayAlert = new BirthdayAlertForm(birthdayList);
+				birthdayAlert.ShowDialog();
+			}
 		}
 
 		private static void CreateMocks()
@@ -70,6 +80,20 @@ namespace Grupptenta2
 				_projectManager.Projects[i].Name = "Project no." + (i + 1);
 				_projectManager.Projects[i].ProjectJournal = new Journal();
 			}
+
+			_personManager.Persons[0].Birthdate = new DateTime(1984, 11, 19);
+			_personManager.Persons[0].FirstName = "Reallylongnamebalndwln";
+			_personManager.Persons[1].Birthdate = new DateTime(1985, 11, 19);
+			_personManager.Persons[2].Birthdate = new DateTime(1987, 10, 19);
+			_personManager.Persons[3].Birthdate = new DateTime(1984, 12, 19);
+			_personManager.Persons[4].Birthdate = new DateTime(1985, 12, 19);
+			_personManager.Persons[5].Birthdate = new DateTime(1986, 12, 19);
+			_personManager.Persons[6].Birthdate = new DateTime(1980, 10, 19);
+			_personManager.Persons[7].Birthdate = new DateTime(1987, 10, 19);
+			_personManager.Persons[8].Birthdate = new DateTime(1989, 10, 19);
+			_personManager.Persons[9].Birthdate = new DateTime(1990, 11, 20);
+			_personManager.Persons[10].Birthdate = new DateTime(1975, 11, 20);
+			_personManager.Persons[11].Birthdate = new DateTime(1930, 11, 20);
 
 			_companyManager.Companies[0].Employees.Add(_personManager.Persons[0]);
 			_companyManager.Companies[0].Employees.Add(_personManager.Persons[1]);
