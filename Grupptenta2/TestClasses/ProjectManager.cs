@@ -34,7 +34,7 @@ namespace TestClasses
 		public ProjectManager()
 		{
 			Projects = new BindingList<Project>();
-			Projects = SaveDataXml.LoadProjects();
+			//Projects = SaveDataXml.LoadProjects();
 		}
 	}
 }

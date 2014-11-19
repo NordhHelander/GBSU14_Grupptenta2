@@ -33,7 +33,7 @@ namespace Grupptenta2
 
 			InitializeComponent();
 
-			//CreateMocks();
+			CreateMocks();
 			//SaveDataXml.LoadCompanies();
 			//SaveDataXml.LoadPersons();
 			//SaveDataXml.LoadProjects();
@@ -280,15 +280,15 @@ namespace Grupptenta2
 
 		private void eventCompanyBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			Company eventCompany = (Company)eventCompanyBox.SelectedItem;
-			eventProjectBox.DataSource = eventCompany.Projects;
+			_selectedCompany = (Company)eventCompanyBox.SelectedItem;
+			eventProjectBox.DataSource =_selectedCompany.Projects;
 			eventProjectBox.DisplayMember = "Name";
 		}
 
 		private void eventProjectBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			Project eventProject = (Project)eventProjectBox.SelectedItem;
-			meetingAddParticipantBox.DataSource = eventProject.Roles;
+			_selectedProject = (Project)eventProjectBox.SelectedItem;
+			meetingAddParticipantBox.DataSource = _selectedProject.Roles;
 			meetingAddParticipantBox.DisplayMember = "Person";
 		}
 
@@ -350,6 +350,18 @@ namespace Grupptenta2
 			Note selectedNote = (Note)eventNoteBox.SelectedItem;
 			NoteForm noteForm = new NoteForm(selectedNote);
 			noteForm.ShowDialog();
+		}
+
+		private void eventGoToCompany_Click(object sender, EventArgs e)
+		{
+			tabControl.SelectedIndex = 3;
+			LoadSelectedCompany();
+		}
+
+		private void eventGoToProjectBtn_Click(object sender, EventArgs e)
+		{
+			tabControl.SelectedIndex = 1;
+			LoadSelectedProject();
 		}
 		#endregion
 
@@ -633,16 +645,16 @@ namespace Grupptenta2
 		}
 		private void LoadSelectedEvent()
 		{
-			Project eventProject = _projectManager.Projects.SingleOrDefault(p => p.ProjectJournal.Events.Any(pEvent => pEvent.Equals(_selectedEvent)));
-			Company eventCompany = _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Equals(eventProject)));
+			_selectedProject = _projectManager.Projects.SingleOrDefault(p => p.ProjectJournal.Events.Any(pEvent => pEvent.Equals(_selectedEvent)));
+			_selectedCompany = _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Equals(_selectedProject)));
 
 			eventNameBox.Text = _selectedEvent.Name;
 			eventCompanyBox.DataSource = _companyManager.Companies;
 			eventCompanyBox.DisplayMember = "Name";
-			eventCompanyBox.SelectedItem = eventCompany;
+			eventCompanyBox.SelectedItem = _selectedCompany;
 			eventProjectBox.DataSource = _projectManager.Projects;
 			eventProjectBox.DisplayMember = "Name";
-			eventProjectBox.SelectedItem = eventProject;
+			eventProjectBox.SelectedItem = _selectedProject;
 
 			startDateTimePicker.Value = _selectedEvent.StartDate;
 			endDateTimePicker.Value = _selectedEvent.EndDate;
@@ -656,7 +668,7 @@ namespace Grupptenta2
 			meetingParticipantBox.DataSource = _selectedEvent.Participants;
 			meetingParticipantBox.DisplayMember = "Person";
 			meetingAddParticipantBox.DataSource = null;
-			meetingAddParticipantBox.DataSource = eventProject.Roles;
+			meetingAddParticipantBox.DataSource = _selectedProject.Roles;
 			meetingAddParticipantBox.DisplayMember = "Person";
 		}
 		private void quitBtn_Click(object sender, EventArgs e)

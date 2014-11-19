@@ -82,6 +82,8 @@
 			this.pickDateLbl = new System.Windows.Forms.Label();
 			this.monthCalendar = new System.Windows.Forms.MonthCalendar();
 			this.tabControl = new System.Windows.Forms.TabControl();
+			this.eventGoToCompany = new System.Windows.Forms.Button();
+			this.eventGoToProjectBtn = new System.Windows.Forms.Button();
 			this.projectChoiceBox = new Grupptenta2.ChoiceBox();
 			this.projectAvailableParticipantsBox = new Grupptenta2.ChoiceBox();
 			this.projectNoteBox = new Grupptenta2.ChoiceBox();
@@ -320,6 +322,8 @@
 			// eventPnl
 			// 
 			this.eventPnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.eventPnl.Controls.Add(this.eventGoToProjectBtn);
+			this.eventPnl.Controls.Add(this.eventGoToCompany);
 			this.eventPnl.Controls.Add(this.eventSaveBtn);
 			this.eventPnl.Controls.Add(this.eventCompanyBox);
 			this.eventPnl.Controls.Add(this.eventProjectBox);
@@ -693,6 +697,26 @@
 			this.tabControl.TabIndex = 20;
 			this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
 			// 
+			// eventGoToCompany
+			// 
+			this.eventGoToCompany.Location = new System.Drawing.Point(213, 35);
+			this.eventGoToCompany.Name = "eventGoToCompany";
+			this.eventGoToCompany.Size = new System.Drawing.Size(32, 21);
+			this.eventGoToCompany.TabIndex = 33;
+			this.eventGoToCompany.Text = "=>";
+			this.eventGoToCompany.UseVisualStyleBackColor = true;
+			this.eventGoToCompany.Click += new System.EventHandler(this.eventGoToCompany_Click);
+			// 
+			// eventGoToProjectBtn
+			// 
+			this.eventGoToProjectBtn.Location = new System.Drawing.Point(213, 62);
+			this.eventGoToProjectBtn.Name = "eventGoToProjectBtn";
+			this.eventGoToProjectBtn.Size = new System.Drawing.Size(32, 21);
+			this.eventGoToProjectBtn.TabIndex = 34;
+			this.eventGoToProjectBtn.Text = "=>";
+			this.eventGoToProjectBtn.UseVisualStyleBackColor = true;
+			this.eventGoToProjectBtn.Click += new System.EventHandler(this.eventGoToProjectBtn_Click);
+			// 
 			// projectChoiceBox
 			// 
 			this.projectChoiceBox.BackColor = System.Drawing.Color.White;
@@ -921,6 +945,8 @@
 		private System.Windows.Forms.Label showStartDateLbl;
 		private System.Windows.Forms.ComboBox eventCompanyBox;
 		private System.Windows.Forms.ComboBox eventProjectBox;
+		private System.Windows.Forms.Button eventGoToProjectBtn;
+		private System.Windows.Forms.Button eventGoToCompany;
 	}
 }
 
