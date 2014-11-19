@@ -62,12 +62,6 @@
     <Compile Include="CreateNoteForm.Designer.cs">
       <DependentUpon>CreateNoteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditParticipantListForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditParticipantListForm.Designer.cs">
-      <DependentUpon>EditParticipantListForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CompanyUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,12 +92,6 @@
     <Compile Include="ChoiceBox.Designer.cs">
       <DependentUpon>ChoiceBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditProjectParticipantListForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditProjectParticipantListForm.Designer.cs">
-      <DependentUpon>EditProjectParticipantListForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,9 +121,6 @@
     <EmbeddedResource Include="CreateNoteForm.resx">
       <DependentUpon>CreateNoteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditParticipantListForm.resx">
-      <DependentUpon>EditParticipantListForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CompanyUserControl.resx">
       <DependentUpon>CompanyUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,9 +135,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChoiceBox.resx">
       <DependentUpon>ChoiceBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditProjectParticipantListForm.resx">
-      <DependentUpon>EditProjectParticipantListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
