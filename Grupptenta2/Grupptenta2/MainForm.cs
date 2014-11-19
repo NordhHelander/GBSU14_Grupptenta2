@@ -33,7 +33,7 @@ namespace Grupptenta2
 
 			InitializeComponent();
 
-			//CreateMocks();
+			CreateMocks();
 			//SaveDataXml.LoadCompanies();
 			//SaveDataXml.LoadPersons();
 			//SaveDataXml.LoadProjects();
@@ -344,6 +344,13 @@ namespace Grupptenta2
 
 			this.Text = _selectedEvent.Name;
 		}
+
+		private void eventNoteBox_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			Note selectedNote = (Note)eventNoteBox.SelectedItem;
+			NoteForm noteForm = new NoteForm(selectedNote);
+			noteForm.ShowDialog();
+		}
 		#endregion
 
 		#region "Contacts"
@@ -580,7 +587,7 @@ namespace Grupptenta2
 		{
             _selectedEvent = (ProjectEvent)projectNoteBox.listBox.SelectedItem;
             tabControl.SelectedIndex = 0;
-            //LoadSelectedEvent();
+			LoadSelectedEvent();
 		}
 		#endregion
 
@@ -658,13 +665,6 @@ namespace Grupptenta2
 			SaveDataXml.SavePersons(_personManager.Persons);
 			SaveDataXml.SaveProjects(_projectManager.Projects);
 			Application.Exit();
-		}
-
-		private void eventNoteBox_MouseDoubleClick(object sender, MouseEventArgs e)
-		{
-			Note selectedNote = (Note)eventNoteBox.SelectedItem;
-			NoteForm noteForm = new NoteForm(selectedNote);
-			noteForm.ShowDialog();
 		}
 	}
 }
