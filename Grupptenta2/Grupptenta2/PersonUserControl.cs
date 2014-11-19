@@ -159,7 +159,6 @@ namespace Grupptenta2
 			// Se till att author blir = inloggad personal.
 			note.NoteDate = DateTime.Now;
 			note.Text = newNoteBox.Text;
-			note.IsPublic = isPublicNoteCheckBox.Checked;
 			newNoteBox.Text = "";
 
 			_tempNotes.Add(note);

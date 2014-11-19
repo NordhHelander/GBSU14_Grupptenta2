@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace CodeBase
 {
-    public class Note
-    {
-        public DateTime NoteDate { get; set; }
-        public Person Author { get; set; }
-        public string Text { get; set; }
-        public bool IsPublic { get; set; }
+	public class Note
+	{
+		public DateTime NoteDate { get; set; }
+		public string Text { get; set; }
 
 		public override string ToString()
 		{
 			return NoteDate.ToShortDateString() + ": " + Text;
 		}
-    }
+	}
 }

@@ -30,7 +30,6 @@ namespace Grupptenta2
         {
             _note = note;
             InitializeComponent();
-            isPublicCheckBox.Checked = _note.IsPublic;
             this.Text = "Ändra anteckning";
             noteBox.Text = _note.Text;
         }
@@ -40,15 +39,8 @@ namespace Grupptenta2
 			// Se till att author blir inloggad personal.
 			_note.NoteDate = DateTime.Now;
 			_note.Text = noteBox.Text;
-			_note.IsPublic = isPublicCheckBox.Checked;
 
 			this.Close();
 		}
-
-        private void deleteBtn_Click(object sender, EventArgs e)
-        {
-            _notes.Remove(_note);
-            this.Close();
-        }
 	}
 }
