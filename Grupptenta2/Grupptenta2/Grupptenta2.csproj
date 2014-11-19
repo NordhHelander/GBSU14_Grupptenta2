@@ -190,10 +190,6 @@
       <Project>{c80f35a8-2e59-4e83-a808-4f10aec56dc8}</Project>
       <Name>CodeBase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestClasses\TestClasses.csproj">
-      <Project>{78356373-ec60-414f-b839-f9e255d1a34d}</Project>
-      <Name>TestClasses</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

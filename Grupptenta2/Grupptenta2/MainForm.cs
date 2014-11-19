@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TestClasses;
 using CodeBase;
 
 namespace Grupptenta2
@@ -32,11 +31,7 @@ namespace Grupptenta2
 			_projectManager = new ProjectManager();
 
 			InitializeComponent();
-			CreateMocks();
-			//SaveDataXml.LoadCompanies();
-			//SaveDataXml.LoadPersons();
-			//SaveDataXml.LoadProjects();
-
+			//CreateMocks();
 			SetEventMethods();
 			CalendarBoldDates();
 			ProjectTabSetup();
@@ -70,7 +65,6 @@ namespace Grupptenta2
 			{
 				_personManager.CreatePerson("Per" + (i + 1));
 				_personManager.Persons[i].LastName = "Persson" + (i + 1);
-				_personManager.Persons[i].Birthdate = DateTime.Today.AddYears(-(i + 1));
 				_personManager.Persons[i].EmailAddress = "Per" + (i + 1) + "@" + "Persson" + (i + 1) + ".com";
 			}
 
@@ -82,7 +76,7 @@ namespace Grupptenta2
 			}
 
 			_personManager.Persons[0].Birthdate = new DateTime(1984, 11, 19);
-			_personManager.Persons[0].FirstName = "Reallylongnamebalndwln";
+			_personManager.Persons[0].FirstName = "Really Long Name Sally";
 			_personManager.Persons[1].Birthdate = new DateTime(1985, 11, 19);
 			_personManager.Persons[2].Birthdate = new DateTime(1987, 10, 19);
 			_personManager.Persons[3].Birthdate = new DateTime(1984, 12, 19);
