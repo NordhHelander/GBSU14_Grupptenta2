@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TestClasses;
 using CodeBase;
 
 namespace Grupptenta2
@@ -32,14 +31,23 @@ namespace Grupptenta2
 			_projectManager = new ProjectManager();
 
 			InitializeComponent();
-
 			//CreateMocks();
-
 			SetEventMethods();
 			CalendarBoldDates();
 			ProjectTabSetup();
 			ContactTabSetup();
 			CompanyTabSetup();
+			BirthdayAlert();
+		}
+
+		private void BirthdayAlert()
+		{
+			List<Person> birthdayList = _personManager.Persons.Where(p => p.Birthdate.Month.Equals(DateTime.Now.Month) && p.Birthdate.Day.Equals(DateTime.Now.Day)).ToList();
+			if (birthdayList.Count > 0)
+			{
+				BirthdayAlertForm birthdayAlert = new BirthdayAlertForm(birthdayList);
+				birthdayAlert.ShowDialog();
+		}
 		}
 
 		private static void CreateMocks()
@@ -67,6 +75,20 @@ namespace Grupptenta2
 				_projectManager.Projects[i].Name = "Project no." + (i + 1);
 				_projectManager.Projects[i].ProjectJournal = new Journal();
 			}
+
+			_personManager.Persons[0].Birthdate = new DateTime(1984, 11, 19);
+			_personManager.Persons[0].FirstName = "Really Long Name Sally";
+			_personManager.Persons[1].Birthdate = new DateTime(1985, 11, 19);
+			_personManager.Persons[2].Birthdate = new DateTime(1987, 10, 19);
+			_personManager.Persons[3].Birthdate = new DateTime(1984, 12, 19);
+			_personManager.Persons[4].Birthdate = new DateTime(1985, 12, 19);
+			_personManager.Persons[5].Birthdate = new DateTime(1986, 12, 19);
+			_personManager.Persons[6].Birthdate = new DateTime(1980, 10, 19);
+			_personManager.Persons[7].Birthdate = new DateTime(1987, 10, 19);
+			_personManager.Persons[8].Birthdate = new DateTime(1989, 10, 19);
+			_personManager.Persons[9].Birthdate = new DateTime(1990, 11, 20);
+			_personManager.Persons[10].Birthdate = new DateTime(1975, 11, 20);
+			_personManager.Persons[11].Birthdate = new DateTime(1930, 11, 20);
 
 			_companyManager.Companies[0].Employees.Add(_personManager.Persons[0]);
 			_companyManager.Companies[0].Employees.Add(_personManager.Persons[1]);
@@ -328,7 +350,7 @@ namespace Grupptenta2
 		private void eventSaveBtn_Click(object sender, EventArgs e)
 		{
 			if (_isNewEvent)
-		    {
+		{
 				eventCompanyBox.Enabled = false;
 				eventProjectBox.Enabled = false;
 				startDatetimeLbl.Enabled = false;
@@ -339,7 +361,7 @@ namespace Grupptenta2
 
 				BoldDates(_selectedEvent.StartDate, _selectedEvent.EndDate);
 				monthCalendar.BoldedDates = _boldedDates.ToArray();
-		    }
+		}
 
 			_selectedEvent.Name = eventNameBox.Text;
 			_selectedEvent.Location.Street = meetingStreetBox.Text;
@@ -606,10 +628,10 @@ namespace Grupptenta2
 		{
             if (projectEventBox.listBox.SelectedItem != null)
             {
-                _selectedEvent = (ProjectEvent)projectEventBox.listBox.SelectedItem;
-                tabControl.SelectedIndex = 0;
-                LoadSelectedEvent();    
-            }
+            _selectedEvent = (ProjectEvent)projectEventBox.listBox.SelectedItem;
+            tabControl.SelectedIndex = 0;
+            LoadSelectedEvent();
+		}
 		}
 		#endregion
 
@@ -634,7 +656,6 @@ namespace Grupptenta2
 			projectParticipantBox.SetData(_selectedProject.Roles, "Person");
 			projectAvailableParticipantsBox.SetData(_companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Id == _selectedProject.Id)).Employees, "Person");
 			projectEventBox.SetData(_selectedProject.ProjectJournal.Events, "ProjectEvent");
-            RefreshChoiceBox(projectEventBox, _selectedProject.ProjectJournal.Events, "Note");
 			projectNoteBox.SetData(_selectedProject.ProjectJournal.Notes, "Note");
 			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}

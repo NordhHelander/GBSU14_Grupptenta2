@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BirthdayAlertForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BirthdayAlertForm.Designer.cs">
+      <DependentUpon>BirthdayAlertForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateEventForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BirthdayAlertForm.resx">
+      <DependentUpon>BirthdayAlertForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateEventForm.resx">
       <DependentUpon>CreateEventForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,10 +189,6 @@
     <ProjectReference Include="..\CodeBase\CodeBase.csproj">
       <Project>{c80f35a8-2e59-4e83-a808-4f10aec56dc8}</Project>
       <Name>CodeBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestClasses\TestClasses.csproj">
-      <Project>{78356373-ec60-414f-b839-f9e255d1a34d}</Project>
-      <Name>TestClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
