@@ -301,8 +301,12 @@ namespace Grupptenta2
 		private void eventCompanyBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			_selectedCompany = (Company)eventCompanyBox.SelectedItem;
-			eventProjectBox.DataSource =_selectedCompany.Projects;
-			eventProjectBox.DisplayMember = "Name";
+            if (_selectedCompany != null)
+            {
+                eventProjectBox.DataSource = _selectedCompany.Projects;
+                eventProjectBox.DisplayMember = "Name";
+            }
+            
 		}
 
 		private void eventProjectBox_SelectedValueChanged(object sender, EventArgs e)
