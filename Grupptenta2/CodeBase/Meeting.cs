@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CodeBase
 {
     [Serializable]
-    public class Meeting : ProjectEvent
+    public class Meeting
     {
         public Address Location { get; set; }
         public BindingList<Person> Participants { get; set; }

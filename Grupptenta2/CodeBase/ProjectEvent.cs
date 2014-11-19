@@ -16,11 +16,12 @@ namespace CodeBase
         public BindingList<Note> Notes { get; set; }
         public Address Location { get; set; }
         public BindingList<Person> Participants { get; set; }
-        // public string Type { get; set; }
 
 		public ProjectEvent()
 		{
 			Notes = new BindingList<Note>();
+			Participants = new BindingList<Person>();
+			Location = new Address();
 		}
 
 		public override string ToString()
