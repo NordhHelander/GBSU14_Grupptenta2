@@ -46,7 +46,7 @@ namespace Grupptenta2
 			if (birthdayList.Count > 0)
 			{
 				BirthdayAlertForm birthdayAlert = new BirthdayAlertForm(birthdayList);
-				birthdayAlert.ShowDialog();
+				birthdayAlert.Show();
 		}
 		}
 
@@ -711,5 +711,6 @@ namespace Grupptenta2
             //SaveDataXml.SaveProjects(_projectManager.Projects);
 			Application.Exit();
 		}
+
 	}
 }
