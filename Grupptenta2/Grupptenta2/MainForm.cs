@@ -46,8 +46,8 @@ namespace Grupptenta2
 			if (birthdayList.Count > 0)
 			{
 				BirthdayAlertForm birthdayAlert = new BirthdayAlertForm(birthdayList);
-				birthdayAlert.ShowDialog();
-			}
+				birthdayAlert.Show();
+		}
 		}
 
 		private static void CreateMocks()
@@ -65,6 +65,7 @@ namespace Grupptenta2
 			{
 				_personManager.CreatePerson("Per" + (i + 1));
 				_personManager.Persons[i].LastName = "Persson" + (i + 1);
+				_personManager.Persons[i].Birthdate = DateTime.Today.AddYears(-(i + 1));
 				_personManager.Persons[i].EmailAddress = "Per" + (i + 1) + "@" + "Persson" + (i + 1) + ".com";
 			}
 
@@ -619,12 +620,12 @@ namespace Grupptenta2
 		}
 		private void projectEventBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
-			if (projectEventBox.listBox.SelectedItem != null)
-			{
-				_selectedEvent = (ProjectEvent)projectEventBox.listBox.SelectedItem;
-				tabControl.SelectedIndex = 0;
-				LoadSelectedEvent();
-			}
+            if (projectEventBox.listBox.SelectedItem != null)
+            {
+            _selectedEvent = (ProjectEvent)projectEventBox.listBox.SelectedItem;
+            tabControl.SelectedIndex = 0;
+            LoadSelectedEvent();
+		}
 		}
 		private void projectEventBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
@@ -709,5 +710,6 @@ namespace Grupptenta2
             //SaveDataXml.SaveProjects(_projectManager.Projects);
 			Application.Exit();
 		}
+
 	}
 }
