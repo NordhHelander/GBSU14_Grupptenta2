@@ -242,16 +242,16 @@ namespace Grupptenta2
 
 		private void eventListBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			Project eventProject = _projectManager.Projects.SingleOrDefault(p => p.ProjectJournal.Events.Any(pEvent => pEvent.Equals(_selectedEvent)));
-			Company eventCompany = _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Equals(eventProject)));
-
 			_selectedEvent = (ProjectEvent)eventListBox.SelectedItem;
-			LoadEventInfo(eventCompany, eventProject);
+			LoadEventInfo();
 			_isNewEvent = false;
 		}
 
-		private void LoadEventInfo(Company eventCompany, Project eventProject)
+		private void LoadEventInfo()
 		{
+			Project eventProject = _projectManager.Projects.SingleOrDefault(p => p.ProjectJournal.Events.Any(pEvent => pEvent.Equals(_selectedEvent)));
+			Company eventCompany = _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Equals(eventProject)));
+
 			eventNameBox.Text = _selectedEvent.Name;
 			eventCompanyBox.DataSource = _companyManager.Companies;
 			eventCompanyBox.DisplayMember = "Name";
