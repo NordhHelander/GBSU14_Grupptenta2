@@ -11,5 +11,11 @@ namespace CodeBase
     {
         public BindingList<Note> Notes { get; set; }
         public BindingList<ProjectEvent> Events { get; set; }
+
+		public Journal()
+		{
+			Notes = new BindingList<Note>();
+			Events = new BindingList<ProjectEvent>();
+		}
     }
 }

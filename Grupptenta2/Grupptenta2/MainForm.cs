@@ -20,6 +20,7 @@ namespace Grupptenta2
 		private static Person _selectedPerson;
 		private static Company _selectedCompany;
 		private static Project _selectedProject;
+		private static BindingList<ProjectEvent> _events = new BindingList<ProjectEvent>();
 
 		public MainForm()
 		{
@@ -29,7 +30,7 @@ namespace Grupptenta2
 
 			InitializeComponent();
 
-			//CreateMocks();
+			CreateMocks();
 			//SaveDataXml.SaveCompanies(_companyManager.Companies);
 			//SaveDataXml.SavePersons(_personManager.Persons);
 			//SaveDataXml.SaveProjects(_projectManager.Projects);
@@ -102,6 +103,24 @@ namespace Grupptenta2
 			_companyManager.Companies[2].Projects.Add(_projectManager.Projects[5]);
 			_companyManager.Companies[2].Projects[1].Roles.Add(_personManager.Persons[10]);
 			_companyManager.Companies[2].Projects[1].Roles.Add(_personManager.Persons[11]);
+
+			Note newNote1 = new Note();
+			newNote1.NoteDate = DateTime.Now.AddDays(-1);
+			newNote1.Text = "Presentationsmöte";
+			Meeting newMeeting = new Meeting();
+			newMeeting.StartDate = DateTime.Now.AddDays(-1);
+			newMeeting.Name = "Testhändelse 1";
+			newMeeting.Notes.Add(newNote1);
+			_companyManager.Companies[0].Projects[0].ProjectJournal.Events.Add(newMeeting);
+
+			Note newNote2 = new Note();
+			newNote2.NoteDate = DateTime.Now.AddDays(-2);
+			newNote2.Text = "Presentationsmöte";
+			ProjectEvent newProjectEvent = new ProjectEvent();
+			newProjectEvent.StartDate = DateTime.Now.AddDays(-2);
+			newProjectEvent.Name = "Testhändelse 2";
+			newProjectEvent.Notes.Add(newNote2);
+			_companyManager.Companies[0].Projects[1].ProjectJournal.Events.Add(newProjectEvent);
 		}
 
 		private void SetEventMethods()
@@ -139,9 +158,11 @@ namespace Grupptenta2
 			projectChoiceBox.OnAdd += projectChoiceBox_OnAdd;
 			projectChoiceBox.OnSelectionChanged += projectChoiceBox_OnSelectionChanged;
 
-			projectParticipantBox.OnAdd += projectParticipantBox_OnAdd;
+			projectParticipantBox.OnAdd += projectParticipantBox_OnRemove;
 			projectParticipantBox.OnDoubleClickChoice += projectParticipantBox_OnDoubleClickChoice;
 			projectParticipantBox.OnSelectionChanged += projectParticipantBox_OnSelectionChanged;
+
+			projectAvailableParticipantsBox.OnAdd += projectAvailableParticipantsBox_OnAdd;
 
 			projectEventBox.OnAdd += projectEventBox_OnAdd;
 			projectEventBox.OnDoubleClickChoice += projectEventBox_OnDoubleClickChoice;
@@ -150,13 +171,6 @@ namespace Grupptenta2
 			projectNoteBox.OnDoubleClickChoice += projectNoteBox_OnDoubleClickChoice;
 		}
 
-		private void logOutBtn_Click(object sender, EventArgs e)
-		{
-			SaveDataXml.SaveCompanies(_companyManager.Companies);
-			SaveDataXml.SavePersons(_personManager.Persons);
-			SaveDataXml.SaveProjects(_projectManager.Projects);
-			this.Close();
-		}
 		private void quitBtn_Click(object sender, EventArgs e)
 		{
 			SaveDataXml.SaveCompanies(_companyManager.Companies);
@@ -164,6 +178,32 @@ namespace Grupptenta2
 			SaveDataXml.SaveProjects(_projectManager.Projects);
 			Application.Exit();
 		}
+
+		#region "Calendar"
+		private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+		{
+			BindingList<ProjectEvent> tempEventList = new BindingList<ProjectEvent>();
+			DateTime selectedDate = monthCalendar.SelectionRange.Start;
+			eventListLbl.Text = "Händelser " + selectedDate.ToShortDateString();
+
+			for (int i = 0; i < _projectManager.Projects.Count; i++)
+			{
+				for (int j = 0; j < _projectManager.Projects[i].ProjectJournal.Events.Count; j++)
+				{
+					if (_projectManager.Projects[i].ProjectJournal.Events[j].StartDate.ToShortDateString() == selectedDate.ToShortDateString())
+					{
+						tempEventList.Add(_projectManager.Projects[i].ProjectJournal.Events[j]);
+					}
+				}
+			}
+
+			_events = tempEventList;
+
+			eventListBox.DataSource = null;
+			eventListBox.DataSource = _events;
+			eventListBox.DisplayMember = "Name";
+		}
+		#endregion
 
 		#region "Contacts"
 		private void ContactTabSetup()
@@ -182,10 +222,10 @@ namespace Grupptenta2
 		private void contactChoiceBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedPerson = (Person)e.ChosenItem;
-            if (_selectedPerson != null)
-            {
-                LoadSelectedPerson(); 
-            }
+			if (_selectedPerson != null)
+			{
+				LoadSelectedPerson();
+			}
 		}
 		private void contactChoiceBox_OnAdd()
 		{
@@ -210,7 +250,7 @@ namespace Grupptenta2
 		}
 		private void contactProjectBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
-			tabControl.SelectedIndex = 2;
+			tabControl.SelectedIndex = 1;
 			LoadSelectedProject();
 		}
 		private void contactProjectBox_OnAdd()
@@ -226,7 +266,7 @@ namespace Grupptenta2
 		}
 		private void contactRelationBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
-			tabControl.SelectedIndex = 3;
+			tabControl.SelectedIndex = 2;
 			LoadSelectedPerson();
 		}
 		private void contactRelationBox_OnAdd()
@@ -244,7 +284,7 @@ namespace Grupptenta2
 			companyChoiceBox.SetHeader("Dina kundföretag");
 			companyChoiceBox.SetData(_companyManager.Companies, "Name");
 			companyChoiceBox.SetButtonTexts("Nytt företag");
-			
+
 			companyProjectBox.SetHeader("Projekt");
 			companyProjectBox.SetButtonTexts("Skapa");
 
@@ -260,10 +300,10 @@ namespace Grupptenta2
 		private void companyChoiceBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedCompany = (Company)e.ChosenItem;
-                        if (_selectedCompany != null)
-            {
-                LoadSelectedCompany(); 
-            }
+			if (_selectedCompany != null)
+			{
+				LoadSelectedCompany();
+			}
 		}
 
 		// Company Container: Panel 2
@@ -280,7 +320,7 @@ namespace Grupptenta2
 		}
 		private void companyProjectBox_OnDoubleClick(object sender, DoubleClickHandlerEventArgs e)
 		{
-			tabControl.SelectedIndex = 2;
+			tabControl.SelectedIndex = 1;
 			LoadSelectedProject();
 		}
 		private void companyProjectBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
@@ -290,7 +330,7 @@ namespace Grupptenta2
 
 		private void companyEmployeeBox_OnDoubleClick(object sender, DoubleClickHandlerEventArgs e)
 		{
-			tabControl.SelectedIndex = 3;
+			tabControl.SelectedIndex = 2;
 			LoadSelectedPerson();
 		}
 		private void companyEmployeeBox_OnAdd()
@@ -313,6 +353,10 @@ namespace Grupptenta2
 			projectChoiceBox.SetButtonTexts("Nytt projekt");
 
 			projectParticipantBox.SetHeader("Deltagare");
+			projectParticipantBox.SetButtonTexts("Ta bort");
+
+			projectAvailableParticipantsBox.SetHeader("Valbara kontakter");
+			projectAvailableParticipantsBox.SetButtonTexts("Lägg till");
 
 			projectEventBox.SetHeader("Händelser");
 			projectEventBox.SetButtonTexts("Lägg till");
@@ -324,31 +368,28 @@ namespace Grupptenta2
 		private void projectChoiceBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
 			_selectedProject = (Project)e.ChosenItem;
-            if (_selectedProject != null)
-            {
-                LoadSelectedProject(); 
-            }
+			if (_selectedProject != null)
+			{
+				LoadSelectedProject();
+			}
 		}
-
 		private void projectChoiceBox_OnAdd()
 		{
 			CreateProjectForm createProjectForm = new CreateProjectForm(_projectManager, _personManager, _companyManager);
 			createProjectForm.Show();
 			RefreshChoiceBox(projectChoiceBox, _projectManager.Projects, "Name");
 		}
-
 		private void saveBtn_Click(object sender, EventArgs e)
 		{
 			_selectedProject.Name = projectNameBox.Text;
 			_selectedProject.Description = projectDescBox.Text;
 		}
-		
+
 		// Project Container: Panel 2
-		private void projectParticipantBox_OnAdd()
+		private void projectParticipantBox_OnRemove()
 		{
-			EditParticipantListForm editParticipantListForm = new EditParticipantListForm(_selectedProject, _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Id == _selectedProject.Id)));
-			editParticipantListForm.ShowDialog();
-			projectParticipantBox.SetData(_selectedProject.Roles, "Person");
+			_selectedProject.Roles.Remove((Person)projectParticipantBox.GetSelectedItem());
+			RefreshChoiceBox(projectParticipantBox, _selectedProject.Roles, "Person");
 		}
 		private void projectParticipantBox_OnSelectionChanged(object sender, ListBoxSelectionChangedHandlerEventArgs e)
 		{
@@ -356,8 +397,18 @@ namespace Grupptenta2
 		}
 		private void projectParticipantBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
-			tabControl.SelectedIndex = 3;
+			tabControl.SelectedIndex = 2;
 			LoadSelectedPerson();
+		}
+
+		private void projectAvailableParticipantsBox_OnAdd()
+		{
+			Person selectedParticipantToAdd = (Person)projectAvailableParticipantsBox.GetSelectedItem();
+			if (_selectedProject.Roles.SingleOrDefault(r => r.Id == selectedParticipantToAdd.Id) == null)
+			{
+				_selectedProject.Roles.Add((Person)projectAvailableParticipantsBox.GetSelectedItem());
+				RefreshChoiceBox(projectParticipantBox, _selectedProject.Roles, "Person");
+			}
 		}
 
 		private void projectNoteBox_OnAdd()
@@ -366,7 +417,6 @@ namespace Grupptenta2
 			createNoteForm.ShowDialog();
 			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
-
 		private void projectNoteBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
 			Note noteToEdit = (Note)projectNoteBox.listBox.SelectedItem;
@@ -374,7 +424,6 @@ namespace Grupptenta2
 			createNoteForm.ShowDialog();
 			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
-
 		private void projectEventBox_OnAdd()
 		{
 			CreateEventForm createEventForm = new CreateEventForm(_selectedProject);
@@ -406,6 +455,7 @@ namespace Grupptenta2
 			projectDescBox.Text = _selectedProject.Description;
 
 			projectParticipantBox.SetData(_selectedProject.Roles, "Person");
+			projectAvailableParticipantsBox.SetData(_companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Id == _selectedProject.Id)).Employees, "Person");
 			projectEventBox.SetData(_selectedProject.ProjectJournal.Events, "ProjectEvent");
 			projectNoteBox.SetData(_selectedProject.ProjectJournal.Notes, "Note");
 			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");

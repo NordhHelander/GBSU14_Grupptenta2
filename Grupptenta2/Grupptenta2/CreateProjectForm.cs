@@ -94,7 +94,9 @@ namespace Grupptenta2
 
 		private void addPartBtn_Click(object sender, EventArgs e)
 		{
-			_tempParticipantList.Add((Person)personBox.SelectedItem);
+			if(!_tempParticipantList.Contains((Person)personBox.SelectedItem))
+				_tempParticipantList.Add((Person)personBox.SelectedItem);
+
 			participantBox.DataSource = null;
 			participantBox.DataSource = _tempParticipantList;
 			participantBox.DisplayMember = "Person";
@@ -113,15 +115,5 @@ namespace Grupptenta2
 			_newProject.Roles = _tempParticipantList;
 			this.Close();
 		}
-
-
-
-		//private void btn_Save_Click(object sender, EventArgs e)
-		//{
-		//	//_projectManager.CreateProject(nameBox.Text, (Person)lstBx_Participants.SelectedItem);
-		//	//int indexOfNewProject = _projectManager.Projects.Count - 1;
-		//	//Project project = _projectManager.Projects[indexOfNewProject];
-		//	this.Close();
-		//}
 	}
 }
