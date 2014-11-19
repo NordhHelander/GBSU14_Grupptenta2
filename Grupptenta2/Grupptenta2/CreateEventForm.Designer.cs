@@ -37,9 +37,9 @@
             this.addNoteBtn = new System.Windows.Forms.Button();
             this.isMeetingCheckBox = new System.Windows.Forms.CheckBox();
             this.noteLbl = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.streetTxtBx = new System.Windows.Forms.TextBox();
+            this.zipTxtBx = new System.Windows.Forms.TextBox();
+            this.cityTxtBx = new System.Windows.Forms.TextBox();
             this.streetLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,6 +52,7 @@
             this.startPicker = new System.Windows.Forms.DateTimePicker();
             this.startLbl = new System.Windows.Forms.Label();
             this.removeNoteBtn = new System.Windows.Forms.Button();
+            this.getAddressBtn = new System.Windows.Forms.Button();
             this.removeParticipantBtn = new System.Windows.Forms.Button();
             this.addParticipantBtn = new System.Windows.Forms.Button();
             this.participantListLbl = new System.Windows.Forms.Label();
@@ -74,10 +75,11 @@
             // noteList
             // 
             this.noteList.FormattingEnabled = true;
-            this.noteList.Location = new System.Drawing.Point(16, 436);
+            this.noteList.Location = new System.Drawing.Point(16, 426);
             this.noteList.Name = "noteList";
             this.noteList.Size = new System.Drawing.Size(202, 160);
             this.noteList.TabIndex = 1;
+            this.noteList.SelectedIndexChanged += new System.EventHandler(this.noteList_SelectedIndexChanged);
             // 
             // nameLbl
             // 
@@ -101,7 +103,7 @@
             // 
             this.noteListLbl.AutoSize = true;
             this.noteListLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noteListLbl.Location = new System.Drawing.Point(13, 415);
+            this.noteListLbl.Location = new System.Drawing.Point(13, 405);
             this.noteListLbl.Name = "noteListLbl";
             this.noteListLbl.Size = new System.Drawing.Size(93, 18);
             this.noteListLbl.TabIndex = 32;
@@ -109,12 +111,13 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(410, 643);
+            this.saveBtn.Location = new System.Drawing.Point(379, 643);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(108, 23);
             this.saveBtn.TabIndex = 33;
             this.saveBtn.Text = "Spara händelse";
             this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // addNoteBtn
             // 
@@ -124,12 +127,12 @@
             this.addNoteBtn.TabIndex = 34;
             this.addNoteBtn.Text = "Spara anteckning";
             this.addNoteBtn.UseVisualStyleBackColor = true;
-            //this.addNoteBtn.Click += new System.EventHandler(this.addNoteBtn_Click);
+            this.addNoteBtn.Click += new System.EventHandler(this.addNoteBtn_Click);
             // 
             // isMeetingCheckBox
             // 
             this.isMeetingCheckBox.AutoSize = true;
-            this.isMeetingCheckBox.Location = new System.Drawing.Point(224, 39);
+            this.isMeetingCheckBox.Location = new System.Drawing.Point(168, 58);
             this.isMeetingCheckBox.Name = "isMeetingCheckBox";
             this.isMeetingCheckBox.Size = new System.Drawing.Size(50, 17);
             this.isMeetingCheckBox.TabIndex = 36;
@@ -147,26 +150,26 @@
             this.noteLbl.TabIndex = 37;
             this.noteLbl.Text = "Anteckning";
             // 
-            // textBox1
+            // streetTxtBx
             // 
-            this.textBox1.Location = new System.Drawing.Point(81, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(156, 20);
-            this.textBox1.TabIndex = 38;
+            this.streetTxtBx.Location = new System.Drawing.Point(81, 30);
+            this.streetTxtBx.Name = "streetTxtBx";
+            this.streetTxtBx.Size = new System.Drawing.Size(156, 20);
+            this.streetTxtBx.TabIndex = 38;
             // 
-            // textBox2
+            // zipTxtBx
             // 
-            this.textBox2.Location = new System.Drawing.Point(81, 56);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(156, 20);
-            this.textBox2.TabIndex = 39;
+            this.zipTxtBx.Location = new System.Drawing.Point(81, 56);
+            this.zipTxtBx.Name = "zipTxtBx";
+            this.zipTxtBx.Size = new System.Drawing.Size(156, 20);
+            this.zipTxtBx.TabIndex = 39;
             // 
-            // textBox3
+            // cityTxtBx
             // 
-            this.textBox3.Location = new System.Drawing.Point(81, 82);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(156, 20);
-            this.textBox3.TabIndex = 40;
+            this.cityTxtBx.Location = new System.Drawing.Point(81, 82);
+            this.cityTxtBx.Name = "cityTxtBx";
+            this.cityTxtBx.Size = new System.Drawing.Size(156, 20);
+            this.cityTxtBx.TabIndex = 40;
             // 
             // streetLbl
             // 
@@ -198,7 +201,7 @@
             // personList
             // 
             this.personList.FormattingEnabled = true;
-            this.personList.Location = new System.Drawing.Point(17, 139);
+            this.personList.Location = new System.Drawing.Point(17, 160);
             this.personList.Name = "personList";
             this.personList.Size = new System.Drawing.Size(220, 160);
             this.personList.TabIndex = 44;
@@ -206,7 +209,7 @@
             // participantList
             // 
             this.participantList.FormattingEnabled = true;
-            this.participantList.Location = new System.Drawing.Point(17, 352);
+            this.participantList.Location = new System.Drawing.Point(17, 377);
             this.participantList.Name = "participantList";
             this.participantList.Size = new System.Drawing.Size(220, 160);
             this.participantList.TabIndex = 45;
@@ -215,7 +218,7 @@
             // 
             this.personListLbl.AutoSize = true;
             this.personListLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.personListLbl.Location = new System.Drawing.Point(14, 118);
+            this.personListLbl.Location = new System.Drawing.Point(14, 139);
             this.personListLbl.Name = "personListLbl";
             this.personListLbl.Size = new System.Drawing.Size(115, 18);
             this.personListLbl.TabIndex = 46;
@@ -244,6 +247,7 @@
             // 
             // eventCreationContainer.Panel2
             // 
+            this.eventCreationContainer.Panel2.Controls.Add(this.getAddressBtn);
             this.eventCreationContainer.Panel2.Controls.Add(this.removeParticipantBtn);
             this.eventCreationContainer.Panel2.Controls.Add(this.addParticipantBtn);
             this.eventCreationContainer.Panel2.Controls.Add(this.participantListLbl);
@@ -252,13 +256,13 @@
             this.eventCreationContainer.Panel2.Controls.Add(this.personListLbl);
             this.eventCreationContainer.Panel2.Controls.Add(this.personList);
             this.eventCreationContainer.Panel2.Controls.Add(this.streetLbl);
-            this.eventCreationContainer.Panel2.Controls.Add(this.textBox1);
-            this.eventCreationContainer.Panel2.Controls.Add(this.textBox2);
+            this.eventCreationContainer.Panel2.Controls.Add(this.streetTxtBx);
+            this.eventCreationContainer.Panel2.Controls.Add(this.zipTxtBx);
             this.eventCreationContainer.Panel2.Controls.Add(this.label2);
             this.eventCreationContainer.Panel2.Controls.Add(this.label1);
-            this.eventCreationContainer.Panel2.Controls.Add(this.textBox3);
-            this.eventCreationContainer.Size = new System.Drawing.Size(530, 635);
-            this.eventCreationContainer.SplitterDistance = 275;
+            this.eventCreationContainer.Panel2.Controls.Add(this.cityTxtBx);
+            this.eventCreationContainer.Size = new System.Drawing.Size(485, 635);
+            this.eventCreationContainer.SplitterDistance = 230;
             this.eventCreationContainer.TabIndex = 47;
             // 
             // stopPicker
@@ -299,36 +303,49 @@
             // 
             // removeNoteBtn
             // 
-            this.removeNoteBtn.Location = new System.Drawing.Point(110, 602);
+            this.removeNoteBtn.Location = new System.Drawing.Point(110, 592);
             this.removeNoteBtn.Name = "removeNoteBtn";
             this.removeNoteBtn.Size = new System.Drawing.Size(108, 23);
             this.removeNoteBtn.TabIndex = 50;
             this.removeNoteBtn.Text = "Ta bort anteckning";
             this.removeNoteBtn.UseVisualStyleBackColor = true;
+            this.removeNoteBtn.Click += new System.EventHandler(this.removeNoteBtn_Click);
+            // 
+            // getAddressBtn
+            // 
+            this.getAddressBtn.Location = new System.Drawing.Point(157, 108);
+            this.getAddressBtn.Name = "getAddressBtn";
+            this.getAddressBtn.Size = new System.Drawing.Size(80, 23);
+            this.getAddressBtn.TabIndex = 50;
+            this.getAddressBtn.Text = "Hämta adress";
+            this.getAddressBtn.UseVisualStyleBackColor = true;
+            this.getAddressBtn.Click += new System.EventHandler(this.getAddressBtn_Click);
             // 
             // removeParticipantBtn
             // 
-            this.removeParticipantBtn.Location = new System.Drawing.Point(129, 518);
+            this.removeParticipantBtn.Location = new System.Drawing.Point(129, 543);
             this.removeParticipantBtn.Name = "removeParticipantBtn";
             this.removeParticipantBtn.Size = new System.Drawing.Size(108, 23);
             this.removeParticipantBtn.TabIndex = 48;
             this.removeParticipantBtn.Text = "Ta bort deltagare";
             this.removeParticipantBtn.UseVisualStyleBackColor = true;
+            this.removeParticipantBtn.Click += new System.EventHandler(this.removeParticipantBtn_Click);
             // 
             // addParticipantBtn
             // 
-            this.addParticipantBtn.Location = new System.Drawing.Point(129, 305);
+            this.addParticipantBtn.Location = new System.Drawing.Point(129, 326);
             this.addParticipantBtn.Name = "addParticipantBtn";
             this.addParticipantBtn.Size = new System.Drawing.Size(108, 23);
             this.addParticipantBtn.TabIndex = 49;
             this.addParticipantBtn.Text = "Lägg till deltagare";
             this.addParticipantBtn.UseVisualStyleBackColor = true;
+            this.addParticipantBtn.Click += new System.EventHandler(this.addParticipantBtn_Click);
             // 
             // participantListLbl
             // 
             this.participantListLbl.AutoSize = true;
             this.participantListLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.participantListLbl.Location = new System.Drawing.Point(14, 331);
+            this.participantListLbl.Location = new System.Drawing.Point(14, 356);
             this.participantListLbl.Name = "participantListLbl";
             this.participantListLbl.Size = new System.Drawing.Size(110, 18);
             this.participantListLbl.TabIndex = 49;
@@ -338,7 +355,7 @@
             // 
             this.addressLbl.AutoSize = true;
             this.addressLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressLbl.Location = new System.Drawing.Point(3, 9);
+            this.addressLbl.Location = new System.Drawing.Point(3, 7);
             this.addressLbl.Name = "addressLbl";
             this.addressLbl.Size = new System.Drawing.Size(81, 18);
             this.addressLbl.TabIndex = 48;
@@ -349,13 +366,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(540, 682);
+            this.ClientSize = new System.Drawing.Size(489, 669);
             this.Controls.Add(this.eventCreationContainer);
             this.Controls.Add(this.saveBtn);
             this.Name = "CreateEventForm";
             this.Text = "CreateEvent";
-            // TODO: Vad är detta? this.CreateEventForm_Load
-            //this.Load += new System.EventHandler(this.CreateEventForm_Load);
             this.eventCreationContainer.Panel1.ResumeLayout(false);
             this.eventCreationContainer.Panel1.PerformLayout();
             this.eventCreationContainer.Panel2.ResumeLayout(false);
@@ -377,9 +392,9 @@
 		private System.Windows.Forms.Button addNoteBtn;
 		private System.Windows.Forms.CheckBox isMeetingCheckBox;
 		private System.Windows.Forms.Label noteLbl;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox streetTxtBx;
+		private System.Windows.Forms.TextBox zipTxtBx;
+		private System.Windows.Forms.TextBox cityTxtBx;
 		private System.Windows.Forms.Label streetLbl;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
@@ -396,5 +411,6 @@
 		private System.Windows.Forms.DateTimePicker startPicker;
 		private System.Windows.Forms.Label stopLbl;
 		private System.Windows.Forms.DateTimePicker stopPicker;
+        private System.Windows.Forms.Button getAddressBtn;
 	}
 }
