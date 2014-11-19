@@ -322,7 +322,7 @@
 			// 
 			// eventSaveBtn
 			// 
-			this.eventSaveBtn.Location = new System.Drawing.Point(672, 613);
+			this.eventSaveBtn.Location = new System.Drawing.Point(672, 609);
 			this.eventSaveBtn.Name = "eventSaveBtn";
 			this.eventSaveBtn.Size = new System.Drawing.Size(115, 23);
 			this.eventSaveBtn.TabIndex = 9;
@@ -362,9 +362,9 @@
 			this.eventPnl.Controls.Add(this.endDateTimePicker);
 			this.eventPnl.Controls.Add(this.startDateTimePicker);
 			this.eventPnl.Controls.Add(this.eventCompanyLbl);
-			this.eventPnl.Location = new System.Drawing.Point(268, 53);
+			this.eventPnl.Location = new System.Drawing.Point(268, 15);
 			this.eventPnl.Name = "eventPnl";
-			this.eventPnl.Size = new System.Drawing.Size(519, 554);
+			this.eventPnl.Size = new System.Drawing.Size(519, 592);
 			this.eventPnl.TabIndex = 8;
 			// 
 			// showEndDateLbl
@@ -443,7 +443,7 @@
 			// 
 			// meetingRemoveParticipantBtn
 			// 
-			this.meetingRemoveParticipantBtn.Location = new System.Drawing.Point(416, 351);
+			this.meetingRemoveParticipantBtn.Location = new System.Drawing.Point(416, 391);
 			this.meetingRemoveParticipantBtn.Name = "meetingRemoveParticipantBtn";
 			this.meetingRemoveParticipantBtn.Size = new System.Drawing.Size(75, 23);
 			this.meetingRemoveParticipantBtn.TabIndex = 21;
@@ -453,7 +453,7 @@
 			// 
 			// meetingAddParticipantBtn
 			// 
-			this.meetingAddParticipantBtn.Location = new System.Drawing.Point(416, 509);
+			this.meetingAddParticipantBtn.Location = new System.Drawing.Point(416, 564);
 			this.meetingAddParticipantBtn.Name = "meetingAddParticipantBtn";
 			this.meetingAddParticipantBtn.Size = new System.Drawing.Size(75, 23);
 			this.meetingAddParticipantBtn.TabIndex = 20;
@@ -465,7 +465,7 @@
 			// 
 			this.meetingAddParticipantLbl.AutoSize = true;
 			this.meetingAddParticipantLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.meetingAddParticipantLbl.Location = new System.Drawing.Point(287, 385);
+			this.meetingAddParticipantLbl.Location = new System.Drawing.Point(287, 440);
 			this.meetingAddParticipantLbl.Name = "meetingAddParticipantLbl";
 			this.meetingAddParticipantLbl.Size = new System.Drawing.Size(135, 20);
 			this.meetingAddParticipantLbl.TabIndex = 19;
@@ -475,7 +475,7 @@
 			// 
 			this.meetingParticipantLbl.AutoSize = true;
 			this.meetingParticipantLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.meetingParticipantLbl.Location = new System.Drawing.Point(287, 227);
+			this.meetingParticipantLbl.Location = new System.Drawing.Point(287, 267);
 			this.meetingParticipantLbl.Name = "meetingParticipantLbl";
 			this.meetingParticipantLbl.Size = new System.Drawing.Size(79, 20);
 			this.meetingParticipantLbl.TabIndex = 18;
@@ -484,7 +484,7 @@
 			// meetingAddParticipantBox
 			// 
 			this.meetingAddParticipantBox.FormattingEnabled = true;
-			this.meetingAddParticipantBox.Location = new System.Drawing.Point(291, 408);
+			this.meetingAddParticipantBox.Location = new System.Drawing.Point(291, 463);
 			this.meetingAddParticipantBox.Name = "meetingAddParticipantBox";
 			this.meetingAddParticipantBox.Size = new System.Drawing.Size(200, 95);
 			this.meetingAddParticipantBox.TabIndex = 17;
@@ -492,7 +492,7 @@
 			// meetingParticipantBox
 			// 
 			this.meetingParticipantBox.FormattingEnabled = true;
-			this.meetingParticipantBox.Location = new System.Drawing.Point(291, 250);
+			this.meetingParticipantBox.Location = new System.Drawing.Point(291, 290);
 			this.meetingParticipantBox.Name = "meetingParticipantBox";
 			this.meetingParticipantBox.Size = new System.Drawing.Size(200, 95);
 			this.meetingParticipantBox.TabIndex = 16;
@@ -509,7 +509,7 @@
 			// 
 			// eventAddNoteBtn
 			// 
-			this.eventAddNoteBtn.Location = new System.Drawing.Point(131, 509);
+			this.eventAddNoteBtn.Location = new System.Drawing.Point(132, 564);
 			this.eventAddNoteBtn.Name = "eventAddNoteBtn";
 			this.eventAddNoteBtn.Size = new System.Drawing.Size(75, 23);
 			this.eventAddNoteBtn.TabIndex = 14;
@@ -521,7 +521,7 @@
 			// 
 			this.eventAddNoteLbl.AutoSize = true;
 			this.eventAddNoteLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.eventAddNoteLbl.Location = new System.Drawing.Point(3, 385);
+			this.eventAddNoteLbl.Location = new System.Drawing.Point(2, 440);
 			this.eventAddNoteLbl.Name = "eventAddNoteLbl";
 			this.eventAddNoteLbl.Size = new System.Drawing.Size(109, 20);
 			this.eventAddNoteLbl.TabIndex = 12;
@@ -530,7 +530,7 @@
 			// eventAddNoteBox
 			// 
 			this.eventAddNoteBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.eventAddNoteBox.Location = new System.Drawing.Point(7, 408);
+			this.eventAddNoteBox.Location = new System.Drawing.Point(7, 463);
 			this.eventAddNoteBox.Multiline = true;
 			this.eventAddNoteBox.Name = "eventAddNoteBox";
 			this.eventAddNoteBox.Size = new System.Drawing.Size(200, 95);
@@ -539,7 +539,7 @@
 			// eventNoteBox
 			// 
 			this.eventNoteBox.FormattingEnabled = true;
-			this.eventNoteBox.Location = new System.Drawing.Point(7, 279);
+			this.eventNoteBox.Location = new System.Drawing.Point(7, 290);
 			this.eventNoteBox.Name = "eventNoteBox";
 			this.eventNoteBox.Size = new System.Drawing.Size(200, 95);
 			this.eventNoteBox.TabIndex = 9;
@@ -548,7 +548,7 @@
 			// 
 			this.eventNotesLbl.AutoSize = true;
 			this.eventNotesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.eventNotesLbl.Location = new System.Drawing.Point(3, 256);
+			this.eventNotesLbl.Location = new System.Drawing.Point(2, 267);
 			this.eventNotesLbl.Name = "eventNotesLbl";
 			this.eventNotesLbl.Size = new System.Drawing.Size(103, 20);
 			this.eventNotesLbl.TabIndex = 10;
@@ -659,7 +659,7 @@
 			// 
 			// createEventBtn
 			// 
-			this.createEventBtn.Location = new System.Drawing.Point(551, 613);
+			this.createEventBtn.Location = new System.Drawing.Point(551, 609);
 			this.createEventBtn.Name = "createEventBtn";
 			this.createEventBtn.Size = new System.Drawing.Size(115, 23);
 			this.createEventBtn.TabIndex = 2;

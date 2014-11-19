@@ -21,6 +21,7 @@ namespace CodeBase
 		public ProjectEvent()
 		{
 			Notes = new BindingList<Note>();
+			Participants = new BindingList<Person>();
 		}
 
 		public override string ToString()
