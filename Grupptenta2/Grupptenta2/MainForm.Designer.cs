@@ -31,10 +31,23 @@
 			this.quitBtn = new System.Windows.Forms.Button();
 			this.companyTab = new System.Windows.Forms.TabPage();
 			this.companyContainer = new System.Windows.Forms.SplitContainer();
+			this.companyChoiceBox = new Grupptenta2.ChoiceBox();
+			this.companyEmployeeBox = new Grupptenta2.ChoiceBox();
+			this.companyProjectBox = new Grupptenta2.ChoiceBox();
+			this.companyControl = new Grupptenta2.CompanyUserControl();
 			this.contactTab = new System.Windows.Forms.TabPage();
 			this.contactContainer = new System.Windows.Forms.SplitContainer();
+			this.contactChoiceBox = new Grupptenta2.ChoiceBox();
+			this.contactControl = new Grupptenta2.PersonUserControl();
+			this.contactRelationBox = new Grupptenta2.ChoiceBox();
+			this.contactProjectBox = new Grupptenta2.ChoiceBox();
 			this.projectTab = new System.Windows.Forms.TabPage();
 			this.projectContainer = new System.Windows.Forms.SplitContainer();
+			this.projectChoiceBox = new Grupptenta2.ChoiceBox();
+			this.projectAvailableParticipantsBox = new Grupptenta2.ChoiceBox();
+			this.projectNoteBox = new Grupptenta2.ChoiceBox();
+			this.projectEventBox = new Grupptenta2.ChoiceBox();
+			this.projectParticipantBox = new Grupptenta2.ChoiceBox();
 			this.projectInfoPnl = new System.Windows.Forms.Panel();
 			this.saveBtn = new System.Windows.Forms.Button();
 			this.projectDescLbl = new System.Windows.Forms.Label();
@@ -45,9 +58,12 @@
 			this.projectDescBox = new System.Windows.Forms.TextBox();
 			this.projectCompanyBox = new System.Windows.Forms.TextBox();
 			this.calendarTab = new System.Windows.Forms.TabPage();
-			this.eventSaveBtn = new System.Windows.Forms.Button();
 			this.eventPnl = new System.Windows.Forms.Panel();
+			this.eventSaveBtn = new System.Windows.Forms.Button();
+			this.eventCompanyBox = new System.Windows.Forms.ComboBox();
+			this.eventProjectBox = new System.Windows.Forms.ComboBox();
 			this.showEndDateLbl = new System.Windows.Forms.Label();
+			this.createEventBtn = new System.Windows.Forms.Button();
 			this.showStartDateLbl = new System.Windows.Forms.Label();
 			this.meetingLocationLbl = new System.Windows.Forms.Label();
 			this.meetingCityLbl = new System.Windows.Forms.Label();
@@ -62,16 +78,13 @@
 			this.meetingParticipantLbl = new System.Windows.Forms.Label();
 			this.meetingAddParticipantBox = new System.Windows.Forms.ListBox();
 			this.meetingParticipantBox = new System.Windows.Forms.ListBox();
-			this.eventIsMeetingCheckBox = new System.Windows.Forms.CheckBox();
 			this.eventAddNoteBtn = new System.Windows.Forms.Button();
 			this.eventAddNoteLbl = new System.Windows.Forms.Label();
 			this.eventAddNoteBox = new System.Windows.Forms.TextBox();
 			this.eventNoteBox = new System.Windows.Forms.ListBox();
 			this.eventNotesLbl = new System.Windows.Forms.Label();
 			this.eventNameBox = new System.Windows.Forms.TextBox();
-			this.eventProjectBox = new System.Windows.Forms.TextBox();
 			this.stopDateTimeLbl = new System.Windows.Forms.Label();
-			this.eventCompanyBox = new System.Windows.Forms.TextBox();
 			this.startDatetimeLbl = new System.Windows.Forms.Label();
 			this.eventProjectLbl = new System.Windows.Forms.Label();
 			this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -80,22 +93,8 @@
 			this.eventListLbl = new System.Windows.Forms.Label();
 			this.eventListBox = new System.Windows.Forms.ListBox();
 			this.pickDateLbl = new System.Windows.Forms.Label();
-			this.createEventBtn = new System.Windows.Forms.Button();
 			this.monthCalendar = new System.Windows.Forms.MonthCalendar();
 			this.tabControl = new System.Windows.Forms.TabControl();
-			this.projectChoiceBox = new Grupptenta2.ChoiceBox();
-			this.projectAvailableParticipantsBox = new Grupptenta2.ChoiceBox();
-			this.projectNoteBox = new Grupptenta2.ChoiceBox();
-			this.projectEventBox = new Grupptenta2.ChoiceBox();
-			this.projectParticipantBox = new Grupptenta2.ChoiceBox();
-			this.contactChoiceBox = new Grupptenta2.ChoiceBox();
-			this.contactControl = new Grupptenta2.PersonUserControl();
-			this.contactRelationBox = new Grupptenta2.ChoiceBox();
-			this.contactProjectBox = new Grupptenta2.ChoiceBox();
-			this.companyChoiceBox = new Grupptenta2.ChoiceBox();
-			this.companyEmployeeBox = new Grupptenta2.ChoiceBox();
-			this.companyProjectBox = new Grupptenta2.ChoiceBox();
-			this.companyControl = new Grupptenta2.CompanyUserControl();
 			this.customListBox1 = new Grupptenta2.ChoiceBox();
 			this.customListBox2 = new Grupptenta2.ChoiceBox();
 			this.companyTab.SuspendLayout();
@@ -157,6 +156,38 @@
 			this.companyContainer.SplitterDistance = 341;
 			this.companyContainer.TabIndex = 19;
 			// 
+			// companyChoiceBox
+			// 
+			this.companyChoiceBox.BackColor = System.Drawing.Color.White;
+			this.companyChoiceBox.Location = new System.Drawing.Point(0, 0);
+			this.companyChoiceBox.Name = "companyChoiceBox";
+			this.companyChoiceBox.Size = new System.Drawing.Size(241, 175);
+			this.companyChoiceBox.TabIndex = 1;
+			// 
+			// companyEmployeeBox
+			// 
+			this.companyEmployeeBox.BackColor = System.Drawing.Color.White;
+			this.companyEmployeeBox.Location = new System.Drawing.Point(259, 228);
+			this.companyEmployeeBox.Name = "companyEmployeeBox";
+			this.companyEmployeeBox.Size = new System.Drawing.Size(241, 175);
+			this.companyEmployeeBox.TabIndex = 2;
+			// 
+			// companyProjectBox
+			// 
+			this.companyProjectBox.BackColor = System.Drawing.Color.White;
+			this.companyProjectBox.Location = new System.Drawing.Point(259, 16);
+			this.companyProjectBox.Name = "companyProjectBox";
+			this.companyProjectBox.Size = new System.Drawing.Size(241, 175);
+			this.companyProjectBox.TabIndex = 1;
+			// 
+			// companyControl
+			// 
+			this.companyControl.BackColor = System.Drawing.Color.White;
+			this.companyControl.Location = new System.Drawing.Point(12, 16);
+			this.companyControl.Name = "companyControl";
+			this.companyControl.Size = new System.Drawing.Size(189, 310);
+			this.companyControl.TabIndex = 0;
+			// 
 			// contactTab
 			// 
 			this.contactTab.Controls.Add(this.contactContainer);
@@ -184,6 +215,38 @@
 			this.contactContainer.Size = new System.Drawing.Size(1103, 712);
 			this.contactContainer.SplitterDistance = 341;
 			this.contactContainer.TabIndex = 11;
+			// 
+			// contactChoiceBox
+			// 
+			this.contactChoiceBox.BackColor = System.Drawing.Color.White;
+			this.contactChoiceBox.Location = new System.Drawing.Point(0, 0);
+			this.contactChoiceBox.Name = "contactChoiceBox";
+			this.contactChoiceBox.Size = new System.Drawing.Size(241, 175);
+			this.contactChoiceBox.TabIndex = 1;
+			// 
+			// contactControl
+			// 
+			this.contactControl.BackColor = System.Drawing.Color.White;
+			this.contactControl.Location = new System.Drawing.Point(3, 13);
+			this.contactControl.Name = "contactControl";
+			this.contactControl.Size = new System.Drawing.Size(481, 485);
+			this.contactControl.TabIndex = 13;
+			// 
+			// contactRelationBox
+			// 
+			this.contactRelationBox.BackColor = System.Drawing.Color.White;
+			this.contactRelationBox.Location = new System.Drawing.Point(490, 13);
+			this.contactRelationBox.Name = "contactRelationBox";
+			this.contactRelationBox.Size = new System.Drawing.Size(241, 175);
+			this.contactRelationBox.TabIndex = 12;
+			// 
+			// contactProjectBox
+			// 
+			this.contactProjectBox.BackColor = System.Drawing.Color.White;
+			this.contactProjectBox.Location = new System.Drawing.Point(490, 239);
+			this.contactProjectBox.Name = "contactProjectBox";
+			this.contactProjectBox.Size = new System.Drawing.Size(241, 175);
+			this.contactProjectBox.TabIndex = 10;
 			// 
 			// projectTab
 			// 
@@ -214,6 +277,46 @@
 			this.projectContainer.Size = new System.Drawing.Size(1103, 712);
 			this.projectContainer.SplitterDistance = 341;
 			this.projectContainer.TabIndex = 10;
+			// 
+			// projectChoiceBox
+			// 
+			this.projectChoiceBox.BackColor = System.Drawing.Color.White;
+			this.projectChoiceBox.Location = new System.Drawing.Point(0, 0);
+			this.projectChoiceBox.Name = "projectChoiceBox";
+			this.projectChoiceBox.Size = new System.Drawing.Size(241, 175);
+			this.projectChoiceBox.TabIndex = 1;
+			// 
+			// projectAvailableParticipantsBox
+			// 
+			this.projectAvailableParticipantsBox.BackColor = System.Drawing.Color.White;
+			this.projectAvailableParticipantsBox.Location = new System.Drawing.Point(9, 413);
+			this.projectAvailableParticipantsBox.Name = "projectAvailableParticipantsBox";
+			this.projectAvailableParticipantsBox.Size = new System.Drawing.Size(241, 175);
+			this.projectAvailableParticipantsBox.TabIndex = 13;
+			// 
+			// projectNoteBox
+			// 
+			this.projectNoteBox.BackColor = System.Drawing.Color.White;
+			this.projectNoteBox.Location = new System.Drawing.Point(293, 222);
+			this.projectNoteBox.Name = "projectNoteBox";
+			this.projectNoteBox.Size = new System.Drawing.Size(241, 175);
+			this.projectNoteBox.TabIndex = 12;
+			// 
+			// projectEventBox
+			// 
+			this.projectEventBox.BackColor = System.Drawing.Color.White;
+			this.projectEventBox.Location = new System.Drawing.Point(293, 3);
+			this.projectEventBox.Name = "projectEventBox";
+			this.projectEventBox.Size = new System.Drawing.Size(241, 175);
+			this.projectEventBox.TabIndex = 11;
+			// 
+			// projectParticipantBox
+			// 
+			this.projectParticipantBox.BackColor = System.Drawing.Color.White;
+			this.projectParticipantBox.Location = new System.Drawing.Point(9, 222);
+			this.projectParticipantBox.Name = "projectParticipantBox";
+			this.projectParticipantBox.Size = new System.Drawing.Size(241, 175);
+			this.projectParticipantBox.TabIndex = 10;
 			// 
 			// projectInfoPnl
 			// 
@@ -305,12 +408,10 @@
 			// 
 			// calendarTab
 			// 
-			this.calendarTab.Controls.Add(this.eventSaveBtn);
 			this.calendarTab.Controls.Add(this.eventPnl);
 			this.calendarTab.Controls.Add(this.eventListLbl);
 			this.calendarTab.Controls.Add(this.eventListBox);
 			this.calendarTab.Controls.Add(this.pickDateLbl);
-			this.calendarTab.Controls.Add(this.createEventBtn);
 			this.calendarTab.Controls.Add(this.monthCalendar);
 			this.calendarTab.Location = new System.Drawing.Point(4, 22);
 			this.calendarTab.Name = "calendarTab";
@@ -320,19 +421,14 @@
 			this.calendarTab.Text = "Kalender";
 			this.calendarTab.UseVisualStyleBackColor = true;
 			// 
-			// eventSaveBtn
-			// 
-			this.eventSaveBtn.Location = new System.Drawing.Point(672, 609);
-			this.eventSaveBtn.Name = "eventSaveBtn";
-			this.eventSaveBtn.Size = new System.Drawing.Size(115, 23);
-			this.eventSaveBtn.TabIndex = 9;
-			this.eventSaveBtn.Text = "Spara ändringar";
-			this.eventSaveBtn.UseVisualStyleBackColor = true;
-			// 
 			// eventPnl
 			// 
 			this.eventPnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.eventPnl.Controls.Add(this.eventSaveBtn);
+			this.eventPnl.Controls.Add(this.eventCompanyBox);
+			this.eventPnl.Controls.Add(this.eventProjectBox);
 			this.eventPnl.Controls.Add(this.showEndDateLbl);
+			this.eventPnl.Controls.Add(this.createEventBtn);
 			this.eventPnl.Controls.Add(this.showStartDateLbl);
 			this.eventPnl.Controls.Add(this.meetingLocationLbl);
 			this.eventPnl.Controls.Add(this.meetingCityLbl);
@@ -347,16 +443,13 @@
 			this.eventPnl.Controls.Add(this.meetingParticipantLbl);
 			this.eventPnl.Controls.Add(this.meetingAddParticipantBox);
 			this.eventPnl.Controls.Add(this.meetingParticipantBox);
-			this.eventPnl.Controls.Add(this.eventIsMeetingCheckBox);
 			this.eventPnl.Controls.Add(this.eventAddNoteBtn);
 			this.eventPnl.Controls.Add(this.eventAddNoteLbl);
 			this.eventPnl.Controls.Add(this.eventAddNoteBox);
 			this.eventPnl.Controls.Add(this.eventNoteBox);
 			this.eventPnl.Controls.Add(this.eventNotesLbl);
 			this.eventPnl.Controls.Add(this.eventNameBox);
-			this.eventPnl.Controls.Add(this.eventProjectBox);
 			this.eventPnl.Controls.Add(this.stopDateTimeLbl);
-			this.eventPnl.Controls.Add(this.eventCompanyBox);
 			this.eventPnl.Controls.Add(this.startDatetimeLbl);
 			this.eventPnl.Controls.Add(this.eventProjectLbl);
 			this.eventPnl.Controls.Add(this.endDateTimePicker);
@@ -367,6 +460,38 @@
 			this.eventPnl.Size = new System.Drawing.Size(519, 592);
 			this.eventPnl.TabIndex = 8;
 			// 
+			// eventSaveBtn
+			// 
+			this.eventSaveBtn.Location = new System.Drawing.Point(399, 3);
+			this.eventSaveBtn.Name = "eventSaveBtn";
+			this.eventSaveBtn.Size = new System.Drawing.Size(115, 23);
+			this.eventSaveBtn.TabIndex = 9;
+			this.eventSaveBtn.Text = "Spara";
+			this.eventSaveBtn.UseVisualStyleBackColor = true;
+			this.eventSaveBtn.Click += new System.EventHandler(this.eventSaveBtn_Click);
+			// 
+			// eventCompanyBox
+			// 
+			this.eventCompanyBox.BackColor = System.Drawing.Color.White;
+			this.eventCompanyBox.Enabled = false;
+			this.eventCompanyBox.FormattingEnabled = true;
+			this.eventCompanyBox.Location = new System.Drawing.Point(65, 35);
+			this.eventCompanyBox.Name = "eventCompanyBox";
+			this.eventCompanyBox.Size = new System.Drawing.Size(142, 21);
+			this.eventCompanyBox.TabIndex = 32;
+			this.eventCompanyBox.SelectedIndexChanged += new System.EventHandler(this.eventCompanyBox_SelectedIndexChanged);
+			// 
+			// eventProjectBox
+			// 
+			this.eventProjectBox.BackColor = System.Drawing.Color.White;
+			this.eventProjectBox.Enabled = false;
+			this.eventProjectBox.FormattingEnabled = true;
+			this.eventProjectBox.Location = new System.Drawing.Point(65, 62);
+			this.eventProjectBox.Name = "eventProjectBox";
+			this.eventProjectBox.Size = new System.Drawing.Size(142, 21);
+			this.eventProjectBox.TabIndex = 31;
+			this.eventProjectBox.SelectedIndexChanged += new System.EventHandler(this.eventProjectBox_SelectedIndexChanged);
+			// 
 			// showEndDateLbl
 			// 
 			this.showEndDateLbl.AutoSize = true;
@@ -374,6 +499,16 @@
 			this.showEndDateLbl.Name = "showEndDateLbl";
 			this.showEndDateLbl.Size = new System.Drawing.Size(0, 13);
 			this.showEndDateLbl.TabIndex = 30;
+			// 
+			// createEventBtn
+			// 
+			this.createEventBtn.Location = new System.Drawing.Point(278, 3);
+			this.createEventBtn.Name = "createEventBtn";
+			this.createEventBtn.Size = new System.Drawing.Size(115, 23);
+			this.createEventBtn.TabIndex = 2;
+			this.createEventBtn.Text = "Ny händelse";
+			this.createEventBtn.UseVisualStyleBackColor = true;
+			this.createEventBtn.Click += new System.EventHandler(this.createEventBtn_Click);
 			// 
 			// showStartDateLbl
 			// 
@@ -467,9 +602,9 @@
 			this.meetingAddParticipantLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.meetingAddParticipantLbl.Location = new System.Drawing.Point(287, 440);
 			this.meetingAddParticipantLbl.Name = "meetingAddParticipantLbl";
-			this.meetingAddParticipantLbl.Size = new System.Drawing.Size(135, 20);
+			this.meetingAddParticipantLbl.Size = new System.Drawing.Size(125, 20);
 			this.meetingAddParticipantLbl.TabIndex = 19;
-			this.meetingAddParticipantLbl.Text = "Valbara kontakter";
+			this.meetingAddParticipantLbl.Text = "Projektdeltagare";
 			// 
 			// meetingParticipantLbl
 			// 
@@ -477,9 +612,9 @@
 			this.meetingParticipantLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.meetingParticipantLbl.Location = new System.Drawing.Point(287, 267);
 			this.meetingParticipantLbl.Name = "meetingParticipantLbl";
-			this.meetingParticipantLbl.Size = new System.Drawing.Size(79, 20);
+			this.meetingParticipantLbl.Size = new System.Drawing.Size(144, 20);
 			this.meetingParticipantLbl.TabIndex = 18;
-			this.meetingParticipantLbl.Text = "Deltagare";
+			this.meetingParticipantLbl.Text = "Händelsedeltagare";
 			// 
 			// meetingAddParticipantBox
 			// 
@@ -496,16 +631,6 @@
 			this.meetingParticipantBox.Name = "meetingParticipantBox";
 			this.meetingParticipantBox.Size = new System.Drawing.Size(200, 95);
 			this.meetingParticipantBox.TabIndex = 16;
-			// 
-			// eventIsMeetingCheckBox
-			// 
-			this.eventIsMeetingCheckBox.AutoSize = true;
-			this.eventIsMeetingCheckBox.Location = new System.Drawing.Point(65, 88);
-			this.eventIsMeetingCheckBox.Name = "eventIsMeetingCheckBox";
-			this.eventIsMeetingCheckBox.Size = new System.Drawing.Size(50, 17);
-			this.eventIsMeetingCheckBox.TabIndex = 15;
-			this.eventIsMeetingCheckBox.Text = "Möte";
-			this.eventIsMeetingCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// eventAddNoteBtn
 			// 
@@ -562,13 +687,6 @@
 			this.eventNameBox.Size = new System.Drawing.Size(200, 26);
 			this.eventNameBox.TabIndex = 0;
 			// 
-			// eventProjectBox
-			// 
-			this.eventProjectBox.Location = new System.Drawing.Point(65, 35);
-			this.eventProjectBox.Name = "eventProjectBox";
-			this.eventProjectBox.Size = new System.Drawing.Size(141, 20);
-			this.eventProjectBox.TabIndex = 3;
-			// 
 			// stopDateTimeLbl
 			// 
 			this.stopDateTimeLbl.AutoSize = true;
@@ -577,13 +695,6 @@
 			this.stopDateTimeLbl.Size = new System.Drawing.Size(23, 13);
 			this.stopDateTimeLbl.TabIndex = 8;
 			this.stopDateTimeLbl.Text = "Till:";
-			// 
-			// eventCompanyBox
-			// 
-			this.eventCompanyBox.Location = new System.Drawing.Point(65, 61);
-			this.eventCompanyBox.Name = "eventCompanyBox";
-			this.eventCompanyBox.Size = new System.Drawing.Size(141, 20);
-			this.eventCompanyBox.TabIndex = 4;
 			// 
 			// startDatetimeLbl
 			// 
@@ -597,7 +708,7 @@
 			// eventProjectLbl
 			// 
 			this.eventProjectLbl.AutoSize = true;
-			this.eventProjectLbl.Location = new System.Drawing.Point(3, 38);
+			this.eventProjectLbl.Location = new System.Drawing.Point(4, 65);
 			this.eventProjectLbl.Name = "eventProjectLbl";
 			this.eventProjectLbl.Size = new System.Drawing.Size(43, 13);
 			this.eventProjectLbl.TabIndex = 5;
@@ -610,6 +721,7 @@
 			this.endDateTimePicker.Name = "endDateTimePicker";
 			this.endDateTimePicker.Size = new System.Drawing.Size(200, 20);
 			this.endDateTimePicker.TabIndex = 2;
+			this.endDateTimePicker.ValueChanged += new System.EventHandler(this.endDateTimePicker_ValueChanged);
 			// 
 			// startDateTimePicker
 			// 
@@ -618,11 +730,12 @@
 			this.startDateTimePicker.Name = "startDateTimePicker";
 			this.startDateTimePicker.Size = new System.Drawing.Size(200, 20);
 			this.startDateTimePicker.TabIndex = 1;
+			this.startDateTimePicker.ValueChanged += new System.EventHandler(this.startDateTimePicker_ValueChanged);
 			// 
 			// eventCompanyLbl
 			// 
 			this.eventCompanyLbl.AutoSize = true;
-			this.eventCompanyLbl.Location = new System.Drawing.Point(3, 64);
+			this.eventCompanyLbl.Location = new System.Drawing.Point(4, 33);
 			this.eventCompanyLbl.Name = "eventCompanyLbl";
 			this.eventCompanyLbl.Size = new System.Drawing.Size(46, 13);
 			this.eventCompanyLbl.TabIndex = 6;
@@ -657,15 +770,6 @@
 			this.pickDateLbl.TabIndex = 3;
 			this.pickDateLbl.Text = "Välj datum";
 			// 
-			// createEventBtn
-			// 
-			this.createEventBtn.Location = new System.Drawing.Point(551, 609);
-			this.createEventBtn.Name = "createEventBtn";
-			this.createEventBtn.Size = new System.Drawing.Size(115, 23);
-			this.createEventBtn.TabIndex = 2;
-			this.createEventBtn.Text = "Ny händelse";
-			this.createEventBtn.UseVisualStyleBackColor = true;
-			// 
 			// monthCalendar
 			// 
 			this.monthCalendar.BackColor = System.Drawing.Color.White;
@@ -691,110 +795,6 @@
 			this.tabControl.Size = new System.Drawing.Size(1114, 780);
 			this.tabControl.TabIndex = 20;
 			this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
-			// 
-			// projectChoiceBox
-			// 
-			this.projectChoiceBox.BackColor = System.Drawing.Color.White;
-			this.projectChoiceBox.Location = new System.Drawing.Point(0, 0);
-			this.projectChoiceBox.Name = "projectChoiceBox";
-			this.projectChoiceBox.Size = new System.Drawing.Size(241, 175);
-			this.projectChoiceBox.TabIndex = 1;
-			// 
-			// projectAvailableParticipantsBox
-			// 
-			this.projectAvailableParticipantsBox.BackColor = System.Drawing.Color.White;
-			this.projectAvailableParticipantsBox.Location = new System.Drawing.Point(9, 413);
-			this.projectAvailableParticipantsBox.Name = "projectAvailableParticipantsBox";
-			this.projectAvailableParticipantsBox.Size = new System.Drawing.Size(241, 175);
-			this.projectAvailableParticipantsBox.TabIndex = 13;
-			// 
-			// projectNoteBox
-			// 
-			this.projectNoteBox.BackColor = System.Drawing.Color.White;
-			this.projectNoteBox.Location = new System.Drawing.Point(293, 222);
-			this.projectNoteBox.Name = "projectNoteBox";
-			this.projectNoteBox.Size = new System.Drawing.Size(241, 175);
-			this.projectNoteBox.TabIndex = 12;
-			// 
-			// projectEventBox
-			// 
-			this.projectEventBox.BackColor = System.Drawing.Color.White;
-			this.projectEventBox.Location = new System.Drawing.Point(293, 3);
-			this.projectEventBox.Name = "projectEventBox";
-			this.projectEventBox.Size = new System.Drawing.Size(241, 175);
-			this.projectEventBox.TabIndex = 11;
-			// 
-			// projectParticipantBox
-			// 
-			this.projectParticipantBox.BackColor = System.Drawing.Color.White;
-			this.projectParticipantBox.Location = new System.Drawing.Point(9, 222);
-			this.projectParticipantBox.Name = "projectParticipantBox";
-			this.projectParticipantBox.Size = new System.Drawing.Size(241, 175);
-			this.projectParticipantBox.TabIndex = 10;
-			// 
-			// contactChoiceBox
-			// 
-			this.contactChoiceBox.BackColor = System.Drawing.Color.White;
-			this.contactChoiceBox.Location = new System.Drawing.Point(0, 0);
-			this.contactChoiceBox.Name = "contactChoiceBox";
-			this.contactChoiceBox.Size = new System.Drawing.Size(241, 175);
-			this.contactChoiceBox.TabIndex = 1;
-			// 
-			// contactControl
-			// 
-			this.contactControl.BackColor = System.Drawing.Color.White;
-			this.contactControl.Location = new System.Drawing.Point(3, 13);
-			this.contactControl.Name = "contactControl";
-			this.contactControl.Size = new System.Drawing.Size(481, 485);
-			this.contactControl.TabIndex = 13;
-			// 
-			// contactRelationBox
-			// 
-			this.contactRelationBox.BackColor = System.Drawing.Color.White;
-			this.contactRelationBox.Location = new System.Drawing.Point(490, 13);
-			this.contactRelationBox.Name = "contactRelationBox";
-			this.contactRelationBox.Size = new System.Drawing.Size(241, 175);
-			this.contactRelationBox.TabIndex = 12;
-			// 
-			// contactProjectBox
-			// 
-			this.contactProjectBox.BackColor = System.Drawing.Color.White;
-			this.contactProjectBox.Location = new System.Drawing.Point(490, 239);
-			this.contactProjectBox.Name = "contactProjectBox";
-			this.contactProjectBox.Size = new System.Drawing.Size(241, 175);
-			this.contactProjectBox.TabIndex = 10;
-			// 
-			// companyChoiceBox
-			// 
-			this.companyChoiceBox.BackColor = System.Drawing.Color.White;
-			this.companyChoiceBox.Location = new System.Drawing.Point(0, 0);
-			this.companyChoiceBox.Name = "companyChoiceBox";
-			this.companyChoiceBox.Size = new System.Drawing.Size(241, 175);
-			this.companyChoiceBox.TabIndex = 1;
-			// 
-			// companyEmployeeBox
-			// 
-			this.companyEmployeeBox.BackColor = System.Drawing.Color.White;
-			this.companyEmployeeBox.Location = new System.Drawing.Point(259, 228);
-			this.companyEmployeeBox.Name = "companyEmployeeBox";
-			this.companyEmployeeBox.Size = new System.Drawing.Size(241, 175);
-			this.companyEmployeeBox.TabIndex = 2;
-			// 
-			// companyProjectBox
-			// 
-			this.companyProjectBox.BackColor = System.Drawing.Color.White;
-			this.companyProjectBox.Location = new System.Drawing.Point(259, 16);
-			this.companyProjectBox.Name = "companyProjectBox";
-			this.companyProjectBox.Size = new System.Drawing.Size(241, 175);
-			this.companyProjectBox.TabIndex = 1;
-			// 
-			// companyControl
-			// 
-			this.companyControl.BackColor = System.Drawing.Color.White;
-			this.companyControl.Location = new System.Drawing.Point(12, 16);
-			this.companyControl.Name = "companyControl";
-			this.companyControl.Size = new System.Drawing.Size(189, 310);
-			this.companyControl.TabIndex = 0;
 			// 
 			// customListBox1
 			// 
@@ -894,10 +894,7 @@
 		private System.Windows.Forms.TextBox eventNameBox;
 		private System.Windows.Forms.Label eventCompanyLbl;
 		private System.Windows.Forms.Label eventProjectLbl;
-		private System.Windows.Forms.TextBox eventCompanyBox;
-		private System.Windows.Forms.TextBox eventProjectBox;
 		private System.Windows.Forms.Panel eventPnl;
-		private System.Windows.Forms.CheckBox eventIsMeetingCheckBox;
 		private System.Windows.Forms.Button eventAddNoteBtn;
 		private System.Windows.Forms.Label eventAddNoteLbl;
 		private System.Windows.Forms.TextBox eventAddNoteBox;
@@ -921,6 +918,8 @@
 		private System.Windows.Forms.TextBox meetingStreetBox;
 		private System.Windows.Forms.Label showEndDateLbl;
 		private System.Windows.Forms.Label showStartDateLbl;
+		private System.Windows.Forms.ComboBox eventCompanyBox;
+		private System.Windows.Forms.ComboBox eventProjectBox;
 	}
 }
 
