@@ -20,6 +20,9 @@ namespace Grupptenta2
 		private static Person _selectedPerson;
 		private static Company _selectedCompany;
 		private static Project _selectedProject;
+		private static ProjectEvent _selectedEvent;
+		private static Meeting _selectedMeeting;
+		private static List<DateTime> _boldedDates;
 		private static BindingList<ProjectEvent> _events = new BindingList<ProjectEvent>();
 
 		public MainForm()
@@ -36,6 +39,7 @@ namespace Grupptenta2
 			//SaveDataXml.LoadProjects();
 
 			SetEventMethods();
+			CalendarBoldDates();
 			ProjectTabSetup();
 			ContactTabSetup();
 			CompanyTabSetup();
@@ -108,16 +112,20 @@ namespace Grupptenta2
 			newNote1.NoteDate = DateTime.Now.AddDays(-1);
 			newNote1.Text = "Presentationsmöte";
 			Meeting newMeeting = new Meeting();
-			newMeeting.StartDate = DateTime.Now.AddDays(-1);
+			newMeeting.StartDate = new DateTime(2014, 11, 25, 14, 00, 00);
+			newMeeting.EndDate = new DateTime(2014, 11, 25, 15, 30, 00);
 			newMeeting.Name = "Testhändelse 1";
 			newMeeting.Notes.Add(newNote1);
+			newMeeting.Participants.Add(_personManager.Persons[0]);
+			newMeeting.Participants.Add(_personManager.Persons[1]);
 			_companyManager.Companies[0].Projects[0].ProjectJournal.Events.Add(newMeeting);
 
 			Note newNote2 = new Note();
 			newNote2.NoteDate = DateTime.Now.AddDays(-2);
 			newNote2.Text = "Presentationsmöte";
 			ProjectEvent newProjectEvent = new ProjectEvent();
-			newProjectEvent.StartDate = DateTime.Now.AddDays(-2);
+			newProjectEvent.StartDate = new DateTime(2014, 11, 10, 11, 30, 00);
+			newProjectEvent.EndDate = new DateTime(2014, 11, 10, 13, 30, 00);
 			newProjectEvent.Name = "Testhändelse 2";
 			newProjectEvent.Notes.Add(newNote2);
 			_companyManager.Companies[0].Projects[1].ProjectJournal.Events.Add(newProjectEvent);
@@ -171,15 +179,30 @@ namespace Grupptenta2
 			projectNoteBox.OnDoubleClickChoice += projectNoteBox_OnDoubleClickChoice;
 		}
 
-		private void quitBtn_Click(object sender, EventArgs e)
+		#region "Calendar"
+		private void CalendarBoldDates()
 		{
-			SaveDataXml.SaveCompanies(_companyManager.Companies);
-			SaveDataXml.SavePersons(_personManager.Persons);
-			SaveDataXml.SaveProjects(_projectManager.Projects);
-			Application.Exit();
+			_boldedDates = new List<DateTime>();
+
+			for (int i = 0; i < _projectManager.Projects.Count; i++)
+			{
+				for (int j = 0; j < _projectManager.Projects[i].ProjectJournal.Events.Count; j++)
+				{
+					BoldDates(_projectManager.Projects[i].ProjectJournal.Events[j].StartDate, _projectManager.Projects[i].ProjectJournal.Events[j].EndDate);
+				}
+			}
+			
+			monthCalendar.BoldedDates = _boldedDates.ToArray();
+		}
+		private void BoldDates(DateTime startDateTime, DateTime endDateTime)
+		{
+			if (!_boldedDates.Contains(startDateTime))
+				_boldedDates.Add(startDateTime);
+
+			if (!_boldedDates.Contains(endDateTime))
+				_boldedDates.Add(endDateTime);
 		}
 
-		#region "Calendar"
 		private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
 		{
 			BindingList<ProjectEvent> tempEventList = new BindingList<ProjectEvent>();
@@ -202,6 +225,101 @@ namespace Grupptenta2
 			eventListBox.DataSource = null;
 			eventListBox.DataSource = _events;
 			eventListBox.DisplayMember = "Name";
+		}
+
+		private void eventListBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Project eventProject = _projectManager.Projects.SingleOrDefault(p => p.ProjectJournal.Events.Any(pEvent => pEvent.Equals(_selectedEvent)));
+			Company eventCompany = _companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Equals(eventProject)));
+
+			if (eventListBox.SelectedItem is Meeting)
+			{
+				_selectedEvent = (Meeting)eventListBox.SelectedItem;
+				eventIsMeetingCheckBox.Checked = true;
+				LoadEventInfo(eventCompany, eventProject);
+				LoadMeetingInfo(eventProject);
+			}
+			else if (eventListBox.SelectedItem is ProjectEvent)
+			{
+				_selectedEvent = (ProjectEvent)eventListBox.SelectedItem;
+				eventIsMeetingCheckBox.Checked = false;
+				LoadEventInfo(eventCompany, eventProject);
+			}
+		}
+
+		private void LoadMeetingInfo(Project eventProject)
+		{
+			_selectedMeeting = (Meeting)_selectedEvent;
+
+			EnableMeetingInfo();
+
+			meetingStreetBox.Text = _selectedMeeting.Location.Street;
+			meetingZipBox.Text = _selectedMeeting.Location.ZipCode;
+			meetingCityBox.Text = _selectedMeeting.Location.City;
+			meetingParticipantBox.DataSource = null;
+			meetingParticipantBox.DataSource = _selectedMeeting.Participants;
+			meetingParticipantBox.DisplayMember = "Person";
+			meetingAddParticipantBox.DataSource = null;
+			meetingAddParticipantBox.DataSource = eventProject.Roles;
+			meetingAddParticipantBox.DisplayMember = "Person";
+		}
+
+		private void LoadEventInfo(Company eventCompany, Project eventProject)
+		{
+			DisableMeetingInfo();
+
+			eventNameBox.Text = _selectedEvent.Name;
+			eventProjectBox.Text = eventProject.Name;
+			eventCompanyBox.Text = eventCompany.Name;
+			startDateTimePicker.Value = _selectedEvent.StartDate;
+			showStartDateLbl.Text = _selectedEvent.StartDate.ToLongDateString();
+			endDateTimePicker.Value = _selectedEvent.EndDate;
+			showEndDateLbl.Text = _selectedEvent.EndDate.ToLongDateString();
+			eventNoteBox.DataSource = _selectedEvent.Notes;
+			eventNoteBox.DisplayMember = "Name";
+		}
+
+		private void EnableMeetingInfo()
+		{
+			meetingStreetBox.Enabled = true;
+			meetingZipBox.Enabled = true;
+			meetingCityBox.Enabled = true;
+			meetingParticipantBox.Enabled = true;
+			meetingAddParticipantBox.Enabled = true;
+			meetingAddParticipantBtn.Enabled = true;
+			meetingRemoveParticipantBtn.Enabled = true;
+
+		}
+		private void DisableMeetingInfo()
+		{
+			meetingStreetBox.Enabled = false;
+			meetingZipBox.Enabled = false;
+			meetingCityBox.Enabled = false;
+			meetingParticipantBox.Enabled = false;
+			meetingAddParticipantBox.Enabled = false;
+			meetingAddParticipantBtn.Enabled = false;
+			meetingRemoveParticipantBtn.Enabled = false;
+		}
+
+		private void eventAddNoteBtn_Click(object sender, EventArgs e)
+		{
+			Note newNote = new Note();
+			newNote.Text = eventAddNoteBox.Text;
+			newNote.NoteDate = DateTime.Now;
+			_selectedEvent.Notes.Add(newNote);
+			eventAddNoteBox.Clear();
+		}
+
+		private void meetingRemoveParticipantBtn_Click(object sender, EventArgs e)
+		{
+			_selectedMeeting.Participants.Remove((Person)meetingParticipantBox.SelectedItem);
+		}
+
+		private void meetingAddParticipantBtn_Click(object sender, EventArgs e)
+		{
+			Person selectedParticipantToAdd = (Person)meetingAddParticipantBox.SelectedItem;
+			if (_selectedMeeting.Participants.SingleOrDefault(p => p.Equals(selectedParticipantToAdd)) == null)
+				_selectedMeeting.Participants.Add(selectedParticipantToAdd);
 		}
 		#endregion
 
@@ -475,6 +593,14 @@ namespace Grupptenta2
 			companyControl.SetCompanyInfo(_selectedCompany);
 			companyProjectBox.SetData(_selectedCompany.Projects, "Name");
 			companyEmployeeBox.SetData(_selectedCompany.Employees, "Person");
+		}
+
+		private void quitBtn_Click(object sender, EventArgs e)
+		{
+			SaveDataXml.SaveCompanies(_companyManager.Companies);
+			SaveDataXml.SavePersons(_personManager.Persons);
+			SaveDataXml.SaveProjects(_projectManager.Projects);
+			Application.Exit();
 		}
 	}
 }

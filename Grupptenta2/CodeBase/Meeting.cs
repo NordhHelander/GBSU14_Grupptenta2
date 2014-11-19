@@ -12,5 +12,10 @@ namespace CodeBase
     {
         public Address Location { get; set; }
         public BindingList<Person> Participants { get; set; }
+
+		public Meeting()
+		{
+			Participants = new BindingList<Person>();
+		}
     }
 }

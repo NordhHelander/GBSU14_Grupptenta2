@@ -56,7 +56,7 @@
 			this.newNoteLbl = new System.Windows.Forms.Label();
 			this.removeNoteBtn = new System.Windows.Forms.Button();
 			this.newNoteBox = new System.Windows.Forms.TextBox();
-			this.isPublicNoteCheckBox = new System.Windows.Forms.CheckBox();
+			this.dateOfBirthInvalidLbl = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// firstNameBox
@@ -210,7 +210,7 @@
 			// 
 			this.notesLbl.AutoSize = true;
 			this.notesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.notesLbl.Location = new System.Drawing.Point(221, 236);
+			this.notesLbl.Location = new System.Drawing.Point(221, 200);
 			this.notesLbl.Name = "notesLbl";
 			this.notesLbl.Size = new System.Drawing.Size(103, 20);
 			this.notesLbl.TabIndex = 25;
@@ -218,7 +218,7 @@
 			// 
 			// saveBtn
 			// 
-			this.saveBtn.Location = new System.Drawing.Point(273, 426);
+			this.saveBtn.Location = new System.Drawing.Point(73, 350);
 			this.saveBtn.Name = "saveBtn";
 			this.saveBtn.Size = new System.Drawing.Size(116, 23);
 			this.saveBtn.TabIndex = 13;
@@ -241,7 +241,7 @@
 			// notesBox
 			// 
 			this.notesBox.FormattingEnabled = true;
-			this.notesBox.Location = new System.Drawing.Point(224, 259);
+			this.notesBox.Location = new System.Drawing.Point(224, 223);
 			this.notesBox.Name = "notesBox";
 			this.notesBox.Size = new System.Drawing.Size(165, 121);
 			this.notesBox.TabIndex = 37;
@@ -249,7 +249,7 @@
 			// 
 			// addNoteBtn
 			// 
-			this.addNoteBtn.Location = new System.Drawing.Point(273, 183);
+			this.addNoteBtn.Location = new System.Drawing.Point(273, 160);
 			this.addNoteBtn.Name = "addNoteBtn";
 			this.addNoteBtn.Size = new System.Drawing.Size(116, 23);
 			this.addNoteBtn.TabIndex = 38;
@@ -286,7 +286,7 @@
 			// 
 			// removeNoteBtn
 			// 
-			this.removeNoteBtn.Location = new System.Drawing.Point(273, 386);
+			this.removeNoteBtn.Location = new System.Drawing.Point(273, 350);
 			this.removeNoteBtn.Name = "removeNoteBtn";
 			this.removeNoteBtn.Size = new System.Drawing.Size(116, 23);
 			this.removeNoteBtn.TabIndex = 58;
@@ -302,22 +302,23 @@
 			this.newNoteBox.Size = new System.Drawing.Size(165, 121);
 			this.newNoteBox.TabIndex = 59;
 			// 
-			// isPublicNoteCheckBox
+			// dateOfBirthInvalidLbl
 			// 
-			this.isPublicNoteCheckBox.AutoSize = true;
-			this.isPublicNoteCheckBox.Location = new System.Drawing.Point(278, 160);
-			this.isPublicNoteCheckBox.Name = "isPublicNoteCheckBox";
-			this.isPublicNoteCheckBox.Size = new System.Drawing.Size(111, 17);
-			this.isPublicNoteCheckBox.TabIndex = 60;
-			this.isPublicNoteCheckBox.Text = "Publik anteckning";
-			this.isPublicNoteCheckBox.UseVisualStyleBackColor = true;
+			this.dateOfBirthInvalidLbl.AutoSize = true;
+			this.dateOfBirthInvalidLbl.ForeColor = System.Drawing.Color.DarkRed;
+			this.dateOfBirthInvalidLbl.Location = new System.Drawing.Point(195, 70);
+			this.dateOfBirthInvalidLbl.Name = "dateOfBirthInvalidLbl";
+			this.dateOfBirthInvalidLbl.Size = new System.Drawing.Size(14, 13);
+			this.dateOfBirthInvalidLbl.TabIndex = 60;
+			this.dateOfBirthInvalidLbl.Text = "X";
+			this.dateOfBirthInvalidLbl.Visible = false;
 			// 
 			// PersonUserControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.Controls.Add(this.isPublicNoteCheckBox);
+			this.Controls.Add(this.dateOfBirthInvalidLbl);
 			this.Controls.Add(this.newNoteBox);
 			this.Controls.Add(this.removeNoteBtn);
 			this.Controls.Add(this.newNoteLbl);
@@ -347,7 +348,7 @@
 			this.Controls.Add(this.birthdateBox);
 			this.Controls.Add(this.firstNameBox);
 			this.Name = "PersonUserControl";
-			this.Size = new System.Drawing.Size(414, 467);
+			this.Size = new System.Drawing.Size(414, 413);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -383,6 +384,6 @@
 		private System.Windows.Forms.Label newNoteLbl;
 		private System.Windows.Forms.Button removeNoteBtn;
 		private System.Windows.Forms.TextBox newNoteBox;
-		private System.Windows.Forms.CheckBox isPublicNoteCheckBox;
+		private System.Windows.Forms.Label dateOfBirthInvalidLbl;
 	}
 }

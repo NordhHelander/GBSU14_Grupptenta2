@@ -29,11 +29,9 @@
 		private void InitializeComponent()
 		{
 			this.dateTimeLbl = new System.Windows.Forms.Label();
-			this.authorLbl = new System.Windows.Forms.Label();
 			this.textBox = new System.Windows.Forms.TextBox();
 			this.closeBtn = new System.Windows.Forms.Button();
 			this.dateTimeBox = new System.Windows.Forms.TextBox();
-			this.authorBox = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// dateTimeLbl
@@ -45,19 +43,10 @@
 			this.dateTimeLbl.TabIndex = 0;
 			this.dateTimeLbl.Text = "Datum: ";
 			// 
-			// authorLbl
-			// 
-			this.authorLbl.AutoSize = true;
-			this.authorLbl.Location = new System.Drawing.Point(12, 31);
-			this.authorLbl.Name = "authorLbl";
-			this.authorLbl.Size = new System.Drawing.Size(61, 13);
-			this.authorLbl.TabIndex = 1;
-			this.authorLbl.Text = "Skriven av:";
-			// 
 			// textBox
 			// 
 			this.textBox.BackColor = System.Drawing.Color.White;
-			this.textBox.Location = new System.Drawing.Point(16, 57);
+			this.textBox.Location = new System.Drawing.Point(16, 31);
 			this.textBox.Multiline = true;
 			this.textBox.Name = "textBox";
 			this.textBox.ReadOnly = true;
@@ -67,7 +56,7 @@
 			// 
 			// closeBtn
 			// 
-			this.closeBtn.Location = new System.Drawing.Point(153, 169);
+			this.closeBtn.Location = new System.Drawing.Point(153, 143);
 			this.closeBtn.Name = "closeBtn";
 			this.closeBtn.Size = new System.Drawing.Size(75, 23);
 			this.closeBtn.TabIndex = 5;
@@ -84,26 +73,15 @@
 			this.dateTimeBox.Size = new System.Drawing.Size(149, 20);
 			this.dateTimeBox.TabIndex = 6;
 			// 
-			// authorBox
-			// 
-			this.authorBox.BackColor = System.Drawing.Color.White;
-			this.authorBox.Location = new System.Drawing.Point(79, 31);
-			this.authorBox.Name = "authorBox";
-			this.authorBox.ReadOnly = true;
-			this.authorBox.Size = new System.Drawing.Size(149, 20);
-			this.authorBox.TabIndex = 7;
-			// 
 			// NoteForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(240, 205);
-			this.Controls.Add(this.authorBox);
+			this.ClientSize = new System.Drawing.Size(240, 178);
 			this.Controls.Add(this.dateTimeBox);
 			this.Controls.Add(this.closeBtn);
 			this.Controls.Add(this.textBox);
-			this.Controls.Add(this.authorLbl);
 			this.Controls.Add(this.dateTimeLbl);
 			this.Name = "NoteForm";
 			this.Text = "NoteForm";
@@ -115,10 +93,8 @@
 		#endregion
 
 		private System.Windows.Forms.Label dateTimeLbl;
-		private System.Windows.Forms.Label authorLbl;
 		private System.Windows.Forms.TextBox textBox;
 		private System.Windows.Forms.Button closeBtn;
 		private System.Windows.Forms.TextBox dateTimeBox;
-		private System.Windows.Forms.TextBox authorBox;
 	}
 }

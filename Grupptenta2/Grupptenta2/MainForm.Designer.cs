@@ -45,6 +45,38 @@
 			this.projectDescBox = new System.Windows.Forms.TextBox();
 			this.projectCompanyBox = new System.Windows.Forms.TextBox();
 			this.calendarTab = new System.Windows.Forms.TabPage();
+			this.eventSaveBtn = new System.Windows.Forms.Button();
+			this.eventPnl = new System.Windows.Forms.Panel();
+			this.showEndDateLbl = new System.Windows.Forms.Label();
+			this.showStartDateLbl = new System.Windows.Forms.Label();
+			this.meetingLocationLbl = new System.Windows.Forms.Label();
+			this.meetingCityLbl = new System.Windows.Forms.Label();
+			this.meetingZipLbl = new System.Windows.Forms.Label();
+			this.meetingStreetLbl = new System.Windows.Forms.Label();
+			this.meetingCityBox = new System.Windows.Forms.TextBox();
+			this.meetingZipBox = new System.Windows.Forms.TextBox();
+			this.meetingStreetBox = new System.Windows.Forms.TextBox();
+			this.meetingRemoveParticipantBtn = new System.Windows.Forms.Button();
+			this.meetingAddParticipantBtn = new System.Windows.Forms.Button();
+			this.meetingAddParticipantLbl = new System.Windows.Forms.Label();
+			this.meetingParticipantLbl = new System.Windows.Forms.Label();
+			this.meetingAddParticipantBox = new System.Windows.Forms.ListBox();
+			this.meetingParticipantBox = new System.Windows.Forms.ListBox();
+			this.eventIsMeetingCheckBox = new System.Windows.Forms.CheckBox();
+			this.eventAddNoteBtn = new System.Windows.Forms.Button();
+			this.eventAddNoteLbl = new System.Windows.Forms.Label();
+			this.eventAddNoteBox = new System.Windows.Forms.TextBox();
+			this.eventNoteBox = new System.Windows.Forms.ListBox();
+			this.eventNotesLbl = new System.Windows.Forms.Label();
+			this.eventNameBox = new System.Windows.Forms.TextBox();
+			this.eventProjectBox = new System.Windows.Forms.TextBox();
+			this.stopDateTimeLbl = new System.Windows.Forms.Label();
+			this.eventCompanyBox = new System.Windows.Forms.TextBox();
+			this.startDatetimeLbl = new System.Windows.Forms.Label();
+			this.eventProjectLbl = new System.Windows.Forms.Label();
+			this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.eventCompanyLbl = new System.Windows.Forms.Label();
 			this.eventListLbl = new System.Windows.Forms.Label();
 			this.eventListBox = new System.Windows.Forms.ListBox();
 			this.pickDateLbl = new System.Windows.Forms.Label();
@@ -83,6 +115,7 @@
 			this.projectContainer.SuspendLayout();
 			this.projectInfoPnl.SuspendLayout();
 			this.calendarTab.SuspendLayout();
+			this.eventPnl.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -272,6 +305,8 @@
 			// 
 			// calendarTab
 			// 
+			this.calendarTab.Controls.Add(this.eventSaveBtn);
+			this.calendarTab.Controls.Add(this.eventPnl);
 			this.calendarTab.Controls.Add(this.eventListLbl);
 			this.calendarTab.Controls.Add(this.eventListBox);
 			this.calendarTab.Controls.Add(this.pickDateLbl);
@@ -284,6 +319,314 @@
 			this.calendarTab.TabIndex = 1;
 			this.calendarTab.Text = "Kalender";
 			this.calendarTab.UseVisualStyleBackColor = true;
+			// 
+			// eventSaveBtn
+			// 
+			this.eventSaveBtn.Location = new System.Drawing.Point(672, 613);
+			this.eventSaveBtn.Name = "eventSaveBtn";
+			this.eventSaveBtn.Size = new System.Drawing.Size(115, 23);
+			this.eventSaveBtn.TabIndex = 9;
+			this.eventSaveBtn.Text = "Spara ändringar";
+			this.eventSaveBtn.UseVisualStyleBackColor = true;
+			// 
+			// eventPnl
+			// 
+			this.eventPnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.eventPnl.Controls.Add(this.showEndDateLbl);
+			this.eventPnl.Controls.Add(this.showStartDateLbl);
+			this.eventPnl.Controls.Add(this.meetingLocationLbl);
+			this.eventPnl.Controls.Add(this.meetingCityLbl);
+			this.eventPnl.Controls.Add(this.meetingZipLbl);
+			this.eventPnl.Controls.Add(this.meetingStreetLbl);
+			this.eventPnl.Controls.Add(this.meetingCityBox);
+			this.eventPnl.Controls.Add(this.meetingZipBox);
+			this.eventPnl.Controls.Add(this.meetingStreetBox);
+			this.eventPnl.Controls.Add(this.meetingRemoveParticipantBtn);
+			this.eventPnl.Controls.Add(this.meetingAddParticipantBtn);
+			this.eventPnl.Controls.Add(this.meetingAddParticipantLbl);
+			this.eventPnl.Controls.Add(this.meetingParticipantLbl);
+			this.eventPnl.Controls.Add(this.meetingAddParticipantBox);
+			this.eventPnl.Controls.Add(this.meetingParticipantBox);
+			this.eventPnl.Controls.Add(this.eventIsMeetingCheckBox);
+			this.eventPnl.Controls.Add(this.eventAddNoteBtn);
+			this.eventPnl.Controls.Add(this.eventAddNoteLbl);
+			this.eventPnl.Controls.Add(this.eventAddNoteBox);
+			this.eventPnl.Controls.Add(this.eventNoteBox);
+			this.eventPnl.Controls.Add(this.eventNotesLbl);
+			this.eventPnl.Controls.Add(this.eventNameBox);
+			this.eventPnl.Controls.Add(this.eventProjectBox);
+			this.eventPnl.Controls.Add(this.stopDateTimeLbl);
+			this.eventPnl.Controls.Add(this.eventCompanyBox);
+			this.eventPnl.Controls.Add(this.startDatetimeLbl);
+			this.eventPnl.Controls.Add(this.eventProjectLbl);
+			this.eventPnl.Controls.Add(this.endDateTimePicker);
+			this.eventPnl.Controls.Add(this.startDateTimePicker);
+			this.eventPnl.Controls.Add(this.eventCompanyLbl);
+			this.eventPnl.Location = new System.Drawing.Point(268, 53);
+			this.eventPnl.Name = "eventPnl";
+			this.eventPnl.Size = new System.Drawing.Size(519, 554);
+			this.eventPnl.TabIndex = 8;
+			// 
+			// showEndDateLbl
+			// 
+			this.showEndDateLbl.AutoSize = true;
+			this.showEndDateLbl.Location = new System.Drawing.Point(4, 223);
+			this.showEndDateLbl.Name = "showEndDateLbl";
+			this.showEndDateLbl.Size = new System.Drawing.Size(0, 13);
+			this.showEndDateLbl.TabIndex = 30;
+			// 
+			// showStartDateLbl
+			// 
+			this.showStartDateLbl.AutoSize = true;
+			this.showStartDateLbl.Location = new System.Drawing.Point(4, 149);
+			this.showStartDateLbl.Name = "showStartDateLbl";
+			this.showStartDateLbl.Size = new System.Drawing.Size(0, 13);
+			this.showStartDateLbl.TabIndex = 29;
+			// 
+			// meetingLocationLbl
+			// 
+			this.meetingLocationLbl.AutoSize = true;
+			this.meetingLocationLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.meetingLocationLbl.Location = new System.Drawing.Point(287, 117);
+			this.meetingLocationLbl.Name = "meetingLocationLbl";
+			this.meetingLocationLbl.Size = new System.Drawing.Size(44, 20);
+			this.meetingLocationLbl.TabIndex = 28;
+			this.meetingLocationLbl.Text = "Plats";
+			// 
+			// meetingCityLbl
+			// 
+			this.meetingCityLbl.AutoSize = true;
+			this.meetingCityLbl.Location = new System.Drawing.Point(288, 196);
+			this.meetingCityLbl.Name = "meetingCityLbl";
+			this.meetingCityLbl.Size = new System.Drawing.Size(43, 13);
+			this.meetingCityLbl.TabIndex = 27;
+			this.meetingCityLbl.Text = "Postort:";
+			// 
+			// meetingZipLbl
+			// 
+			this.meetingZipLbl.AutoSize = true;
+			this.meetingZipLbl.Location = new System.Drawing.Point(288, 170);
+			this.meetingZipLbl.Name = "meetingZipLbl";
+			this.meetingZipLbl.Size = new System.Drawing.Size(68, 13);
+			this.meetingZipLbl.TabIndex = 26;
+			this.meetingZipLbl.Text = "Postnummer:";
+			// 
+			// meetingStreetLbl
+			// 
+			this.meetingStreetLbl.AutoSize = true;
+			this.meetingStreetLbl.Location = new System.Drawing.Point(288, 144);
+			this.meetingStreetLbl.Name = "meetingStreetLbl";
+			this.meetingStreetLbl.Size = new System.Drawing.Size(64, 13);
+			this.meetingStreetLbl.TabIndex = 25;
+			this.meetingStreetLbl.Text = "Gatuadress:";
+			// 
+			// meetingCityBox
+			// 
+			this.meetingCityBox.Location = new System.Drawing.Point(362, 193);
+			this.meetingCityBox.Name = "meetingCityBox";
+			this.meetingCityBox.Size = new System.Drawing.Size(129, 20);
+			this.meetingCityBox.TabIndex = 24;
+			// 
+			// meetingZipBox
+			// 
+			this.meetingZipBox.Location = new System.Drawing.Point(362, 167);
+			this.meetingZipBox.Name = "meetingZipBox";
+			this.meetingZipBox.Size = new System.Drawing.Size(129, 20);
+			this.meetingZipBox.TabIndex = 23;
+			// 
+			// meetingStreetBox
+			// 
+			this.meetingStreetBox.Location = new System.Drawing.Point(362, 141);
+			this.meetingStreetBox.Name = "meetingStreetBox";
+			this.meetingStreetBox.Size = new System.Drawing.Size(129, 20);
+			this.meetingStreetBox.TabIndex = 22;
+			// 
+			// meetingRemoveParticipantBtn
+			// 
+			this.meetingRemoveParticipantBtn.Location = new System.Drawing.Point(416, 351);
+			this.meetingRemoveParticipantBtn.Name = "meetingRemoveParticipantBtn";
+			this.meetingRemoveParticipantBtn.Size = new System.Drawing.Size(75, 23);
+			this.meetingRemoveParticipantBtn.TabIndex = 21;
+			this.meetingRemoveParticipantBtn.Text = "Ta bort";
+			this.meetingRemoveParticipantBtn.UseVisualStyleBackColor = true;
+			this.meetingRemoveParticipantBtn.Click += new System.EventHandler(this.meetingRemoveParticipantBtn_Click);
+			// 
+			// meetingAddParticipantBtn
+			// 
+			this.meetingAddParticipantBtn.Location = new System.Drawing.Point(416, 509);
+			this.meetingAddParticipantBtn.Name = "meetingAddParticipantBtn";
+			this.meetingAddParticipantBtn.Size = new System.Drawing.Size(75, 23);
+			this.meetingAddParticipantBtn.TabIndex = 20;
+			this.meetingAddParticipantBtn.Text = "Lägg till";
+			this.meetingAddParticipantBtn.UseVisualStyleBackColor = true;
+			this.meetingAddParticipantBtn.Click += new System.EventHandler(this.meetingAddParticipantBtn_Click);
+			// 
+			// meetingAddParticipantLbl
+			// 
+			this.meetingAddParticipantLbl.AutoSize = true;
+			this.meetingAddParticipantLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.meetingAddParticipantLbl.Location = new System.Drawing.Point(287, 385);
+			this.meetingAddParticipantLbl.Name = "meetingAddParticipantLbl";
+			this.meetingAddParticipantLbl.Size = new System.Drawing.Size(135, 20);
+			this.meetingAddParticipantLbl.TabIndex = 19;
+			this.meetingAddParticipantLbl.Text = "Valbara kontakter";
+			// 
+			// meetingParticipantLbl
+			// 
+			this.meetingParticipantLbl.AutoSize = true;
+			this.meetingParticipantLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.meetingParticipantLbl.Location = new System.Drawing.Point(287, 227);
+			this.meetingParticipantLbl.Name = "meetingParticipantLbl";
+			this.meetingParticipantLbl.Size = new System.Drawing.Size(79, 20);
+			this.meetingParticipantLbl.TabIndex = 18;
+			this.meetingParticipantLbl.Text = "Deltagare";
+			// 
+			// meetingAddParticipantBox
+			// 
+			this.meetingAddParticipantBox.FormattingEnabled = true;
+			this.meetingAddParticipantBox.Location = new System.Drawing.Point(291, 408);
+			this.meetingAddParticipantBox.Name = "meetingAddParticipantBox";
+			this.meetingAddParticipantBox.Size = new System.Drawing.Size(200, 95);
+			this.meetingAddParticipantBox.TabIndex = 17;
+			// 
+			// meetingParticipantBox
+			// 
+			this.meetingParticipantBox.FormattingEnabled = true;
+			this.meetingParticipantBox.Location = new System.Drawing.Point(291, 250);
+			this.meetingParticipantBox.Name = "meetingParticipantBox";
+			this.meetingParticipantBox.Size = new System.Drawing.Size(200, 95);
+			this.meetingParticipantBox.TabIndex = 16;
+			// 
+			// eventIsMeetingCheckBox
+			// 
+			this.eventIsMeetingCheckBox.AutoSize = true;
+			this.eventIsMeetingCheckBox.Location = new System.Drawing.Point(65, 88);
+			this.eventIsMeetingCheckBox.Name = "eventIsMeetingCheckBox";
+			this.eventIsMeetingCheckBox.Size = new System.Drawing.Size(50, 17);
+			this.eventIsMeetingCheckBox.TabIndex = 15;
+			this.eventIsMeetingCheckBox.Text = "Möte";
+			this.eventIsMeetingCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// eventAddNoteBtn
+			// 
+			this.eventAddNoteBtn.Location = new System.Drawing.Point(131, 509);
+			this.eventAddNoteBtn.Name = "eventAddNoteBtn";
+			this.eventAddNoteBtn.Size = new System.Drawing.Size(75, 23);
+			this.eventAddNoteBtn.TabIndex = 14;
+			this.eventAddNoteBtn.Text = "Lägg till";
+			this.eventAddNoteBtn.UseVisualStyleBackColor = true;
+			this.eventAddNoteBtn.Click += new System.EventHandler(this.eventAddNoteBtn_Click);
+			// 
+			// eventAddNoteLbl
+			// 
+			this.eventAddNoteLbl.AutoSize = true;
+			this.eventAddNoteLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.eventAddNoteLbl.Location = new System.Drawing.Point(3, 385);
+			this.eventAddNoteLbl.Name = "eventAddNoteLbl";
+			this.eventAddNoteLbl.Size = new System.Drawing.Size(109, 20);
+			this.eventAddNoteLbl.TabIndex = 12;
+			this.eventAddNoteLbl.Text = "Ny anteckning";
+			// 
+			// eventAddNoteBox
+			// 
+			this.eventAddNoteBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.eventAddNoteBox.Location = new System.Drawing.Point(7, 408);
+			this.eventAddNoteBox.Multiline = true;
+			this.eventAddNoteBox.Name = "eventAddNoteBox";
+			this.eventAddNoteBox.Size = new System.Drawing.Size(200, 95);
+			this.eventAddNoteBox.TabIndex = 11;
+			// 
+			// eventNoteBox
+			// 
+			this.eventNoteBox.FormattingEnabled = true;
+			this.eventNoteBox.Location = new System.Drawing.Point(7, 279);
+			this.eventNoteBox.Name = "eventNoteBox";
+			this.eventNoteBox.Size = new System.Drawing.Size(200, 95);
+			this.eventNoteBox.TabIndex = 9;
+			// 
+			// eventNotesLbl
+			// 
+			this.eventNotesLbl.AutoSize = true;
+			this.eventNotesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.eventNotesLbl.Location = new System.Drawing.Point(3, 256);
+			this.eventNotesLbl.Name = "eventNotesLbl";
+			this.eventNotesLbl.Size = new System.Drawing.Size(103, 20);
+			this.eventNotesLbl.TabIndex = 10;
+			this.eventNotesLbl.Text = "Anteckningar";
+			// 
+			// eventNameBox
+			// 
+			this.eventNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.eventNameBox.Location = new System.Drawing.Point(6, 3);
+			this.eventNameBox.Name = "eventNameBox";
+			this.eventNameBox.Size = new System.Drawing.Size(200, 26);
+			this.eventNameBox.TabIndex = 0;
+			// 
+			// eventProjectBox
+			// 
+			this.eventProjectBox.Location = new System.Drawing.Point(65, 35);
+			this.eventProjectBox.Name = "eventProjectBox";
+			this.eventProjectBox.Size = new System.Drawing.Size(141, 20);
+			this.eventProjectBox.TabIndex = 3;
+			// 
+			// stopDateTimeLbl
+			// 
+			this.stopDateTimeLbl.AutoSize = true;
+			this.stopDateTimeLbl.Location = new System.Drawing.Point(4, 184);
+			this.stopDateTimeLbl.Name = "stopDateTimeLbl";
+			this.stopDateTimeLbl.Size = new System.Drawing.Size(23, 13);
+			this.stopDateTimeLbl.TabIndex = 8;
+			this.stopDateTimeLbl.Text = "Till:";
+			// 
+			// eventCompanyBox
+			// 
+			this.eventCompanyBox.Location = new System.Drawing.Point(65, 61);
+			this.eventCompanyBox.Name = "eventCompanyBox";
+			this.eventCompanyBox.Size = new System.Drawing.Size(141, 20);
+			this.eventCompanyBox.TabIndex = 4;
+			// 
+			// startDatetimeLbl
+			// 
+			this.startDatetimeLbl.AutoSize = true;
+			this.startDatetimeLbl.Location = new System.Drawing.Point(4, 110);
+			this.startDatetimeLbl.Name = "startDatetimeLbl";
+			this.startDatetimeLbl.Size = new System.Drawing.Size(31, 13);
+			this.startDatetimeLbl.TabIndex = 7;
+			this.startDatetimeLbl.Text = "Från:";
+			// 
+			// eventProjectLbl
+			// 
+			this.eventProjectLbl.AutoSize = true;
+			this.eventProjectLbl.Location = new System.Drawing.Point(3, 38);
+			this.eventProjectLbl.Name = "eventProjectLbl";
+			this.eventProjectLbl.Size = new System.Drawing.Size(43, 13);
+			this.eventProjectLbl.TabIndex = 5;
+			this.eventProjectLbl.Text = "Projekt:";
+			// 
+			// endDateTimePicker
+			// 
+			this.endDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+			this.endDateTimePicker.Location = new System.Drawing.Point(7, 200);
+			this.endDateTimePicker.Name = "endDateTimePicker";
+			this.endDateTimePicker.Size = new System.Drawing.Size(200, 20);
+			this.endDateTimePicker.TabIndex = 2;
+			// 
+			// startDateTimePicker
+			// 
+			this.startDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+			this.startDateTimePicker.Location = new System.Drawing.Point(6, 126);
+			this.startDateTimePicker.Name = "startDateTimePicker";
+			this.startDateTimePicker.Size = new System.Drawing.Size(200, 20);
+			this.startDateTimePicker.TabIndex = 1;
+			// 
+			// eventCompanyLbl
+			// 
+			this.eventCompanyLbl.AutoSize = true;
+			this.eventCompanyLbl.Location = new System.Drawing.Point(3, 64);
+			this.eventCompanyLbl.Name = "eventCompanyLbl";
+			this.eventCompanyLbl.Size = new System.Drawing.Size(46, 13);
+			this.eventCompanyLbl.TabIndex = 6;
+			this.eventCompanyLbl.Text = "Företag:";
 			// 
 			// eventListLbl
 			// 
@@ -302,6 +645,7 @@
 			this.eventListBox.Name = "eventListBox";
 			this.eventListBox.Size = new System.Drawing.Size(242, 355);
 			this.eventListBox.TabIndex = 4;
+			this.eventListBox.SelectedIndexChanged += new System.EventHandler(this.eventListBox_SelectedIndexChanged);
 			// 
 			// pickDateLbl
 			// 
@@ -315,11 +659,11 @@
 			// 
 			// createEventBtn
 			// 
-			this.createEventBtn.Location = new System.Drawing.Point(268, 252);
+			this.createEventBtn.Location = new System.Drawing.Point(551, 613);
 			this.createEventBtn.Name = "createEventBtn";
 			this.createEventBtn.Size = new System.Drawing.Size(115, 23);
 			this.createEventBtn.TabIndex = 2;
-			this.createEventBtn.Text = "Skapa händelse";
+			this.createEventBtn.Text = "Ny händelse";
 			this.createEventBtn.UseVisualStyleBackColor = true;
 			// 
 			// monthCalendar
@@ -498,6 +842,8 @@
 			this.projectInfoPnl.PerformLayout();
 			this.calendarTab.ResumeLayout(false);
 			this.calendarTab.PerformLayout();
+			this.eventPnl.ResumeLayout(false);
+			this.eventPnl.PerformLayout();
 			this.tabControl.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -543,6 +889,38 @@
 		private System.Windows.Forms.Label eventListLbl;
 		private System.Windows.Forms.ListBox eventListBox;
 		private System.Windows.Forms.Label pickDateLbl;
+		private System.Windows.Forms.DateTimePicker endDateTimePicker;
+		private System.Windows.Forms.DateTimePicker startDateTimePicker;
+		private System.Windows.Forms.TextBox eventNameBox;
+		private System.Windows.Forms.Label eventCompanyLbl;
+		private System.Windows.Forms.Label eventProjectLbl;
+		private System.Windows.Forms.TextBox eventCompanyBox;
+		private System.Windows.Forms.TextBox eventProjectBox;
+		private System.Windows.Forms.Panel eventPnl;
+		private System.Windows.Forms.CheckBox eventIsMeetingCheckBox;
+		private System.Windows.Forms.Button eventAddNoteBtn;
+		private System.Windows.Forms.Label eventAddNoteLbl;
+		private System.Windows.Forms.TextBox eventAddNoteBox;
+		private System.Windows.Forms.ListBox eventNoteBox;
+		private System.Windows.Forms.Label eventNotesLbl;
+		private System.Windows.Forms.Label stopDateTimeLbl;
+		private System.Windows.Forms.Label startDatetimeLbl;
+		private System.Windows.Forms.ListBox meetingParticipantBox;
+		private System.Windows.Forms.Label meetingAddParticipantLbl;
+		private System.Windows.Forms.Label meetingParticipantLbl;
+		private System.Windows.Forms.ListBox meetingAddParticipantBox;
+		private System.Windows.Forms.Button meetingRemoveParticipantBtn;
+		private System.Windows.Forms.Button meetingAddParticipantBtn;
+		private System.Windows.Forms.Button eventSaveBtn;
+		private System.Windows.Forms.Label meetingLocationLbl;
+		private System.Windows.Forms.Label meetingCityLbl;
+		private System.Windows.Forms.Label meetingZipLbl;
+		private System.Windows.Forms.Label meetingStreetLbl;
+		private System.Windows.Forms.TextBox meetingCityBox;
+		private System.Windows.Forms.TextBox meetingZipBox;
+		private System.Windows.Forms.TextBox meetingStreetBox;
+		private System.Windows.Forms.Label showEndDateLbl;
+		private System.Windows.Forms.Label showStartDateLbl;
 	}
 }
 
