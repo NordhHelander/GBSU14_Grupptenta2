@@ -158,7 +158,8 @@ namespace Grupptenta2
 			{
 				dateOfBirthInvalidLbl.Visible = true;
 			}
-			
+
+            // SaveDataXml.SavePersons(_personManager.Persons);
 		}
 
 		private void addNoteBtn_Click(object sender, EventArgs e)

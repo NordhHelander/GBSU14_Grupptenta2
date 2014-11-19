@@ -37,7 +37,7 @@ namespace Grupptenta2
 
 		private void personControl_OnSavePersonChanges()
 		{
-			this.Close();
+            this.Close();
 		}
 	}
 }

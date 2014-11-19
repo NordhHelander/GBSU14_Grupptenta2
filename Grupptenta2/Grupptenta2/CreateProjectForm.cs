@@ -90,6 +90,8 @@ namespace Grupptenta2
 
 			personBox.DataSource = company.Employees;
 			personBox.DisplayMember = "Person";
+
+            SaveDataXml.SaveAll(_companyManager.Companies, _personManager.Persons, _projectManager.Projects);
 		}
 
 		private void addPartBtn_Click(object sender, EventArgs e)
@@ -113,7 +115,8 @@ namespace Grupptenta2
 		private void saveParticipantsBtn_Click(object sender, EventArgs e)
 		{
 			_newProject.Roles = _tempParticipantList;
-			this.Close();
+            SaveDataXml.SaveAll(_companyManager.Companies, _personManager.Persons, _projectManager.Projects);
+            this.Close();
 		}
 	}
 }

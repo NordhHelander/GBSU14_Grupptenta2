@@ -33,10 +33,7 @@ namespace Grupptenta2
 
 			InitializeComponent();
 
-			CreateMocks();
-			//SaveDataXml.LoadCompanies();
-			//SaveDataXml.LoadPersons();
-			//SaveDataXml.LoadProjects();
+			//CreateMocks();
 
 			SetEventMethods();
 			CalendarBoldDates();
@@ -331,7 +328,7 @@ namespace Grupptenta2
 		private void eventSaveBtn_Click(object sender, EventArgs e)
 		{
 			if (_isNewEvent)
-		{
+		    {
 				eventCompanyBox.Enabled = false;
 				eventProjectBox.Enabled = false;
 				startDatetimeLbl.Enabled = false;
@@ -342,7 +339,7 @@ namespace Grupptenta2
 
 				BoldDates(_selectedEvent.StartDate, _selectedEvent.EndDate);
 				monthCalendar.BoldedDates = _boldedDates.ToArray();
-		}
+		    }
 
 			_selectedEvent.Name = eventNameBox.Text;
 			_selectedEvent.Location.Street = meetingStreetBox.Text;
@@ -350,6 +347,8 @@ namespace Grupptenta2
 			_selectedEvent.Location.City = meetingCityBox.Text;
 
 			this.Text = _selectedEvent.Name;
+
+            SaveDataXml.SaveProjects(_projectManager.Projects);
 		}
 
 		private void eventNoteBox_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -555,6 +554,7 @@ namespace Grupptenta2
 			_selectedProject.Name = projectNameBox.Text;
 			_selectedProject.Description = projectDescBox.Text;
 			projectChoiceBox.SetData(_projectManager.Projects, "Name");
+            SaveDataXml.SaveAll(_companyManager.Companies, _personManager.Persons, _projectManager.Projects);
 		}
 
 		// Project Container: Panel 2
@@ -604,9 +604,12 @@ namespace Grupptenta2
 		}
 		private void projectEventBox_OnDoubleClickChoice(object sender, DoubleClickHandlerEventArgs e)
 		{
-            _selectedEvent = (ProjectEvent)projectEventBox.listBox.SelectedItem;
-            tabControl.SelectedIndex = 0;
-            LoadSelectedEvent();
+            if (projectEventBox.listBox.SelectedItem != null)
+            {
+                _selectedEvent = (ProjectEvent)projectEventBox.listBox.SelectedItem;
+                tabControl.SelectedIndex = 0;
+                LoadSelectedEvent();    
+            }
 		}
 		#endregion
 
@@ -631,6 +634,7 @@ namespace Grupptenta2
 			projectParticipantBox.SetData(_selectedProject.Roles, "Person");
 			projectAvailableParticipantsBox.SetData(_companyManager.Companies.SingleOrDefault(c => c.Projects.Any(p => p.Id == _selectedProject.Id)).Employees, "Person");
 			projectEventBox.SetData(_selectedProject.ProjectJournal.Events, "ProjectEvent");
+            RefreshChoiceBox(projectEventBox, _selectedProject.ProjectJournal.Events, "Note");
 			projectNoteBox.SetData(_selectedProject.ProjectJournal.Notes, "Note");
 			RefreshChoiceBox(projectNoteBox, _selectedProject.Notes, "Note");
 		}
@@ -680,9 +684,10 @@ namespace Grupptenta2
 		}
 		private void quitBtn_Click(object sender, EventArgs e)
 		{
-			SaveDataXml.SaveCompanies(_companyManager.Companies);
-			SaveDataXml.SavePersons(_personManager.Persons);
-			SaveDataXml.SaveProjects(_projectManager.Projects);
+            SaveDataXml.SaveAll(_companyManager.Companies, _personManager.Persons, _projectManager.Projects);
+            //SaveDataXml.SaveCompanies(_companyManager.Companies);
+            //SaveDataXml.SavePersons(_personManager.Persons);
+            //SaveDataXml.SaveProjects(_projectManager.Projects);
 			Application.Exit();
 		}
 	}
