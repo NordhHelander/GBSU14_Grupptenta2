@@ -218,6 +218,7 @@ namespace Grupptenta2
 
 		private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
 		{
+			List<ProjectEvent> tempList = new List<ProjectEvent>();	
 			_events = new BindingList<ProjectEvent>();
 			DateTime selectedDate = monthCalendar.SelectionRange.Start;
 			eventListLbl.Text = "Händelser " + selectedDate.ToShortDateString();
@@ -233,10 +234,10 @@ namespace Grupptenta2
 				}
 			}
 
-				eventListBox.DataSource = null;
-				eventListBox.DisplayMember = null;
-				eventListBox.DataSource = _events;
-				eventListBox.DisplayMember = "Name";
+			eventListBox.DataSource = tempList;
+			eventListBox.DataSource = null;
+			eventListBox.DataSource = _events;
+			eventListBox.DisplayMember = "Name";
 		}
 
 		private void eventListBox_SelectedIndexChanged(object sender, EventArgs e)
